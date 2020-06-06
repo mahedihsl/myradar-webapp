@@ -1,0 +1,19 @@
+{
+  "name": "hyperware",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "gentelella": "^1.4.0",
+    "air-datepicker": "^2.2.3"
+  }
+}
