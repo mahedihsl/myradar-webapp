@@ -49,7 +49,7 @@ class ServiceController extends Controller
 				// $test_devices = [40701];
 				// in_array(intval($request->get('ss')), $test_devices)
 				$client_id = '5e20848391c4040013599f60'; // Jatri App
-				if ($device->user_id == $client_id) {
+				if ($device->user_id == $client_id && $device->user->isEnabled()) {
 					event(new ExternalDeviceDataReceived($device, $request->all()));
 				}
 			} catch (\Exception $e) {

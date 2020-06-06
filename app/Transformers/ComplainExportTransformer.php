@@ -21,12 +21,14 @@ class ComplainExportTransformer extends TransformerAbstract
      */
     public function transform(Complain $model)
     {
+        $teams = ['N/A', 'CCD', 'Eng - Ops'];
         return [
             'Status' => $model->status,
 			'Token'  => $model->token,
 			'Car'    => $model->reg_no,
 			'Complainer' => $model->car->user->name,
-			'Creator' => $model->emp,
+            'Creator' => $model->emp,
+            'Responsible' => $teams[$model->responsible],
 			'When' => $model->when->diffForHumans(),
         ];
     }
