@@ -95,14 +95,15 @@ class GasCalibrationController extends Controller
                               ->orderBy('magnitude')
                               ->get()
                               ->map(function($item){
+                                $time = $item->event ? $item->event->created_at->format('d-m-y h:i a') : '--';
                                 return [
-                                      'time' => $item->event->created_at->format('d-m-y h:i a'),
+                                      'time' => $time,
                                       'magnitude' => $item->magnitude,
                                       'base' => $item->base,
                                       'price' => $item->price,
                                       'factor'=> $item->factor,
                                     ];
-                              });;
+                              });
 
       return response()->ok($data);
 
