@@ -46,14 +46,18 @@ class ServiceController extends Controller
 	    }
 
 			try {
-				// $test_devices = [40701];
-				// in_array(intval($request->get('ss')), $test_devices)
 				$client_id = '5e20848391c4040013599f60'; // Jatri App
 				if ($device->user_id == $client_id) {
 					// Log::info('Jatri data received');
 					if ($device->user->isEnabled()) {
-						// Log::info('Jatri data forwarded');
-						event(new ExternalDeviceDataReceived($device, $request->all()));
+						$enabled = $device->car ? boolval($device->car->status) : false;
+						if ($enabled) {
+							Log::info('Jatri data forwarded: ' . $device->com_id);
+							event(new ExternalDeviceDataReceived($device, $request->all()));
+						} else {
+							Log::info('Jatri car disabled: ' . $device->com_id);
+						}
+						
 					}
 				}
 			} catch (\Exception $e) {
