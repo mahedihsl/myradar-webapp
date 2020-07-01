@@ -47,6 +47,7 @@ Route::get('/test', 'Test\NotificationController@fcmNoti');
 Route::get('/test/remove', 'Test\DatabaseTestController@remove');
 Route::get('/test/throttle', 'Test\DatabaseTestController@throttle');
 Route::get('/test/notice', 'Promotion\NoticeController@lastMonthDue');
+Route::any('/test/speed-noti', 'Test\SpeedLimitController@noti');
 Route::any('/concox/test', 'Test\ConcoxController@receive');
 
 // Private Customer

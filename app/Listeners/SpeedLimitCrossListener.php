@@ -56,8 +56,12 @@ class SpeedLimitCrossListener
       $car = $device->car;
       $validated = $customerType == User::$CUSTOMER_ENTERPRISE ? $this->enterpriseValidate($user, $car) : $this->privateValidate($user);
       if ($validated) {
-          dispatch(new PushNotificationJob($user->id, $data));
+        //   dispatch(new PushNotificationJob($user->id, $data));
+        $job = new PushNotificationJob($user->id, $data);
+        $job->handle();
+        return true;
       }
+      return false;
     }
 
     public function getBody($limit, $flag)

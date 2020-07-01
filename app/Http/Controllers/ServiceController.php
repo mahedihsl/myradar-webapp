@@ -52,10 +52,10 @@ class ServiceController extends Controller
 					if ($device->user->isEnabled()) {
 						$enabled = $device->car ? boolval($device->car->status) : false;
 						if ($enabled) {
-							Log::info('Jatri data forwarded: ' . $device->com_id);
+							// Log::info('Jatri data forwarded: ' . $device->com_id);
 							event(new ExternalDeviceDataReceived($device, $request->all()));
 						} else {
-							Log::info('Jatri car disabled: ' . $device->com_id);
+							// Log::info('Jatri car disabled: ' . $device->com_id);
 						}
 						
 					}
