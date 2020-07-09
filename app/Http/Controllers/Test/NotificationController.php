@@ -28,9 +28,24 @@ class NotificationController extends Controller
         // $json = json_encode($xml);
         // $array = json_decode($json, TRUE);
 
-        dispatch(new SmsSendingJob($phone, $content));
+        // dispatch(new SmsSendingJob($phone, $content));
+        // $job = new SmsSendingJob($phone, $content);
+        // $job->handle();
+        $job = new SmsService(true);
+        $res = $job->send($phone, $content);
 
-        return response()->ok();
+        return response()->ok([
+            'data' => $res,
+            'props' => [
+                'form_params' => [
+                    'Username'  => config('sms.username'),
+                    'Password'  => config('sms.password'),
+                    'From'      => config('sms.sender'),
+                    'To'        => $phone,
+                    'Message'   => $content,
+                ]
+            ]
+        ]);
     }
 
     public function noti(Request $request)
