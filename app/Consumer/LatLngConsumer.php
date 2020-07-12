@@ -69,7 +69,7 @@ class LatLngConsumer extends ServiceConsumer
 
         if ($lat == 0 || $lng == 0) {
             return null;
-	}
+	    }
 
 
         //$lastPos = $this->getLastPos();

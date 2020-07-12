@@ -33,7 +33,7 @@ class NotifyEngineStatus
      */
     public function handle(EngineStatusChanged $event)
     {
-        if($event->silent){
+        if($event->silent || !$event->device->car || $event->device->user){
           return;
         }
         //send notification to original owners

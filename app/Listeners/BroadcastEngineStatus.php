@@ -27,6 +27,8 @@ class BroadcastEngineStatus
      */
     public function handle(EngineStatusChanged $event)
     {
+        if (is_null($event->device->car)) return;
+
         $user_ids = $event->device->car->shared_with; //car shared with users
         array_push($user_ids, $event->device->user_id);//actual user
 

@@ -11,6 +11,7 @@ use App\Generator\ServiceConsumerGenerator;
 use App\Contract\Repositories\DeviceRepository;
 use App\Entities\ExecTime;
 use App\Entities\Device;
+use App\Service\Log\Log as LogLog;
 use GuzzleHttp\Client;
 
 class ServiceController extends Controller
@@ -29,6 +30,12 @@ class ServiceController extends Controller
     {
 		$start = round(microtime(true) * 1000);
 		$com_id = intval($request->get('ss'));
+
+		if ($com_id == '27641') {
+			Log::info('Service String received', $request->all());
+		}
+		
+
 		$device = Device::raw(function($collection) use ($com_id) {
 			return $collection->findOne([
 				'com_id' => ['$eq' => $com_id]

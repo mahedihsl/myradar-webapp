@@ -33,6 +33,7 @@ class GasConsumer extends ServiceConsumer
 
     public function consume(Device $device)
     {
+        if(!$device->car) return;
         $status = $device->engine_status;
         if ($status) {
             $record = $this->repository->save($device, $this->getData());
