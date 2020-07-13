@@ -34,6 +34,8 @@ class StoreEngineEvent
      */
     public function handle(EngineStatusChanged $event)
     {
+        if (is_null($event->device->car)) return;
+        
         $data = $this->payload($event->device, $event->status);
         $this->repository->save($event->device, $data, $this->type($event->status));
     }
