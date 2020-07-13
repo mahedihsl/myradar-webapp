@@ -33,7 +33,7 @@ class NotifyEngineStatus
      */
     public function handle(EngineStatusChanged $event)
     {
-        if($event->silent || !$event->device->car || $event->device->user){
+        if($event->silent || is_null($event->device->car) || is_null($event->device->user)){
           return;
         }
         //send notification to original owners
@@ -47,7 +47,6 @@ class NotifyEngineStatus
         foreach ($users as $key => $userId) {
           $this->execute(User::find($userId), $device, $data);
         }
-
     }
 
     public function execute($user, $device, $data){
