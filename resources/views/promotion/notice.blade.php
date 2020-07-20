@@ -14,8 +14,9 @@
       @endif
     </div>
     <div class="col-xs-12">
-      <form class="form" action="/send/due/notice" method="post">
+      <form class="form" action="/send/due/notice" method="post" id="notice-form">
         {!! csrf_field() !!}
+        <input type="hidden" name="via" value="" />
         <div class="col-xs-6">
           <div class="form-group">
             <label>Select Month</label>
@@ -32,8 +33,11 @@
             <label for="">Message</label>
             <textarea name="message" rows="8" class="form-control" placeholder="Write SMS Content Here"></textarea>
           </div>
-          <button class="btn btn-success" type="submit">
-            <i class="fa fa-paper-plane"></i> SEND
+          <button class="btn btn-success btn-send" type="button" data-via="sms">
+            <i class="fa fa-paper-plane"></i> SEND SMS
+          </button>
+          <button class="btn btn-primary btn-send" type="button" data-via="push">
+            <i class="fa fa-bell"></i> SEND PUSH
           </button>
         </div>
       </form>
@@ -52,4 +56,13 @@
 
 @push('script')
   <script src="{{mix('js/customer/promotion/index.js')}}"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('.btn-send').click(function() {
+        var via = $(this).data('via');
+        $('input[name="via"]').val(via);
+        $('#notice-form').submit();
+      })
+    })
+  </script>
 @endpush

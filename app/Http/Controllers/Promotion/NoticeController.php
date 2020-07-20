@@ -8,7 +8,9 @@ use App\Contract\Repositories\NoticeRepository;
 use App\Entities\User;
 use App\Entities\Notice;
 use App\Entities\Payment;
+use App\Jobs\PushNotificationJob;
 use App\Jobs\SmsSendingJob;
+use App\Service\NotificationService;
 use App\Service\SmsService;
 use Carbon\Carbon;
 
@@ -52,15 +54,25 @@ class NoticeController extends Controller
         $month = explode(",", $request->get('month'));
         $mm = intval($month[0]);
         $yy = intval($month[1]);
+        $via = $request->get('via');
 
         $message = $request->get('message', null);
 
         if (strlen($message)) {
             $unpaid = $this->getUnpaidUsers($mm, $yy);
-            $unpaid->each(function($user) use ($message) {
-                // dispatch(new SmsSendingJob($user->phone, $message));
-                $s = new SmsService();
-                $s->send($user->phone, $message);
+            $unpaid->each(function($user) use ($message, $via) {
+                if ($via == 'sms') {
+                    $s = new SmsService();
+                    $s->send($user->phone, $message);
+                } else {
+                    $payload = collect([
+                        'title' => 'Notice',
+                        'body' => $message,
+                        'type' => NotificationService::$TYPE_BILL,
+                    ]);
+                    $job = new PushNotificationJob($user->id, $payload);
+                    $job->handle();
+                }
             });
 
             $this->repository->create([
