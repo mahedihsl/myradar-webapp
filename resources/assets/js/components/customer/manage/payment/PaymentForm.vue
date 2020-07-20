@@ -114,6 +114,8 @@ export default {
       types: [
         {id: 1, label: 'Cash'},
         {id: 2, label: 'bKash'},
+        {id: 9, label: 'bKash (907)'},
+        {id: 10, label: 'bKash (909)'},
         {id: 3, label: 'bKash Personal'},
         {id: 4, label: 'Rocket'},
         {id: 5, label: 'Rocket Personal'},
