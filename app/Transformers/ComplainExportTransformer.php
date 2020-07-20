@@ -22,6 +22,13 @@ class ComplainExportTransformer extends TransformerAbstract
     public function transform(Complain $model)
     {
         $teams = ['N/A', 'CCD', 'Eng - Ops'];
+        $getComment = function($list, $i) {
+            if ($i >= count($list)) {
+                return '--';
+            }
+            return $list[$i]['body'];
+        };
+
         return [
             'Status' => $model->status,
 			'Token'  => $model->token,
@@ -29,7 +36,10 @@ class ComplainExportTransformer extends TransformerAbstract
 			'Complainer' => $model->car->user->name,
             'Creator' => $model->emp,
             'Responsible' => $teams[$model->responsible],
-			'When' => $model->when->diffForHumans(),
+            'When' => $model->when->diffForHumans(),
+            'Comment #1' => $getComment($model->comments, 0),
+            'Comment #2' => $getComment($model->comments, 1),
+            'Comment #3' => $getComment($model->comments, 2),
         ];
     }
 }

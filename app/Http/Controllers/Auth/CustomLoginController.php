@@ -53,17 +53,17 @@ class CustomLoginController extends Controller
        if($auth_attempt==true)
        {
            $user = Auth::user();
-           $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+           if ($user->isEnabled()) {
+            $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
 
-         return redirect($url);
+            return redirect($url);
+           }
+           
        }
 
-      else{
-         $errors = new MessageBag(['password' => ['Username or password is invalid.']]);
+       $errors = new MessageBag(['password' => ['Username or password is invalid.']]);
 
-         return redirect()->back()->withErrors($errors)->withInput($request->all());
-
-      }
+       return redirect()->back()->withErrors($errors)->withInput($request->all());
   
      }
 
@@ -71,13 +71,15 @@ class CustomLoginController extends Controller
         // other input
         if(is_numeric($input))
         {
-        $auth_attempt =   Auth::attempt(['phone' => $input, 'password' => request('password')]);
+        $auth_attempt = Auth::attempt(['phone' => $input, 'password' => request('password')]);
         if($auth_attempt==true)
           {
               $user = Auth::user();
-              $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+              if ($user->isEnabled()) {
+                $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
 
-            return redirect($url);
+                return redirect($url);
+              }
           }
         }
 
