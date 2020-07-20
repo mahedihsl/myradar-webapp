@@ -70,8 +70,7 @@ class NoticeController extends Controller
                         'body' => $message,
                         'type' => NotificationService::$TYPE_BILL,
                     ]);
-                    $job = new PushNotificationJob($user->id, $payload);
-                    $job->handle();
+                    dispatch(new PushNotificationJob($user->id, $payload));
                 }
             });
 
