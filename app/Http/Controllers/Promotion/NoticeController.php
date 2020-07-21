@@ -108,7 +108,7 @@ class NoticeController extends Controller
                 $s = new SmsService();
                 $s->send($model->to, $model->payload);
             } else if ($model->via == 'push') {
-                $j = new PushNotificationJob($model->to, $model->payload);
+                $j = new PushNotificationJob($model->to, collect($model->payload));
                 $j->handle();
             }
             $model->delete();
