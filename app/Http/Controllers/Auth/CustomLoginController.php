@@ -57,6 +57,8 @@ class CustomLoginController extends Controller
             $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
 
             return redirect($url);
+           } else {
+            Auth::logout();
            }
            
        }
@@ -79,6 +81,8 @@ class CustomLoginController extends Controller
                 $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
 
                 return redirect($url);
+              } else {
+                Auth::logout();
               }
           }
         }
