@@ -9,10 +9,10 @@ use App\Entities\User;
 use App\Entities\Notice;
 use App\Entities\Payment;
 use App\Jobs\PushNotificationJob;
-use App\Jobs\SmsSendingJob;
 use App\Service\NotificationService;
 use App\Service\SmsService;
 use Carbon\Carbon;
+use App\Entities\PendingNotice;
 
 class NoticeController extends Controller
 {
@@ -62,15 +62,25 @@ class NoticeController extends Controller
             $unpaid = $this->getUnpaidUsers($mm, $yy);
             $unpaid->each(function($user) use ($message, $via) {
                 if ($via == 'sms') {
-                    $s = new SmsService();
-                    $s->send($user->phone, $message);
+                    PendingNotice::create([
+                        'via' => $via,
+                        'to' => $user->phone,
+                        'payload' => $message,
+                    ]);
+                    // $s = new SmsService();
+                    // $s->send($user->phone, $message);
                 } else {
-                    $payload = collect([
+                    $payload = [
                         'title' => 'Notice',
                         'body' => $message,
                         'type' => NotificationService::$TYPE_BILL,
+                    ];
+                    PendingNotice::create([
+                        'via' => $via,
+                        'to' => $user->id,
+                        'payload' => $payload,
                     ]);
-                    dispatch(new PushNotificationJob($user->id, $payload));
+                    // dispatch(new PushNotificationJob($user->id, $payload));
                 }
             });
 
