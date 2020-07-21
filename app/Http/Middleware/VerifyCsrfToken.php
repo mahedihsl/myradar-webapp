@@ -24,5 +24,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/logout',
         'customers/sendCredential/api',
         'service/api/get_service_diagnosis',
+        'send/single/notice',
     ];
 }

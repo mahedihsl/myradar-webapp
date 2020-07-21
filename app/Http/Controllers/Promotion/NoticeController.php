@@ -42,7 +42,8 @@ class NoticeController extends Controller
                     ->whereNotIn('_id', $users)
                     ->where(function($query) {
                         $query->where('status', 'exists', false)
-                            ->orWhere('status', 1);
+                            ->orWhere('status', 1)
+                            ->orWhere('status', "1");
                     })
                     ->get(['phone']);
 
@@ -90,17 +91,38 @@ class NoticeController extends Controller
 
             return redirect()->route('due-notice', [
                 'status' => 1,
-                'count' => $unpaid->count(),
+                'via' => $via,
+                'count' => PendingNotice::where('via', $via)->count(),
             ]);
         }
 
         return redirect()->route('due-notice', ['status' => 0]);
     }
 
+    public function sendSingleNotice(Request $request)
+    {
+        $via = $request->get('via', 'none');
+        $model = PendingNotice::where('via', $via)->first();
+        if ( ! is_null($model)) {
+            if ($model->via == 'sms') {
+                $s = new SmsService();
+                $s->send($model->to, $model->payload);
+            } else if ($model->via == 'push') {
+                $j = new PushNotificationJob($model->to, $model->payload);
+                $j->handle();
+            }
+            $model->delete();
+        }
+        return response()->json([
+            'remaining' => PendingNotice::where('via', $via)->count()
+        ]);
+    }
+
     public function dueNotice(Request $request)
     {
         $status = $request->get('status', -1);
         $count = $request->get('count', 0);
+        $via = $request->get('via', '');
 
         $months = collect(range(0, 11))->map(function($i) {
             $temp = Carbon::today()->subMonths($i);
@@ -118,6 +140,7 @@ class NoticeController extends Controller
             'count' => $count,
             'months' => $months,
             'history' => $history,
+            'via' => $via,
         ]);
     }
 }
