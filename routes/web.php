@@ -49,6 +49,7 @@ Route::get('/test/remove', 'Test\DatabaseTestController@remove');
 Route::get('/test/throttle', 'Test\DatabaseTestController@throttle');
 Route::get('/test/notice', 'Promotion\NoticeController@lastMonthDue');
 Route::any('/test/speed-noti', 'Test\SpeedLimitController@noti');
+Route::any('/test/push-noti', 'Test\PushNotificationController@test');
 Route::any('/test/engine-noti', 'Test\EngineStatusController@noti');
 Route::any('/concox/test', 'Test\ConcoxController@receive');
 
