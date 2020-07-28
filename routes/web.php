@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('/privacy-policy', 'HomeController@privacy');
 
-Route::get('/test', 'Test\NotificationController@fcmNoti');
+Route::get('/test/noti', 'Test\NotificationController@onesignal');
 Route::get('/test/sms', 'Test\NotificationController@sms');
 Route::get('/test/remove', 'Test\DatabaseTestController@remove');
 Route::get('/test/throttle', 'Test\DatabaseTestController@throttle');
