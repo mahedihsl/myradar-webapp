@@ -1,8 +1,6 @@
 import Swal from 'sweetalert2'
 import moment from 'moment'
 
-import Pin from './pin'
-
 export class Map {
     constructor(domId) {
         this.map = null;
@@ -10,10 +8,6 @@ export class Map {
         this.domId = domId;
         this.defaultZoom = 14;
         this.defaultCenter = new google.maps.LatLng(23.776750, 90.396653);
-
-        this.addPinByClickEnabled = false
-        this.polygon = null
-        this.pins = []
     }
 
     init(center = null) {
@@ -48,49 +42,7 @@ export class Map {
         this.map.panTo(point.getPosition());
     }
 
-    drawPolygon() {
-        if (!!this.polygon) {
-            this.polygon.setMap(null)
-        }
-        const vertices = [...this.pins, this.pins[0]]
-        this.polygon = new google.maps.Polygon({
-            paths: vertices.map(v => v.latLng()),
-            strokeColor: "#3f51b5",
-            strokeOpacity: 0.8,
-            strokeWeight: 1,
-            fillColor: "#3f51b5",
-            fillOpacity: 0.15,
-        });
-        this.polygon.setMap(this.map);
-    }
-
-    addPin(pin) {
-        this.pins.push(pin)
-        if (this.pins.length > 2) {
-            this.drawPolygon()
-        }
-        
-        return new google.maps.Marker({
-            position: pin.position(),
-            map: this.map,
-            icon: pin.icon(),
-        })
-    }
-
-    enablePinAddByClick() {
-        this.addPinByClickEnabled = true
-        this.map.addListener('click', (e) => {
-            this.addPin(new Pin(e.latLng))
-        })
-    }
-
     addMarker(marker, label = null) {
-        // return new google.maps.Marker({
-        //     position: marker.getCurrentPoint().getPosition(),
-        //     title: 'Marker',
-        //     map: this.map,
-        //     icon: marker.getIcon(),
-        // });
         if (!label) {
             return new google.maps.Marker({
                 position: marker.getCurrentPoint().getPosition(),
@@ -98,12 +50,6 @@ export class Map {
                 map: this.map,
                 icon: marker.getIcon(),
             });
-            // return new MarkerWithLabel({
-            //     position: marker.getCurrentPoint().getPosition(),
-            //     title: 'Marker',
-            //     map: this.map,
-            //     icon: marker.getIcon(),
-            // });
         }
 
         let ret = new MarkerWithLabel({

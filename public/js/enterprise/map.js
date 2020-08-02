@@ -67790,16 +67790,11 @@ var iconRed = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pin__ = __webpack_require__("./resources/assets/js/position/pin.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
 
 
 
@@ -67813,10 +67808,6 @@ var Map = function () {
         this.domId = domId;
         this.defaultZoom = 14;
         this.defaultCenter = new google.maps.LatLng(23.776750, 90.396653);
-
-        this.addPinByClickEnabled = false;
-        this.polygon = null;
-        this.pins = [];
     }
 
     _createClass(Map, [{
@@ -67855,49 +67846,6 @@ var Map = function () {
         key: 'updateCenter',
         value: function updateCenter(point) {
             this.map.panTo(point.getPosition());
-        }
-    }, {
-        key: 'drawPolygon',
-        value: function drawPolygon() {
-            if (!!this.polygon) {
-                this.polygon.setMap(null);
-            }
-            var vertices = [].concat(_toConsumableArray(this.pins), [this.pins[0]]);
-            this.polygon = new google.maps.Polygon({
-                paths: vertices.map(function (v) {
-                    return v.latLng();
-                }),
-                strokeColor: "#3f51b5",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#3f51b5",
-                fillOpacity: 0.15
-            });
-            this.polygon.setMap(this.map);
-        }
-    }, {
-        key: 'addPin',
-        value: function addPin(pin) {
-            this.pins.push(pin);
-            if (this.pins.length > 2) {
-                this.drawPolygon();
-            }
-
-            return new google.maps.Marker({
-                position: pin.position(),
-                map: this.map,
-                icon: pin.icon()
-            });
-        }
-    }, {
-        key: 'enablePinAddByClick',
-        value: function enablePinAddByClick() {
-            var _this = this;
-
-            this.addPinByClickEnabled = true;
-            this.map.addListener('click', function (e) {
-                _this.addPin(new __WEBPACK_IMPORTED_MODULE_2__pin__["a" /* default */](e.latLng));
-            });
         }
     }, {
         key: 'addMarker',
@@ -68172,53 +68120,6 @@ var Marker = function () {
 
     return Marker;
 }();
-
-/***/ }),
-
-/***/ "./resources/assets/js/position/pin.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Pin = function () {
-  function Pin(latlng) {
-    _classCallCheck(this, Pin);
-
-    this.latlng = latlng;
-    this.iconUrl = 'http://myradar.com.bd/images/ic-pin@2x.png';
-  }
-
-  _createClass(Pin, [{
-    key: 'position',
-    value: function position() {
-      return this.latlng;
-    }
-  }, {
-    key: 'latLng',
-    value: function latLng() {
-      return { lat: this.latlng.lat(), lng: this.latlng.lng() };
-    }
-  }, {
-    key: 'icon',
-    value: function icon() {
-      return {
-        url: this.iconUrl,
-        // size: new google.maps.Size(64, 64),
-        // scale: 0.5,
-        scaledSize: new google.maps.Size(32, 32)
-        // origin: new google.maps.Point(0, 0),
-        // anchor: new google.maps.Point(0, 32),
-      };
-    }
-  }]);
-
-  return Pin;
-}();
-
-/* harmony default export */ __webpack_exports__["a"] = (Pin);
 
 /***/ }),
 

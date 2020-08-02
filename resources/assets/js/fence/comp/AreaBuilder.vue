@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { Map } from '../../position/map'
+import GeofenceMap from '../../position/GeofenceMap'
 
 export default {
   data: () => ({
@@ -32,14 +32,15 @@ export default {
     map: null,
   }),
   mounted() {
-    this.map = new Map('map-container')
+    this.map = new GeofenceMap('map-container')
     this.map.init()
-    this.map.enablePinAddByClick()
   },
   methods: {
     save() {
       this.map.drawPolygon()
-      // setTimeout(() => this.$emit('cancel'), 2000)
+      if (this.validate()) {
+        
+      }
     }
   }
 }

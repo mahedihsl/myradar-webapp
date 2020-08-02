@@ -1607,7 +1607,7 @@ module.exports = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position_map__ = __webpack_require__("./resources/assets/js/position/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position_GeofenceMap__ = __webpack_require__("./resources/assets/js/position/GeofenceMap.js");
 //
 //
 //
@@ -1644,9 +1644,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   mounted: function mounted() {
-    this.map = new __WEBPACK_IMPORTED_MODULE_0__position_map__["a" /* Map */]('map-container');
+    this.map = new __WEBPACK_IMPORTED_MODULE_0__position_GeofenceMap__["a" /* default */]('map-container');
     this.map.init();
-    this.map.enablePinAddByClick();
   },
 
   methods: {
@@ -66985,6 +66984,93 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /***/ }),
 
+/***/ "./resources/assets/js/position/GeofenceMap.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__map__ = __webpack_require__("./resources/assets/js/position/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pin__ = __webpack_require__("./resources/assets/js/position/pin.js");
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var GeofenceMap = function (_Map) {
+  _inherits(GeofenceMap, _Map);
+
+  function GeofenceMap(domId) {
+    _classCallCheck(this, GeofenceMap);
+
+    var _this = _possibleConstructorReturn(this, (GeofenceMap.__proto__ || Object.getPrototypeOf(GeofenceMap)).call(this, domId));
+
+    _this.polygon = null;
+    _this.pins = [];
+    return _this;
+  }
+
+  _createClass(GeofenceMap, [{
+    key: 'updatePolygon',
+    value: function updatePolygon() {
+      if (!!this.polygon) {
+        this.polygon.setMap(null);
+      }
+      var vertices = [].concat(_toConsumableArray(this.pins), [this.pins[0]]);
+      this.polygon = new google.maps.Polygon({
+        paths: vertices.map(function (v) {
+          return v.latLng();
+        }),
+        strokeColor: "#3f51b5",
+        strokeOpacity: 0.8,
+        strokeWeight: 1,
+        fillColor: "#3f51b5",
+        fillOpacity: 0.15
+      });
+      this.polygon.setMap(this.map);
+    }
+  }, {
+    key: 'addPin',
+    value: function addPin(event) {
+      var pin = new __WEBPACK_IMPORTED_MODULE_1__pin__["a" /* default */](event.latLng);
+
+      this.pins.push(pin);
+      if (this.pins.length > 2) {
+        this.updatePolygon();
+      }
+
+      return new google.maps.Marker({
+        position: pin.position(),
+        map: this.map,
+        icon: pin.icon()
+      });
+    }
+  }, {
+    key: 'init',
+    value: function init() {
+      var center = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      _get(GeofenceMap.prototype.__proto__ || Object.getPrototypeOf(GeofenceMap.prototype), 'init', this).call(this, center);
+
+      this.map.addListener('click', this.addPin.bind(this));
+    }
+  }]);
+
+  return GeofenceMap;
+}(__WEBPACK_IMPORTED_MODULE_0__map__["a" /* Map */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (GeofenceMap);
+
+/***/ }),
+
 /***/ "./resources/assets/js/position/map.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -66994,16 +67080,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__("./node_modules/moment/moment.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pin__ = __webpack_require__("./resources/assets/js/position/pin.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-
 
 
 
@@ -67017,10 +67098,6 @@ var Map = function () {
         this.domId = domId;
         this.defaultZoom = 14;
         this.defaultCenter = new google.maps.LatLng(23.776750, 90.396653);
-
-        this.addPinByClickEnabled = false;
-        this.polygon = null;
-        this.pins = [];
     }
 
     _createClass(Map, [{
@@ -67059,49 +67136,6 @@ var Map = function () {
         key: 'updateCenter',
         value: function updateCenter(point) {
             this.map.panTo(point.getPosition());
-        }
-    }, {
-        key: 'drawPolygon',
-        value: function drawPolygon() {
-            if (!!this.polygon) {
-                this.polygon.setMap(null);
-            }
-            var vertices = [].concat(_toConsumableArray(this.pins), [this.pins[0]]);
-            this.polygon = new google.maps.Polygon({
-                paths: vertices.map(function (v) {
-                    return v.latLng();
-                }),
-                strokeColor: "#3f51b5",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#3f51b5",
-                fillOpacity: 0.15
-            });
-            this.polygon.setMap(this.map);
-        }
-    }, {
-        key: 'addPin',
-        value: function addPin(pin) {
-            this.pins.push(pin);
-            if (this.pins.length > 2) {
-                this.drawPolygon();
-            }
-
-            return new google.maps.Marker({
-                position: pin.position(),
-                map: this.map,
-                icon: pin.icon()
-            });
-        }
-    }, {
-        key: 'enablePinAddByClick',
-        value: function enablePinAddByClick() {
-            var _this = this;
-
-            this.addPinByClickEnabled = true;
-            this.map.addListener('click', function (e) {
-                _this.addPin(new __WEBPACK_IMPORTED_MODULE_2__pin__["a" /* default */](e.latLng));
-            });
         }
     }, {
         key: 'addMarker',
