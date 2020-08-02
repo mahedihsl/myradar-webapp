@@ -1,5 +1,7 @@
-import Swal from 'sweetalert2';
-import moment from 'moment';
+import Swal from 'sweetalert2'
+import moment from 'moment'
+
+import Pin from './pin'
 
 export class Map {
     constructor(domId) {
@@ -8,6 +10,8 @@ export class Map {
         this.domId = domId;
         this.defaultZoom = 14;
         this.defaultCenter = new google.maps.LatLng(23.776750, 90.396653);
+
+        this.pinAddByClickEnabled = false
     }
 
     init(center = null) {
@@ -40,6 +44,21 @@ export class Map {
 
     updateCenter(point) {
         this.map.panTo(point.getPosition());
+    }
+
+    addPin(pin) {
+        return new google.maps.Marker({
+            position: pin.position(),
+            map: this.map,
+            icon: pin.icon(),
+        })
+    }
+
+    enablePinAddByClick() {
+        this.pinAddEnabled = true
+        this.map.addListener('click', (e) => {
+            this.addPin(new Pin(e.latLng))
+        })
     }
 
     addMarker(marker, label = null) {

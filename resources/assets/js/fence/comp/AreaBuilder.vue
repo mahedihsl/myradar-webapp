@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-xs-12 spacing">
+    <div class="col-xs-12 spacing" id="builder-header">
       <h4 class="text-dark">Make New Geofence</h4>
     </div>
     <div class="col-xs-12 builder-content">
@@ -33,7 +33,8 @@ export default {
   }),
   mounted() {
     this.map = new Map('map-container')
-    this.map.init();
+    this.map.init()
+    this.map.enablePinAddByClick()
   },
   methods: {
     save() {
@@ -58,5 +59,8 @@ export default {
 #map-container {
   min-height: 350px;
   background: #f5f5f5;
+}
+#builder-header {
+  cursor: move;
 }
 </style>

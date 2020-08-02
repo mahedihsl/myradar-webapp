@@ -8,7 +8,7 @@
 <div class="row" id="app">
     <div class="col-md-12">
         <no-area-found @create="showAreaBuilder"></no-area-found>
-        <modal name="area-builder" width="50%" height="auto">
+        <modal name="area-builder" width="50%" height="auto" draggable="#builder-header">
             <area-builder @cancel="closeAreaBuilder"></area-builder>
         </modal>
     </div>
