@@ -322,6 +322,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/mileage/records/{carId}/{days}', 'Service\MileageController@records');
 
+    Route::get('/geofence/area', 'Fence\AreaController@index')->name('area-fence');
     Route::get('/geofence', 'Fence\FenceController@index');
     Route::get('/get/fence/log', 'Fence\FenceLogController@index');
     Route::get('/district/list', 'Fence\DistrictController@index');

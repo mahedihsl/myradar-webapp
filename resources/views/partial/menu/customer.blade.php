@@ -78,6 +78,11 @@
     </a>
   </li>
   <li>
+    <a href="{{route('area-fence')}}">
+      <i class="fa fa-map"></i> <span>Area Geofence</span>
+    </a>
+  </li>
+  <li>
     <a href="{{route('text-tracker')}}">
       <i class="fa fa-align-justify"></i> <span>Text Tracker</span>
     </a>

@@ -28,7 +28,7 @@ class PositionController extends Controller
                 if (is_null($device)) {
 
                     $shared_carIds = $user->shared_cars;
-                    if(is_null($shared_carIds)){
+                    if(is_null($shared_carIds) || !sizeof($shared_carIds)){
                       return $this->redirectToHome('You have no car', 2);
                     }
                     else{
