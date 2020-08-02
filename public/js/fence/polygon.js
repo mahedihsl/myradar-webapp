@@ -67973,7 +67973,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
               case 2:
                 res = _context.sent;
 
-                console.log("saved geofence: ", res.body.data);
+                console.log("saved geofence: ", res.body);
 
               case 4:
               case "end":
@@ -68080,7 +68080,8 @@ var GeofenceMap = function (_Map) {
   }, {
     key: 'coordinates',
     value: function coordinates() {
-      return this.pins.map(function (v) {
+      var vertices = [].concat(_toConsumableArray(this.pins), [this.pins[0]]);
+      return vertices.map(function (v) {
         return v.lngLat();
       });
     }

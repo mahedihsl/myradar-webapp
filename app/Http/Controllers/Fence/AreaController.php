@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Fence;
 
+use App\Contract\Repositories\GeofenceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class AreaController extends Controller
 {
-  public function __construct() {
-    
+  private $repository;
+
+  public function __construct(GeofenceRepository $repository) {
+    $this->repository = $repository;    
   }
 
   public function index(Request $request)
@@ -18,9 +21,10 @@ class AreaController extends Controller
 
   public function save(Request $request)
   {
-    return [
-      'user' => $this->getWebUser(),
-      'data' => $request->all(),
-    ];
+    $model = $this->repository->save(collect($request->all()), $this->getWebUser());
+    return response()->json([
+      'status' => 1,
+      'id' => $model->id,
+    ]);
   }
 }

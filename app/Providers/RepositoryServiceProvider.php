@@ -59,6 +59,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contract\Repositories\ComplainRepository::class, \App\Repositories\Eloquent\ComplainRepositoryEloquent::class);
         $this->app->bind(\App\Contract\Repositories\ActivityRepository::class, \App\Repositories\Eloquent\ActivityRepositoryEloquent::class);
         $this->app->bind(\App\Contract\Repositories\NoticeRepository::class, \App\Repositories\Eloquent\NoticeRepositoryEloquent::class);
+        $this->app->bind(\App\Contract\Repositories\GeofenceRepository::class, \App\Repositories\Eloquent\GeofenceRepositoryEloquent::class);
         //:end-bindings:
     }
 }
