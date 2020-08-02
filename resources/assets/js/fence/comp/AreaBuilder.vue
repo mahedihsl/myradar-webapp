@@ -53,7 +53,13 @@ export default {
     save() {
       if (this.validate()) {
         this.loading = true
-        setTimeout(() => {this.$emit('cancel')}, 3000)
+        setTimeout(() => {
+          this.$store.dispatch('save', {
+            name: this.name,
+            coordinates: this.map.coordinates()
+          })
+          this.$emit('cancel')
+        }, 2000)
       }
     },
 

@@ -13,5 +13,13 @@ export default new Vuex.Store({
     }
   },
   mutations: {},
-  actions: {},
+  actions: {
+    async save({ commit }, { name, coordinates }) {
+      const res = await Vue.http.post('/geofence/save', {
+        name,
+        coordinates,
+      })
+      console.log(`saved geofence: `, res.body)
+    }
+  },
 })

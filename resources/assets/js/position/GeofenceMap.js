@@ -49,4 +49,9 @@ export default class GeofenceMap extends Map {
   isPolygonDefined() {
     return !!this.polygon
   }
+
+  coordinates() {
+    const vertices = [...this.pins, this.pins[0]]
+    return vertices.map(v => v.lngLat())
+  }
 }

@@ -15,4 +15,12 @@ class AreaController extends Controller
   {
     return view('fence.polygon');
   }
+
+  public function save(Request $request)
+  {
+    return [
+      'user' => $this->getWebUser(),
+      'data' => $request->all(),
+    ];
+  }
 }

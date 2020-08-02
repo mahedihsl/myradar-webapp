@@ -12,6 +12,10 @@ export default class Pin {
     return { lat: this.latlng.lat(), lng: this.latlng.lng() }
   }
 
+  lngLat() {
+    return [this.latlng.lng(), this.latlng.lat()]
+  }
+
   icon() {
     return {
       url: this.iconUrl,
