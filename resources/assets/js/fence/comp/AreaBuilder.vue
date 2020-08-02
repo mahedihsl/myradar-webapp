@@ -8,7 +8,7 @@
         <label for="name">Name of the Geofence</label>
         <input type="text" class="form-control" v-model="name" placeholder="Ex: Dhanmondi"/>
       </div>
-      <div class="map-container"></div>
+      <div id="map-container"></div>
     </div>
     <div class="col-xs-12 spacing">
       <button class="btn btn-success pull-right ml-6" @click="save">
@@ -24,13 +24,19 @@
 </template>
 
 <script>
+import { Map } from '../../position/map'
+
 export default {
   data: () => ({
     name: '',
+    map: null,
   }),
+  mounted() {
+    this.map = new Map('map-container')
+    this.map.init();
+  },
   methods: {
     save() {
-      console.log(`Area save clicked`)
       setTimeout(() => this.$emit('cancel'), 2000)
     }
   }
@@ -43,14 +49,14 @@ export default {
   margin: 20px auto;
 }
 .spacing {
-  padding: 20px 40px !important;
+  padding: 10px 30px !important;
 }
 .builder-content {
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
 }
-.map-container {
-  min-height: 300px;
+#map-container {
+  min-height: 350px;
   background: #f5f5f5;
 }
 </style>
