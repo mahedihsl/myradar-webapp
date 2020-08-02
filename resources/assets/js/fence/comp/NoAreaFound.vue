@@ -3,7 +3,7 @@
       <div class="col-md-12">
         <div class="blank-panel">
           <h4 class="text-center text-secondary">No Geofence Found</h4>
-          <button class="btn btn-primary btn-shadow btn-big center-item mt-8">
+          <button class="btn btn-primary btn-shadow btn-big center-item mt-8" @click="$emit('create')">
             <i class="fa fa-plus"></i>
             Add Geofence
           </button>
