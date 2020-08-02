@@ -20498,12 +20498,6 @@ var Map = function () {
         value: function addMarker(marker) {
             var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-            // return new google.maps.Marker({
-            //     position: marker.getCurrentPoint().getPosition(),
-            //     title: 'Marker',
-            //     map: this.map,
-            //     icon: marker.getIcon(),
-            // });
             if (!label) {
                 return new google.maps.Marker({
                     position: marker.getCurrentPoint().getPosition(),
@@ -20511,12 +20505,6 @@ var Map = function () {
                     map: this.map,
                     icon: marker.getIcon()
                 });
-                // return new MarkerWithLabel({
-                //     position: marker.getCurrentPoint().getPosition(),
-                //     title: 'Marker',
-                //     map: this.map,
-                //     icon: marker.getIcon(),
-                // });
             }
 
             var ret = new MarkerWithLabel(_extends({

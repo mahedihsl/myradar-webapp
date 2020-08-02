@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" style="position: relative;">
     <div class="col-xs-12 spacing" id="builder-header">
       <h4 class="text-dark">Make New Geofence</h4>
     </div>
@@ -7,6 +7,11 @@
       <div class="form-group input-wrapper">
         <label for="name">Name of the Geofence</label>
         <input type="text" class="form-control" v-model="name" placeholder="Ex: Dhanmondi"/>
+        <div class="error-wrapper">
+          <p v-for="(e, i) in errors" :key="i" class="text-danger single-error">
+            <i class="fa fa-exclamation-circle mr-4"></i> {{ e }}
+          </p>
+        </div>
       </div>
       <div id="map-container"></div>
     </div>
@@ -20,16 +25,25 @@
         Cancel
       </button>
     </div>
+
+    <saving-spinner v-if="loading"></saving-spinner>
   </div>
 </template>
 
 <script>
 import GeofenceMap from '../../position/GeofenceMap'
 
+import SavingSpinner from './SavingSpinner'
+
 export default {
+  components: {
+    SavingSpinner
+  },
   data: () => ({
     name: '',
+    errors: [],
     map: null,
+    loading: false,
   }),
   mounted() {
     this.map = new GeofenceMap('map-container')
@@ -37,10 +51,24 @@ export default {
   },
   methods: {
     save() {
-      this.map.drawPolygon()
       if (this.validate()) {
-        
+        this.loading = true
+        setTimeout(() => {this.$emit('cancel')}, 3000)
       }
+    },
+
+    validate() {
+      this.errors = []
+      let validationStatus = true
+      if (this.name.length < 3) {
+        this.errors.push('Name must be at least 4 characters long')
+        validationStatus = false
+      }
+      if (!this.map.isPolygonDefined()) {
+        this.errors.push('Click on the map to define an area for the Geofence')
+        validationStatus = false
+      }
+      return validationStatus
     }
   }
 }
@@ -64,5 +92,11 @@ export default {
 }
 #builder-header {
   cursor: move;
+}
+.error-wrapper {
+  margin: 10px 0;
+}
+.single-error {
+  margin: 0 !important;
 }
 </style>

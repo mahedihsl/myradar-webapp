@@ -1608,6 +1608,8 @@ module.exports = {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position_GeofenceMap__ = __webpack_require__("./resources/assets/js/position/GeofenceMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SavingSpinner__ = __webpack_require__("./resources/assets/js/fence/comp/SavingSpinner.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SavingSpinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SavingSpinner__);
 //
 //
 //
@@ -1633,14 +1635,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    SavingSpinner: __WEBPACK_IMPORTED_MODULE_1__SavingSpinner___default.a
+  },
   data: function data() {
     return {
       name: '',
-      map: null
+      errors: [],
+      map: null,
+      loading: false
     };
   },
   mounted: function mounted() {
@@ -1650,8 +1666,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     save: function save() {
-      this.map.drawPolygon();
-      // setTimeout(() => this.$emit('cancel'), 2000)
+      var _this = this;
+
+      if (this.validate()) {
+        this.loading = true;
+        setTimeout(function () {
+          _this.$emit('cancel');
+        }, 3000);
+      }
+    },
+    validate: function validate() {
+      this.errors = [];
+      var validationStatus = true;
+      if (this.name.length < 3) {
+        this.errors.push('Name must be at least 4 characters long');
+        validationStatus = false;
+      }
+      if (!this.map.isPolygonDefined()) {
+        this.errors.push('Click on the map to define an area for the Geofence');
+        validationStatus = false;
+      }
+      return validationStatus;
     }
   }
 });
@@ -4081,6 +4116,21 @@ exports.push([module.i, ".toast-title {\n  font-weight: bold;\n}\n.toast-message
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2126b4ef\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/SavingSpinner.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.saving-spinner[data-v-2126b4ef] {\n  border-radius: 12px;\n  background: rgb(97, 97, 97, 0.5);\n  padding: 60px 120px;\n  font-size: 5rem;\n  color: white;\n\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b0850e4\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/NoAreaFound.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4104,7 +4154,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.input-wrapper[data-v-c3240004] {\n  width: 90%;\n  margin: 20px auto;\n}\n.spacing[data-v-c3240004] {\n  padding: 10px 30px !important;\n}\n.builder-content[data-v-c3240004] {\n  border-top: 1px solid #eeeeee;\n  border-bottom: 1px solid #eeeeee;\n}\n#map-container[data-v-c3240004] {\n  min-height: 350px;\n  background: #f5f5f5;\n}\n#builder-header[data-v-c3240004] {\n  cursor: move;\n}\n", ""]);
+exports.push([module.i, "\n.input-wrapper[data-v-c3240004] {\n  width: 90%;\n  margin: 20px auto;\n}\n.spacing[data-v-c3240004] {\n  padding: 10px 30px !important;\n}\n.builder-content[data-v-c3240004] {\n  border-top: 1px solid #eeeeee;\n  border-bottom: 1px solid #eeeeee;\n}\n#map-container[data-v-c3240004] {\n  min-height: 350px;\n  background: #f5f5f5;\n}\n#builder-header[data-v-c3240004] {\n  cursor: move;\n}\n.error-wrapper[data-v-c3240004] {\n  margin: 10px 0;\n}\n.single-error[data-v-c3240004] {\n  margin: 0 !important;\n}\n", ""]);
 
 // exports
 
@@ -52855,6 +52905,36 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2126b4ef\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/fence/comp/SavingSpinner.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "saving-spinner" }, [
+      _c("i", { staticClass: "fa fa-spin fa-circle-o-notch" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2126b4ef", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-4b0850e4\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/fence/comp/NoAreaFound.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52907,68 +52987,93 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-xs-12 builder-content" }, [
-      _c("div", { staticClass: "form-group input-wrapper" }, [
-        _c("label", { attrs: { for: "name" } }, [
-          _vm._v("Name of the Geofence")
+  return _c(
+    "div",
+    { staticClass: "row", staticStyle: { position: "relative" } },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-xs-12 builder-content" }, [
+        _c("div", { staticClass: "form-group input-wrapper" }, [
+          _c("label", { attrs: { for: "name" } }, [
+            _vm._v("Name of the Geofence")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Ex: Dhanmondi" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "error-wrapper" },
+            _vm._l(_vm.errors, function(e, i) {
+              return _c(
+                "p",
+                { key: i, staticClass: "text-danger single-error" },
+                [
+                  _c("i", { staticClass: "fa fa-exclamation-circle mr-4" }),
+                  _vm._v(" " + _vm._s(e) + "\n        ")
+                ]
+              )
+            })
+          )
         ]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.name,
-              expression: "name"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", placeholder: "Ex: Dhanmondi" },
-          domProps: { value: _vm.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.name = $event.target.value
-            }
-          }
-        })
+        _c("div", { attrs: { id: "map-container" } })
       ]),
       _vm._v(" "),
-      _c("div", { attrs: { id: "map-container" } })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-xs-12 spacing" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-success pull-right ml-6",
-          on: { click: _vm.save }
-        },
-        [_c("i", { staticClass: "fa fa-check" }), _vm._v("\n      Save\n    ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-default pull-right",
-          on: {
-            click: function($event) {
-              _vm.$emit("cancel")
+      _c("div", { staticClass: "col-xs-12 spacing" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success pull-right ml-6",
+            on: { click: _vm.save }
+          },
+          [
+            _c("i", { staticClass: "fa fa-check" }),
+            _vm._v("\n      Save\n    ")
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-default pull-right",
+            on: {
+              click: function($event) {
+                _vm.$emit("cancel")
+              }
             }
-          }
-        },
-        [
-          _c("i", { staticClass: "fa fa-times" }),
-          _vm._v("\n      Cancel\n    ")
-        ]
-      )
-    ])
-  ])
+          },
+          [
+            _c("i", { staticClass: "fa fa-times" }),
+            _vm._v("\n      Cancel\n    ")
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm.loading ? _c("saving-spinner") : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -54568,6 +54673,33 @@ if (typeof window !== 'undefined' && window.Vue) {
 /* harmony default export */ __webpack_exports__["default"] = (plugin);
 
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2126b4ef\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/SavingSpinner.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2126b4ef\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/SavingSpinner.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("44d3bcbe", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2126b4ef\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SavingSpinner.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2126b4ef\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SavingSpinner.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
@@ -66909,6 +67041,58 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/fence/comp/SavingSpinner.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2126b4ef\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/SavingSpinner.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2126b4ef\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/fence/comp/SavingSpinner.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2126b4ef"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/fence/comp/SavingSpinner.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2126b4ef", Component.options)
+  } else {
+    hotAPI.reload("data-v-2126b4ef", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/fence/polygon.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -67062,6 +67246,11 @@ var GeofenceMap = function (_Map) {
 
       this.map.addListener('click', this.addPin.bind(this));
     }
+  }, {
+    key: 'isPolygonDefined',
+    value: function isPolygonDefined() {
+      return !!this.polygon;
+    }
   }]);
 
   return GeofenceMap;
@@ -67142,12 +67331,6 @@ var Map = function () {
         value: function addMarker(marker) {
             var label = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
-            // return new google.maps.Marker({
-            //     position: marker.getCurrentPoint().getPosition(),
-            //     title: 'Marker',
-            //     map: this.map,
-            //     icon: marker.getIcon(),
-            // });
             if (!label) {
                 return new google.maps.Marker({
                     position: marker.getCurrentPoint().getPosition(),
@@ -67155,12 +67338,6 @@ var Map = function () {
                     map: this.map,
                     icon: marker.getIcon()
                 });
-                // return new MarkerWithLabel({
-                //     position: marker.getCurrentPoint().getPosition(),
-                //     title: 'Marker',
-                //     map: this.map,
-                //     icon: marker.getIcon(),
-                // });
             }
 
             var ret = new MarkerWithLabel(_extends({

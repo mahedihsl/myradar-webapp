@@ -45,4 +45,8 @@ export default class GeofenceMap extends Map {
 
     this.map.addListener('click', this.addPin.bind(this))
   }
+
+  isPolygonDefined() {
+    return !!this.polygon
+  }
 }
