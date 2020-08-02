@@ -6,6 +6,8 @@ Vue.use(VModal)
 
 import store from './store'
 import {mapGetters} from 'vuex'
+
+import AreaBuilder from './comp/AreaBuilder.vue'
 import NoAreaFound from './comp/NoAreaFound.vue'
 
 new Vue({
@@ -13,6 +15,7 @@ new Vue({
   store,
   components: {
     NoAreaFound,
+    AreaBuilder,
   },
   data: {
     
@@ -22,7 +25,11 @@ new Vue({
   },
   methods: {
     showAreaBuilder() {
-      this.$modal.show('area-builder');
+      this.$modal.show('area-builder')
+    },
+
+    closeAreaBuilder() {
+      this.$modal.hide('area-builder')
     }
   }
 })

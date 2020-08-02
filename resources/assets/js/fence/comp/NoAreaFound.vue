@@ -2,7 +2,7 @@
   <div class="row">
       <div class="col-md-12">
         <div class="blank-panel">
-          <h4 class="text-center text-secondary">No Geofence Found</h4>
+          <h4 class="text-center text-grey">No Geofence Found</h4>
           <button class="btn btn-primary btn-shadow btn-big center-item mt-8" @click="$emit('create')">
             <i class="fa fa-plus"></i>
             Add Geofence
@@ -19,9 +19,6 @@ export default {
 </script>
 
 <style scoped>
-.text-secondary {
-  color: #757575;
-}
 .blank-panel {
   background: #f5f5f5;
   border-radius: 8px;
