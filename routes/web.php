@@ -324,6 +324,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/geofence/manage', 'Fence\AreaController@index')->name('area-fence');
     Route::post('/geofence/save', 'Fence\AreaController@save');
+    Route::get('/geofence/fetch', 'Fence\AreaController@fetch');
     Route::get('/geofence', 'Fence\FenceController@index');
     Route::get('/get/fence/log', 'Fence\FenceLogController@index');
     Route::get('/district/list', 'Fence\DistrictController@index');

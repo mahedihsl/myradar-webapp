@@ -14,4 +14,6 @@ use App\Entities\User;
 interface GeofenceRepository extends RepositoryInterface
 {
     public function save(Collection $data, User $user);
+
+    public function ofUser($userId);
 }

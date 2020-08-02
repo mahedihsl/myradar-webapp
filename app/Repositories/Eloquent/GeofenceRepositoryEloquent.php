@@ -43,6 +43,14 @@ class GeofenceRepositoryEloquent extends BaseRepository implements GeofenceRepos
         ]);
     }
 
+    public function ofUser($userId)
+    {
+        return $this->scopeQuery(function($query) use ($userId) {
+            return $query->where('user_id', $userId)
+                ->orderBy('created_at', 'desc');
+        })->get();
+    }
+
     /**
      * Boot up the repository, pushing criteria
      */

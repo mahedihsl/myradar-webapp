@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Fence;
 use App\Contract\Repositories\GeofenceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Presenters\GeofencePresenter;
 
 class AreaController extends Controller
 {
@@ -26,5 +27,13 @@ class AreaController extends Controller
       'status' => 1,
       'id' => $model->id,
     ]);
+  }
+
+  public function fetch(Request $request)
+  {
+    $geofences = $this->repository
+                  ->setPresenter(GeofencePresenter::class)
+                  ->ofUser($this->getWebUser()->id);
+    return response()->json($geofences);
   }
 }
