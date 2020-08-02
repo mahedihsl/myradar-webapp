@@ -50,16 +50,15 @@ export default {
     this.map.init()
   },
   methods: {
-    save() {
+    async save() {
       if (this.validate()) {
         this.loading = true
-        setTimeout(() => {
-          this.$store.dispatch('save', {
-            name: this.name,
-            coordinates: this.map.coordinates()
-          })
-          this.$emit('cancel')
-        }, 2000)
+        await this.$store.dispatch('save', {
+          name: this.name,
+          coordinates: this.map.coordinates()
+        })
+        await this.$store.dispatch('fetch')
+        this.$emit('cancel')
       }
     },
 

@@ -1607,9 +1607,15 @@ module.exports = {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position_GeofenceMap__ = __webpack_require__("./resources/assets/js/position/GeofenceMap.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SavingSpinner__ = __webpack_require__("./resources/assets/js/fence/comp/SavingSpinner.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SavingSpinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SavingSpinner__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position_GeofenceMap__ = __webpack_require__("./resources/assets/js/position/GeofenceMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SavingSpinner__ = __webpack_require__("./resources/assets/js/fence/comp/SavingSpinner.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SavingSpinner___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SavingSpinner__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -1649,7 +1655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    SavingSpinner: __WEBPACK_IMPORTED_MODULE_1__SavingSpinner___default.a
+    SavingSpinner: __WEBPACK_IMPORTED_MODULE_2__SavingSpinner___default.a
   },
   data: function data() {
     return {
@@ -1660,25 +1666,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   mounted: function mounted() {
-    this.map = new __WEBPACK_IMPORTED_MODULE_0__position_GeofenceMap__["a" /* default */]('map-container');
+    this.map = new __WEBPACK_IMPORTED_MODULE_1__position_GeofenceMap__["a" /* default */]('map-container');
     this.map.init();
   },
 
   methods: {
-    save: function save() {
-      var _this = this;
+    save: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!this.validate()) {
+                  _context.next = 7;
+                  break;
+                }
 
-      if (this.validate()) {
-        this.loading = true;
-        setTimeout(function () {
-          _this.$store.dispatch('save', {
-            name: _this.name,
-            coordinates: _this.map.coordinates()
-          });
-          _this.$emit('cancel');
-        }, 2000);
+                this.loading = true;
+                _context.next = 4;
+                return this.$store.dispatch('save', {
+                  name: this.name,
+                  coordinates: this.map.coordinates()
+                });
+
+              case 4:
+                _context.next = 6;
+                return this.$store.dispatch('fetch');
+
+              case 6:
+                this.$emit('cancel');
+
+              case 7:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function save() {
+        return _ref.apply(this, arguments);
       }
-    },
+
+      return save;
+    }(),
     validate: function validate() {
       this.errors = [];
       var validationStatus = true;
@@ -1691,6 +1722,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         validationStatus = false;
       }
       return validationStatus;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/fence/comp/AreaList.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    items: {
+      type: Array,
+      required: true
+    }
+  },
+  data: function data() {
+    return {
+      activeIndex: -1
+    };
+  },
+  methods: {
+    onItemClick: function onItemClick(i) {
+      this.activeIndex = i;
+      this.$emit('item-click', i);
     }
   }
 });
@@ -4152,6 +4225,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\n.blank-panel[data-v-4b0850e4] {\n  background: #f5f5f5;\n  border-radius: 8px;\n  padding: 120px 0;\n}\n.center-item[data-v-4b0850e4] {\n  margin-left: auto;\n  margin-right: auto;\n  display: block;\n}\n.mt-8[data-v-4b0850e4] {\n  margin-top: 2rem;\n}\n.btn-big[data-v-4b0850e4] {\n  padding: 10px 25px;\n}\n.btn-shadow[data-v-4b0850e4] {\n  border-radius: 4px;\n  -webkit-box-shadow: 0px 10px 20px 0px rgba(201,201,201,1);\n  box-shadow: 0px 10px 20px 0px rgba(201,201,201,1);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-af14066a\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/AreaList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.create-button[data-v-af14066a] {\n  width: 100%;\n  height: 48px;\n  position: absolute;\n  bottom: 0;\n}\n.area-list[data-v-af14066a] {\n  list-style: none;\n  padding-left: 0;\n  margin-bottom: 48px;\n  overflow: scroll;\n}\n.area-item[data-v-af14066a] {\n  cursor: pointer;\n  padding: 10px 20px;\n  border-top: 1px solid #eeeeee;\n  -webkit-transition: all 0.3s ease-in;\n  transition: all 0.3s ease-in;\n  position: relative;\n}\n.area-item[data-v-af14066a]:last-child {\n  border-bottom: 1px solid #eeeeee;\n}\n.area-item.active[data-v-af14066a] {\n  background: #f5f5f5;\n}\n.area-item[data-v-af14066a]:hover {\n  background: #f5f5f5;\n}\n.area-name[data-v-af14066a] {\n  color: #424242;\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n.item-chevron[data-v-af14066a] {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n", ""]);
 
 // exports
 
@@ -53764,6 +53852,67 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-af14066a\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/fence/comp/AreaList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticStyle: { height: "100%", position: "relative" } }, [
+    _c(
+      "ul",
+      { staticClass: "area-list" },
+      _vm._l(_vm.items, function(v, i) {
+        return _c(
+          "li",
+          {
+            key: i,
+            staticClass: "area-item",
+            class: { active: i === _vm.activeIndex },
+            on: {
+              click: function($event) {
+                _vm.onItemClick(i)
+              }
+            }
+          },
+          [
+            _c("span", { staticClass: "area-name" }, [
+              _vm._v(_vm._s(i + 1) + ". " + _vm._s(v.name))
+            ]),
+            _vm._v(" "),
+            _c("i", { staticClass: "fa fa-chevron-right item-chevron" })
+          ]
+        )
+      })
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary create-button",
+        on: {
+          click: function($event) {
+            _vm.$emit("create")
+          }
+        }
+      },
+      [_c("i", { staticClass: "fa fa-plus mr-4" }), _vm._v(" Add Geofence\n  ")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-af14066a", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-c3240004\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/fence/comp/AreaBuilder.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55504,6 +55653,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b0850e4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NoAreaFound.vue", function() {
      var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b0850e4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./NoAreaFound.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-af14066a\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/AreaList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-af14066a\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/AreaList.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("c5928e42", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-af14066a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AreaList.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-af14066a\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./AreaList.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -67773,6 +67949,58 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/fence/comp/AreaList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-af14066a\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0!./resources/assets/js/fence/comp/AreaList.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}],\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/fence/comp/AreaList.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-af14066a\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/fence/comp/AreaList.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-af14066a"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/fence/comp/AreaList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-af14066a", Component.options)
+  } else {
+    hotAPI.reload("data-v-af14066a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/fence/comp/NoAreaFound.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -67886,10 +68114,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_js_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_js_modal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__("./resources/assets/js/fence/store.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__comp_AreaBuilder_vue__ = __webpack_require__("./resources/assets/js/fence/comp/AreaBuilder.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__comp_AreaBuilder_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__comp_AreaBuilder_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__comp_NoAreaFound_vue__ = __webpack_require__("./resources/assets/js/fence/comp/NoAreaFound.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__comp_NoAreaFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__comp_NoAreaFound_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position_GeofenceMap__ = __webpack_require__("./resources/assets/js/position/GeofenceMap.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__comp_AreaBuilder_vue__ = __webpack_require__("./resources/assets/js/fence/comp/AreaBuilder.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__comp_AreaBuilder_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__comp_AreaBuilder_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__comp_NoAreaFound_vue__ = __webpack_require__("./resources/assets/js/fence/comp/NoAreaFound.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__comp_NoAreaFound_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__comp_NoAreaFound_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__comp_AreaList_vue__ = __webpack_require__("./resources/assets/js/fence/comp/AreaList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__comp_AreaList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__comp_AreaList_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 __webpack_require__("./resources/assets/js/bootstrap.js");
@@ -67904,16 +68135,31 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_js_modal___default.a);
 
 
 
+
+
+
 new Vue({
   el: '#app',
   store: __WEBPACK_IMPORTED_MODULE_1__store__["a" /* default */],
   components: {
-    NoAreaFound: __WEBPACK_IMPORTED_MODULE_4__comp_NoAreaFound_vue___default.a,
-    AreaBuilder: __WEBPACK_IMPORTED_MODULE_3__comp_AreaBuilder_vue___default.a
+    NoAreaFound: __WEBPACK_IMPORTED_MODULE_5__comp_NoAreaFound_vue___default.a,
+    AreaBuilder: __WEBPACK_IMPORTED_MODULE_4__comp_AreaBuilder_vue___default.a,
+    AreaList: __WEBPACK_IMPORTED_MODULE_6__comp_AreaList_vue___default.a
   },
-  data: {},
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])(['areas'])),
+  data: {
+    map: null
+  },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_2_vuex__["c" /* mapGetters */])(['geofences'])),
+  mounted: function mounted() {
+    this.$store.dispatch('fetch');
+    this.map = new __WEBPACK_IMPORTED_MODULE_3__position_GeofenceMap__["a" /* default */]('common-map');
+    this.map.init();
+  },
+
   methods: {
+    onGeofenceClick: function onGeofenceClick(index) {
+      this.map.drawPolygon(this.geofences[index].coordinates);
+    },
     showAreaBuilder: function showAreaBuilder() {
       this.$modal.show('area-builder');
     },
@@ -67945,35 +68191,34 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store({
   state: {
-    areas: []
+    geofences: []
   },
   getters: {
-    areas: function areas(state) {
-      return state.areas;
+    geofences: function geofences(state) {
+      return state.geofences;
     }
   },
-  mutations: {},
+  mutations: {
+    SET_GEOFENCES: function SET_GEOFENCES(state, list) {
+      state.geofences = list;
+    }
+  },
   actions: {
-    save: function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref, _ref2) {
+    fetch: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref) {
         var commit = _ref.commit;
-        var name = _ref2.name,
-            coordinates = _ref2.coordinates;
         var res;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_1_vue___default.a.http.post('/geofence/save', {
-                  name: name,
-                  coordinates: coordinates
-                });
+                return __WEBPACK_IMPORTED_MODULE_1_vue___default.a.http.get('/geofence/fetch');
 
               case 2:
                 res = _context.sent;
 
-                console.log("saved geofence: ", res.body);
+                commit('SET_GEOFENCES', res.body.data);
 
               case 4:
               case "end":
@@ -67983,8 +68228,41 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
         }, _callee, this);
       }));
 
-      function save(_x, _x2) {
-        return _ref3.apply(this, arguments);
+      function fetch(_x) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return fetch;
+    }(),
+    save: function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref3, _ref4) {
+        var commit = _ref3.commit;
+        var name = _ref4.name,
+            coordinates = _ref4.coordinates;
+        var res;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return __WEBPACK_IMPORTED_MODULE_1_vue___default.a.http.post('/geofence/save', {
+                  name: name,
+                  coordinates: coordinates
+                });
+
+              case 2:
+                res = _context2.sent;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function save(_x2, _x3) {
+        return _ref5.apply(this, arguments);
       }
 
       return save;
@@ -68029,6 +68307,24 @@ var GeofenceMap = function (_Map) {
   }
 
   _createClass(GeofenceMap, [{
+    key: 'drawPolygon',
+    value: function drawPolygon(coordinates) {
+      if (!!this.polygon) {
+        this.polygon.setMap(null);
+      }
+      this.polygon = new google.maps.Polygon({
+        paths: coordinates.map(function (v) {
+          return { lng: v[0], lat: v[1] };
+        }),
+        strokeColor: "#3f51b5",
+        strokeOpacity: 0.8,
+        strokeWeight: 1,
+        fillColor: "#3f51b5",
+        fillOpacity: 0.15
+      });
+      this.polygon.setMap(this.map);
+    }
+  }, {
     key: 'updatePolygon',
     value: function updatePolygon() {
       if (!!this.polygon) {

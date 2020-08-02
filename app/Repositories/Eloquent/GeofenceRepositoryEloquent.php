@@ -26,11 +26,6 @@ class GeofenceRepositoryEloquent extends BaseRepository implements GeofenceRepos
         return Geofence::class;
     }
 
-    // public function presenter()
-    // {
-    //     return FencePresenter::class;
-    // }
-
     public function save(Collection $data, User $user)
     {
         return $this->create([
