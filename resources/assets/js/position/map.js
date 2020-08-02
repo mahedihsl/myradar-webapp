@@ -11,7 +11,9 @@ export class Map {
         this.defaultZoom = 14;
         this.defaultCenter = new google.maps.LatLng(23.776750, 90.396653);
 
-        this.pinAddByClickEnabled = false
+        this.addPinByClickEnabled = false
+        this.polygon = null
+        this.pins = []
     }
 
     init(center = null) {
@@ -46,7 +48,28 @@ export class Map {
         this.map.panTo(point.getPosition());
     }
 
+    drawPolygon() {
+        if (!!this.polygon) {
+            this.polygon.setMap(null)
+        }
+        const vertices = [...this.pins, this.pins[0]]
+        this.polygon = new google.maps.Polygon({
+            paths: vertices.map(v => v.latLng()),
+            strokeColor: "#3f51b5",
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            fillColor: "#3f51b5",
+            fillOpacity: 0.15,
+        });
+        this.polygon.setMap(this.map);
+    }
+
     addPin(pin) {
+        this.pins.push(pin)
+        if (this.pins.length > 2) {
+            this.drawPolygon()
+        }
+        
         return new google.maps.Marker({
             position: pin.position(),
             map: this.map,
@@ -55,7 +78,7 @@ export class Map {
     }
 
     enablePinAddByClick() {
-        this.pinAddEnabled = true
+        this.addPinByClickEnabled = true
         this.map.addListener('click', (e) => {
             this.addPin(new Pin(e.latLng))
         })

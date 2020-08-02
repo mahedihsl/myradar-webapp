@@ -38,7 +38,8 @@ export default {
   },
   methods: {
     save() {
-      setTimeout(() => this.$emit('cancel'), 2000)
+      this.map.drawPolygon()
+      // setTimeout(() => this.$emit('cancel'), 2000)
     }
   }
 }

@@ -5,6 +5,10 @@ export default class Pin {
   }
 
   position() {
+    return this.latlng
+  }
+
+  latLng() {
     return { lat: this.latlng.lat(), lng: this.latlng.lng() }
   }
 
