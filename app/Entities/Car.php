@@ -6,7 +6,6 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Carbon\Carbon;
 use App\Entities\Position;
 use App\Entities\Device;
-use App\Entities\Car;
 use App\Entities\CarStatusLog;
 use App\Entities\Setting;
 use App\Service\Facades\Package;
@@ -242,9 +241,13 @@ class Car extends Eloquent implements Presentable
     {
         $from = Carbon::now()->subMonth();
         $to = Carbon::now();
-        return $this->mileage()->where('when', '<', $to)->where('when', '>', $from)->get()->sum(function ($item) {
-            return $item->value;
-        });
+        return $this->mileage()
+            ->where('when', '<', $to)
+            ->where('when', '>', $from)
+            ->get()
+            ->sum(function ($item) {
+                return $item->value;
+            });
     }
 
     public function getMonthlyDrivingHour()
@@ -252,12 +255,14 @@ class Car extends Eloquent implements Presentable
         $from = Carbon::now()->subMonth();
         $to = Carbon::now();
 
-        return $this->driving_hour()->where('when', '<', $to)
-                  ->where('when', '>', $from)->get()->sum(function ($item) {
-
-           return sprintf('%0.2f', $item->value/(60*60));//in seconds on database ;in hour during presentation;
-
-       });
+        return $this->driving_hour()
+            ->where('when', '<', $to)
+            ->where('when', '>', $from)
+            ->get()
+            ->sum(function ($item) {
+                // in seconds on database ;in hour during presentation;
+                return sprintf('%0.2f', $item->value/(60*60));
+            });
     }
 
 	public function getLatestComplain()

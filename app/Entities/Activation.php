@@ -30,14 +30,17 @@ class Activation extends Eloquent implements Transformable
 
     public function totalBill()
     {
-        // $today = Carbon::today();
-        // $thatday = $this->created_at;
-        // $months = 0;
-        // while ($today->year != $thatday->year || $today->month != $thatday->month) {
-        //     $months++;
-        //     $today = $today->copy()->subMonths(1);
-        // }
-        $months = $this->created_at->diffInMonths(Carbon::today());
+        // $months = $this->created_at->diffInMonths(Carbon::today());
+        // return $months * $this->car->bill;
+        $start_date = $this->created_at;
+        $start_date->addMonth();
+        $start_date->day = 1;
+
+        $months = 0;
+        while ($start_date->lessThanOrEqualTo(Carbon::today())) {
+            $months++;
+            $start_date->addMonth();
+        }
         return $months * $this->car->bill;
     }
 
