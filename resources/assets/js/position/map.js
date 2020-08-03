@@ -155,8 +155,6 @@ export class Map {
         let northEast = new google.maps.LatLng(boundary.maxLat , boundary.maxLng );
         let southWest = new google.maps.LatLng(boundary.minLat , boundary.minLng );
 
-
-
         let newBounds = new google.maps.LatLngBounds();
         newBounds.extend(northEast);
         newBounds.extend(southWest);

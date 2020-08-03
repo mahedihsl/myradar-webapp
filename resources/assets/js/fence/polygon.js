@@ -34,7 +34,7 @@ new Vue({
   },
   methods: {
     onGeofenceClick(index) {
-      this.map.drawPolygon(this.geofences[index].coordinates)
+      this.map.showPolygon(this.geofences[index].coordinates)
     },
 
     showAreaBuilder() {

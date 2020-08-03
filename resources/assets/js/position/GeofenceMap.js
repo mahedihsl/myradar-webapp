@@ -9,6 +9,17 @@ export default class GeofenceMap extends Map {
     this.pins = []
   }
 
+  showPolygon(coordinates) {
+    const bound = new google.maps.LatLngBounds()
+    for (const c of coordinates) {
+      bound.extend(new google.maps.LatLng({lat: c[1], lng: c[0]}))
+    }
+    this.map.fitBounds(bound)
+    this.map.panTo(bound.getCenter())
+
+    this.drawPolygon(coordinates)
+  }
+
   drawPolygon(coordinates) {
     if (!!this.polygon) {
       this.polygon.setMap(null)

@@ -68158,7 +68158,7 @@ new Vue({
 
   methods: {
     onGeofenceClick: function onGeofenceClick(index) {
-      this.map.drawPolygon(this.geofences[index].coordinates);
+      this.map.showPolygon(this.geofences[index].coordinates);
     },
     showAreaBuilder: function showAreaBuilder() {
       this.$modal.show('area-builder');
@@ -68307,6 +68307,40 @@ var GeofenceMap = function (_Map) {
   }
 
   _createClass(GeofenceMap, [{
+    key: 'showPolygon',
+    value: function showPolygon(coordinates) {
+      var bound = new google.maps.LatLngBounds();
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = coordinates[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var c = _step.value;
+
+          bound.extend(new google.maps.LatLng({ lat: c[1], lng: c[0] }));
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      this.map.fitBounds(bound);
+      this.map.panTo(bound.getCenter());
+
+      this.drawPolygon(coordinates);
+    }
+  }, {
     key: 'drawPolygon',
     value: function drawPolygon(coordinates) {
       if (!!this.polygon) {
