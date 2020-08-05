@@ -25,6 +25,7 @@
     "chart.js": "^2.6.0",
     "jquery-confirm": "^3.3.4",
     "laravel-echo": "^1.3.0",
+    "licia": "^1.23.1",
     "marker-animate-unobtrusive": "^0.2.8",
     "owl.carousel": "^2.2.0",
     "pusher-js": "^4.1.0",

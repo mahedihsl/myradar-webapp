@@ -1,7 +1,18 @@
-export default class Pin {
-  constructor(latlng) {
-    this.latlng = latlng
-    this.iconUrl = 'http://myradar.com.bd/images/ic-pin@2x.png'
+const icon = {
+  url: 'http://myradar.com.bd/images/ic-pin@2x.png',
+  // size: new google.maps.Size(64, 64),
+  // scale: 0.5,
+  scaledSize: new google.maps.Size(32, 32),
+  // origin: new google.maps.Point(0, 0),
+  // anchor: new google.maps.Point(0, 32),
+}
+
+export default class Pin extends google.maps.Marker {
+  constructor(container, id, options) {
+    super({ ...options, icon })
+    this.uid = id
+    this.container = container
+    this.latlng = options.position
   }
 
   position() {
@@ -18,10 +29,10 @@ export default class Pin {
 
   icon() {
     return {
-      url: this.iconUrl,
+      url: 'http://myradar.com.bd/images/ic-pin@2x.png',
       // size: new google.maps.Size(64, 64),
       // scale: 0.5,
-      scaledSize: new google.maps.Size(32, 32)
+      scaledSize: new google.maps.Size(32, 32),
       // origin: new google.maps.Point(0, 0),
       // anchor: new google.maps.Point(0, 32),
     }

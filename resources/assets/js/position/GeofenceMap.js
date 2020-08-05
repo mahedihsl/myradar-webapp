@@ -1,5 +1,6 @@
 import { Map } from './map'
 import Pin from './pin'
+import uuid from 'licia/uuid'
 
 export default class GeofenceMap extends Map {
   constructor(domId) {
@@ -7,6 +8,8 @@ export default class GeofenceMap extends Map {
 
     this.polygon = null
     this.pins = []
+
+    this.markerMap = new Map()
   }
 
   showPolygon(coordinates) {
@@ -39,6 +42,7 @@ export default class GeofenceMap extends Map {
     if (!!this.polygon) {
       this.polygon.setMap(null)
     }
+    
     const vertices = [...this.pins, this.pins[0]]
     this.polygon = new google.maps.Polygon({
       paths: vertices.map(v => v.latLng()),
@@ -51,19 +55,39 @@ export default class GeofenceMap extends Map {
     this.polygon.setMap(this.map)
   }
 
+  removePin(id) {
+    const index = this.pins.findIndex(p => p.uid === id)
+    if (index != -1) {
+      this.pins[index].setMap(null)
+      this.pins.splice(index, 1)
+      this.updatePolygon()
+    }
+  }
+
   addPin(event) {
-    const pin = new Pin(event.latLng)
+    const newId = uuid()
+    const pin = new Pin(this, newId, {
+      position: event.latLng,
+      map: this.map,
+      draggable: true,
+    })
+
+    pin.addListener('drag', function(event) {
+      this.latlng = event.latLng
+      this.container.updatePolygon()
+    }.bind(pin))
+
+    pin.addListener('click', function(event) {
+      this.container.removePin(this.uid)
+    }.bind(pin))
 
     this.pins.push(pin)
+
     if (this.pins.length > 2) {
-        this.updatePolygon()
+      this.updatePolygon()
     }
-    
-    return new google.maps.Marker({
-      position: pin.position(),
-      map: this.map,
-      icon: pin.icon(),
-    })
+
+    return pin
   }
 
   init(center = null) {
