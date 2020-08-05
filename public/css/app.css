@@ -342,3 +342,38 @@
   z-index: 1001 !important;
 }
 
+.btn-small {
+  padding: 4px 8px;
+  font-size: 1rem;
+}
+
+.btn-plus {
+  background: #e8f5e9;
+  border: 1px solid #66bb6a;
+  color: #4caf50;
+}
+
+.btn-plus:hover {
+  background: #c8e6c9;
+  color: #4caf50;
+}
+
+.btn-minus {
+  background: #ffebee;
+  border: 1px solid #ef5350;
+  color: #f44336;
+}
+
+.btn-minus:hover {
+  background: #ffcdd2;
+  color: #f44336;
+}
+
+.absolute-right-center {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+

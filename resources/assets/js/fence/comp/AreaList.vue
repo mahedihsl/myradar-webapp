@@ -1,8 +1,14 @@
 <template>
   <div style="height: 100%; position: relative;">
     <ul class="area-list">
-      <li class="area-item" v-for="(v, i) in items" :key="i" @click="onItemClick(i)" :class="{'active': i === activeIndex}">
-        <span class="area-name">{{ i + 1}}. {{ v.name }}</span>
+      <li
+        class="area-item"
+        v-for="(v, i) in items"
+        :key="i"
+        @click="onItemClick(i)"
+        :class="{ active: i === activeIndex }"
+      >
+        <span class="area-name">{{ i + 1 }}. {{ v.name }}</span>
         <div class="right-section">
           <span class="badge-car-count mr-6">
             <i class="fa fa-car mr-2"></i>
@@ -10,7 +16,6 @@
           </span>
           <i class="fa fa-chevron-right"></i>
         </div>
-        
       </li>
     </ul>
     <button class="btn btn-primary create-button" @click="$emit('create')">
@@ -25,7 +30,7 @@ export default {
     items: {
       type: Array,
       required: true,
-    }
+    },
   },
   data: () => ({
     activeIndex: -1,
@@ -33,9 +38,9 @@ export default {
   methods: {
     onItemClick(i) {
       this.activeIndex = i
-      this.$emit('item-click', i)
-    }
-  }
+      this.$emit('item-click', items[i])
+    },
+  },
 }
 </script>
 
@@ -70,8 +75,8 @@ export default {
 }
 .area-name {
   color: #424242;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 600;
 }
 .right-section {
   position: absolute;

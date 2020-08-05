@@ -9,6 +9,7 @@
       <div class="pull-left info">
         <p>{{$user->name}}</p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        <input type="hidden" name="auth_id" value="{{$user->id}}">
       </div>
     </div>
     <!-- search form -->

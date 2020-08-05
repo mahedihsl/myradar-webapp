@@ -1735,6 +1735,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -58793,10 +58794,11 @@ var render = function() {
               _c(
                 "ul",
                 { staticClass: "manage-menu" },
-                _vm._l(_vm.items, function(m) {
+                _vm._l(_vm.items, function(m, i) {
                   return _c(
                     "li",
                     {
+                      key: i,
                       class: { active: _vm.current === m.id },
                       on: {
                         click: function($event) {

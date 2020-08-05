@@ -11,7 +11,8 @@
       </div>
       <div class="col-md-12 nopadding">
         <ul class="manage-menu">
-          <li v-for="m in items"
+          <li v-for="(m, i) in items"
+              :key="i"
               :class="{active: current === m.id}"
               @click="onMenuClick(m.id)">
               <span>{{m.name}}</span>
