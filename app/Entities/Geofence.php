@@ -12,8 +12,13 @@ class Geofence extends Eloquent implements Transformable
 
     protected $guarded = [];
 
+    public function getCarsAttribute($value)
+    {
+        return !$value ? [] : $value;
+    }
+
     public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

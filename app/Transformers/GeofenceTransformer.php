@@ -23,6 +23,7 @@ class GeofenceTransformer extends TransformerAbstract
         return [
             'id'     => $model->id,
             'name'   => $model->name,
+            'cars'   => $model->cars,
             'coordinates' => $model->vertices['coordinates'],
         ];
     }

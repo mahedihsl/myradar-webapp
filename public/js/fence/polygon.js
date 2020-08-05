@@ -1765,6 +1765,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -4257,7 +4264,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.create-button[data-v-af14066a] {\n  width: 100%;\n  height: 48px;\n  position: absolute;\n  bottom: 0;\n}\n.area-list[data-v-af14066a] {\n  list-style: none;\n  padding-left: 0;\n  margin-bottom: 48px;\n  overflow: scroll;\n}\n.area-item[data-v-af14066a] {\n  cursor: pointer;\n  padding: 10px 20px;\n  border-top: 1px solid #eeeeee;\n  -webkit-transition: all 0.3s ease-in;\n  transition: all 0.3s ease-in;\n  position: relative;\n}\n.area-item[data-v-af14066a]:last-child {\n  border-bottom: 1px solid #eeeeee;\n}\n.area-item.active[data-v-af14066a] {\n  background: #f5f5f5;\n}\n.area-item[data-v-af14066a]:hover {\n  background: #f5f5f5;\n}\n.area-name[data-v-af14066a] {\n  color: #424242;\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n.item-chevron[data-v-af14066a] {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n", ""]);
+exports.push([module.i, "\n.create-button[data-v-af14066a] {\n  width: 100%;\n  height: 48px;\n  position: absolute;\n  bottom: 0;\n}\n.area-list[data-v-af14066a] {\n  list-style: none;\n  padding-left: 0;\n  margin-bottom: 48px;\n  overflow: scroll;\n}\n.area-item[data-v-af14066a] {\n  cursor: pointer;\n  padding: 10px 20px;\n  border-top: 1px solid #eeeeee;\n  -webkit-transition: all 0.3s ease-in;\n  transition: all 0.3s ease-in;\n  position: relative;\n}\n.area-item[data-v-af14066a]:last-child {\n  border-bottom: 1px solid #eeeeee;\n}\n.area-item.active[data-v-af14066a] {\n  background: #f5f5f5;\n}\n.area-item[data-v-af14066a]:hover {\n  background: #f5f5f5;\n}\n.area-name[data-v-af14066a] {\n  color: #424242;\n  font-size: 1.35rem;\n  font-weight: 600;\n}\n.right-section[data-v-af14066a] {\n  position: absolute;\n  right: 15px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n\n  display: -webkit-box;\n\n  display: -ms-flexbox;\n\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.badge-car-count[data-v-af14066a] {\n  border: 1px solid #7986cb;\n  background: #e8eaf6;\n  color: #3f51b5;\n  font-size: 1.1rem;\n  border-radius: 50px;\n  padding: 3px 8px;\n}\n", ""]);
 
 // exports
 
@@ -54054,7 +54061,15 @@ var render = function() {
               _vm._v(_vm._s(i + 1) + ". " + _vm._s(v.name))
             ]),
             _vm._v(" "),
-            _c("i", { staticClass: "fa fa-chevron-right item-chevron" })
+            _c("div", { staticClass: "right-section" }, [
+              _c("span", { staticClass: "badge-car-count mr-6" }, [
+                _c("i", { staticClass: "fa fa-car mr-2" }),
+                _vm._v(" "),
+                _c("strong", [_vm._v(_vm._s(v.cars.length))])
+              ]),
+              _vm._v(" "),
+              _c("i", { staticClass: "fa fa-chevron-right" })
+            ])
           ]
         )
       })
@@ -54253,7 +54268,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("li", [_vm._v("You can drag a pin to change geofence area")]),
       _vm._v(" "),
-      _c("li", [_vm._v("Click an existing pin to remove it")])
+      _c("li", [_vm._v("Click an existing pin to remove from map")])
     ])
   }
 ]

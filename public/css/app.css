@@ -306,6 +306,10 @@
   color: #757575;
 }
 
+.mr-2 {
+  margin-right: .75rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -316,6 +320,10 @@
 
 .mr-8 {
   margin-right: 2rem;
+}
+
+.ml-2 {
+  margin-left: .75rem;
 }
 
 .ml-4 {

@@ -3,7 +3,14 @@
     <ul class="area-list">
       <li class="area-item" v-for="(v, i) in items" :key="i" @click="onItemClick(i)" :class="{'active': i === activeIndex}">
         <span class="area-name">{{ i + 1}}. {{ v.name }}</span>
-        <i class="fa fa-chevron-right item-chevron"></i>
+        <div class="right-section">
+          <span class="badge-car-count mr-6">
+            <i class="fa fa-car mr-2"></i>
+            <strong>{{ v.cars.length }}</strong>
+          </span>
+          <i class="fa fa-chevron-right"></i>
+        </div>
+        
       </li>
     </ul>
     <button class="btn btn-primary create-button" @click="$emit('create')">
@@ -63,13 +70,26 @@ export default {
 }
 .area-name {
   color: #424242;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
-.item-chevron {
+.right-section {
   position: absolute;
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.badge-car-count {
+  border: 1px solid #7986cb;
+  background: #e8eaf6;
+  color: #3f51b5;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  padding: 3px 8px;
 }
 </style>
