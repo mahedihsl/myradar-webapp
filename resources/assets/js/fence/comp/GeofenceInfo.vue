@@ -58,10 +58,7 @@ export default {
           geofence: this.geofence,
           car: c,
         })
-      } catch (error) {
-        console.log(`subscribe error: ${error.message}`)
-        
-      }
+      } catch (error) {}
     },
     async onUnsubscribe(c) {
       try {
@@ -69,10 +66,7 @@ export default {
           geofence: this.geofence,
           car: c,
         })
-      } catch (error) {
-        console.log(`unsubscribe error: ${error.message}`)
-        
-      }
+      } catch (error) {}
     },
   },
 }

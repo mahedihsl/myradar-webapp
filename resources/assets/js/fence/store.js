@@ -33,12 +33,14 @@ export default new Vuex.Store({
     },
 
     SUBSCRIBE_CAR(state, { geofence, car }) {
-      const target = state.geofences.find(m => geofence.id)
+      const index = state.geofences.findIndex(m => m.id === geofence.id)
+      const target = state.geofences[index]
       target.cars.push(car)
+      state.geofences.splice(index, 1, target)
     },
 
     UNSUBSCRIBE_CAR(state, { geofence, car }) {
-      const index = state.geofences.findIndex(m => geofence.id)
+      const index = state.geofences.findIndex(m => m.id === geofence.id)
       const target = state.geofences[index]
       const carIndex = target.cars.findIndex(c => c.id === car.id)
       target.cars.splice(carIndex, 1)

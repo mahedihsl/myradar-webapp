@@ -1924,28 +1924,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _context.next = 3;
+
+                console.log('subscribing with: ' + this.geofence.name);
+
+                _context.next = 4;
                 return this.$store.dispatch('subscribe', {
                   geofence: this.geofence,
                   car: c
                 });
 
-              case 3:
-                _context.next = 8;
+              case 4:
+                _context.next = 9;
                 break;
 
-              case 5:
-                _context.prev = 5;
+              case 6:
+                _context.prev = 6;
                 _context.t0 = _context['catch'](0);
 
                 console.log('subscribe error: ' + _context.t0.message);
 
-              case 8:
+              case 9:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 5]]);
+        }, _callee, this, [[0, 6]]);
       }));
 
       function onSubscribe(_x) {
@@ -1961,28 +1964,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.prev = 0;
-                _context2.next = 3;
+
+                console.log('unsubscribing with: ' + this.geofence.name);
+
+                _context2.next = 4;
                 return this.$store.dispatch('unsubscribe', {
                   geofence: this.geofence,
                   car: c
                 });
 
-              case 3:
-                _context2.next = 8;
+              case 4:
+                _context2.next = 9;
                 break;
 
-              case 5:
-                _context2.prev = 5;
+              case 6:
+                _context2.prev = 6;
                 _context2.t0 = _context2['catch'](0);
 
                 console.log('unsubscribe error: ' + _context2.t0.message);
 
-              case 8:
+              case 9:
               case 'end':
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[0, 5]]);
+        }, _callee2, this, [[0, 6]]);
       }));
 
       function onUnsubscribe(_x2) {
@@ -69032,17 +69038,19 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
       var geofence = _ref.geofence,
           car = _ref.car;
 
-      var target = state.geofences.find(function (m) {
-        return geofence.id;
+      var index = state.geofences.findIndex(function (m) {
+        return m.id === geofence.id;
       });
+      var target = state.geofences[index];
       target.cars.push(car);
+      state.geofences.splice(index, 1, target);
     },
     UNSUBSCRIBE_CAR: function UNSUBSCRIBE_CAR(state, _ref2) {
       var geofence = _ref2.geofence,
           car = _ref2.car;
 
       var index = state.geofences.findIndex(function (m) {
-        return geofence.id;
+        return m.id === geofence.id;
       });
       var target = state.geofences[index];
       var carIndex = target.cars.findIndex(function (c) {
