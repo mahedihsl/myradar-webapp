@@ -72,15 +72,6 @@ export default class GeofenceMap extends Map {
       draggable: true,
     })
 
-    pin.addListener('drag', function(event) {
-      this.latlng = event.latLng
-      this.container.updatePolygon()
-    }.bind(pin))
-
-    pin.addListener('click', function(event) {
-      this.container.removePin(this.uid)
-    }.bind(pin))
-
     this.pins.push(pin)
 
     if (this.pins.length > 2) {

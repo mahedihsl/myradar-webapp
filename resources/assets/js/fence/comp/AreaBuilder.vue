@@ -1,9 +1,26 @@
 <template>
-  <div class="row" style="position: relative;">
+  <div class="row" style="position: relative; z-index: 1000;">
     <div class="col-xs-12 spacing" id="builder-header">
       <h4 class="text-dark">Make New Geofence</h4>
+      <button class="btn btn-default btn-manual" @click="showManual = true">
+        <i class="fa fa-question-circle-o mr-4"></i>
+        How It Works
+      </button>
     </div>
     <div class="col-xs-12 builder-content">
+      <div class="how-it-works" v-show="showManual">
+        <button class="btn btn-default btn-sm btn-close-manual" @click="showManual = false">
+          <i class="fa fa-times"></i>
+        </button>
+        <label for="">How It Works ?</label>
+        <ul>
+            <li>Give a meaningful name to your geofence</li>
+            <li>Click on the map to add a pin</li>
+            <li>You can add multiple pin to the map</li>
+            <li>You can drag a pin to change geofence area</li>
+            <li>Click an existing pin to remove from map</li>
+          </ul>
+      </div>
       <div class="form-group input-wrapper">
         <label for="name">Name of the Geofence</label>
         <input type="text" class="form-control" v-model="name" placeholder="Ex: Dhanmondi"/>
@@ -44,6 +61,7 @@ export default {
     errors: [],
     map: null,
     loading: false,
+    showManual: false,
   }),
   mounted() {
     this.map = new GeofenceMap('map-container')
@@ -80,9 +98,39 @@ export default {
 </script>
 
 <style scoped>
-.input-wrapper {
+.btn-manual {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.btn-close-manual {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.input-wrapper, .how-it-works {
   width: 90%;
   margin: 20px auto;
+}
+.how-it-works {
+  position: relative;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  color: #424242;
+  border-radius: 5px;
+  padding: 20px;
+}
+.how-it-works > label {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.how-it-works > p {
+  font-weight: 500;
+  font-size: 1.0rem;
+}
+.how-it-works > ul {
+  font-size: 1.2rem;
 }
 .spacing {
   padding: 10px 30px !important;
@@ -97,6 +145,7 @@ export default {
 }
 #builder-header {
   cursor: move;
+  position: relative;
 }
 .error-wrapper {
   margin: 10px 0;

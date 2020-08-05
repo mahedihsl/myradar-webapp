@@ -1648,6 +1648,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1662,7 +1679,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
       name: '',
       errors: [],
       map: null,
-      loading: false
+      loading: false,
+      showManual: false
     };
   },
   mounted: function mounted() {
@@ -4254,7 +4272,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.input-wrapper[data-v-c3240004] {\n  width: 90%;\n  margin: 20px auto;\n}\n.spacing[data-v-c3240004] {\n  padding: 10px 30px !important;\n}\n.builder-content[data-v-c3240004] {\n  border-top: 1px solid #eeeeee;\n  border-bottom: 1px solid #eeeeee;\n}\n#map-container[data-v-c3240004] {\n  min-height: 350px;\n  background: #f5f5f5;\n}\n#builder-header[data-v-c3240004] {\n  cursor: move;\n}\n.error-wrapper[data-v-c3240004] {\n  margin: 10px 0;\n}\n.single-error[data-v-c3240004] {\n  margin: 0 !important;\n}\n", ""]);
+exports.push([module.i, "\n.btn-manual[data-v-c3240004] {\n  position: absolute;\n  right: 40px;\n  top: 50%;\n  -webkit-transform: translateY(-50%);\n          transform: translateY(-50%);\n}\n.btn-close-manual[data-v-c3240004] {\n  position: absolute;\n  right: 20px;\n  top: 20px;\n}\n.input-wrapper[data-v-c3240004], .how-it-works[data-v-c3240004] {\n  width: 90%;\n  margin: 20px auto;\n}\n.how-it-works[data-v-c3240004] {\n  position: relative;\n  background: #f5f5f5;\n  border: 1px solid #e0e0e0;\n  color: #424242;\n  border-radius: 5px;\n  padding: 20px;\n}\n.how-it-works > label[data-v-c3240004] {\n  font-weight: 700;\n  font-size: 1.5rem;\n}\n.how-it-works > p[data-v-c3240004] {\n  font-weight: 500;\n  font-size: 1.0rem;\n}\n.how-it-works > ul[data-v-c3240004] {\n  font-size: 1.2rem;\n}\n.spacing[data-v-c3240004] {\n  padding: 10px 30px !important;\n}\n.builder-content[data-v-c3240004] {\n  border-top: 1px solid #eeeeee;\n  border-bottom: 1px solid #eeeeee;\n}\n#map-container[data-v-c3240004] {\n  min-height: 350px;\n  background: #f5f5f5;\n}\n#builder-header[data-v-c3240004] {\n  cursor: move;\n  position: relative;\n}\n.error-wrapper[data-v-c3240004] {\n  margin: 10px 0;\n}\n.single-error[data-v-c3240004] {\n  margin: 0 !important;\n}\n", ""]);
 
 // exports
 
@@ -54077,11 +54095,69 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "row", staticStyle: { position: "relative" } },
+    {
+      staticClass: "row",
+      staticStyle: { position: "relative", "z-index": "1000" }
+    },
     [
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "col-xs-12 spacing", attrs: { id: "builder-header" } },
+        [
+          _c("h4", { staticClass: "text-dark" }, [_vm._v("Make New Geofence")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default btn-manual",
+              on: {
+                click: function($event) {
+                  _vm.showManual = true
+                }
+              }
+            },
+            [
+              _c("i", { staticClass: "fa fa-question-circle-o mr-4" }),
+              _vm._v("\n      How It Works\n    ")
+            ]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "col-xs-12 builder-content" }, [
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showManual,
+                expression: "showManual"
+              }
+            ],
+            staticClass: "how-it-works"
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default btn-sm btn-close-manual",
+                on: {
+                  click: function($event) {
+                    _vm.showManual = false
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fa fa-times" })]
+            ),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "" } }, [_vm._v("How It Works ?")]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]
+        ),
+        _vm._v(" "),
         _c("div", { staticClass: "form-group input-wrapper" }, [
           _c("label", { attrs: { for: "name" } }, [
             _vm._v("Name of the Geofence")
@@ -54168,11 +54244,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-xs-12 spacing", attrs: { id: "builder-header" } },
-      [_c("h4", { staticClass: "text-dark" }, [_vm._v("Make New Geofence")])]
-    )
+    return _c("ul", [
+      _c("li", [_vm._v("Give a meaningful name to your geofence")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Click on the map to add a pin")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("You can add multiple pin to the map")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("You can drag a pin to change geofence area")]),
+      _vm._v(" "),
+      _c("li", [_vm._v("Click an existing pin to remove it")])
+    ])
   }
 ]
 render._withStripped = true
@@ -68560,15 +68642,6 @@ var GeofenceMap = function (_Map) {
         draggable: true
       });
 
-      pin.addListener('drag', function (event) {
-        this.latlng = event.latLng;
-        this.container.updatePolygon();
-      }.bind(pin));
-
-      pin.addListener('click', function (event) {
-        this.container.removePin(this.uid);
-      }.bind(pin));
-
       this.pins.push(pin);
 
       if (this.pins.length > 2) {
@@ -68830,6 +68903,9 @@ var Pin = function (_google$maps$Marker) {
     _this.uid = id;
     _this.container = container;
     _this.latlng = options.position;
+
+    _this.addListener('drag', _this.onDrag);
+    _this.addListener('click', _this.onClick);
     return _this;
   }
 
@@ -68849,16 +68925,15 @@ var Pin = function (_google$maps$Marker) {
       return [this.latlng.lng(), this.latlng.lat()];
     }
   }, {
-    key: 'icon',
-    value: function icon() {
-      return {
-        url: 'http://myradar.com.bd/images/ic-pin@2x.png',
-        // size: new google.maps.Size(64, 64),
-        // scale: 0.5,
-        scaledSize: new google.maps.Size(32, 32)
-        // origin: new google.maps.Point(0, 0),
-        // anchor: new google.maps.Point(0, 32),
-      };
+    key: 'onDrag',
+    value: function onDrag(event) {
+      this.latlng = event.latLng;
+      this.container.updatePolygon();
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick(event) {
+      this.container.removePin(this.uid);
     }
   }]);
 
