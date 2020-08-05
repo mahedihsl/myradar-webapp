@@ -1834,6 +1834,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1851,11 +1853,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CarList__ = __webpack_require__("./resources/assets/js/fence/comp/CarList.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CarList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CarList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__("./node_modules/babel-runtime/regenerator/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__("./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CarList__ = __webpack_require__("./resources/assets/js/fence/comp/CarList.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CarList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__CarList__);
+
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
 //
 //
 //
@@ -1894,8 +1906,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       default: null
     }
   },
-  components: { CarList: __WEBPACK_IMPORTED_MODULE_1__CarList___default.a },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(['cars']), {
+  components: { CarList: __WEBPACK_IMPORTED_MODULE_2__CarList___default.a },
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(['cars']), {
     vehicles: function vehicles() {
       try {
         return this.cars(this.geofence.id);
@@ -1903,7 +1915,83 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         return [];
       }
     }
-  })
+  }),
+  methods: {
+    onSubscribe: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(c) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return this.$store.dispatch('subscribe', {
+                  geofence: this.geofence,
+                  car: c
+                });
+
+              case 3:
+                _context.next = 8;
+                break;
+
+              case 5:
+                _context.prev = 5;
+                _context.t0 = _context['catch'](0);
+
+                console.log('subscribe error: ' + _context.t0.message);
+
+              case 8:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 5]]);
+      }));
+
+      function onSubscribe(_x) {
+        return _ref.apply(this, arguments);
+      }
+
+      return onSubscribe;
+    }(),
+    onUnsubscribe: function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(c) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return this.$store.dispatch('unsubscribe', {
+                  geofence: this.geofence,
+                  car: c
+                });
+
+              case 3:
+                _context2.next = 8;
+                break;
+
+              case 5:
+                _context2.prev = 5;
+                _context2.t0 = _context2['catch'](0);
+
+                console.log('unsubscribe error: ' + _context2.t0.message);
+
+              case 8:
+              case 'end':
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[0, 5]]);
+      }));
+
+      function onUnsubscribe(_x2) {
+        return _ref2.apply(this, arguments);
+      }
+
+      return onUnsubscribe;
+    }()
+  }
 });
 
 /***/ }),
@@ -54202,7 +54290,13 @@ var render = function() {
           ? _c(
               "button",
               {
-                staticClass: "btn btn-plus btn-small absolute-right-center mr-4"
+                staticClass:
+                  "btn btn-plus btn-small absolute-right-center mr-4",
+                on: {
+                  click: function($event) {
+                    _vm.$emit("subscribe", c)
+                  }
+                }
               },
               [_c("i", { staticClass: "fa fa-plus" })]
             )
@@ -54213,7 +54307,12 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "btn btn-minus btn-small absolute-right-center mr-4"
+                  "btn btn-minus btn-small absolute-right-center mr-4",
+                on: {
+                  click: function($event) {
+                    _vm.$emit("unsubscribe", c)
+                  }
+                }
               },
               [_c("i", { staticClass: "fa fa-minus" })]
             )
@@ -54275,7 +54374,10 @@ var render = function() {
       _vm._v(" "),
       _c("h5", { staticClass: "car-list-title" }, [_vm._v("Manage Cars")]),
       _vm._v(" "),
-      _c("car-list", { attrs: { items: _vm.vehicles } })
+      _c("car-list", {
+        attrs: { items: _vm.vehicles },
+        on: { subscribe: _vm.onSubscribe, unsubscribe: _vm.onUnsubscribe }
+      })
     ],
     1
   )
@@ -68906,20 +69008,16 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
       return state.geofences;
     },
     cars: function cars(state) {
-      // return state.cars
       return function (geofenceId) {
         var geofence = state.geofences.find(function (m) {
           return m.id === geofenceId;
         });
-        var ret = state.cars.map(function (car) {
+        return state.cars.map(function (car) {
           var isSubscribed = geofence.cars.findIndex(function (c) {
             return c.id === car.id;
           }) != -1;
           return _extends({}, car, { subscribed: isSubscribed });
         });
-        console.log('car list from getters', ret);
-
-        return ret;
       };
     }
   },
@@ -68929,12 +69027,35 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
     },
     SET_CARS: function SET_CARS(state, list) {
       state.cars = list;
+    },
+    SUBSCRIBE_CAR: function SUBSCRIBE_CAR(state, _ref) {
+      var geofence = _ref.geofence,
+          car = _ref.car;
+
+      var target = state.geofences.find(function (m) {
+        return geofence.id;
+      });
+      target.cars.push(car);
+    },
+    UNSUBSCRIBE_CAR: function UNSUBSCRIBE_CAR(state, _ref2) {
+      var geofence = _ref2.geofence,
+          car = _ref2.car;
+
+      var index = state.geofences.findIndex(function (m) {
+        return geofence.id;
+      });
+      var target = state.geofences[index];
+      var carIndex = target.cars.findIndex(function (c) {
+        return c.id === car.id;
+      });
+      target.cars.splice(carIndex, 1);
+      state.geofences.splice(index, 1, target);
     }
   },
   actions: {
     fetchCars: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref, userId) {
-        var commit = _ref.commit;
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref3, userId) {
+        var commit = _ref3.commit;
         var res;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -68957,14 +69078,14 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
       }));
 
       function fetchCars(_x, _x2) {
-        return _ref2.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       }
 
       return fetchCars;
     }(),
     fetch: function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref3) {
-        var commit = _ref3.commit;
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref5) {
+        var commit = _ref5.commit;
         var res;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
           while (1) {
@@ -68987,16 +69108,16 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
       }));
 
       function fetch(_x3) {
-        return _ref4.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       }
 
       return fetch;
     }(),
     save: function () {
-      var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(_ref5, _ref6) {
-        var commit = _ref5.commit;
-        var name = _ref6.name,
-            coordinates = _ref6.coordinates;
+      var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(_ref7, _ref8) {
+        var commit = _ref7.commit;
+        var name = _ref8.name,
+            coordinates = _ref8.coordinates;
         var res;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -69020,10 +69141,78 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
       }));
 
       function save(_x4, _x5) {
-        return _ref7.apply(this, arguments);
+        return _ref9.apply(this, arguments);
       }
 
       return save;
+    }(),
+    subscribe: function () {
+      var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(_ref10, _ref11) {
+        var commit = _ref10.commit;
+        var geofence = _ref11.geofence,
+            car = _ref11.car;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return __WEBPACK_IMPORTED_MODULE_1_vue___default.a.http.post('/geofence/subscribe', {
+                  geofence_id: geofence.id,
+                  car_id: car.id,
+                  reg_no: car.reg_no
+                });
+
+              case 2:
+
+                commit('SUBSCRIBE_CAR', { geofence: geofence, car: car });
+
+              case 3:
+              case 'end':
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function subscribe(_x6, _x7) {
+        return _ref12.apply(this, arguments);
+      }
+
+      return subscribe;
+    }(),
+    unsubscribe: function () {
+      var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(_ref13, _ref14) {
+        var commit = _ref13.commit;
+        var geofence = _ref14.geofence,
+            car = _ref14.car;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return __WEBPACK_IMPORTED_MODULE_1_vue___default.a.http.post('/geofence/unsubscribe', {
+                  geofence_id: geofence.id,
+                  car_id: car.id,
+                  reg_no: car.reg_no
+                });
+
+              case 2:
+
+                commit('UNSUBSCRIBE_CAR', { geofence: geofence, car: car });
+
+              case 3:
+              case 'end':
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function unsubscribe(_x8, _x9) {
+        return _ref15.apply(this, arguments);
+      }
+
+      return unsubscribe;
     }()
   }
 }));

@@ -31,6 +31,19 @@ export default new Vuex.Store({
     SET_CARS(state, list) {
       state.cars = list
     },
+
+    SUBSCRIBE_CAR(state, { geofence, car }) {
+      const target = state.geofences.find(m => geofence.id)
+      target.cars.push(car)
+    },
+
+    UNSUBSCRIBE_CAR(state, { geofence, car }) {
+      const index = state.geofences.findIndex(m => geofence.id)
+      const target = state.geofences[index]
+      const carIndex = target.cars.findIndex(c => c.id === car.id)
+      target.cars.splice(carIndex, 1)
+      state.geofences.splice(index, 1, target)
+    },
   },
   actions: {
     async fetchCars({ commit }, userId) {
@@ -48,6 +61,26 @@ export default new Vuex.Store({
         name,
         coordinates,
       })
+    },
+
+    async subscribe({ commit }, { geofence, car }) {
+      await Vue.http.post('/geofence/subscribe', {
+        geofence_id: geofence.id,
+        car_id: car.id,
+        reg_no: car.reg_no,
+      })
+
+      commit('SUBSCRIBE_CAR', { geofence, car })
+    },
+
+    async unsubscribe({ commit }, { geofence, car }) {
+      await Vue.http.post('/geofence/unsubscribe', {
+        geofence_id: geofence.id,
+        car_id: car.id,
+        reg_no: car.reg_no,
+      })
+
+      commit('UNSUBSCRIBE_CAR', { geofence, car })
     },
   },
 })

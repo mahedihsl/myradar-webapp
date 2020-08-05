@@ -63,7 +63,7 @@ export default {
         
       }
     },
-    onUnsubscribe(c) {
+    async onUnsubscribe(c) {
       try {
         await this.$store.dispatch('unsubscribe', {
           geofence: this.geofence,

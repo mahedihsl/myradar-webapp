@@ -24,7 +24,11 @@ Area Geofence
     <div class="col-md-12" v-show="geofences.length">
         <div class="row row-eq-height">
             <div class="col-md-3" style="padding-right: 5px;">
-                <area-list :items="geofences" @item-click="onGeofenceClick" @create="showAreaBuilder"></area-list>
+                <area-list 
+                    :items="geofences" 
+                    @item-click="onGeofenceClick" 
+                    @create="showAreaBuilder">
+                </area-list>
             </div>
             <div class="col-md-9" style="padding-left: 5px;">
                 <div style="position: relative; padding-left: 0; padding-right: 0;">

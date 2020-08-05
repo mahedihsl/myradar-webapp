@@ -36,4 +36,24 @@ class AreaController extends Controller
                   ->ofUser($this->getWebUser()->id);
     return response()->json($geofences);
   }
+
+  public function subscribe(Request $request)
+  {
+    $model = $this->repository->find($request->get('geofence_id'));
+    $model->push('cars', [
+      'id' => $request->get('car_id'),
+      'reg_no' => $request->get('reg_no'),
+    ], true);
+    return response()->ok();
+  }
+
+  public function unsubscribe(Request $request)
+  {
+    $model = $this->repository->find($request->get('geofence_id'));
+    $model->pull('cars', [
+      'id' => $request->get('car_id'),
+      'reg_no' => $request->get('reg_no'),
+    ]);
+    return response()->ok();
+  }
 }
