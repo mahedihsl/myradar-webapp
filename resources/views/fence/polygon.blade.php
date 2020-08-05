@@ -29,7 +29,11 @@ Area Geofence
             <div class="col-md-9" style="padding-left: 5px;">
                 <div style="position: relative; padding-left: 0; padding-right: 0;">
                     <div id="common-map"></div>
-                    <geofence-info :geofences="currentGeofence"></geofence-info>
+                    <geofence-info 
+                        :geofence="currentGeofence"
+                        @close="currentGeofence = null"
+                        v-if="!!currentGeofence">
+                    </geofence-info>
                 </div>
             </div>
         </div>

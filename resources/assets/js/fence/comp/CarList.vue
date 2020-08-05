@@ -14,12 +14,14 @@
       <button
         class="btn btn-plus btn-small absolute-right-center mr-4"
         v-if="!c.subscribed"
+        @click="$emit('subscribe', c)"
       >
         <i class="fa fa-plus"></i>
       </button>
       <button
         class="btn btn-minus btn-small absolute-right-center mr-4"
         v-if="c.subscribed"
+        @click="$emit('unsubscribe', c)"
       >
         <i class="fa fa-minus"></i>
       </button>

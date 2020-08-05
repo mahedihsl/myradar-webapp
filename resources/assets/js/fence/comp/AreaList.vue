@@ -38,7 +38,7 @@ export default {
   methods: {
     onItemClick(i) {
       this.activeIndex = i
-      this.$emit('item-click', items[i])
+      this.$emit('item-click', this.items[i])
     },
   },
 }

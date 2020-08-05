@@ -35,7 +35,7 @@ export default new Vuex.Store({
   actions: {
     async fetchCars({ commit }, userId) {
       const res = await Vue.http.get(`/user/car/list/${userId}`)
-      commit('SET_cars', res.body.data)
+      commit('SET_CARS', res.body.data.items)
     },
 
     async fetch({ commit }) {

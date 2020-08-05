@@ -3,14 +3,14 @@
     <div class="info-header">
       <h4>Geofence Details</h4>
     </div>
-    <span class="close-round">
+    <span class="close-round" @click="$emit('close')">
       <i class="fa fa-times"></i>
     </span>
     <div class="info-title">
-      <h4>Mirpur DOHS</h4>
+      <h4>{{ geofence.name }}</h4>
       <span>
         <i class="fa fa-calendar mr-2"></i>
-        Created On 5 Aug 2020
+        Created On {{ geofence.created_at }}
       </span>
     </div>
     <div class="info-actions">
@@ -19,7 +19,11 @@
     </div>
 
     <h5 class="car-list-title">Manage Cars</h5>
-    <car-list :items="vehicles"></car-list>
+    <car-list
+      :items="vehicles"
+      @subscribe="onSubscribe"
+      @unsubscribe="onUnsubscribe"
+    ></car-list>
   </div>
 </template>
 
@@ -29,7 +33,7 @@ import { mapGetters } from 'vuex'
 import CarList from './CarList'
 
 export default {
-  porps: {
+  props: {
     geofence: {
       type: Object,
       required: false,
@@ -44,6 +48,30 @@ export default {
         return this.cars(this.geofence.id)
       } catch (error) {
         return []
+      }
+    },
+  },
+  methods: {
+    async onSubscribe(c) {
+      try {
+        await this.$store.dispatch('subscribe', {
+          geofence: this.geofence,
+          car: c,
+        })
+      } catch (error) {
+        console.log(`subscribe error: ${error.message}`)
+        
+      }
+    },
+    onUnsubscribe(c) {
+      try {
+        await this.$store.dispatch('unsubscribe', {
+          geofence: this.geofence,
+          car: c,
+        })
+      } catch (error) {
+        console.log(`unsubscribe error: ${error.message}`)
+        
       }
     },
   },

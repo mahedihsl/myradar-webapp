@@ -1793,7 +1793,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     onItemClick: function onItemClick(i) {
       this.activeIndex = i;
-      this.$emit('item-click', items[i]);
+      this.$emit('item-click', this.items[i]);
     }
   }
 });
@@ -1887,7 +1887,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  porps: {
+  props: {
     geofence: {
       type: Object,
       required: false,
@@ -54247,11 +54247,31 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "close-round",
+          on: {
+            click: function($event) {
+              _vm.$emit("close")
+            }
+          }
+        },
+        [_c("i", { staticClass: "fa fa-times" })]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-title" }, [
+        _c("h4", [_vm._v(_vm._s(_vm.geofence.name))]),
+        _vm._v(" "),
+        _c("span", [
+          _c("i", { staticClass: "fa fa-calendar mr-2" }),
+          _vm._v(
+            "\n      Created On " + _vm._s(_vm.geofence.created_at) + "\n    "
+          )
+        ])
+      ]),
+      _vm._v(" "),
       _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2),
-      _vm._v(" "),
-      _vm._m(3),
       _vm._v(" "),
       _c("h5", { staticClass: "car-list-title" }, [_vm._v("Manage Cars")]),
       _vm._v(" "),
@@ -54267,27 +54287,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "info-header" }, [
       _c("h4", [_vm._v("Geofence Details")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "close-round" }, [
-      _c("i", { staticClass: "fa fa-times" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info-title" }, [
-      _c("h4", [_vm._v("Mirpur DOHS")]),
-      _vm._v(" "),
-      _c("span", [
-        _c("i", { staticClass: "fa fa-calendar mr-2" }),
-        _vm._v("\n      Created On 5 Aug 2020\n    ")
-      ])
     ])
   },
   function() {
@@ -68907,16 +68906,20 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
       return state.geofences;
     },
     cars: function cars(state) {
+      // return state.cars
       return function (geofenceId) {
         var geofence = state.geofences.find(function (m) {
           return m.id === geofenceId;
         });
-        return state.cars.map(function (car) {
+        var ret = state.cars.map(function (car) {
           var isSubscribed = geofence.cars.findIndex(function (c) {
             return c.id === car.id;
           }) != -1;
           return _extends({}, car, { subscribed: isSubscribed });
         });
+        console.log('car list from getters', ret);
+
+        return ret;
       };
     }
   },
@@ -68943,7 +68946,7 @@ __WEBPACK_IMPORTED_MODULE_1_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
               case 2:
                 res = _context.sent;
 
-                commit('SET_cars', res.body.data);
+                commit('SET_CARS', res.body.data.items);
 
               case 4:
               case 'end':
