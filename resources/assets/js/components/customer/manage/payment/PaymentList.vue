@@ -60,6 +60,8 @@ export default {
       {id: 6, label: 'Bank'},
       {id: 7, label: 'Visa'},
       {id: 8, label: 'MasterCard'},
+      {id: 9, label: 'bKash (907)'},
+      {id: 10, label: 'bKash (909)'},
     ],
   }),
   mounted(){

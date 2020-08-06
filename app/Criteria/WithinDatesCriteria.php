@@ -52,6 +52,6 @@ class WithinDatesCriteria implements CriteriaInterface
     public function apply($model, RepositoryInterface $repository)
     {
         return $model->where($this->getField(), '>=', $this->from)
-                        ->where($this->getField(), '<', $this->to);
+                    ->where($this->getField(), '<', $this->to);
     }
 }

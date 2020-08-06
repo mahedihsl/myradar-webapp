@@ -73,7 +73,16 @@ class Payment extends Eloquent implements Transformable
     public function getMethodAttribute()
     {
         $types = [
-            'Cash', 'bKash', 'bKash Personal', 'Rocket', 'Rocket Personal', 'Bank', 'Visa', 'MasterCard', 'bKash (907)', 'bKash (909)'
+            'Cash',
+            'bKash',
+            'bKash Personal',
+            'Rocket',
+            'Rocket Personal',
+            'Bank',
+            'Visa',
+            'MasterCard',
+            'bKash (907)',
+            'bKash (909)'
         ];
 
         if ( ! $this->type) {

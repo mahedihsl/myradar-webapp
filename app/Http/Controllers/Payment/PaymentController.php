@@ -39,11 +39,12 @@ class PaymentController extends Controller
 
     public function index(Request $request, $userId)
     {
-      $this->repository->pushCriteria(new UserIdCriteria($userId));
       $criteria = new WithinDatesCriteria(Carbon::today()->subYears(2), Carbon::tomorrow(), 'paid_on');
-      $paymentlist = $this->repository->pushCriteria($criteria)
-                                        ->with(['user','car'])
-                                        ->all();
+      $paymentlist = $this->repository
+          ->pushCriteria(new UserIdCriteria($userId))
+          ->pushCriteria($criteria)
+          ->with(['user','car'])
+          ->all();
       return response()->ok($paymentlist);
     }
 
