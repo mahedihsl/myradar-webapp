@@ -13,6 +13,10 @@ use App\Service\NotificationService;
 use App\Service\SmsService;
 use Carbon\Carbon;
 use App\Entities\PendingNotice;
+use App\Transformers\PendingNoticeTransformer;
+use Illuminate\Support\Facades\Log;
+use Exception;
+use Excel;
 
 class NoticeController extends Controller
 {
@@ -68,8 +72,6 @@ class NoticeController extends Controller
                         'to' => $user->phone,
                         'payload' => $message,
                     ]);
-                    // $s = new SmsService();
-                    // $s->send($user->phone, $message);
                 } else {
                     $payload = [
                         'title' => 'Notice',
@@ -81,13 +83,10 @@ class NoticeController extends Controller
                         'to' => $user->id,
                         'payload' => $payload,
                     ]);
-                    // dispatch(new PushNotificationJob($user->id, $payload));
                 }
             });
 
-            $this->repository->create([
-                'message' => $message,
-            ]);
+            $this->repository->create([ 'message' => $message ]);
 
             return redirect()->route('due-notice', [
                 'status' => 1,
@@ -99,30 +98,66 @@ class NoticeController extends Controller
         return redirect()->route('due-notice', ['status' => 0]);
     }
 
+    public function exportDueNotice(Request $request, $via)
+    {
+        $notices = PendingNotice::where('via', $via)->get();
+        $targets = $notices->map(function($v) {return $v->to;});
+        
+        $foreignField = $via == 'sms' ? 'phone' : '_id';
+        $users = User::whereIn($foreignField, $targets)->get();
+
+        $fileName = 'Pending Notices - ' . strtoupper($via);
+        Excel::create($fileName, function ($excel) use ($notices, $users) {
+            $excel->sheet('data', function ($sheet) use ($notices, $users) {
+                $notices->transform(function ($notice) use ($users) {
+                    $user = $users->first(function($user) use ($notice) {
+                        if ($notice->via == 'sms') {
+                            return $user->phone == $notice->to;
+                        }
+                        return $user->id == $notice->to;
+                    });
+                    $transformer = new PendingNoticeTransformer();
+                    return $transformer->transform($notice, $user);
+                });
+
+                $sheet->fromArray($notices->toArray(), null, 'A1', false, true);
+            });
+        })->download('xlsx');
+    }
+
     public function sendSingleNotice(Request $request)
     {
         $via = $request->get('via', 'none');
         $model = PendingNotice::where('via', $via)->first();
         if ( ! is_null($model)) {
-            if ($model->via == 'sms') {
-                $s = new SmsService();
-                $s->send($model->to, $model->payload);
-            } else if ($model->via == 'push') {
-                $j = new PushNotificationJob($model->to, collect($model->payload));
-                $j->handle();
+            try {
+                // if ($model->via == 'sms') {
+                //     $s = new SmsService();
+                //     $s->send($model->to, $model->payload);
+                // } else if ($model->via == 'push') {
+                //     $j = new PushNotificationJob($model->to, collect($model->payload));
+                //     $j->handle();
+                // }
+                $model->delete();
+            } catch (Exception $error) {
+                Log::info('Single Notice Delivery Error', [
+                    'message' => $error->getMessage(),
+                    'model' => $model->toArray(),
+                ]);
             }
-            $model->delete();
         }
         return response()->json([
-            'remaining' => PendingNotice::where('via', $via)->count()
+            'remaining' => PendingNotice::where('via', $via)->count(),
         ]);
     }
 
     public function dueNotice(Request $request)
     {
-        $status = $request->get('status', -1);
-        $count = $request->get('count', 0);
-        $via = $request->get('via', '');
+        $counts = collect(['sms', 'push'])->mapWithKeys(function ($tag) {
+            return [
+                $tag => PendingNotice::where('via', $tag)->count(),
+            ];
+        });
 
         $months = collect(range(0, 11))->map(function($i) {
             $temp = Carbon::today()->subMonths($i);
@@ -136,11 +171,10 @@ class NoticeController extends Controller
                     ->get();
 
         return view('promotion.notice')->with([
-            'status' => $status,
-            'count' => $count,
             'months' => $months,
             'history' => $history,
-            'via' => $via,
+            
+            'counts' => $counts,
         ]);
     }
 }

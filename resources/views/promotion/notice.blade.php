@@ -1,5 +1,15 @@
 @extends('layouts.new')
 
+@push('style')
+<style type="text/css">
+  .alert-default {
+    border-radius: 5px;
+    border: 1px solid #eeeeee;
+    background: white;
+  }
+</style>
+@endpush
+
 @section('title')
 Due Bill SMS Notice
 @endsection
@@ -7,19 +17,25 @@ Due Bill SMS Notice
 @section('content')
 <div class="row" id="app">
   <div class="col-xs-12">
-    @if ($count > 0)
-    <div class="alert alert-success" role="alert">
-      Sending <strong>{{ $count }}</strong> Notices via <strong>{{ strtoupper($via) }}</strong>
-    </div>
-    <div class="progress">
-      <div class="progress-bar progress-bar-success" id="progress" role="progressbar" aria-valuenow="60"
-        aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-        0%
+    @foreach ($counts as $via => $count)
+    <div class="alert alert-default" role="alert">
+      <p style="margin-bottom: 30px;">
+        Pending <strong>{{ strtoupper($via) }}</strong> Notifications: <strong>{{ $count }}</strong>
+        <a href="/export/due/notice/{{ $via }}" class="btn btn-info pull-right export-button" data-via="{{ $via }}">
+          <i class="fa fa-file-o"></i> Export
+        </a>
+        <button class="btn btn-success pull-right send-button" style="margin: 0 20px;" data-via="{{ $via }}">
+          <i class="fa fa-paper-plane"></i> Start Sending
+        </button>
+      </p>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" id="progress-{{ $via }}" role="progressbar" aria-valuenow="0"
+          aria-valuemin="0" aria-valuemax="100" style="width: 0%;" data-total="{{ $count }}">
+          0%
+        </div>
       </div>
     </div>
-    @endif
-    <input type="hidden" value="{{ $count }}" name="count" />
-    <input type="hidden" value="{{ $via }}" name="via" />
+    @endforeach
   </div>
   <div class="col-xs-12">
     <form class="form" action="/send/due/notice" method="post" id="notice-form">
@@ -65,21 +81,20 @@ Due Bill SMS Notice
 @push('script')
 <script src="{{mix('js/customer/promotion/index.js')}}"></script>
 <script type="text/javascript">
-    var count;
+  var count;
 
-    function sendSingleNotice() {
-      var via = $('input[name="via"]').val()
-      $.post('/send/single/notice', {via: via}, function(data) {
-        // console.log(`response`, data)
+    function startNoticeQueue(via) {
+      $.post('/send/single/notice', {via}, function(data) {
+        var progress = $('#progress-' + via)
+        var count = parseInt(progress.data('total'))
         var done = count - data.remaining
         var percentage = Math.floor(done / count * 100)
-        // console.log(`percentage progress`, percentage)
         
-        $('#progress').attr('aria-valuenow', percentage)
-        $('#progress').css('width', percentage + '%')
-        $('#progress').text(percentage + '%')
+        progress.attr('aria-valuenow', percentage)
+        progress.css('width', percentage + '%')
+        progress.text(percentage + '%')
         if (data.remaining > 0) {
-          sendSingleNotice()
+          startNoticeQueue(via)
         }
       })
     }
@@ -91,10 +106,9 @@ Due Bill SMS Notice
         $('#notice-form').submit();
       })
 
-      count = parseInt($('input[name="count"]').val());
-      if (count > 0) {
-        sendSingleNotice();
-      }
+      $('.send-button').click(function() {
+        startNoticeQueue($(this).data('via'))
+      })
     })
 </script>
 @endpush
