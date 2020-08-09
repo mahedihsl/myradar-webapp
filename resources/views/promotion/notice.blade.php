@@ -11,7 +11,7 @@
 @endpush
 
 @section('title')
-Due Bill SMS Notice
+Due Bill SMS/Push Notice
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@ Due Bill SMS Notice
     @foreach ($counts as $via => $count)
     <div class="alert alert-default" role="alert">
       <p style="margin-bottom: 30px;">
-        Pending <strong>{{ strtoupper($via) }}</strong> Notifications: <strong>{{ $count }}</strong>
+        Pending <strong>{{ strtoupper($via) }}</strong> Notifications: <strong id="{{ $via }}-count">{{ $count }}</strong>
         <a href="/export/due/notice/{{ $via }}" class="btn btn-info pull-right export-button" data-via="{{ $via }}">
           <i class="fa fa-file-o"></i> Export
         </a>
@@ -93,6 +93,8 @@ Due Bill SMS Notice
         progress.attr('aria-valuenow', percentage)
         progress.css('width', percentage + '%')
         progress.text(percentage + '%')
+
+        $('#' + via + '-count').text(data.remaining)
         if (data.remaining > 0) {
           startNoticeQueue(via)
         }

@@ -131,13 +131,13 @@ class NoticeController extends Controller
         $model = PendingNotice::where('via', $via)->first();
         if ( ! is_null($model)) {
             try {
-                // if ($model->via == 'sms') {
-                //     $s = new SmsService();
-                //     $s->send($model->to, $model->payload);
-                // } else if ($model->via == 'push') {
-                //     $j = new PushNotificationJob($model->to, collect($model->payload));
-                //     $j->handle();
-                // }
+                if ($model->via == 'sms') {
+                    $s = new SmsService();
+                    $s->send($model->to, $model->payload);
+                } else if ($model->via == 'push') {
+                    $j = new PushNotificationJob($model->to, collect($model->payload));
+                    $j->handle();
+                }
                 $model->delete();
             } catch (Exception $error) {
                 Log::info('Single Notice Delivery Error', [
