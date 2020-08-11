@@ -23,66 +23,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class ServiceMonitorController extends Controller
 {
 
-
-  public function __construct()
-  {
-
-   $this->middleware('auth');
-
-  }
-
-  public function test(Request $request) {
-    //DB::connection( 'mongodb' )->enableQueryLog();
-    $start = new \MongoDB\BSON\UTCDateTime(Carbon::createFromDate(2019, 10, 1)->timestamp * 1000);
-    $end = new \MongoDB\BSON\UTCDateTime(Carbon::createFromDate(2019, 11, 23)->timestamp * 1000);
-    // $model = ExecTime::raw(function($collection) use ($start, $end) {
-    //   return $collection->insertOne([
-    //     'device' => 1111,
-    //     'time' => 120,
-    //     'created_at' => $start,
-    //     'updated_at' => $end,
-    //   ]);
-    // });
-    // $query = [
-    //   '$and' => [
-    //     ['device_id' => ['$eq' => '5ab231c789232c064637296d']],
-    //     ['when' => ['$gt' => $start]],
-    //     ['when' => ['$lt' => $end]],
-    //   ]
-    // ];
-    // $count = Position::raw(function($collection) use ($query) {
-    //   return $collection->count($query);
-    // });
-    // $data = Position::raw(function($collection) use ($query) {
-    //   return $collection->find($query, [
-    //       'skip' => 1,
-    //       'limit' => 5,
-    //       'sort' => ['when' => -1],
-    //       'projection' => [
-    //         'when' => true,
-    //         'lat' => true,
-    //         'lng' => true,
-    //       ]
-    //     ]);
-    // });
-    // $data = Position::where('device_id','=', '5ab231c789232c064637296d')
-		// 		          ->withTrashed()
-    //                ->select('when','lat','lng')
-    //                 ->orderBy('when','desc')
-    //                 ->paginate(20);
-                  //   ->where('when','<',$to_date)
-                  //  ->where('when','>',$from_date)
-    $device = Device::raw(function($collection) {
-      return $collection->findOne([
-        'com_id' => ['$eq' => 57309]
-      ]);
-    });
-    return [
-      'data' => $device,
-    ];
-    // dd(DB::connection('mongodb')->getQueryLog());
-  }
-
   public function show(Request $request)
   {
     $users = [];
@@ -201,14 +141,8 @@ class ServiceMonitorController extends Controller
           });
           $data = new LengthAwarePaginator($items, $total, $per_page, $curr_page);
   
-          // $data = Health::where('device_id',$Device->id)
-          //        ->where('created_at','<',$to_date)
-          //        ->where('created_at','>',$from_date)
-          //        ->orderBy('created_at','desc')
-          //        ->paginate(20);
-
               $file_name = "Health_Export_".$User;
-             $headings = array('Date Time','Loop Count', 'Engine Status', 'Setup Time(Second)','Avg Loop Time(Second)','Min Loop Time(Second)','Max Loop Time(Second)','Min free Ram','Max Free Ram', 'Shield Count', 'GPS Power');
+             $headings = array('Date Time','Loop Count', 'Engine Status', 'Setup Time(Second)','Avg Loop Time(Second)','Min Loop Time(Second)','Max Loop Time(Second)','Min free Ram','Max Free Ram', 'Shield Count', 'GPS Power', 'MCUCSR');
         }
 
       if($sid==17)//gas
@@ -353,6 +287,7 @@ class ServiceMonitorController extends Controller
                            $data->max_free_ram,
                            $data->shield_count,
                            $data->gps_power,
+                           $data->mcucsr(),
                         ];
 
                         }

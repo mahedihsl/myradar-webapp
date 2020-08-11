@@ -187,7 +187,6 @@ Route::group(['middleware' => ['auth', 'role:3']], function() {
     Route::post('/service/api/get_service_diagnosis', 'Service\ServiceApiController@get_service_diagnosis');
 
     Route::get('/service-monitor', 'ServiceMonitor\ServiceMonitorController@show');
-    Route::get('/service-monitor/test', 'ServiceMonitor\ServiceMonitorController@test');
     Route::get('/user/devices/{id}', 'Device\DeviceController@allOfUser');
 
     Route::post('/device/update/phone', 'Device\DeviceController@changePhone');
