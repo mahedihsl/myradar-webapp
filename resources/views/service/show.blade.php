@@ -140,14 +140,12 @@
     <loader v-if="loading"></loader>
     <div class="row" v-if="!!car">
       <engine :reg-no="car.reg_no" :device-id="car.device_id" :subscribed="engine"></engine>
-      <fuel :device-id="car.device_id" :subscribed="fuel"></fuel>
+      {{-- <fuel :device-id="car.device_id" :subscribed="fuel"></fuel> --}}
       <gas :device-id="car.device_id" :subscribed="gas"></gas>
     </div>
     <div class="row" v-if="!!car">
-      <fuel-chart :device-id="car.device_id" :subscribed="fuel"></fuel-chart>
+      {{-- <fuel-chart :device-id="car.device_id" :subscribed="fuel"></fuel-chart> --}}
       <gas-view :reg-no="car.reg_no" :device-id="car.device_id" :subscribed="gas"></gas-view>
-    </div>
-    <div class="row"  v-if="!!car">
       <mileage :car-id="car.id" :subscribed="mileage"></mileage>
     </div>
   </div>

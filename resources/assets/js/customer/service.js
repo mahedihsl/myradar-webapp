@@ -4,11 +4,11 @@ import Switcher from '../components/customer/service/Switcher.vue';
 import Loader from '../components/util/Loader.vue';
 
 import Engine from '../components/customer/service/Engine.vue';
-import Fuel from '../components/customer/service/Fuel.vue';
+// import Fuel from '../components/customer/service/Fuel.vue';
 import Gas from '../components/customer/service/Gas.vue';
 import Mileage from '../components/customer/service/Mileage.vue';
 
-import FuelChart from '../components/customer/service/FuelChart.vue';
+// import FuelChart from '../components/customer/service/FuelChart.vue';
 // import GasChart from '../components/customer/service/GasChart.vue';
 import GasView from '../components/customer/service/GasView.vue';
 
@@ -21,10 +21,10 @@ new Vue({
         Switcher,
         Loader,
         Engine,
-        Fuel,
+        // Fuel,
         Gas,
         Mileage,
-        FuelChart,
+        // FuelChart,
         // GasChart,
         GasView,
     },

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="col-xs-12 col-md-4">
+  <div class="col-xs-12 col-md-6">
     <div class="info-boxx">
       <h4 class="text-center box-title">GAS METER</h4>
       <div class="content" v-show="subscribed">

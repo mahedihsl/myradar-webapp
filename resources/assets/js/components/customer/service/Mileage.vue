@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="col-xs-12 col-md-6">
       <div class="info-boxx large-box">
         <div class="col-xs-6 col-md-8" style="padding-top: 10px;">
             <span class="box-title">MILEAGE REPORT</span>
