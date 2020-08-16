@@ -5,10 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Entities\Car;
 use App\Entities\User;
-use App\Events\SpeedLimitCrossEvent;
-use App\Listeners\SpeedLimitCrossListener;
-use App\Service\OneSignalService;
-use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 
 class PushNotificationController extends Controller
 {
@@ -35,8 +32,9 @@ class PushNotificationController extends Controller
           'body' => $body,
           'type' => 0,
         ]);
-        $service = new OneSignalService();
-        $ret = $service->send($car->user->getPlayerIds(), $data);
+        $service = new PushMicroservice();
+        $ret = $service->send($car->user_id, $data);
+
         $ret = json_decode($ret, true);
         $res->push('Notification sent to ' . $ret['recipients'] . ' Mobile Devices');
       }
@@ -86,11 +84,6 @@ class PushNotificationController extends Controller
     $arr->push('Private customer settings are ok');
 
     $delivered = $listener->execute($event->device->user, $event->device, $data);
-    // dispatch(new PushNotificationJob($event->device->user->id, $data));
-    // $job = new PushNotificationJob($event->device->user->id, $data);
-    // $job->handle();
-    // $onesignal = new OneSignalService();
-    // $response = $onesignal->send($event->device->user->getPlayerIds(), $data);
 
     $arr->push('Notification delivery response: ' . $delivered);
 

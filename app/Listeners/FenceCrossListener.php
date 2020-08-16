@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
 use App\Service\NotificationService;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 
 class FenceCrossListener
 {
@@ -38,7 +39,8 @@ class FenceCrossListener
                 'type' => NotificationService::$TYPE_FENCE,
             ]);
 
-            dispatch(new PushNotificationJob($event->device->user_id, $data));
+            $service = new PushMicroservice();
+            $service->send($event->device->user_id, $data);
         }
     }
 

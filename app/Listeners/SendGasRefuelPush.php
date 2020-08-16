@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\GasRefueled;
 use App\Service\NotificationService;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -35,7 +36,8 @@ class SendGasRefuelPush
                 'type'  => NotificationService::$TYPE_GAS,
             ]);
 
-            dispatch(new PushNotificationJob($event->device->user_id, $data));
+            $service = new PushMicroservice();
+            $service->send($event->device->user_id, $data);
         }
     }
 }

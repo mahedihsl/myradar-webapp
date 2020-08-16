@@ -12,6 +12,7 @@ use App\Jobs\DailySummerySmsJob;
 use App\Jobs\PushNotificationJob;
 use App\Entities\Car;
 use App\Entities\User;
+use App\Service\Microservice\PushMicroservice;
 use Carbon\Carbon;
 
 class NotificationController extends Controller
@@ -33,37 +34,27 @@ class NotificationController extends Controller
     {
         $data = collect([
             'title' => 'MyRadar Test',
-            'body' => 'Testing Push Notification from myRADAR',
+            'body' => 'Testing Push Notification from myRADAR, Ignore this notification',
         ]);
 
-        $user = User::find($request->get('user_id'));
-        $onesignal = new OneSignalService();
-        $response = $onesignal->send($user->getPlayerIds(), $data);
+        $gateway = new PushMicroservice();
+        $gateway->send($request->get('user_id'), $data);
 
-        // dispatch(new PushNotificationJob($request->get('user_id'), $data));
-
-        return response()->ok([
-            'data' => $response,
-        ]);
+        return response()->ok([ 'data' => 'ok' ]);
     }
 
-    public function onesignal(Request $request)
-    {
-        $data = collect([
-            'title' => 'Test Notification',
-            // 'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
-            'body' => "একটা কৃষক ক্ষেতে ফসল ফলাইতে পারলে নিজেকে সার্থক মনে করে । আবার একতা পাইলট বিমান নিয়ে আকাশে উড়তে পারলে নিজেকে সার্থক মনে করে । এখন কৃষক যদি পাইলটকে বলে \"তোমার তো মিয়া জীবনটাই বৃথা , জীবনে জমিনে ফসল ফলাইয়া দেখলা না \"আর পাইলট যদি কৃষককে বলে \"তোমার ও তো জীবন বৃথা, কোনদিন আকাশে উড়লা না\"",
-            'type' => 0,
-        ]);
+    // public function onesignal(Request $request)
+    // {
+    //     $data = collect([
+    //         'title' => 'Test Notification',
+    //         // 'body' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+    //         'body' => "একটা কৃষক ক্ষেতে ফসল ফলাইতে পারলে নিজেকে সার্থক মনে করে । আবার একতা পাইলট বিমান নিয়ে আকাশে উড়তে পারলে নিজেকে সার্থক মনে করে । এখন কৃষক যদি পাইলটকে বলে \"তোমার তো মিয়া জীবনটাই বৃথা , জীবনে জমিনে ফসল ফলাইয়া দেখলা না \"আর পাইলট যদি কৃষককে বলে \"তোমার ও তো জীবন বৃথা, কোনদিন আকাশে উড়লা না\"",
+    //         'type' => 0,
+    //     ]);
 
-        $service = new OneSignalService();
-        $ret = $service->send([
-            '585b532e-7665-49b2-89d4-7137567e3359',
-        ], $data);
-
-        // $ret = json_decode($ret, true);
-        return $ret;
-    }
+    //     // $ret = json_decode($ret, true);
+    //     return $ret;
+    // }
 
     public function smsPack1(Request $request)
     {

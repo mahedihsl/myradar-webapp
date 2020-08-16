@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\AccountStatusChanged;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -33,7 +34,8 @@ class SendAccountStatusNoti
                 'body' => $event->body(),
             ]);
 
-            dispatch(new PushNotificationJob($event->user->id, $data));
+            $service = new PushMicroservice();
+            $service->send($event->user->id, $data);
         }
     }
 }

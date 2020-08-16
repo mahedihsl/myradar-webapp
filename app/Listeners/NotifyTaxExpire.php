@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\TaxDateExpire;
 use App\Service\NotificationService;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -38,7 +39,8 @@ class NotifyTaxExpire
                 'type' => NotificationService::$TYPE_DATE,
             ]);
 
-            dispatch(new PushNotificationJob($event->car->user_id, $data));
+            $service = new PushMicroservice();
+            $service->send($event->car->user_id, $data);
         }
     }
 }

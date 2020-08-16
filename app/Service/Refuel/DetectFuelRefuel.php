@@ -8,6 +8,7 @@ use App\Entities\Car;
 use App\Entities\FuelHistory;
 use App\Service\NotificationService;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Support\Facades\Log;
 
 class DetectFuelRefuel extends DetectRefuel
@@ -102,7 +103,8 @@ class DetectFuelRefuel extends DetectRefuel
             'type' => NotificationService::$TYPE_FUEL,
         ]);
 
-        dispatch(new PushNotificationJob($device->user_id, $data));
+        $service = new PushMicroservice();
+        $service->send($device->user_id, $data);
     }
 
     private function price()

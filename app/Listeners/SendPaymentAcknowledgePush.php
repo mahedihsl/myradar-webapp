@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\PaymentReceived;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -32,6 +33,7 @@ class SendPaymentAcknowledgePush
             'body' => $event->body(),
         ]);
 
-        dispatch(new PushNotificationJob($event->payment->user->id, $data));
+        $service = new PushMicroservice();
+        $service->send($event->payment->user_id, $data);
     }
 }

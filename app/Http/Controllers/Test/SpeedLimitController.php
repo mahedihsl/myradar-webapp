@@ -76,11 +76,6 @@ class SpeedLimitController extends Controller
     $arr->push('Private customer settings are ok');
 
     $delivered = $listener->execute($event->device->user, $event->device, $data);
-    // dispatch(new PushNotificationJob($event->device->user->id, $data));
-    // $job = new PushNotificationJob($event->device->user->id, $data);
-    // $job->handle();
-    // $onesignal = new OneSignalService();
-    // $response = $onesignal->send($event->device->user->getPlayerIds(), $data);
 
     $arr->push('Notification delivery response: ' . $delivered);
 

@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Entities\User;
 use App\Entities\Setting;
+use App\Service\Microservice\PushMicroservice;
 
 class NotifyFenceCross
 {
@@ -44,11 +45,6 @@ class NotifyFenceCross
             $this->execute(User::find($userId), $device, $data);
           }
         }
-
-
-        // if ((is_null($settings) || $settings->noti_geofence)) {
-        //     dispatch(new PushNotificationJob($event->device->user_id, $data));
-        // }
     }
 
     public function execute($user, $device, $data){
@@ -66,7 +62,8 @@ class NotifyFenceCross
 
     public function sendNotification($userId, $device, $data)
     {
-      dispatch(new PushNotificationJob($userId, $data));
+      $service = new PushMicroservice();
+      $service->send($userId, $data);
     }
 
     public function payload($event){

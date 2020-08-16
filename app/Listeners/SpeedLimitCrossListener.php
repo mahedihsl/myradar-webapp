@@ -11,6 +11,7 @@ use App\Entities\Setting;
 use Carbon\Carbon;
 use App\Service\NotificationService;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 
 class SpeedLimitCrossListener
 {
@@ -56,9 +57,8 @@ class SpeedLimitCrossListener
       $car = $device->car;
       $validated = $customerType == User::$CUSTOMER_ENTERPRISE ? $this->enterpriseValidate($user, $car) : $this->privateValidate($user);
       if ($validated) {
-        //   dispatch(new PushNotificationJob($user->id, $data));
-        $job = new PushNotificationJob($user->id, $data);
-        $job->handle();
+        $service = new PushMicroservice();
+        $service->send($user->id, $data);
         return true;
       }
       return false;

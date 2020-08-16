@@ -8,6 +8,7 @@ use App\Service\OneSignalService;
 use App\Jobs\PushNotificationJob;
 use App\Entities\User;
 use App\Entities\Setting;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
@@ -64,10 +65,8 @@ class NotifyEngineStatus
 
     public function sendNotification($user, $device, $data)
     {
-      $onesignal = new OneSignalService();
-      $response = $onesignal->send($user->getPlayerIds(), $data);
-
-    //   dispatch(new PushNotificationJob($userId, $data));
+      $service = new PushMicroservice();
+      $service->send($user->id, $data);
     }
 
     public function payload($event)

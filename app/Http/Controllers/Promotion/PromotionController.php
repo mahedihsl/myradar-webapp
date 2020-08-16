@@ -10,6 +10,7 @@ use App\Criteria\LastUpdatedCriteria;
 use App\Entities\User;
 use App\Entities\PromoScheme;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 
 class PromotionController extends Controller
 {
@@ -71,7 +72,8 @@ class PromotionController extends Controller
         ]);
 
         if ( ! is_null(User::find($id))) {
-            dispatch(new PushNotificationJob($id, $data));
+            $service = new PushMicroservice();
+            $service->send($id, $data);
 
             return response()->ok();
         }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
+use App\Service\OneSignalService;
 use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
 class NotificationController extends Controller
@@ -71,7 +73,8 @@ class NotificationController extends Controller
             'type' => 0,
         ]);
 
-        dispatch(new PushNotificationJob($id, $data));
+        $service = new PushMicroservice();
+        $service->send($id, $data);
 
         return response()->ok();
     }

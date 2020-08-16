@@ -7,6 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\PushMicroservice;
 use App\Service\NotificationService;
 use Carbon\Carbon;
 
@@ -42,7 +43,8 @@ class EngineStartListener
                 'type' => NotificationService::$TYPE_ENGINE,
             ]);
 
-            dispatch(new PushNotificationJob($event->device->user_id, $data));
+            $service = new PushMicroservice();
+            $service->send($event->device->user_id, $data);
         }
     }
 }

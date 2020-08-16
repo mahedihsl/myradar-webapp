@@ -8,6 +8,7 @@ use App\Service\SmsService;
 use App\Service\NotificationService;
 use App\Contract\Repositories\EventRepository;
 use App\Entities\Event;
+use App\Service\Microservice\PushMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
@@ -56,7 +57,8 @@ class NotifyGasRefuel
             ]
         ]);
 
-        dispatch(new PushNotificationJob($event->device->user_id, $data));
+        $service = new PushMicroservice();
+        $service->send($event->device->user_id, $data);
 
         $this->sendSms($event->device, $event->magnitude);
     }

@@ -13,6 +13,8 @@ use App\Service\NotificationService;
 use App\Service\SmsService;
 use Carbon\Carbon;
 use App\Entities\PendingNotice;
+use App\Service\Microservice\PushMicroservice;
+use App\Service\OneSignalService;
 use App\Transformers\PendingNoticeTransformer;
 use Illuminate\Support\Facades\Log;
 use Exception;
@@ -135,8 +137,8 @@ class NoticeController extends Controller
                     $s = new SmsService();
                     $s->send($model->to, $model->payload);
                 } else if ($model->via == 'push') {
-                    $j = new PushNotificationJob($model->to, collect($model->payload));
-                    $j->handle();
+                    $service = new PushMicroservice();
+                    $service->send($model->to, collect($model->payload));
                 }
                 $model->delete();
             } catch (Exception $error) {
