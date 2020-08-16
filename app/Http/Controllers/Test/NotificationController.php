@@ -21,30 +21,11 @@ class NotificationController extends Controller
         $phone = $request->get('phone');
         $content = 'Testing SMS from myRADAR';
 
-        // $smsGateway = new SmsService(true);
-        // $res = $smsGateway->send($phone, $content, 'test');
-        //
-        // $xml = simplexml_load_string($res, "SimpleXMLElement", LIBXML_NOCDATA);
-        // $json = json_encode($xml);
-        // $array = json_decode($json, TRUE);
-
-        // dispatch(new SmsSendingJob($phone, $content));
-        // $job = new SmsSendingJob($phone, $content);
-        // $job->handle();
         $job = new SmsService(true);
         $res = $job->send($phone, $content);
 
         return response()->ok([
             'data' => $res,
-            'props' => [
-                'form_params' => [
-                    'Username'  => config('sms.username'),
-                    'Password'  => config('sms.password'),
-                    'From'      => config('sms.sender'),
-                    'To'        => $phone,
-                    'Message'   => $content,
-                ]
-            ]
         ]);
     }
 

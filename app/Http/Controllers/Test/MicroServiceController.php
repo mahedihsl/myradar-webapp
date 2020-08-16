@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Test;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service\Microservice\SmsMicroservice;
 
 class MicroServiceController extends Controller
 {
@@ -38,14 +39,16 @@ class MicroServiceController extends Controller
 
     public function testSms(Request $request)
     {
-        $client = new \GuzzleHttp\Client(['base_uri' => 'http://myradar-sms:6002/']);
-        $res = $client->post('send', [
-            'form_params' => [
-                'phone' => '01627892968',
-                'content' => 'Sms Microservice working',
-                'type' => 'test'
-            ]
-        ]);
-        return $res->getBody();
+        $service = new SmsMicroservice();
+        $res = $service->send('01627892968', 'Sms Microservice working', 'test');
+        // $client = new \GuzzleHttp\Client(['base_uri' => 'http://myradar-sms:6002/']);
+        // $res = $client->post('send', [
+        //     'form_params' => [
+        //         'phone' => '01627892968',
+        //         'content' => 'Sms Microservice working',
+        //         'type' => 'test'
+        //     ]
+        // ]);
+        return $res;
     }
 }
