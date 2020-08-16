@@ -8,6 +8,8 @@ use App\Contract\Repositories\UserRepository;
 use App\Criteria\ModelTypeCriteria;
 use App\Entities\User;
 use App\Events\AccountStatusChanged;
+use App\Service\Microservice\ServiceException;
+use App\Service\Microservice\UserMicroservice;
 
 class AccountController extends Controller
 {
@@ -16,9 +18,15 @@ class AccountController extends Controller
      */
     private $repository;
 
+    /**
+     * @var UserMicroservice
+     */
+    private $microservice;
+
     public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
+        $this->microservice = new UserMicroservice();
 
         $criteria = new ModelTypeCriteria(User::$TYPE_CUSTOMER);
         $this->repository->pushCriteria($criteria);
@@ -40,24 +48,15 @@ class AccountController extends Controller
 
     public function toggle(Request $request)
     {
-        $user = $this->repository->find($request->get('id'));
+        try {
+            $user_id = $request->get('id');
+            $actor_id = $request->user()->id;
+            
+            $response = $this->microservice->toggleStatus($user_id, $actor_id);
 
-        if ( ! is_null($user)) {
-            $nextState = ! $user->isEnabled();
-
-            if ( ! $nextState && ! $request->user()->isAdmin()) {
-                return response()->error('You can not disable user account');
-            }
-
-            $user->update([ 'enabled' => $nextState ]);
-
-            event(new AccountStatusChanged($user));
-
-            return response()->ok([
-                'enabled' => $user->isEnabled(),
-            ]);
+            return response()->ok([ 'enabled' => $response['status'] ]);
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
         }
-
-        return response()->error('User Not Found, Try Again.');
     }
 }

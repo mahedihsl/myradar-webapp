@@ -2,6 +2,9 @@
 
 namespace App\Service\Microservice;
 
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
+
 class BaseService {
   private $name;
   private $client;
@@ -26,9 +29,25 @@ class BaseService {
 
   public function post($path, $data)
   {
-    $res = $this->client->post($path, [
-      'json' => $data
-    ]);
-    return $res->getBody();
+    try {
+      $res = $this->client->post($path, [ 'json' => $data ]);
+      return json_decode($res->getBody()->getContents(), true);
+    } catch (ClientException $e) {
+      throw ServiceException::fromClientException($e);
+    } catch (ServerException $e) {
+      throw ServiceException::fromServerException($e);
+    }
+  }
+
+  public function get($path, $params = [])
+  {
+    try {
+      $res = $this->client->get($path, [ 'query' => $params ]);
+      return json_decode($res->getBody()->getContents(), true);
+    } catch (ClientException $e) {
+      throw ServiceException::fromClientException($e);
+    } catch (ServerException $e) {
+      throw ServiceException::fromServerException($e);
+    }
   }
 }

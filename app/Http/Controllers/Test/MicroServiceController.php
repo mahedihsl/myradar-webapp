@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Test;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service\Microservice\ServiceException;
 use App\Service\Microservice\SmsMicroservice;
+use App\Service\Microservice\UserMicroservice;
 
 class MicroServiceController extends Controller
 {
@@ -50,5 +52,18 @@ class MicroServiceController extends Controller
         //     ]
         // ]);
         return $res;
+    }
+
+    public function testUser(Request $request)
+    {
+        try {
+            $service = new UserMicroservice();
+            $response = $service->test();
+            return response()->ok([
+                'enabled' => $response['status']
+            ]);
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
+        }
     }
 }

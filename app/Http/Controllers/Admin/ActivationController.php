@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Contract\Repositories\ActivationRepository;
 use App\Criteria\LastUpdatedCriteria;
 use App\Criteria\WithinDatesCriteria;
+use App\Service\Microservice\UserMicroservice;
 use Carbon\Carbon;
 use Excel;
 use App\Transformers\ActivationExportTransformer;
@@ -74,6 +75,10 @@ class ActivationController extends Controller
             ->filter(function($name) {
                 return !is_null($name);
             });
+        $service = new UserMicroservice();
+        $carNames->each(function($name) use ($service) {
+            $service->disableByCar($name);
+        });
         return redirect()->route('activation.report', [
             'disable' => $carNames->count(),
         ]);

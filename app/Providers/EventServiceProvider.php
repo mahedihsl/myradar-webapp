@@ -100,6 +100,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\StoreSpeedEvent',
         ],
 
+        // !NOTE: this module is moved to 'user' microservice
         'App\Events\AccountStatusChanged' => [
             'App\Listeners\SendAccountStatusNoti',
             'App\Listeners\SendAccountStatusSms',
