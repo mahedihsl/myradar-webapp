@@ -29,6 +29,7 @@ class ActivationController extends Controller
 
         return view('activation.index')->with([
             'items' => $this->repository->paginate(50),
+            'disable_count' => $request->get('disable', 0),
         ]);
     }
 
@@ -61,5 +62,20 @@ class ActivationController extends Controller
         })->download('xls');
 
         return redirect()->back();
+    }
+
+    public function batchDisable(Request $request)
+    {
+        $carNames = Excel::load($request->file('blacklist'))
+            ->get()
+            ->map(function($row) {
+                return $row->get('reg_no');
+            })
+            ->filter(function($name) {
+                return !is_null($name);
+            });
+        return redirect()->route('activation.report', [
+            'disable' => $carNames->count(),
+        ]);
     }
 }
