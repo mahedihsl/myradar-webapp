@@ -7,7 +7,7 @@
     <ul class="list-group">
       <li class="list-group-item" :class="{'list-group-item-success': item.status, 'list-group-item-danger': !item.status}" v-for="item in list" :key="item.id">
         <span class="badge">{{item.date}}</span>
-        Account was {{item.status ? 'Enabled' : 'Disabled'}}
+        Account was {{ item.label }}
       </li>
     </ul>
   </div>
@@ -27,8 +27,8 @@ export default {
                 .then(this.onHistoryFound.bind(this));
   },
   methods: {
-    onHistoryFound(list) {
-      this.list = list;
+    onHistoryFound(data) {
+      this.list = data.items;
     },
 
     close() {
