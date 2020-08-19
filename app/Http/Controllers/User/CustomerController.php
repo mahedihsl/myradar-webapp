@@ -18,6 +18,8 @@ use App\Events\CustomerCreated;
 use App\Presenters\CustomerPresenter;
 use App\Presenters\CustomerInfoPresenter;
 use App\Presenters\UserInfoPresenter;
+use App\Service\Microservice\ServiceException;
+use App\Service\Microservice\UserMicroservice;
 use App\Transformers\StatusLogTransformer;
 
 
@@ -133,19 +135,25 @@ class CustomerController extends Controller
 
     public function toggleHistory(Request $request, $id)
     {
-        $user = $this->repository->find($id);
-
-        if ( ! is_null($user)) {
-            $list = $user->status_log()
-                ->orderBy('_id', 'desc')->get()
-                ->map(function($item) {
-                    $transformer = new StatusLogTransformer();
-                    return $transformer->transform($item);
-                });
-
-            return response()->ok($list);
+        try {
+            $service = new UserMicroservice();
+            return response()->ok($service->statusHistory($id));
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
         }
+        // $user = $this->repository->find($id);
 
-        return response()->error();
+        // if ( ! is_null($user)) {
+        //     $list = $user->status_log()
+        //         ->orderBy('_id', 'desc')->get()
+        //         ->map(function($item) {
+        //             $transformer = new StatusLogTransformer();
+        //             return $transformer->transform($item);
+        //         });
+
+        //     return response()->ok($list);
+        // }
+
+        // return response()->error();
     }
 }

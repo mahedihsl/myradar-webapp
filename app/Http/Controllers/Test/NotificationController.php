@@ -13,6 +13,9 @@ use App\Jobs\PushNotificationJob;
 use App\Entities\Car;
 use App\Entities\User;
 use App\Service\Microservice\PushMicroservice;
+use App\Service\Microservice\ServiceException;
+use App\Service\Microservice\SmsMicroservice;
+use App\Service\Microservice\UserMicroservice;
 use Carbon\Carbon;
 
 class NotificationController extends Controller
@@ -22,12 +25,27 @@ class NotificationController extends Controller
         $phone = $request->get('phone');
         $content = 'Testing SMS from myRADAR';
 
-        $job = new SmsService(true);
-        $res = $job->send($phone, $content);
+        // return response()->ok([
+        //     'phone' => $phone,
+        //     'content' => $content,
+        // ]);
+        try {
+            $gateway = new SmsService();
+            $res = $gateway->send($phone, $content);
+            // $gateway = new UserMicroservice();
+            // $res = $gateway->test();
 
-        return response()->ok([
-            'data' => $res,
-        ]);
+            return response()->ok();            
+        } catch (\Exception $e) {
+            return response()->error($e->getMessage());
+        }
+
+        // $job = new SmsService(true);
+        // $res = $job->send($phone, $content);
+
+        // return response()->ok([
+        //     'data' => $res,
+        // ]);
     }
 
     public function noti(Request $request)
@@ -38,9 +56,9 @@ class NotificationController extends Controller
         ]);
 
         $gateway = new PushMicroservice();
-        $gateway->send($request->get('user_id'), $data);
+        $reply = $gateway->send($request->get('user_id'), $data);
 
-        return response()->ok([ 'data' => 'ok' ]);
+        return response()->ok([ 'data' => $reply ]);
     }
 
     // public function onesignal(Request $request)

@@ -57,13 +57,12 @@ class MicroServiceController extends Controller
     public function testUser(Request $request)
     {
         try {
+            $user_id = '5dc3d63b91c404000c19a62a';
             $service = new UserMicroservice();
-            $response = $service->test();
-            return response()->ok([
-                'enabled' => $response['status']
-            ]);
+            $response = $service->statusHistory($user_id);
+            return $response;
         } catch (ServiceException $e) {
-            return response()->error($e->getMessage());
+            return $e;
         }
     }
 }
