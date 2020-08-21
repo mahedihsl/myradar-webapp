@@ -32,7 +32,7 @@ class ComplainCreated
 
     public function body()
     {
-        return "Dear Customer,\nFor car ".$this->complain->car->reg_no."\nWe registered a complain with token number: ".$this->complain->token.".";
+        return "Dear myRADAR Customer,\nFor car ".$this->complain->car->reg_no."\nWe registered a complain with token number: ".$this->complain->token.".";
     }
     /**
      * Get the channels the event should broadcast on.

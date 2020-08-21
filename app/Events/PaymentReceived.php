@@ -34,7 +34,7 @@ class PaymentReceived
 
     public function body()
     {
-        return "Dear Customer,\nFor car ".$this->payment->car->reg_no."\nWe received " . $this->payment->amount . " Taka bill for month of " . $this->payment->month_range . ".";
+        return "Dear myRADAR Customer,\nFor car ".$this->payment->car->reg_no."\nWe received " . $this->payment->amount . " Taka bill for month of " . $this->payment->month_range . ".";
     }
 
     /**

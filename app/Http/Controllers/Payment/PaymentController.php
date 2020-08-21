@@ -87,7 +87,7 @@ class PaymentController extends Controller
 
     public function getContent($data)
     {
-      $content = "Dear Customer,\nyour due bill:\n";
+      $content = "Dear myRADAR Customer,\nyour due bill:\n";
       foreach ($data as $key => $val) {
 
         $content.="For car: ".$val['reg_no']."\nAmount: ".$val['bill']." tk for month ";
@@ -216,7 +216,7 @@ class PaymentController extends Controller
     public function methodContent($refNo)
     {
 
-      $ret = "Dear Customer,\nPlease pay your bill:\nMerchant bKash: ".config('myradar.bkash.marchent')."\nReference: ".$refNo."\nCounter No: 1";
+      $ret = "Dear myRADAR Customer,\nPlease pay your bill:\nMerchant bKash: ".config('myradar.bkash.marchent')."\nReference: ".$refNo."\nCounter No: 1";
       return $ret;
     }
 
