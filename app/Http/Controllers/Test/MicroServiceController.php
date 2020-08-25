@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Test;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Service\Microservice\GeofenceMicroservice;
 use App\Service\Microservice\ServiceException;
 use App\Service\Microservice\SmsMicroservice;
 use App\Service\Microservice\UserMicroservice;
@@ -12,15 +13,18 @@ class MicroServiceController extends Controller
 {
     public function testGeofence(Request $request)
     {
-        $client = new \GuzzleHttp\Client(['base_uri' => 'http://myradar-geofence:6000/']);
-        $res = $client->post('observe', [
-            'form_params' => [
-                'car_id' => '5f2ae945683eeb76b6132b36',
-                'lat' => 23.874988,
-                'lng' => 90.365400,
-            ]
-        ]);
-        return $res->getBody();
+        $car_id = '5f2ae945683eeb76b6132b36';
+        // Outside geofence
+        $lat = 23.874988;
+        $lng = 90.365400;
+
+        // Inside Geofence
+        // $lat = 23.775418;
+        // $lng = 90.364157;
+        
+        $service = new GeofenceMicroservice();
+        $service->observe($car_id, $lat, $lng);
+        return response()->json(['status' => 1]);
     }
 
     public function testPush(Request $request)

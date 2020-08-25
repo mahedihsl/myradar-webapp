@@ -7,6 +7,8 @@ use App\Entities\Position;
 use App\Events\LatLngReceived;
 use App\Contract\Repositories\PositionRepository;
 use App\Consumer\DistanceConsumer;
+use App\Service\Microservice\GeofenceMicroservice;
+use App\Service\Microservice\ServiceException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
@@ -71,6 +73,13 @@ class LatLngConsumer extends ServiceConsumer
             return null;
 	    }
 
+        // $device = $this->getDevice();
+        // if ($device->car_id) {
+        //     try {
+        //         $service = new GeofenceMicroservice();
+        //         $service->observe($device->car_id, $lat, $lng);
+        //     } catch (ServiceException $e) {}
+        // }
 
         //$lastPos = $this->getLastPos();
         $lastMilPos = $this->getLastMilPos();

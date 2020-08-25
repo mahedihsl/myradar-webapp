@@ -39,6 +39,18 @@ class BaseService {
     }
   }
 
+  public function postAsync($path, $data)
+  {
+    try {
+      $promise = $this->client->postAsync($path, [ 'json' => $data ]);
+      return $promise;
+    } catch (ClientException $e) {
+      throw ServiceException::fromClientException($e);
+    } catch (ServerException $e) {
+      throw ServiceException::fromServerException($e);
+    }
+  }
+
   public function get($path, $params = [])
   {
     try {
