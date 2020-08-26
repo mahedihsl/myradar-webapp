@@ -130,7 +130,6 @@
   <li>
     <a href="{{route('enterprise-settings')}}">
       <i class="fa fa-cog"></i> <span>Settings</span>
-
     </a>
   </li>
 

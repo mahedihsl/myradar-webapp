@@ -35,7 +35,7 @@ class PushNotificationController extends Controller
         $service = new PushMicroservice();
         $ret = $service->send($car->user_id, $data);
 
-        $ret = json_decode($ret, true);
+        // $ret = json_decode($ret, true);
         $res->push('Notification sent to ' . $ret['recipients'] . ' Mobile Devices');
       }
       $res->push('Diagnosis finished');

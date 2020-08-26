@@ -28,3 +28,4 @@
     <i class="fa fa-medkit"></i> <span>Unhealthy Device</span>
   </a>
 </li>
+@include('partial.menu.test')

@@ -101,3 +101,4 @@
     @endif
   </a>
 </li>
+@include('partial.menu.test')
