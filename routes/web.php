@@ -325,7 +325,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/mileage/records/{carId}/{days}', 'Service\MileageController@records');
 
-    Route::get('/geofence/manage', 'Fence\AreaController@index')->name('area-fence');
+    Route::get('/geofence/manage/{id}', 'Fence\AreaController@index')->name('area-fence');
     Route::post('/geofence/save', 'Fence\AreaController@save');
     Route::post('/geofence/subscribe', 'Fence\AreaController@subscribe');
     Route::post('/geofence/unsubscribe', 'Fence\AreaController@unsubscribe');

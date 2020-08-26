@@ -50,10 +50,15 @@
   color: #3F51B5;
 }
 </style>
-@if ($type == 1)
+@if ($user->customer_type == 1)
   <li>
     <a href="{{route('car-tracking')}}">
       <i class="fa fa-cab"></i> <span>Vehicle Tracking</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{route('area-fence', ['id' => $user->id])}}">
+      <i class="fa fa-map"></i> <span>Area Geofence</span>
     </a>
   </li>
   <li>
@@ -66,7 +71,7 @@
       <i class="fa fa-tachometer"></i> <span>Fixing Fuel Meter</span>
     </a>
   </li>
-@elseif ($type == 2)
+@elseif ($user->customer_type == 2)
   <li>
     <a href="{{route('map-search')}}">
       <i class="fa fa-map-marker"></i> <span>Map Search</span>
@@ -78,7 +83,7 @@
     </a>
   </li>
   <li>
-    <a href="{{route('area-fence')}}">
+    <a href="{{route('area-fence', ['id' => $user->id])}}">
       <i class="fa fa-map"></i> <span>Area Geofence</span>
     </a>
   </li>

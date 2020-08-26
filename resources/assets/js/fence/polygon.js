@@ -32,7 +32,7 @@ new Vue({
     ...mapGetters(['geofences']),
   },
   mounted() {
-    this.userId = document.getElementsByName('auth_id')[0].value
+    this.userId = document.getElementsByName('customer_id')[0].value
 
     this.$store.dispatch('fetchCars', this.userId)
     this.$store.dispatch('fetch')

@@ -28,7 +28,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MENU</li>
       @if($user->type == 4)
-        @include('partial.menu.customer', ['type' => $user->customer_type])
+        @include('partial.menu.customer', ['user' => $user])
       @elseif ($user->type == 2)
         @include('partial.menu.sales')
       @elseif ($user->type == 3)

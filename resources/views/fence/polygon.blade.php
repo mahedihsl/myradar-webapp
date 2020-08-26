@@ -10,11 +10,15 @@
 @endpush
 
 @section('title')
-Area Geofence
+Area Geofence 
+@if (strlen($customer_name))
+    <strong> - {{ $customer_name }}</strong>
+@endif
 @endsection
 
 @section('content')
 <div class="row" id="app">
+    <input type="hidden" name="customer_id" value="{{ $customer_id }}" />
     <modal name="area-builder" width="50%" height="auto" draggable="#builder-header">
         <area-builder @cancel="closeAreaBuilder"></area-builder>
     </modal>

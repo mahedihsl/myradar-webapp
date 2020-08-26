@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Fence;
 
 use App\Contract\Repositories\GeofenceRepository;
+use App\Entities\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Presenters\GeofencePresenter;
@@ -15,9 +16,16 @@ class AreaController extends Controller
     $this->repository = $repository;    
   }
 
-  public function index(Request $request)
+  public function index(Request $request, $id)
   {
-    return view('fence.polygon');
+    $customerName = '';
+    if ($id != \Auth::user()->id) {
+      $customerName = User::find($id)->name;
+    }
+    return view('fence.polygon')->with([
+      'customer_id' => $id,
+      'customer_name' => $customerName,
+    ]);
   }
 
   public function save(Request $request)
