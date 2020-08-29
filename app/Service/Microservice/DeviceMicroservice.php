@@ -20,8 +20,11 @@ class DeviceMicroservice extends BaseService
     return $this->post('/car/unbind', compact('car_id'));
   }
 
-  public function bindHistory($car_id, $device_id, $page)
+  public function bindHistory($params)
   {
-    return $this->get('/car/bind/history', compact('car_id', 'device_id', 'page'));
+    $reg_no = $params->get('reg_no', '');
+    $com_id = $params->get('com_id', '');
+    $page = $params->get('page', '1');
+    return $this->get('/car/bind/history', compact('reg_no', 'com_id', 'page'));
   }
 }

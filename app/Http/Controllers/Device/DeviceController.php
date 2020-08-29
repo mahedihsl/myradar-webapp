@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveDevice;
 use App\Contract\Repositories\DeviceRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 use App\Entities\Device;
 use App\Criteria\UserIdCriteria;
 use App\Criteria\LastUpdatedCriteria;
+use App\Service\Microservice\DeviceMicroservice;
 use Excel;
 use App\Transformers\DeviceExportTransformer;
 
@@ -19,10 +21,12 @@ class DeviceController extends Controller
      * @var DeviceRepository
      */
     private $repository;
+    private $service;
 
     public function __construct(DeviceRepository $repository)
     {
         $this->repository = $repository;
+        $this->service = new DeviceMicroservice();
     }
 
     public function index(Request $request)
@@ -159,9 +163,14 @@ class DeviceController extends Controller
 
       return response()->ok();
     }
-    
+
     public function bindHistory(Request $request)
     {
-        return view('device.bind_history');
+        $data = $this->service->bindHistory(collect($request->all()));
+        $data = new LengthAwarePaginator($data['items'], $data['total'], $data['limit'], $data['page']);
+        return view('device.bind_history')->with([
+            'logs' => $data,
+            'query' => collect($request->all()),
+        ]);
     }
 }
