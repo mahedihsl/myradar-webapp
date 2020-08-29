@@ -159,4 +159,9 @@ class DeviceController extends Controller
 
       return response()->ok();
     }
+    
+    public function bindHistory(Request $request)
+    {
+        return view('device.bind_history');
+    }
 }

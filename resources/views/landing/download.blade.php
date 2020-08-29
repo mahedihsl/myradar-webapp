@@ -13,8 +13,8 @@
             <p class="text-big text-padding margin-bottom0"></p>
 
             <div class="margin-top40">
-                <a href="https://itunes.apple.com/th/app/myradar-tracker/id1318152957?mt=8&ign-mpt=uo%3D2" title="Download from App Store" class="btn-appstore">App Store</a>
-                <a href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware" title="Download from Play Store" class="btn-playstore">Play Store</a>
+                <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734" title="Download from App Store" class="btn-appstore">App Store</a>
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware" title="Download from Play Store" class="btn-playstore">Play Store</a>
             </div>
         </div>
         <!-- .container end -->

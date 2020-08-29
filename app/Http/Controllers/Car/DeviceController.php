@@ -17,16 +17,20 @@ use App\Criteria\CommercialIdCriteria;
 use App\Repositories\Eloquent\DeviceRepositoryEloquent;
 use App\Service\PackageService;
 use App\Jobs\OnDeviceBindedJob;
+use App\Service\Microservice\DeviceMicroservice;
+use App\Service\Microservice\ServiceException;
 
 class DeviceController extends Controller
 {
     private $cars;
     private $devices;
+    private $service;
 
     public function __construct(CarRepository $cars, DeviceRepository $devices)
     {
         $this->cars = $cars;
         $this->devices = $devices;
+        $this->service = new DeviceMicroservice();
     }
 
     public function state(Request $request, $id)
@@ -57,25 +61,16 @@ class DeviceController extends Controller
         $this->devices->pushCriteria($criteria);
         $device = $this->devices->first();
 
-        if ( ! is_null($device)) {
-            if ($device->car_id) {
-                return response()->error('Commercial ID is already in use');
-            }
-
-            $car = $this->cars->find($request->get('car_id'));
-
-            $device->update([
-                'car_id' => $car->id,
-                'user_id' => $car->user_id,
-            ]);
-
-			dispatch(new OnDeviceBindedJob($device->id, $car->id));
-            // event(new DeviceBinded($device, $car));
-
+        try {
+            $car_id = $request->get('car_id');
+            $this->service->bindDevice($car_id, $device->com_id);
+            
+            dispatch(new OnDeviceBindedJob($device->id, $car_id));
+            
             return response()->ok('Commercial ID attached');
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
         }
-
-        return response()->error('No Device found for this Commercial ID');
     }
 
     public function status(Request $request, $cid, $sid)
@@ -119,20 +114,12 @@ class DeviceController extends Controller
 
     public function unbind(Request $request)
     {
-        $device = $this->devices
-                    ->pushCriteria(new CarIdCriteria($request->get('car_id')))
-                    ->first();
-
-        if ( ! is_null($device)) {
-            $device->update([
-                'car_id' => null,
-                'user_id' => null,
-            ]);
-
+        try {
+            $this->service->unbindDevice($request->get('car_id'));
             return response()->ok();
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
         }
-
-        return response()->error('Device Not Found');
     }
 
 }

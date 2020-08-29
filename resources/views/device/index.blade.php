@@ -5,6 +5,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 @endpush
 
+@section('title')
+    Manage Devices
+@endsection
+
+@section('action')
+    <a href="{{ route('bind.history') }}" class="btn btn-link">
+      <i class="fa fa-history"></i> Bind History
+    </a>
+@endsection
+
 @section('content')
   <div id="app">
     <new-device></new-device>
