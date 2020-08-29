@@ -43,6 +43,7 @@ class ComplainExportTransformer extends TransformerAbstract
             'Creator' => $model->emp,
             'Responsible' => $teams[$model->responsible],
             'When' => $model->when->diffForHumans(),
+            'Type' => $model->type,
             'Description' => $model->body,
             'Comment #1' => $getComment($model->comment, 0),
             'Comment #2' => $getComment($model->comment, 1),

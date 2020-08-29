@@ -16,7 +16,7 @@
 						<div class="form-group">
 							<label>Employee</label>
 							<select v-model="selectedEmp" class="form-control">
-								<option v-for="e in employees">{{ e }}</option>
+								<option v-for="(e, i) in employees" :key="i">{{ e }}</option>
 							</select>
 						</div>
 					</div>
@@ -24,7 +24,7 @@
 						<div class="form-group">
 							<label>Complain Type</label>
 							<select v-model="selectedType" class="form-control">
-								<option v-for="t in types">{{ t }}</option>
+								<option v-for="(t, i) in types" :key="i">{{ t }}</option>
 							</select>
 						</div>
 					</div>
@@ -69,7 +69,7 @@ export default {
   },
   data: () => ({
     employees: ['Wahida', 'Mitu', 'Airin', 'Hasib', 'Borhan', 'Masud', 'Agent 1', 'Agent 2', 'Agent 3'],
-    types: ['Location', 'Notification','Gas Refill','Gas Meter','Lock-unlock', 'other'],
+    types: ['Less Lat-Lng', 'Frequent Reset', 'Frequent Hang', 'Device Stopped', 'ES Missing', 'Notification', 'Gas Refill', 'Gas Meter', 'Lock-unlock', 'other'],
     selectedType: '',
     selectedEmp: '',
 		responsible: '1',
@@ -93,8 +93,8 @@ export default {
       EventBus.$emit('change-view',k);
       this.changeContent(k);
     },
-    changeContent(k){
-      EventBus.$emit('change-content',k);
+    changeContent(k) {
+      EventBus.$emit('change-content', k);
     },
     onSaveClick(){
       if(!this.title || !this.body || !this.reg_no || this.saving) return;
