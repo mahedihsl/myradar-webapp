@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="col-xs-12">
-      <table class="table table-responsive" v-if="!!summary">
+      <table class="table table-responsive table-striped" v-if="!!summary">
         <thead>
           <tr>
             <th class="col-xs-6">Attribute</th>
@@ -19,7 +19,18 @@
             <td>{{ summary.com_id }}</td>
           </tr>
           <tr>
-            <td>LatLng Ratio</td>
+            <td>Version</td>
+            <td>{{ summary.version }}</td>
+          </tr>
+          <tr>
+            <td>Last Pulse</td>
+            <td>{{ summary.last_pulse }}</td>
+          </tr>
+          <tr>
+            <td>
+              <span>LatLng Ratio</span> <br>
+              <small>(LatLng / Fuel) percentage in last 500 events</small>
+            </td>
             <td>{{ summary.gps_ratio }} %</td>
           </tr>
           <tr>
@@ -27,8 +38,8 @@
             <td class="font-medium">
               <span
                 :class="{
-                  'text-green-500': summary.pcr,
-                  'text-red-500': !summary.pcr,
+                  'text-success': summary.pcr,
+                  'text-danger': !summary.pcr,
                 }"
                 >{{ summary.pcr ? 'YES' : 'NO' }}</span
               >
@@ -43,7 +54,10 @@
             <td>{{ summary.hang }}</td>
           </tr>
           <tr>
-            <td>Reset Count</td>
+            <td>
+              <span>Reset Count</span> <br>
+              <small>Last 10 days</small>
+            </td>
             <td>{{ summary.reset.total }}</td>
           </tr>
           <tr>

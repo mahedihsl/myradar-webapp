@@ -35,7 +35,7 @@
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <link rel="stylesheet" href="{{ asset('vendors/toastr/toastr.min.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.6.1/tailwind.min.css">
+  {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.6.1/tailwind.min.css"> --}}
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   @stack('style')
   <!-- Scripts -->
