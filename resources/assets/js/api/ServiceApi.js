@@ -8,4 +8,9 @@ export default class ServiceApi {
             this.EventBus.$emit('service-log-found', response.body.data.items);
         }, error => {});
     }
+
+    static async getSummary(car) {
+        const res = await Vue.http.get(`/service/report/${car.id}`)
+        return res.body.data
+    }
 }

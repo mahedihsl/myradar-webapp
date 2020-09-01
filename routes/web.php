@@ -199,6 +199,7 @@ Route::group(['middleware' => ['auth', 'role:3']], function() {
     Route::post('/services/api/update', 'Service\ServiceApiController@update');
 
     Route::get('/service/log/{car}/{service}', 'Service\ServiceLogController@history');
+    Route::get('/service/report/{car_id}', 'Service\ServiceLogController@report');
 
     Route::get('/fuel/calibration/log/{id}', 'Calibration\FuelCalibrationController@index');
     Route::get('/user/fuel/calibration/log/{id}', 'Input\FuelCalibrationInputController@userData');

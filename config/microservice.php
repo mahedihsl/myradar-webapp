@@ -20,5 +20,9 @@ return [
   'device' => [
     'url' => 'http://myradar-device',
     'port' => 6004,
-],
+  ],
+  'health' => [
+    'url' => 'http://myradar-health',
+    'port' => 6005,
+  ],
 ];
