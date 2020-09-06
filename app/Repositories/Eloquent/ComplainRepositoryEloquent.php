@@ -51,6 +51,7 @@ class ComplainRepositoryEloquent extends BaseRepository implements ComplainRepos
         $responsible = $data->get('responsible');
         $newStatus = $data->get('new_status');
         $status    = $data->get('status');
+        $type    = $data->get('type');
 
         $model = $this->find($data->get('id'));
         $comm = $model->comment;
@@ -66,6 +67,7 @@ class ComplainRepositoryEloquent extends BaseRepository implements ComplainRepos
         }
 
         $model->update([
+            'type' => $type,
             'status' => $newStatus,
             'comment' => $comm,
 			'responsible' => $responsible,

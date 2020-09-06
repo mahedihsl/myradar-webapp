@@ -71,8 +71,8 @@ export default new Vuex.Store({
       })
     },
 
-    getComplains({commit,state},page){
-      ComplainApi.getComplains(page).then(result => {
+    getComplains({commit,state}, params){
+      ComplainApi.getComplains(params.page, params.user_id).then(result => {
 
         commit('complainList', result.data);
         commit('pagination', result.meta);
@@ -92,9 +92,10 @@ export default new Vuex.Store({
 		const sel_id = state.selectedComplain.id;
       let info = {
         ...state.selectedComplain,
+        type: data.type,
         comment:data.comment,
         new_status:data.status,
-		responsible: data.responsible,
+		    responsible: data.responsible,
      };
 
       ComplainApi.addComment(info).then(result => {

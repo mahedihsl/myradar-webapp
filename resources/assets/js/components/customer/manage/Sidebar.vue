@@ -45,6 +45,7 @@ export default {
       {id: 'payment',   name: 'Payment'},
       {id: 'settings',  name: 'Settings'},
       {id: 'promotion', name: 'Promotion'},
+      {id: 'complains', name: 'Complains'},
     ]
   }),
   computed: {
@@ -74,7 +75,9 @@ export default {
   },
   methods: {
     onMenuClick(tag) {
-      if (this.access[tag]['status'] === true) {
+      if (tag === 'complains') {
+        window.location.href = `/complains?user_id=${this.info.id}`
+      } else if (this.access[tag]['status'] === true) {
           this.current = tag;
           EventBus.$emit('menu-clicked', this.current, this.info, this.access[tag]['meta']);
       } else {

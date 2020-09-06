@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ServiceMonitor;
 
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\ComplainRepository;
+use App\Criteria\CarIdCriteria;
 use App\Presenters\ComplainPresenter;
 use App\Presenters\ComplainExportPresenter;
 use App\Criteria\LastCreatedCriteria;
@@ -70,12 +71,20 @@ class ComplainController extends Controller
     public function all(Request $request)
     {
 
-      $items = $this->repository
-	  	->setPresenter(ComplainPresenter::class)
-	  	->pushCriteria(new LastCreatedCriteria)
-		->paginate();
+      $this->repository
+        ->setPresenter(ComplainPresenter::class)
+        ->pushCriteria(new LastCreatedCriteria);
+      if ($request->get('user_id')) {
+        $car_ids = Car::where('user_id', $request->get('user_id'))
+          ->get()
+          ->map(function($car) {
+            return $car->id;
+          })
+          ->toArray();
+        $this->repository->pushCriteria(new CarIdCriteria($car_ids));
+      }
 
-      return response()->ok($items);
+      return response()->ok($this->repository->paginate());
     }
 
     public function search(Request $request)

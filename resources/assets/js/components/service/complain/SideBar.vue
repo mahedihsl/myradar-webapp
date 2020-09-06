@@ -74,8 +74,6 @@ export default {
   },
   mounted() {
     //do something after mounting vue instance
-    this.$store.dispatch('getComplains',1);
-
 		this.count.inv = $('input[name="count_inv"]').val();
 		this.count.opn = $('input[name="count_opn"]').val();
 		this.count.cls = $('input[name="count_cls"]').val();

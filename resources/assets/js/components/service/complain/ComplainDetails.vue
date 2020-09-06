@@ -5,7 +5,7 @@
         <div class="row">
           <div class="bar col-md-2">
 						<select class="form-control" v-model="status">
-							<option v-for="s in statusList" :value="s">{{s}}</option>
+							<option v-for="(s, i) in statusList" :key="i" :value="s">{{s}}</option>
 						</select>
           </div>
 					<div class="bar col-md-2">
@@ -32,7 +32,11 @@
         </div>
         <div class="row">
           <div class="bar col-md-2">
-            <p>Type: <b>{{complain.type}}</b></p>
+            <label>Complain Type</label>
+            <select v-model="type" class="form-control">
+							<option v-for="(t, i) in types" :value="t" :key="i">{{ t }}</option>
+						</select>
+            <!-- <p>Type: <b>{{complain.type}}</b></p> -->
           </div>
           <div class="bar col-md-3">
             <p>Name: <b>{{complain.user}}</b></p>
@@ -66,7 +70,7 @@
           <button @click="onCommentClick" class="btn btn-default pull-right" type="button" name="button">Save</button>
         </div>
         <div class="comment">
-          <p v-for="com in complain.comment">
+          <p v-for="(com, i) in complain.comment" :key="i">
 						<strong>Time: {{com.when}}</strong><br>
 						<strong>{{com.who}} - </strong>{{com.body}}
 					</p>
@@ -90,7 +94,10 @@ export default {
     comment: "",
     statusList: ['open','investigating', 'resolved', 'replace', 'closed', 'reopen'],
     status: '',
-		responsible: '1',
+    responsible: '1',
+    
+    types: ['Less Lat-Lng', 'Frequent Reset', 'Frequent Hang', 'Device Stopped', 'ES Missing', 'Notification', 'Gas Refill', 'Gas Meter', 'Lock-unlock', 'other'],
+    type: '',
   }),
   computed:{
     ...mapGetters({
@@ -111,8 +118,9 @@ export default {
   },
   mounted() {
     EventBus.$on('comment-add-finish', this.onCommentAddFinish.bind(this));
-    this.status = this.complain.status;
-    this.responsible = this.complain.responsible;
+    this.type = this.complain.type
+    this.status = this.complain.status
+    this.responsible = this.complain.responsible
   },
   methods: {
     onBackClick() {
@@ -120,7 +128,8 @@ export default {
     },
     onCommentClick(){
       this.$store.dispatch('addComment',{
-				comment:this.comment,
+        comment:this.comment,
+        type: this.type,
 				status: this.status,
 				responsible: this.responsible});
     },
