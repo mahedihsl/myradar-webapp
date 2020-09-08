@@ -49,11 +49,15 @@ export default{
     },
     methods : {
         changePage(page) {
+            console.log(`inside changePage`, page)
+            
             if (page < 1 || page > this.pagination.total_pages) {
                 return;
             }
 
             this.pagination.current_page = page;
+
+            this.$emit('pageChanged', +page)
         }
     }
 }

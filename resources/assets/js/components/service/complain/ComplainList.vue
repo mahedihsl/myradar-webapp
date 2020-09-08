@@ -74,8 +74,8 @@
           </table>
           <!-- /.table -->
           <pagination
-            v-bind:pagination="pagination"
-            v-on:click.native="onPageChanged(pagination.current_page)"
+            :pagination="pagination"
+            @pageChanged="onPageChanged"
             :offset="offset"
             v-show="!noItem"
           >
@@ -122,8 +122,6 @@ export default {
   mounted() {
     let url = new Url()
     this.user_id = url.getParameterByName('user_id') || ''
-    console.log(`user id param val: ${this.user_id}`)
-
     this.$store.dispatch('getComplains', { page: 1, user_id: this.user_id })
   },
   methods: {
@@ -133,7 +131,7 @@ export default {
       this.$store.commit('changeContent', 1)
     },
     onPageChanged(page) {
-      this.$store.dispatch('getComplains', page, this.user_id)
+      this.$store.dispatch('getComplains', {page, user_id: this.user_id})
     },
     getSerialNo(i) {
       return (
