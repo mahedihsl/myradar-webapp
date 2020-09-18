@@ -37,7 +37,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     */
     protected $primaryKey = '_id';
 
-    protected $dates = ['deleted_at', 'verification_code_expires'];
+    protected $dates = ['deleted_at', 'verification_code_expires', 'joined_at'];
 
     public static $TYPE_ADMIN = 1;
     public static $TYPE_AGENT = 2;

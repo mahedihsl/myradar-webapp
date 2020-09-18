@@ -26,5 +26,7 @@ class VerifyCsrfToken extends BaseVerifier
         'service/api/get_service_diagnosis',
         'send/single/notice',
         '/test/excel-import',
+        '/emergency/restore',
+        '/emergency/restore2',
     ];
 }

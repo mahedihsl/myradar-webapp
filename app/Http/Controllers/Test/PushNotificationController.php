@@ -35,12 +35,15 @@ class PushNotificationController extends Controller
         $service = new PushMicroservice();
         $ret = $service->send($car->user_id, $data);
 
-        // $ret = json_decode($ret, true);
-        $res->push('Notification sent to ' . $ret['recipients'] . ' Mobile Devices');
+        $socketRecipients = $ret['recipients']['socket'];
+        $oneSignalRecipients = $ret['recipients']['onesignal'];
+        $res->push('Notification sent to ' . ($socketRecipients + $oneSignalRecipients) . ' Mobile Devices');
+        $res->push('Via WebSocket = ' . $socketRecipients);
+        $res->push('Via OneSignal = ' . $oneSignalRecipients);
       }
       $res->push('Diagnosis finished');
     }
-    // event(new SpeedLimitCrossEvent($device, $limit, $flag));
+    
     return view('test.push-noti')->with([
       'messages' => $res,
     ]);

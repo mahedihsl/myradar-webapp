@@ -83,7 +83,8 @@ class ServiceController extends Controller
 				//throw $th;
 			}
 
-            return strval($device->lock_status);
+            return '0';
+            // return strval($device->lock_status);
         }
 
         return '-1';

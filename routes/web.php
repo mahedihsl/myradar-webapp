@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('/privacy-policy', 'HomeController@privacy');
 
+Route::post('/emergency/restore', 'Test\DatabaseTestController@restore');
+Route::post('/emergency/restore2', 'Test\DatabaseTestController@restore2');
 Route::get('/test/microservice', 'Test\MicroServiceController@testGeofence');
 Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/sms', 'Test\NotificationController@sms');
