@@ -61,6 +61,10 @@ class DeviceController extends Controller
         $this->devices->pushCriteria($criteria);
         $device = $this->devices->first();
 
+        if (is_null($device)) {
+            return response()->error('Device Not Found');
+        }
+
         try {
             $car_id = $request->get('car_id');
             $this->service->bindDevice($car_id, $device->com_id);

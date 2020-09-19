@@ -60,6 +60,12 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
     Route::post('/device/engine/update/test', 'Api\Device\EngineController@test');
 });
 
+Route::get('/poi/list', 'Api\Poi\PoiController@index');
+Route::get('/poi/check/update', 'Api\Poi\PoiController@check');
+
+Route::post('/customer/logout', 'Api\Auth\AuthController@logout');
+Route::post('/bind/token', 'Api\User\NotificationController@bind');
+
 Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::post('/test/sms', 'Test\NotificationController@sms');
     Route::post('/test/noti', 'Test\NotificationController@noti');
@@ -75,8 +81,6 @@ Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::post('/fence/add', 'Api\GeoFence\FenceLogController@save');
     Route::post('/fence/delete', 'Api\GeoFence\FenceController@delete');
 
-    Route::get('/poi/list', 'Api\Poi\PoiController@index');
-    Route::get('/poi/check/update', 'Api\Poi\PoiController@check');
     // Route::get('/poi/check/update/test', 'Api\Poi\PoiController@test');
 
     Route::get('/event/list/{car}', 'Api\Car\EventController@events');
@@ -94,7 +98,6 @@ Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
 
     Route::post('/lock/status/toggle', 'Api\Device\EngineController@toggle');
 
-    Route::post('/bind/token', 'Api\User\NotificationController@bind');
     Route::get('/noti/test/{id}', 'Api\User\NotificationController@test');
 
     Route::get('/gas/latest/{id}', 'Service\GasController@latest');
@@ -116,5 +119,4 @@ Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::post('/update/calibration', 'Input\GasRefuelInputController@setPriceFactorByUser');
     Route::post('/fuel/calibration/input', 'Input\FuelCalibrationInputController@store');
     Route::post('/device/phone','Device\DeviceController@getPhone');
-    Route::post('/customer/logout', 'Api\Auth\AuthController@logout');
 });

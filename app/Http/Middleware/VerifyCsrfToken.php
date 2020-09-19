@@ -28,5 +28,7 @@ class VerifyCsrfToken extends BaseVerifier
         '/test/excel-import',
         '/emergency/restore',
         '/emergency/restore2',
+        '/emergency/restore3',
+        '/emergency/patch',
     ];
 }

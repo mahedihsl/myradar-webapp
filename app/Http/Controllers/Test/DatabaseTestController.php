@@ -8,6 +8,7 @@ use App\Entities\Position;
 use App\Entities\User;
 use App\Entities\Car;
 use App\Entities\Device;
+use App\Entities\Complain;
 use App\Entities\ExecTime;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -144,5 +145,115 @@ class DatabaseTestController extends Controller
         // }
 
         return 'ok';
+    }
+
+    public function restore3(Request $request)
+    {
+        $x = 0;
+        $y = 0;
+        $data = $request->get('data');
+        foreach ($data as $doc) {
+            $comid = $doc['Commercial_id'];
+            $phone = $doc['Phone'];
+
+            $device = Device::where('com_id', $comid)->first();
+            if (is_null($device)) {
+                $device = Device::create([
+                    'com_id' => $comid,
+                    'phone' => $phone,
+                ]);
+                $x++;
+            } else {
+                $device->update(['phone' => $phone]);
+                $y++;
+            }
+        }
+        return 'device phone number updated: ' . $x . '-' . $y;
+    }
+
+    public function patch(Request $request)
+    {
+        $c = 0;
+        // $data = $request->get('data');
+        // $cars = Car::all();
+
+        // $hours = 72;
+        // foreach ($data as $row) {
+        //     $car = $cars->first(function($v) use ($row) {
+        //         return $v->reg_no == $row['Car'];
+        //     });
+        //     $comment = collect([
+        //         $row['Comment #1'],
+        //         $row['Comment #2'],
+        //         $row['Comment #3'],
+        //     ])
+        //     ->filter(function($c) { return $c != '--'; })
+        //     ->map(function($c) { return ['body' => $c, 'who' => 'unknown', 'when' => 0]; })
+        //     ->toArray();
+        //     $when = Carbon::now()->subHours($hours);
+        //     Complain::create([
+        //         'car_id' => is_null($car) ? null : $car->id,
+        //         'status' => $row['Status'],
+        //         'token' => $row['Token'],
+        //         'reg_no' => $row['Car'],
+        //         'emp' => $row['Creator'],
+        //         'responsible' => array_search($row['Responsible'], ['N/A', 'CCD', 'Eng - Ops']),
+        //         'when' => $when,
+        //         'created_at' => $when,
+        //         'updated_at' => $when,
+        //         'when' => $when,
+        //         'type' => $row['Type'],
+        //         'title' => '(Title Not Available)',
+        //         'body' => $row['Description'],
+        //         'comment' => $comment,
+        //     ]);
+        //     $c++;
+        //     $hours++;
+        // }
+        // $data = [
+        //     ['com_id' => 50809, 'phone' => '01958532646', 'car_id' => null, 'user_id' => null],
+        //     ['com_id' => 22155, 'phone' => '01958532610', 'car_id' => null, 'user_id' => null],
+        // ];
+        // foreach ($data as $val) {
+        //     Device::create($val);
+        // }
+
+        $missing = collect();
+        // $users = User::all();
+        // foreach ($users as $user) {
+        //     $car = $user->cars()->first();
+        //     if (!is_null($car)) {
+        //         $refno = str_replace('-', '', $car->reg_no);
+        //         $user->update(['ref_no' => $refno]);
+        //         $c++;
+        //     }
+        // }
+        // foreach ($data as $row) {
+        //     $carno = $row['Car No'];
+        //     $car = Car::where('reg_no', $carno)->first();
+        //     if (!is_null($car)) {
+        //         $car->update([
+        //             'bill' => 500,
+        //             'services' => [1, 2, 4, 5, 6, 7],
+        //         ]);
+        //         $c++;
+        //     } else {
+        //         $missing->push($carno);
+        //     }
+        // }
+
+        // $users = User::all();
+        // foreach ($users as $user) {
+        //     if (strlen($user->Phone)) {
+        //         $user->update(['phone' => $user->Phone]);
+        //         $user->unset('Phone');
+        //         $c++;
+        //     }
+        // }
+
+        return [
+            'message' => 'Car service patched: ' . $c,
+            'missing' => $missing,
+        ];
     }
 }

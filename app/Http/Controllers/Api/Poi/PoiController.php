@@ -36,7 +36,8 @@ class PoiController extends Controller
     {
         try {
             $lastTime = intval($request->get('time'));
-            return response()->ok($lastTime < $this->lastUpdatedTime());
+            $updateAvailable = $lastTime < $this->lastUpdatedTime();
+            return response()->ok(false);
         } catch (\Exception $e) {
             return response()->ok(false);
         }

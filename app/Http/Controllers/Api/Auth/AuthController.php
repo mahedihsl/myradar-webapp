@@ -47,16 +47,16 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $user = $this->getApiUser();
-        $token = $request->get('device_token');
-        //$type = intval($request->get('device_type'));
+        // $user = $this->getApiUser();
+        // $token = $request->get('device_token');
+        // //$type = intval($request->get('device_type'));
 
-        if ($token) {
-            $user->user_logins()
-                ->where('device_token', $token)
-                ->delete();
-                //->where('device_type', $type)
-        }
+        // if ($token) {
+        //     $user->user_logins()
+        //         ->where('device_token', $token)
+        //         ->delete();
+        //         //->where('device_type', $type)
+        // }
 
         return response()->ok();
     }
