@@ -47,6 +47,7 @@ Route::post('/emergency/restore', 'Test\DatabaseTestController@restore');
 Route::post('/emergency/restore2', 'Test\DatabaseTestController@restore2');
 Route::post('/emergency/restore3', 'Test\DatabaseTestController@restore3');
 Route::post('/emergency/patch', 'Test\DatabaseTestController@patch');
+Route::post('/emergency/payment', 'Test\DatabaseTestController@payment');
 Route::get('/test/microservice', 'Test\MicroServiceController@testGeofence');
 Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/sms', 'Test\NotificationController@sms');

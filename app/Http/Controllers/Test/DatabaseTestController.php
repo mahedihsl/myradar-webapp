@@ -171,11 +171,71 @@ class DatabaseTestController extends Controller
         return 'device phone number updated: ' . $x . '-' . $y;
     }
 
+    public function payment(Request $request)
+    {
+        $S1_ = '';
+        
+        return 'ok';
+    }
+
     public function patch(Request $request)
     {
         $c = 0;
+        $missing = collect();
         // $data = $request->get('data');
         // $cars = Car::all();
+        // $data = [
+        //     [58381, '0358735077704244'],
+        //     [38530, '0358735077697521'],
+        //     [56405, '0358735077677408'],
+        //     [22235, '0358735077691326'],
+        //     [97060, '0358735077701703'],
+        //     [97417, '0358735077704129'],
+        //     [21890, '0358735077699683', '01958532580'],
+        //     [75919, '0358735077704087'],
+        //     [76568, '0358735077703444'],
+        //     [95194, '0358735077684834', '01958532575'],
+        // ];
+        // foreach ($data as $row) {
+        //     $device = Device::where('com_id', $row[0])->first();
+        //     if ( ! is_null($device)) {
+        //         $device->update(['imei' => $row[1]]);
+        //         $c++;
+        //     } else {
+        //         Device::create([
+        //             'com_id' => $row[0],
+        //             'phone' => $row[2],
+        //             'imei' => $row[1],
+        //         ]);
+        //         $missing->push($row[0]);
+        //     }
+        // }
+        // foreach ($data as $row) {
+        //     $car = $cars->first(function($item) use ($row) {
+        //         return $item->reg_no == trim($row['Car No.']);
+        //     });
+        //     if ( ! is_null($car)) {
+        //         $time = Carbon::createFromFormat('M j, Y', $row['Date']);
+        //         $time->hour = 10;
+        //         $time->minute = 10;
+        //         $time->second = 10;
+        //         $car->update([ 'created_at' => $time, ]);
+        //         $c++;
+        //     } else {
+        //         $missing->push($row['Car No.']);
+        //     }
+        // }
+        // $data = [
+        //     [62363, '0358735077685468'],
+        //     [16624, '0358735077677382'],
+        //     [76977, '0358735077704251'],
+        //     [28193, '0358735077682069'],
+        // ];
+        // foreach ($data as $row) {
+        //     $device = Device::where('com_id', $row[0])->first();
+        //     $device->update(['imei' => $row[1]]);
+        //     $c++;
+        // }
 
         // $hours = 72;
         // foreach ($data as $row) {
@@ -218,7 +278,6 @@ class DatabaseTestController extends Controller
         //     Device::create($val);
         // }
 
-        $missing = collect();
         // $users = User::all();
         // foreach ($users as $user) {
         //     $car = $user->cars()->first();

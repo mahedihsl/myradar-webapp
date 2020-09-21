@@ -1,5 +1,6 @@
 <?php
 
+use App\Contract\Repositories\PaymentRepository;
 use Illuminate\Database\Seeder;
 
 use Carbon\Carbon;
@@ -15,38 +16,159 @@ class PaymentsTableSeeder extends Seeder
      */
     public function run()
     {
-        Car::all()->map(function ($car) {
-            if (rand(1, 10) == 5) {
-                return;
-            }
+        return;
+        
+        $S1_CUSTOMER = 'Customer';
+        $S1_CAR_NO = 'Car No.';
+        $S1_CONN_MONTH = 'Connection Month';
+        $S1_PAID = 'Paid';
+        $S1_WAIVE = 'Waive';
+        $S1_EXTRA = 'Extra';
+        $S1_BILL = 'Monthly Bill';
+        $S1_CLEARED_MONTHS = '(Paid + Waive) Months';
+        $S1_KNOWN_MONTHS = 'Paid Automatic Entry (Date Available)';
+        $S1_UNKNOWN_MONTHS = 'Paid Automatic Entry (Default Date 5th of any month)';
 
-            $time = Carbon::today();
-            $time->subMonths(5);
-            $count = rand(1, 5);
+        $S2_CUSTOMER = 'Customer';
+        $S2_CAR_NO = 'Car No.';
+        $S2_DATE = 'Date/Time';
+        $S2_AMOUNT = 'Amount';
+        $S2_METHOD = 'Method';
+        $S2_BILL = 'Monthly Bill';
+        $S2_MONTHS = 'No of Months Payment Log';
 
-            for ($i=0; $i < $count; $i++) {
-                $flag = rand(1, 2) % 2;
-                $months = array();
+        $reports = file_get_contents(storage_path('app/imports/reports.json'));
+        $reports = collect(json_decode($reports, true));
+        $payments = file_get_contents(storage_path('app/imports/payments.json'));
+        $payments = collect(json_decode($payments, true));
 
-                $time2 = $time->copy();
-                $time2->day = rand(1, 10);
+        $carProcessed = 0;
+        $paymentCreated = 0;
 
-                if ($flag == TRUE) {
-                    array_push($months, $time->month);
-                    $time->addMonth();
-                    array_push($months, $time->month);
-                    $i++;
-                } else {
-                    array_push($months, $time->month);
+        $cars = Car::all();
+        $repository = app(PaymentRepository::class);
+
+        foreach ($cars as $car) {
+            $carReport = $reports->first(function($item) use ($car, $S1_CAR_NO) {
+                return $item[$S1_CAR_NO] == $car->reg_no;
+            });
+            $carPayments = $payments->filter(function($item) use ($car, $S2_CAR_NO) {
+                return $item[$S2_CAR_NO] == $car->reg_no;
+            });
+
+            if ($carReport) {
+                echo "Processing: " . $car->reg_no . "\n";
+                if ($car->payment_restored) {
+                    echo "skipping " . $car->reg_no . " - RESTORING DONE\n";
+                    continue;
                 }
-                $time->addMonth();
-                $car->payments()->create([
-                    'amount' => sizeof($months) * 1000,
-                    'months' => $months,
-                    'user_id' => $car->user_id,
-                    'paid_on' => $time2,
+
+                $firstPaymentDate = '1 ' . $carReport[$S1_CONN_MONTH];
+                $firstPaymentDate = Carbon::createFromFormat("j M'y", $firstPaymentDate);
+                $firstPaymentDate->day = 5;
+                $firstPaymentDate->addMonth();
+
+                $totalPaid = $this->extractNumber($carReport[$S1_PAID]);
+                $waive = $this->extractNumber($carReport[$S1_WAIVE]);
+                $extra = $this->extractNumber($carReport[$S1_EXTRA]);
+                $laterPaid = $carPayments->sum(function($item) use ($S2_AMOUNT) {
+                    return $this->extractNumber($item[$S2_AMOUNT]);
+                });
+
+                if (($totalPaid + $waive + $extra) == 0) {
+                    echo "skipping " . $car->reg_no . " - NO TRANSACTION\n";
+                    continue;
+                }
+
+                $recordsCreated = false;
+                $unknownMonths = intval($carReport[$S1_UNKNOWN_MONTHS]);
+                if ($unknownMonths > 0) {
+                    $props = collect([
+                        'amount' => $totalPaid - $laterPaid,
+                        'months' => $this->billingMonths($firstPaymentDate, $unknownMonths),
+                        'date' => $firstPaymentDate->timestamp,
+                        'car_id' => $car->id,
+                        'user_id' => $car->user_id,
+                        'waive' => $waive,
+                        'extra' => $extra,
+                        'note' => 'autogen_unknown_date',
+                        'type' => 0,
+                    ]);
+                    $firstPaymentDate->addMonths($unknownMonths);
+                    $repository->save($props);
+                    $recordsCreated = true;
+                }
+
+                foreach ($carPayments as $knownPyment) {
+                    $paymentDate = $knownPyment[$S2_DATE];
+                    $paymentDate = Carbon::createFromFormat('j M Y', $paymentDate);
+                    $paymentDate->hour = 10;
+                    $monthCount = intval($knownPyment[$S2_MONTHS]);
+                    $props = collect([
+                        'amount' => $knownPyment[$S2_AMOUNT],
+                        'months' => $this->billingMonths($firstPaymentDate, $monthCount),
+                        'date' => $paymentDate->timestamp,
+                        'car_id' => $car->id,
+                        'user_id' => $car->user_id,
+                        'waive' => 0,
+                        'extra' => 0,
+                        'note' => 'autogen_known_date',
+                        'type' => $this->findType($knownPyment[$S2_METHOD]),
+                    ]);
+                    $repository->save($props);
+                    $firstPaymentDate->addMonths($monthCount);
+                    $recordsCreated = true;
+                }
+
+                $carProcessed++;
+                $car->update([
+                    'payment_restored' => true,
+                    'bill' => $this->extractNumber($carReport[$S1_BILL]),
                 ]);
+                // if ($recordsCreated) break;
             }
-        });
+        }
+
+        echo "\n\n";
+        echo 'processed car count: ' . $carProcessed . "\n";
+        echo 'reports count: ' . $reports->count() . "\n";
+        echo 'payments count: ' . $payments->count() . "\n";
+    }
+
+    public function billingMonths($fromDate, $monthCount)
+    {
+        $months = [];
+        $date = $fromDate->copy();
+        for ($i=0; $i < $monthCount; $i++) { 
+            $months[] = [$date->month - 1, $date->year];
+            $date->addMonth();
+        }
+        return json_encode($months);
+    }
+
+    public function extractNumber($val)
+    {
+        $val = strval($val);
+        $val = str_replace(',', '', $val);
+        return intval($val);
+    }
+
+    public function findType($name)
+    {
+        $types = [
+            'Cash',
+            'bKash',
+            'bKash Personal',
+            'Rocket',
+            'Rocket Personal',
+            'Bank',
+            'Visa',
+            'MasterCard',
+            'bKash (907)',
+            'bKash (909)'
+        ];
+
+        $index = array_search($name, $types);
+        return $index === FALSE ? 0 : $index;
     }
 }

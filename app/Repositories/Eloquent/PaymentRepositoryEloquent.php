@@ -30,13 +30,15 @@ class PaymentRepositoryEloquent extends BaseRepository implements PaymentReposit
     {
         $months = collect(json_decode($data->get('months')))
                     ->sort()
-                    ->map(function($item) use($data){
-                        return [$item, $data->get('year')];
+                    ->map(function($item) use ($data) {
+                        return [$item, intval($data->get('year'))];
                     })->toArray();
 
         if ( ! sizeof($months)) {
             return null;
         }
+
+        // $months = json_decode($data->get('months'));
 
         $payment = $this->create([
             'amount' => intval($data->get('amount')),
@@ -44,8 +46,8 @@ class PaymentRepositoryEloquent extends BaseRepository implements PaymentReposit
             'car_id' => $data->get('car_id'),
             'user_id' => $data->get('user_id'),
             'paid_on' => Carbon::createFromTimestamp(intval($data->get('date'))),
-            'extra'  => $data->get('extra'),
-            'waive'  => $data->get('waive'),
+            'extra'  => intval($data->get('extra')),
+            'waive'  => intval($data->get('waive')),
 			'note' => $data->get('note'),
             'type' => intval($data->get('type')),
         ]);

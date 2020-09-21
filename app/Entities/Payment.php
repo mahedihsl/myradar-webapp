@@ -48,6 +48,7 @@ class Payment extends Eloquent implements Transformable
     {
         $x = sizeof($this->months);
 
+        if ($x == 0) return '-- : --';
         if ($x == 1) {
             $temp = $this->months[0];
             return Carbon::createFromDate($temp[1], $temp[0] + 1, 1)->format("M'y");

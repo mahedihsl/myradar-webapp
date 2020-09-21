@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\User;
 
+use App\Entities\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Jobs\PushNotificationJob;
@@ -13,41 +14,43 @@ class NotificationController extends Controller
 {
     public function bind(Request $request)
     {
-        // $user = $this->getApiUser();
-        // if(is_null($user))
-        // {
-        //   $user = $this->getWebUser();
-        // }
-        // $new_token = $request->get('new');
-        // $old_token = $request->get('old', '');
-        // $type = intval($request->get('type'));
+        $apiToken = $request->get('api_token');
+        $user = User::where('api_token', $apiToken)->first();
 
-        // $dev = $type ? 'iOS' : 'Android';
-        // $log = 'Bind token API from ' . $dev . ' device.';
+        if (is_null($user)) {
+            return response()->ok('Token Received');
+        }
 
-        // if (strlen($old_token)) {
-        //     $user->user_logins()
-        //         ->where('device_type', $type)
-        //         ->where('device_token', $old_token)
-        //         ->delete();
-        //     $log .= 'Removing old token.';
-        // }
+        $new_token = $request->get('new');
+        $old_token = $request->get('old', '');
+        $type = intval($request->get('type'));
 
-        // $exists = $user->user_logins()
-        //             ->where('device_type', $type)
-        //             ->where('device_token', $new_token)
-        //             ->exists();
+        $dev = $type ? 'iOS' : 'Android';
+        $log = 'Bind token API from ' . $dev . ' device.';
 
-        // if (strlen($new_token) && ! $exists) {
-        //     $user->user_logins()
-        //         ->create([
-        //             'device_type' => $type,
-        //             'device_token' => $new_token,
-        //         ]);
-        //     $log .= 'Adding new token.';
-        // }
+        if (strlen($old_token)) {
+            $user->user_logins()
+                ->where('device_type', $type)
+                ->where('device_token', $old_token)
+                ->delete();
+            $log .= 'Removing old token.';
+        }
 
-        // $log .= json_encode($request->all());
+        $exists = $user->user_logins()
+                    ->where('device_type', $type)
+                    ->where('device_token', $new_token)
+                    ->exists();
+
+        if (strlen($new_token) && ! $exists) {
+            $user->user_logins()
+                ->create([
+                    'device_type' => $type,
+                    'device_token' => $new_token,
+                ]);
+            $log .= 'Adding new token.';
+        }
+
+        $log .= json_encode($request->all());
 
         return response()->ok('Token Received');
     }
