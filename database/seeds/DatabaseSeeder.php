@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(AddOperatorIdSeeder::class);
 
         // $this->call(OperatorImageSeeder::class);
-        // $this->call(PaymentsTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
         // $this->call(MileageTableSeeder::class);
         // $this->call(SettingsTableSeeder::class);
         // $this->call(ZonesTableSeeder::class);

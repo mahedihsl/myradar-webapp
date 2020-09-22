@@ -1,6 +1,7 @@
 <?php
 
 use App\Contract\Repositories\PaymentRepository;
+use App\Entities\Activation;
 use Illuminate\Database\Seeder;
 
 use Carbon\Carbon;
@@ -15,6 +16,39 @@ class PaymentsTableSeeder extends Seeder
      * @return void
      */
     public function run()
+    {
+        // $this->restorePayments();
+        // $this->restoreActivation();
+    }
+
+    public function restoreActivation()
+    {
+        $activations = file_get_contents(storage_path('app/imports/activation.json'));
+        $activations = collect(json_decode($activations, true));
+
+        $KEY_REG_NO = 'Car No.';
+
+        $cars = Car::all();
+        foreach ($cars as $car) {
+            $record = $activations->first(function($item) use ($car, $KEY_REG_NO) {
+                return $item[$KEY_REG_NO] == $car->reg_no;
+            });
+
+            if ($record) {
+                $code = 1000;
+                $count = intval(Activation::where('code', $code)->max('serial'));
+                $car->activation()->create([
+                    'code' => $code,
+                    'serial' => $count + 1,
+                ]);
+                echo "Action record created with serial: " . ($count + 1) . "\n";
+            }
+        }
+
+        echo "Activation Count: " . $activations->count() . "\n";
+    }
+
+    public function restorePayments()
     {
         return;
         
@@ -105,7 +139,7 @@ class PaymentsTableSeeder extends Seeder
                     $paymentDate->hour = 10;
                     $monthCount = intval($knownPyment[$S2_MONTHS]);
                     $props = collect([
-                        'amount' => $knownPyment[$S2_AMOUNT],
+                        'amount' => $this->extractNumber($knownPyment[$S2_AMOUNT]),
                         'months' => $this->billingMonths($firstPaymentDate, $monthCount),
                         'date' => $paymentDate->timestamp,
                         'car_id' => $car->id,
@@ -169,6 +203,6 @@ class PaymentsTableSeeder extends Seeder
         ];
 
         $index = array_search($name, $types);
-        return $index === FALSE ? 0 : $index;
+        return $index === FALSE ? 0 : $index + 1;
     }
 }
