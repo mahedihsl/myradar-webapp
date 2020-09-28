@@ -182,30 +182,48 @@ class DatabaseTestController extends Controller
     {
         $c = 0;
         $missing = collect();
+
+        $users = User::with(['cars'])->get();
+        foreach ($users as $user) {
+            if ($user->cars->count() > 0) {
+                $sorted = $user->cars->sortBy(function ($c) {
+                    return $c->created_at->timestamp;
+                });
+                if ($sorted->get(0)->created_at->timestamp < $user->created_at->timestamp) {
+                    // $user->update(['created_at' => $sorted->get(0)->created_at]);
+                    $c++;
+                }
+            }
+        }
+        // Device::create([
+        //     'com_id' => 50238,
+        //     'phone' => '01958542626',
+        // ]);
         // $data = $request->get('data');
         // $cars = Car::all();
         // $data = [
-        //     [58381, '0358735077704244'],
-        //     [38530, '0358735077697521'],
-        //     [56405, '0358735077677408'],
-        //     [22235, '0358735077691326'],
-        //     [97060, '0358735077701703'],
-        //     [97417, '0358735077704129'],
-        //     [21890, '0358735077699683', '01958532580'],
-        //     [75919, '0358735077704087'],
-        //     [76568, '0358735077703444'],
-        //     [95194, '0358735077684834', '01958532575'],
+        //     [93885, '0358735077676962', '01958532574'],
+        //     [67559, '0358735077688710', '01958532573'],
+        //     [46767, '0358735077700606', '01958532572'],
+        //     [10909, '0358735077678901', '01958532571'],
+        //     [67010, '0358735077697265', '01958532570'],
+        //     [76310, '0358735077704319', '01958532569'],
         // ];
         // foreach ($data as $row) {
         //     $device = Device::where('com_id', $row[0])->first();
         //     if ( ! is_null($device)) {
-        //         $device->update(['imei' => $row[1]]);
+        //         $device->update([
+        //             'imei' => $row[1],
+        //             'phone' => $row[2],
+        //             'version' => '0.0.1',
+        //         ]);
         //         $c++;
         //     } else {
         //         Device::create([
         //             'com_id' => $row[0],
         //             'phone' => $row[2],
         //             'imei' => $row[1],
+        //             'version' => '0.0.1',
         //         ]);
         //         $missing->push($row[0]);
         //     }

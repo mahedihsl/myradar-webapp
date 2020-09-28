@@ -35,11 +35,16 @@ class ComplainExportTransformer extends TransformerAbstract
             return '--';
         };
 
+        $complainer = 'N/A';
+        if ($model->car && $model->car->user) {
+            $complainer = $model->car->user->name;
+        }
+
         return [
             'Status' => $model->status,
 			'Token'  => $model->token,
 			'Car'    => $model->reg_no,
-			'Complainer' => $model->car->user->name,
+			'Complainer' => $complainer,
             'Creator' => $model->emp,
             'Responsible' => $teams[$model->responsible],
             'When' => $model->when->diffForHumans(),

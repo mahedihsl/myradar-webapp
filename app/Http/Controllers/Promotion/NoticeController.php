@@ -50,7 +50,7 @@ class NoticeController extends Controller
                         $query->where('status', 'exists', false)
                             ->orWhere('status', 1)
                             ->orWhere('status', "1");
-                    })
+                    })                    
                     ->get(['phone']);
 
         return $unpaid;

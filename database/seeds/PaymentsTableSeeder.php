@@ -19,6 +19,22 @@ class PaymentsTableSeeder extends Seeder
     {
         // $this->restorePayments();
         // $this->restoreActivation();
+        // $this->patchActivationDate();
+    }
+
+    public function patchActivationDate()
+    {
+        $count = 0;
+        $cars = Car::with(['activation'])->get();
+        foreach ($cars as $car) {
+            $act = $car->activation;
+            if ( ! is_null($act)) {
+                $act->update([ 'created_at' => $car->created_at ]);
+                $count++;
+            }
+        }
+
+        echo "Activation date updated: " . $count . "\n";
     }
 
     public function restoreActivation()
