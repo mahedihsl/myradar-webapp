@@ -30,9 +30,9 @@
         @endphp
         @foreach ($items as $key => $item)
           @php
-            $total = $item->totalBill();
-            $paid = $item->totalPaid();
-            $waive = $item->totalWaive();
+            $total = $item->car->totalBill();
+            $paid = $item->car->totalPaid();
+            $waive = $item->car->totalWaive();
             $due = max(0, $total - $paid - $waive);
           @endphp
           <tr>

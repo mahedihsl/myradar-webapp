@@ -51,6 +51,7 @@ Route::post('/emergency/payment', 'Test\DatabaseTestController@payment');
 Route::get('/test/microservice', 'Test\MicroServiceController@testGeofence');
 Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/sms', 'Test\NotificationController@sms');
+Route::get('/test/bill', 'Test\BillInsertController@test');
 Route::get('/test/remove', 'Test\DatabaseTestController@remove');
 Route::get('/test/throttle', 'Test\DatabaseTestController@throttle');
 Route::get('/test/notice', 'Promotion\NoticeController@lastMonthDue');

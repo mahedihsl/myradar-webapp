@@ -13,16 +13,30 @@ class BillInsertController extends Controller
 {
 
 
-  public function populate(Request $requst)
+  public function test(Request $requst)
   {
-    $cars = Car::All();
-    foreach ($cars as $key => $car) {
-      $car->bill = 500;
-      $car->save();
+    $car = Car::where('reg_no', '32-4945')->first();
+    // return $car->findBillableMonths();
+
+    // $creationDate = Carbon::createFromDate(2020, 8, 1);
+    $creationDate = $car->created_at;
+    // $creationDate = $creationDate->addMonth();
+
+    $presentDate = Carbon::now();
+    $presentDate->day = 1;
+    $presentDate->hour = 23;
+    $presentDate->minute = 59;
+
+    $billableMonths = collect();
+    for($i = $creationDate->copy(); $i->lte($presentDate); $i->addMonth())
+    {
+        $billableMonths->push([$i->month, $i->year]);
     }
+    
+    return [
+      'creation' => $creationDate,
+      'today' => $presentDate,
+      'months' => $billableMonths,
+    ];
   }
-
-
-
-
 }

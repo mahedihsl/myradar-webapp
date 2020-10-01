@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\ActivationRepository;
-use App\Criteria\LastUpdatedCriteria;
+use App\Criteria\LastCreatedCriteria;
 use App\Criteria\WithinDatesCriteria;
 use App\Service\Microservice\UserMicroservice;
 use Carbon\Carbon;
@@ -26,7 +26,7 @@ class ActivationController extends Controller
 
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new LastUpdatedCriteria());
+        $this->repository->pushCriteria(new LastCreatedCriteria());
 
         return view('activation.index')->with([
             'items' => $this->repository->paginate(50),
@@ -47,7 +47,7 @@ class ActivationController extends Controller
         $to = Carbon::createFromFormat("j M Y", $to);
 
         $this->repository->pushCriteria(new WithinDatesCriteria($from, $to));
-        $this->repository->pushCriteria(new LastUpdatedCriteria());
+        $this->repository->pushCriteria(new LastCreatedCriteria());
 
         $data = $this->repository->all();
 

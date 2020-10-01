@@ -151,6 +151,70 @@ class Car extends Eloquent implements Presentable
       return $value;
     }
 
+    public function totalBill()
+    {
+        $billableMonths = $this->findBillableMonths();
+        $billableMonths = $billableMonths->values();
+        if(!$this->bill || !sizeof($billableMonths)) return 0;
+        return $this->bill * sizeof($billableMonths) - $this->getExtraPayment();
+    }
+
+    public function totalDue()
+    {
+        $billableMonths = $this->findBillableMonths();
+
+        foreach($this->payments as $payment){
+          foreach ($payment->months as $month) {
+            $billableMonths = $billableMonths->reject(function($value) use ($month){
+              return ($month[0] + 1 == $value[0] && $month[1] == $value[1]);
+            });
+          }
+        }
+
+        $billableMonths = $billableMonths->values();
+        if(!$this->bill || !sizeof($billableMonths)) return 0;
+        return $this->bill * sizeof($billableMonths) - $this->getExtraPayment();
+    }
+
+    public function totalPaid()
+    {
+        return $this->payments->sum('amount');
+    }
+
+    public function totalWaive()
+    {
+        return $this->payments->sum('waive');
+    }
+
+    public function findBillableMonths()
+    {
+        $billStartsFrom = $this->created_at->addMonthsNoOverflow(1);
+        $billStartsFrom->day = 1;
+
+        // We need set current time at 11
+        $presentDate = Carbon::now();
+        $presentDate->day = 1;
+        $presentDate->hour = 23;
+        $presentDate->minute = 59;
+
+        $billableMonths = collect();
+        for($i = $billStartsFrom->copy(); $i->lte($presentDate); $i->addMonth())
+        {
+            $billableMonths->push([$i->month, $i->year]);
+        }
+        return $billableMonths;
+    }
+
+    public function getExtraPayment() //check if the user has given some extra money on his last payment
+    {
+      $lastPayment = $this->getLatestPayment();
+      if(!is_null($lastPayment) && !is_null($lastPayment->extra)){
+        return $lastPayment->extra;
+      }
+
+      return 0;
+    }
+
 
     /**
      * get ids of users with whom this car is shared

@@ -20,9 +20,9 @@ class BillExportTransformer extends TransformerAbstract
      */
     public function transform(Activation $model)
     {
-        $total = $model->totalBill();
-        $paid = $model->totalPaid();
-        $waive = $model->totalWaive();
+        $total = $model->car->totalBill();
+        $paid = $model->car->totalPaid();
+        $waive = $model->car->totalWaive();
         $due = max(0, $total - $paid - $waive);
 		$complain = $model->car->getLatestComplain();
 		$status = is_null($complain) ? 'none' : $complain->status;

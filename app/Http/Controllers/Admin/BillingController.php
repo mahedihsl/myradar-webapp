@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\ActivationRepository;
 use App\Criteria\LastUpdatedCriteria;
+use App\Criteria\LastCreatedCriteria;
 use App\Transformers\BillExportTransformer;
 use App\Transformers\BillDrilldownExportTransformer;
 use Excel;
@@ -26,7 +27,7 @@ class BillingController extends Controller
 
     public function index(Request $request)
     {
-        $this->repository->pushCriteria(new LastUpdatedCriteria());
+        $this->repository->with(['car.payments'])->pushCriteria(new LastCreatedCriteria());
 
         return view('billing.index')->with([
             'items' => $this->repository->paginate(50),
@@ -99,8 +100,8 @@ class BillingController extends Controller
     public function export(Request $request)
     {
         $data = $this->repository
-                    ->pushCriteria(new LastUpdatedCriteria())
-                    ->with(['car'])
+                    ->pushCriteria(new LastCreatedCriteria())
+                    ->with(['car.payments'])
                     ->all();
 
         Excel::create('FullBillingReport', function ($excel) use ($data) {
