@@ -53,7 +53,7 @@ class ServiceController extends Controller
 	    }
 
 			try {
-				$client_id = '5e20848391c4040013599f60'; // Jatri App
+				$client_id = '5f63f8599dbb7723d01f7224'; // Jatri App
 				if ($device->user_id == $client_id) {
 					// Log::info('Jatri data received');
 					if ($device->user->isEnabled()) {
