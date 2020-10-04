@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Entities\Position;
+use App\Entities\Activation;
 use App\Entities\User;
 use App\Entities\Car;
 use App\Entities\Device;
@@ -183,18 +184,26 @@ class DatabaseTestController extends Controller
         $c = 0;
         $missing = collect();
 
-        $users = User::with(['cars'])->get();
-        foreach ($users as $user) {
-            if ($user->cars->count() > 0) {
-                $sorted = $user->cars->sortBy(function ($c) {
-                    return $c->created_at->timestamp;
-                });
-                if ($sorted->get(0)->created_at->timestamp < $user->created_at->timestamp) {
-                    // $user->update(['created_at' => $sorted->get(0)->created_at]);
-                    $c++;
-                }
-            }
-        }
+        // $activations = Activation::with(['car'])->get();
+        // foreach ($activations as $model) {
+        //     $model->update([
+        //         'created_at' => $model->car->created_at
+        //     ]);
+        //     $c++;
+        // }
+
+        // $users = User::with(['cars'])->get();
+        // foreach ($users as $user) {
+        //     if ($user->cars->count() > 0) {
+        //         $sorted = $user->cars->sortBy(function ($c) {
+        //             return $c->created_at->timestamp;
+        //         });
+        //         if ($sorted->get(0)->created_at->timestamp < $user->created_at->timestamp) {
+        //             // $user->update(['created_at' => $sorted->get(0)->created_at]);
+        //             $c++;
+        //         }
+        //     }
+        // }
         // Device::create([
         //     'com_id' => 50238,
         //     'phone' => '01958542626',
