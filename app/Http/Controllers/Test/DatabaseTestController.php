@@ -12,6 +12,7 @@ use App\Entities\Device;
 use App\Entities\Complain;
 use App\Entities\ExecTime;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 
 class DatabaseTestController extends Controller
@@ -42,6 +43,13 @@ class DatabaseTestController extends Controller
         return response()->json([
             'api_hit' => $n
         ]);
+    }
+
+    public function redis(Request $request)
+    {
+        return [
+            'value' => Redis::command('hmget', ['test', 'address', 'sex'])
+        ];
     }
 
     public function restore(Request $request)

@@ -60,13 +60,14 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
     Route::post('/device/engine/update/test', 'Api\Device\EngineController@test');
 });
 
-Route::get('/poi/list', 'Api\Poi\PoiController@index');
-Route::get('/poi/check/update', 'Api\Poi\PoiController@check');
-
-Route::post('/customer/logout', 'Api\Auth\AuthController@logout');
-Route::post('/bind/token', 'Api\User\NotificationController@bind');
 
 Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
+    Route::get('/poi/list', 'Api\Poi\PoiController@index');
+    Route::get('/poi/check/update', 'Api\Poi\PoiController@check');
+
+    Route::post('/customer/logout', 'Api\Auth\AuthController@logout');
+    Route::post('/bind/token', 'Api\User\NotificationController@bind');
+
     Route::post('/test/sms', 'Test\NotificationController@sms');
     Route::post('/test/noti', 'Test\NotificationController@noti');
     Route::post('/test/one-signal', 'Test\NotificationController@onesignal');
