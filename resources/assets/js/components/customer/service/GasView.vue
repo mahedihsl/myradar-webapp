@@ -105,8 +105,8 @@ export default {
     }
   },
   mounted() {
+    EventBus.$on('gas-chart-found', this.onDataFound.bind(this));
     if (this.subscribed) {
-      EventBus.$on('gas-chart-found', this.onDataFound.bind(this));
       this.getGasData(this.deviceId, this.days);
     }
   },
