@@ -67,6 +67,11 @@ class HomeController extends Controller
         return view('misc.privacy');
     }
 
+    public function privacy1(Request $request)
+    {
+        return view('misc.privacy1');
+    }
+
     public function test(Request $request)
     {
         $start = microtime(true);

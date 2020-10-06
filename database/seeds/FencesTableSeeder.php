@@ -51,11 +51,11 @@ class FencesTableSeeder extends Seeder
         // });
 
         Fence::all()->each(function($fence) {
-            if (is_string($fence->thana_id)) {
+            // if (is_string($fence->thana_id)) {
                 $fence->update([
                     'loc' => [$fence->lng, $fence->lat]
                 ]);
-            }
+            // }
         });
     }
 }

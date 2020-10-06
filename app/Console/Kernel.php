@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('device:reset')->dailyAt('12:00');
         $schedule->command('queue:flush')->dailyAt('04:00');
 
-        $schedule->command('demo:engine')->cron('*/3 * * * * *');
+        // $schedule->command('demo:engine')->cron('*/3 * * * * *');
         $schedule->command('calc:performance')->dailyAt('4:00');
     }
 

@@ -11,6 +11,7 @@ use App\Entities\Car;
 use App\Entities\Device;
 use App\Entities\Complain;
 use App\Entities\ExecTime;
+use App\Jobs\DemoUserDataJob;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
@@ -180,11 +181,11 @@ class DatabaseTestController extends Controller
         return 'device phone number updated: ' . $x . '-' . $y;
     }
 
-    public function payment(Request $request)
+    public function demoUser(Request $request)
     {
-        $S1_ = '';
+        $job = new DemoUserDataJob();
         
-        return 'ok';
+        return $job->getDemoDevice();
     }
 
     public function patch(Request $request)

@@ -45,7 +45,7 @@ class TextTrackerController extends Controller
 
       if(!is_null($driver) && !is_null($device))
       {
-        $time = Carbon::NOw();
+        $time = Carbon::now();
         $status = Assignment::where('from','<', $time)->where('to','>', $time)->where('driver_id', '=', $driver->id)->exists();
       }
       $nullresponse = ['poi' => '-', 'distance' => 'N/A', 'thana' =>'-', 'district' =>'-', 'status' => $status];
@@ -69,13 +69,13 @@ class TextTrackerController extends Controller
       $distance =round($distance,1);
      //dd($nearestPoi);
 
-      $thana = Thana::find($nearestPoi['data']['thana_id']);
-      $district = District::find($thana->district_id);
+      // $thana = Thana::find($nearestPoi['data']['thana_id']);
+      // $district = District::find($thana->district_id);
 
 
 
 
-      return response()->ok(['poi' => $nearestPoi['data']['name'], 'distance' => $distance, 'thana' =>$thana['name'], 'district' =>$district['name'], 'status' => $status]);
+      return response()->ok(['poi' => $nearestPoi['data']['name'], 'distance' => $distance, 'thana' => '--', 'district' => '--', 'status' => $status]);
     }
 
     public function assignmentInfo(Request $request, $driverId)
