@@ -69,13 +69,13 @@ class TextTrackerController extends Controller
       $distance =round($distance,1);
      //dd($nearestPoi);
 
-      // $thana = Thana::find($nearestPoi['data']['thana_id']);
-      // $district = District::find($thana->district_id);
+      $thana = Thana::find($nearestPoi['data']['thana_id']);
+      $district = District::find($thana->district_id);
 
 
 
 
-      return response()->ok(['poi' => $nearestPoi['data']['name'], 'distance' => $distance, 'thana' => '--', 'district' => '--', 'status' => $status]);
+      return response()->ok(['poi' => $nearestPoi['data']['name'], 'distance' => $distance, 'thana' => $thana->name, 'district' => $district->name, 'status' => $status]);
     }
 
     public function assignmentInfo(Request $request, $driverId)

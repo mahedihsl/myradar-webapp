@@ -108,7 +108,7 @@ export default {
                   beginAtZero: true,
                   min: 0,
                   max: 100,
-                  stepSize: 20,
+                  stepSize: 100,
                   callback: (label, index, labels) => (label + ' km')
                 }
               }]

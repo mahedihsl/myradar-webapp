@@ -9,6 +9,7 @@ use App\Entities\Activation;
 use App\Entities\User;
 use App\Entities\Car;
 use App\Entities\Device;
+use App\Entities\Event;
 use App\Entities\Complain;
 use App\Entities\ExecTime;
 use App\Jobs\DemoUserDataJob;
@@ -186,6 +187,25 @@ class DatabaseTestController extends Controller
         $job = new DemoUserDataJob();
         
         return $job->getDemoDevice();
+    }
+
+    public function demoPatch(Request $request)
+    {
+        $device = Device::where('com_id', 42002)->with(['car'])->first();
+        // Event::where('type', 3)->take(15)->get()->each(function($event) use ($device) {
+        //     Event::create([
+        //         'title' => 'Alert for car: ' . $device->reg_no,
+        //         'body' => $event->body,
+        //         'type' => $event->type,
+        //         'mode' => $event->mode,
+        //         'meta' => $event->meta,
+        //         'car_id' => $device->car_id,
+        //         'user_id' => $device->user_id,
+        //         'created_at' => $event->created_at,
+        //         'updated_at' => $event->updated_at,
+        //     ]);
+        // });
+        return $device;
     }
 
     public function patch(Request $request)

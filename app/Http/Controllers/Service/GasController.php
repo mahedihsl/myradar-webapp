@@ -28,6 +28,15 @@ class GasController extends Controller
 
     public function latest(Request $request, $id)
     {
+        // If this is demo car
+        if ($id == '5f63fbca32ebd87dc663002a') {
+            return response()->ok([
+                'id' => '...',
+                'value' => 2,
+                'when' => Carbon::today()->format('j M'),
+            ]);
+        }
+        
         $this->dailyRepo->setPresenter(DailyGasPresenter::class);
         $this->dailyRepo->pushCriteria(new DeviceIdCriteria($id));
         $this->dailyRepo->pushCriteria(new LastUpdatedCriteria());
