@@ -120,4 +120,8 @@ Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::post('/update/calibration', 'Input\GasRefuelInputController@setPriceFactorByUser');
     Route::post('/fuel/calibration/input', 'Input\FuelCalibrationInputController@store');
     Route::post('/device/phone','Device\DeviceController@getPhone');
+
+    // New api developed for Android App migration by PALATOK
+    Route::post('/session/register', 'Api\Account\SessionController@register');
+    Route::post('/session/logout', 'Api\Account\SessionController@logout');
 });

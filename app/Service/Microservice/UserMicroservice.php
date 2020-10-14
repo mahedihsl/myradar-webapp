@@ -23,6 +23,14 @@ class UserMicroservice extends BaseService
     return $this->get('/account/status/history', compact('user_id'));
   }
 
+  public function registerSession($data) {
+    return $this->post('/session/save', $data);
+  }
+
+  public function logoutSession($data) {
+    return $this->post('/session/remove', $data);
+  }
+
   public function test()
   {
     return $this->get('/test', [ 'user' => 'palatok' ]);

@@ -25,4 +25,8 @@ return [
     'url' => 'http://myradar-health',
     'port' => 6005,
   ],
+  'socket2' => [
+    'url' => 'http://myradar-socket2',
+    'port' => 6009,
+  ],
 ];

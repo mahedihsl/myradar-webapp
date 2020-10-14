@@ -8,9 +8,27 @@ use App\Service\Microservice\GeofenceMicroservice;
 use App\Service\Microservice\ServiceException;
 use App\Service\Microservice\SmsMicroservice;
 use App\Service\Microservice\UserMicroservice;
+use App\Service\Microservice\SocketMicroservice;
 
 class MicroServiceController extends Controller
 {
+    public function socket(Request $request)
+    {
+        try {
+            $service = new SocketMicroservice();
+
+        $userId = '5f63f8719dbb7723d01f7396';
+        $payload = [
+            'title' => 'Socket Notification',
+            'body' => 'Sent from new socket server via scarlet',
+            'intent' => 'none',
+        ];
+        return $service->send($userId, $payload);
+        } catch (ServiceException $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
     public function testGeofence(Request $request)
     {
         $car_id = '5f2ae945683eeb76b6132b36';
