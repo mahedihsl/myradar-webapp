@@ -27,17 +27,20 @@ class PushNotificationController extends Controller
         
         $title = $request->get('title');
         $body = $request->get('body');
-        $data = collect([
+        $type = intval($request->get('type', '0'));
+        $data = [
           'title' => $title,
           'body' => $body,
-          'type' => 0,
-        ]);
+          'type' => $type,
+        ];
         $service = new PushMicroservice();
         $ret = $service->send($car->user_id, $data);
 
         $socketRecipients = $ret['recipients']['socket'];
         $socketRecipients2 = $ret['recipients']['socket2'];
         $oneSignalRecipients = $ret['recipients']['onesignal'];
+
+        $res->push('Notification Type: ' . $type);
         $res->push('Notification sent to ' . ($socketRecipients + $oneSignalRecipients) . ' Mobile Devices');
         $res->push('Via WebSocket = ' . $socketRecipients);
         $res->push('Via WebSocket (New) = ' . $socketRecipients2);
