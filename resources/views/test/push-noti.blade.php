@@ -15,9 +15,11 @@
             <label for="noti-type">Notification Type</label>
             <select name="type" value="0" class="form-control">
               <option value="0">General</option>
-              <option value="20">Geo Fence</option>
-              <option value="21">Mileage</option>
-              <option value="22">Payment</option>
+              <option value="20">Engine</option>
+              <option value="21">Speed</option>
+              <option value="22">Geo Fence</option>
+              <option value="23">Mileage</option>
+              <option value="24">Payment</option>
             </select>
           </div>
           <div class="form-group">
