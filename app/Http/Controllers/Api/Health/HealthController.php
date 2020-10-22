@@ -41,9 +41,6 @@ class HealthController extends Controller
 		})->first();
 
         if ( ! is_null($device)) {
-            if ($com_id == 84269) {
-                Log::info('test device health received', $request->all());
-            }
             $data = collect($request->all());
 
             $this->healthRepo->save($device, $data);

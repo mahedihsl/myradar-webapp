@@ -73,13 +73,14 @@ class LatLngConsumer extends ServiceConsumer
             return null;
 	    }
 
-        // $device = $this->getDevice();
-        // if ($device->car_id) {
-        //     try {
-        //         $service = new GeofenceMicroservice();
-        //         $service->observe($device->car_id, $lat, $lng);
-        //     } catch (ServiceException $e) {}
-        // }
+        $device = $this->getDevice();
+        $versionNumber = intval(str_replace('.', '', $device->version));
+        if ($versionNumber >= 484 && $device->car_id) {
+            try {
+                $service = new GeofenceMicroservice();
+                $service->observe($device->car_id, $lat, $lng);
+            } catch (ServiceException $e) {}
+        }
 
         //$lastPos = $this->getLastPos();
         $lastMilPos = $this->getLastMilPos();

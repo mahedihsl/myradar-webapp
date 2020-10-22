@@ -26,8 +26,17 @@ class UpdateImei
      */
     public function handle(DeviceHealthReceived $event)
     {
+        $updates = [];
         if ($event->hasImei() && $event->device->imei != $event->getImei()) {
-            $event->device->update([ 'imei' => $event->getImei() ]);
+            $updates['imei'] = $event->getImei();
+        }
+        $version = trim($event->getDeviceVersion());
+        if (strlen($version) > 0) {
+            $updates['version'] = $version;
+        }
+
+        if (count($updates)) {
+            $event->device->update($updates);
         }
     }
 }

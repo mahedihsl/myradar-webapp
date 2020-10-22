@@ -234,8 +234,8 @@ class DatabaseTestController extends Controller
         //     }
         // }
         // Device::create([
-        //     'com_id' => 50238,
-        //     'phone' => '01958542626',
+        //     'com_id' => 17200,
+        //     'phone' => '01907482393',
         // ]);
         // $data = $request->get('data');
         // $cars = Car::all();

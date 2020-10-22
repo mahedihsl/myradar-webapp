@@ -39,7 +39,7 @@ class DeviceHealthReceived
 
     public function isResetEvent()
     {
-        return intval($data->get('count_loop')) == 1;
+        return intval($this->data->get('count_loop')) == 1;
     }
 
     /**
@@ -56,6 +56,11 @@ class DeviceHealthReceived
     public function hasImei()
     {
         return boolval($this->getImei());
+    }
+
+    public function getDeviceVersion()
+    {
+        return $this->data->get('version', '');
     }
 
     /**
