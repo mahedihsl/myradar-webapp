@@ -37,13 +37,11 @@ class PushNotificationController extends Controller
         $ret = $service->send($car->user_id, $data);
 
         $socketRecipients = $ret['recipients']['socket'];
-        $socketRecipients2 = $ret['recipients']['socket2'];
         $oneSignalRecipients = $ret['recipients']['onesignal'];
 
         $res->push('Notification Type: ' . $type);
         $res->push('Notification sent to ' . ($socketRecipients + $oneSignalRecipients) . ' Mobile Devices');
         $res->push('Via WebSocket = ' . $socketRecipients);
-        $res->push('Via WebSocket (New) = ' . $socketRecipients2);
         $res->push('Via OneSignal = ' . $oneSignalRecipients);
       }
       $res->push('Diagnosis finished');

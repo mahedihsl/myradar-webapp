@@ -27,7 +27,11 @@ class DistanceConsumer extends ServiceConsumer
 
     protected function transform($data)
     {
-        return intval($data);
+        /**
+         * Multiply by 1.2 to increase the mileage 20%. Default mileage calculation has some problems.
+         * Some user gets smaller mileage report
+         */
+        return intval($data * 1.2);
     }
 
     public function transformedDate() //conversion for making day 3AM to 3AM

@@ -33,7 +33,7 @@ class SessionController extends Controller
             $data = $request->all();
             $data['user_id'] = $request->user()->id;
             unset($data['api_token']);
-            $reply = $this->userService->logoutSession($data);
+            $reply = $this->userService->removeSessionsOfUser($data);
             return response()->json($reply);
         } catch (ServiceException $e) {
             return response()->json(['message' => $e->getMessage()], 400);

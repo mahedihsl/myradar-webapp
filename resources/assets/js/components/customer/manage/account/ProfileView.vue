@@ -3,6 +3,9 @@
     <button class="btn btn-default pull-right" @click="onEditClick">
       <i class="fa fa-pencil"></i> Change Profile
     </button>
+    <button class="btn btn-default pull-right" style="margin-right: 15px;" @click="onPhoneClick">
+      <i class="fa fa-mobile"></i> Phones
+    </button>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -71,6 +74,9 @@ export default {
   methods: {
     onEditClick() {
       EventBus.$emit('profile-edit-click');
+    },
+    onPhoneClick() {
+      EventBus.$emit('session-list-click')
     }
   }
 }

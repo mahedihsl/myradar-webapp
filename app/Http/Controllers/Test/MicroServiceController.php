@@ -29,6 +29,13 @@ class MicroServiceController extends Controller
         }
     }
 
+    public function session(Request $request)
+    {
+        $service = new UserMicroservice();
+        $data = $service->getSessionList('5f63f8719dbb7723d01f7396');
+        return response()->json($data);
+    }
+
     public function testGeofence(Request $request)
     {
         $car_id = '5f63faca36374b3de61bac6e';

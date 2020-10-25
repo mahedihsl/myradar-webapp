@@ -50,6 +50,7 @@ import EventBus from '../../../../util/EventBus';
 import AccountApi from '../../../../api/AccountApi';
 
 import ProfileView from './ProfileView.vue';
+import SessionList from './SessionList.vue';
 import ProfileEdit from './ProfileEdit.vue';
 import PasswordChange from './PasswordChange.vue';
 import ToggleHistory from './ToggleHistory.vue';
@@ -60,7 +61,8 @@ export default {
     ProfileView,
     ProfileEdit,
     PasswordChange,
-    ToggleHistory
+    ToggleHistory,
+    SessionList,
   },
   data: () => ({
     title: '',
@@ -76,6 +78,7 @@ export default {
   mounted() {
     EventBus.$on('account-info-found', this.onInfoFound.bind(this));
     EventBus.$on('account-info-updated', this.onInfoUpdated.bind(this));
+    EventBus.$on('session-list-click', this.onSessionListClick.bind(this));
     EventBus.$on('profile-edit-click', this.onProfileEditClick.bind(this));
     EventBus.$on('profile-edit-done', this.onProfileEditDone.bind(this));
     EventBus.$on('toggle-history-closed', this.onProfileEditDone.bind(this));
@@ -103,6 +106,11 @@ export default {
     onToggleHistoryClick() {
       this.current = ToggleHistory;
       this.title = 'Account Enable/Disable History';
+    },
+
+    onSessionListClick() {
+      this.current = SessionList
+      this.title = 'Phone List'
     },
 
     onProfileEditClick() {

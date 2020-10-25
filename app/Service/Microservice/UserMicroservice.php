@@ -27,8 +27,21 @@ class UserMicroservice extends BaseService
     return $this->post('/session/save', $data);
   }
 
-  public function logoutSession($data) {
+  public function removeSessionsOfUser($data) {
     return $this->post('/session/remove', $data);
+  }
+
+  public function removeSessionById($session_id) {
+    return $this->post('/session/remove-by-id', compact('session_id'));
+  }
+
+  public function forceLogout($session_id) {
+    return $this->post('/session/force-logout', compact('session_id'));
+  }
+
+  public function getSessionList($user_id)
+  {
+    return $this->get('/session/list', compact('user_id'));
   }
 
   public function test()

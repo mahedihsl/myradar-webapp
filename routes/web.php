@@ -51,6 +51,7 @@ Route::post('/emergency/patch', 'Test\DatabaseTestController@patch');
 Route::get('/emergency/demo-patch', 'Test\DatabaseTestController@demoPatch');
 Route::get('/test/demo-user', 'Test\DatabaseTestController@demoUser');
 Route::get('/test/microservice/geofence', 'Test\MicroServiceController@testGeofence');
+Route::get('/test/microservice/session', 'Test\MicroServiceController@session');
 Route::get('/test/websocket', 'Test\MicroServiceController@socket');
 Route::get('/test/redis', 'Test\DatabaseTestController@redis');
 Route::get('/test/noti', 'Test\NotificationController@noti');
@@ -263,6 +264,10 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/customer/update', 'User\CustomerController@update');
     Route::post('/customer/password/change', 'User\CustomerController@password');
     Route::get('/customer/toggle-history/{id}', 'User\CustomerController@toggleHistory');
+
+    Route::get('/customer/session/list', 'Customer\SessionController@all');
+    Route::post('/customer/session/remove', 'Customer\SessionController@remove');
+    Route::post('/customer/session/logout', 'Customer\SessionController@logout');
 
     Route::get('/customer/settings/{id}', 'Api\Account\SettingsController@view');
     Route::post('/customer/settings/change', 'Api\Account\SettingsController@change');
