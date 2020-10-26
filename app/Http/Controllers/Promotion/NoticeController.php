@@ -133,24 +133,33 @@ class NoticeController extends Controller
         $model = PendingNotice::where('via', $via)->first();
         if ( ! is_null($model)) {
             try {
+                $sent = 0;
                 if ($model->via == 'sms') {
                     $s = new SmsService();
                     $s->send($model->to, $model->payload);
+                    $sent = 1;
                 } else if ($model->via == 'push') {
                     $service = new PushMicroservice();
-                    $service->send($model->to, collect($model->payload));
+                    $res = $service->send($model->to, collect($model->payload));
+                    
+                    $socketRecipients = $res['recipients']['socket'];
+                    $oneSignalRecipients = $res['recipients']['onesignal'];
+                    $sent = $socketRecipients + $oneSignalRecipients;
                 }
                 $model->delete();
+                return response()->json([
+                    'sent' => $sent,
+                    'remaining' => PendingNotice::where('via', $via)->count(),
+                ]);
             } catch (Exception $error) {
                 Log::info('Single Notice Delivery Error', [
                     'message' => $error->getMessage(),
                     'model' => $model->toArray(),
                 ]);
+                return response()->json([ 'message' => $error->getMessage() ], 400);
             }
         }
-        return response()->json([
-            'remaining' => PendingNotice::where('via', $via)->count(),
-        ]);
+        return response()->json([ 'message' => 'Could not send notice' ], 400);
     }
 
     public function dueNotice(Request $request)
