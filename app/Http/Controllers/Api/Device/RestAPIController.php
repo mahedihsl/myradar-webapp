@@ -32,18 +32,21 @@ use GuzzleHttp\Psr7;
 use App\Mail\setNewPasswordMail;
 use App\Helpers\AppHelper;
 use Illuminate\Support\Facades\DB;
+use App\Service\Microservice\SmsMicroservice;
 
 class RestAPIController extends Controller
 {
     public $successStatus = 200;
     private $client;
     private $key;
+    private $smsService;
 
     public function __construct()
     {
         $this->SMS = new SMSController();
         $this->user = new User();
         $this->AppHelper = new AppHelper();
+        $this->smsService = new SmsMicroservice();
         //$this->CarStatusLog = new CarStatusLog();
     }
     public function getUserLocation(Request $request)
@@ -346,12 +349,11 @@ class RestAPIController extends Controller
             if ($User->save() && $is_phone==true) {
                 //send sms
                 //  $url = 'www.facebook.com';
-                $content = "Your Password Reset Code is ".$User->verification_code.'Click the link to set new password '.$url;
+                $content = "Your Password Reset Code is ".$User->verification_code.'. Click the link to set new password '.$url;
                 try {
-                    $sms_sent = $this->SMS->sendSMS($User->phone, $content);
-                    if ($sms_sent==1) {
-                        return response()->json(['status'=>1,'message'=>'Password Reset Code sent to your Phone'], 200);
-                    }
+                    // $sms_sent = $this->SMS->sendSMS($User->phone, $content);
+                    $this->smsService->send($User->phone, $content);
+                    return response()->json(['status'=>1,'message'=>'Password Reset Code sent to your Phone'], 200);
                 } catch (\Exception $e) {
                     return response()->json(['status'=>0,'message'=>'SMS sending failed'], 200);
                 }
