@@ -11,6 +11,7 @@ use App\Criteria\CarIdCriteria;
 use App\Criteria\DateRangeCriteria;
 use App\Criteria\LastUpdatedCriteria;
 use App\Transformers\MileageTransformer;
+use App\Entities\Car;
 use App\Entities\Device;
 use App\Entities\Mileage;
 
@@ -31,6 +32,11 @@ class MileageController extends Controller
 
     public function records(Request $request, $carId, $days)
     {
+        $car = Car::find($carId);
+        if (!$car->status) {
+            return response()->ok();
+        }
+
         $items = collect(range(0, intval($days) - 1))->map(function($d) use ($carId) {
             $time = Carbon::today()->subDays($d);
             $value = Mileage::where('car_id', $carId)
@@ -45,6 +51,11 @@ class MileageController extends Controller
 
     public function archive(Request $request, $id)
     {
+        $device = Device::with(['car'])->find($id);
+        if (!$device->car->status) {
+            return response()->ok();
+        }
+        
         $from = Carbon::createFromFormat('Y-n-j', $request->get('from'));
         $to = Carbon::createFromFormat('Y-n-j', $request->get('to'));
 

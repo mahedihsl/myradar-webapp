@@ -56,8 +56,10 @@ class RestAPIController extends Controller
         $date = $request->get('date');
         $auth_key =$request->get('login_token');
 
+        $device = Device::with(['car'])->find($device_id);
+
 		// TODO: Special exception for Customer Shakil Ahmed
-		if ($device_id == '5d00b7776237460eb949530d') {
+		if (!$device->car->status || $device_id == '5d00b7776237460eb949530d') {
 			return response()->json([
 		     'status'=> 1,
 		     'message'=>'Success',
@@ -132,18 +134,6 @@ class RestAPIController extends Controller
 
             $data = collect([]);
 
-            // $pos = $device->positions()
-            //     ->where('when', '>=', $from)
-            //     ->where('when', '<=', $to)
-            //     ->orderBy('when', 'asc')
-            //     ->select(['lat', 'lng','when'])
-            //     ->get()
-            //     ->map(function($item) {
-            //        $item->lat = strval($item->lat);
-            //        $item->lng = strval($item->lng);
-            //        return $item;
-            //     });
-
             return response()->json([
 		     'status'=> 1,
 		     'message'=>'Success',
@@ -197,34 +187,29 @@ class RestAPIController extends Controller
         // 0 means engine off 1 means on
         $device_id = $request->get('device_id');
         $car_id   = $request->get('car_id');
-        //$auth_key = $request->get('login_token');
-        //   $validator = Validator::make($request->all(), [
-        //   'device_id'=>'required',
-        //   //'login_token'=>'required'
-        //  ]);
-        //
-        //   if ($validator->fails()) {
-        //       return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
-        //   }
 
         $Device = null;
+        $status = true;
         if ($car_id) {
             $Device = Car::find($car_id);
+            $status = $Device->status;
             $Device = $Device->device;
         } elseif ($device_id) {
-            $Device = Device::find($device_id);
+            $Device = Device::with(['car'])->find($device_id);
+            $status = $Device->car->status;
         }
-        if (!is_null($Device)) {
+        if (!is_null($Device) && $status) {
             return response()->json([
-          'status'=>1,
-          'data'=>['lock_status'=>$Device->lock_status,
-                    'engine_status'=>$Device->engine_status]
-        ]);
+            'status'=>1,
+            'data'=>[
+                'lock_status'=> $Device->lock_status,
+                'engine_status'=> $Device->engine_status]
+            ]);
         }
         return response()->json([
-        'status'=>0,
-        'message'=>'Device Not Found'
-      ]);
+            'status'=>0,
+            'message'=>'Device Not Found'
+        ]);
     }
 
     public function login(Request $request)

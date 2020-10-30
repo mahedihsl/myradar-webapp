@@ -59,6 +59,10 @@ class EngineController extends Controller
         $target_lock = intval($request->get('lock_status'));
         $device = $this->repository->find($request->get('device_id'));
 
+        if (!$device->car->status) {
+            return response()->error('Car is not active');
+        }
+
         if ( ! is_null($device)) {
             if(!$user->isSharedCar($device->car_id)){
               if ($device->engine_status === 1) {

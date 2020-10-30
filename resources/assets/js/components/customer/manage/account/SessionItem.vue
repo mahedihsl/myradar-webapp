@@ -12,12 +12,12 @@
       </span>
     </div>
     <div class="session-control">
-      <button
+      <!-- <button
         class="btn btn-default btn-sm"
         @click="$emit('remove', session.id)"
       >
         <i class="fa fa-trash"></i> Delete
-      </button>
+      </button> -->
       <button
         class="btn btn-default btn-sm"
         style="margin-left: 10px;"

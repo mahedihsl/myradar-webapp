@@ -12,6 +12,7 @@ use App\Criteria\AfterWhenCriteria;
 use App\Criteria\BeforeWhenCriteria;
 use App\Criteria\LastUpdatedCriteria;
 use App\Presenters\DailyGasPresenter;
+use App\Entities\Device;
 use Carbon\Carbon;
 
 class GasController extends Controller
@@ -36,6 +37,11 @@ class GasController extends Controller
                 'when' => Carbon::today()->format('j M'),
             ]);
         }
+
+        $device = Device::with(['car'])->find($id);
+        if (!$device->car->status) {
+            return response()->ok(['value' => 0]);
+        }
         
         $this->dailyRepo->setPresenter(DailyGasPresenter::class);
         $this->dailyRepo->pushCriteria(new DeviceIdCriteria($id));
@@ -58,6 +64,11 @@ class GasController extends Controller
      */
     public function history(Request $request, $id, $day)
     {
+        $device = Device::with(['car'])->find($id);
+        if (!$device->car->status) {
+            return response()->ok(['items' => []]);
+        }
+
         $this->dailyRepo->pushCriteria(new DeviceIdCriteria($id));
         $this->dailyRepo->pushCriteria(new BeforeWhenCriteria(Carbon::today()));
 
@@ -74,6 +85,11 @@ class GasController extends Controller
      */
     public function archive(Request $request, $id)
     {
+        $device = Device::with(['car'])->find($id);
+        if (!$device->car->status) {
+            return response()->ok(['items' => []]);
+        }
+
         $from = Carbon::createFromFormat('Y-n-j', $request->get('from'));
         $to = Carbon::createFromFormat('Y-n-j', $request->get('to'));
 

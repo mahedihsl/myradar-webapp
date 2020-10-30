@@ -10,6 +10,7 @@ use App\Criteria\NRecordsCriteria;
 use App\Criteria\EventTypeCriteria;
 use App\Criteria\LastCreatedCriteria;
 use App\Transformers\EventTransformer;
+use App\Entities\Car;
 use App\Entities\Event;
 use App\Entities\GasRefuelInput;
 
@@ -17,6 +18,11 @@ class EventController extends Controller
 {
     public function events(Request $request, $car)
     {
+        $carModel = Car::find($car);
+        if (!$carModel->status) {
+            return response()->error('This car is not active');
+        }
+        
         $options = [
             'sort' => ['created_at' => -1],
             'limit' => 100,

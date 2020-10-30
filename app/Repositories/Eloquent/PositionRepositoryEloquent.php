@@ -55,7 +55,9 @@ class PositionRepositoryEloquent extends BaseRepository implements PositionRepos
 
     public function lastPosition($deviceId)
     {
-        $device = Device::find($deviceId);
+        $device = Device::with(['car'])->find($deviceId);
+        if (!$device->car->status) return null;
+        
         $device->update([ 'live_track' => Carbon::now() ]);
         if ( ! is_null($device->meta->get('pos'))) {
             return $device->meta->get('pos');
