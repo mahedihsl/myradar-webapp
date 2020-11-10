@@ -19,4 +19,9 @@ class ET200Microservice extends BaseService
   {
     return $this->post('/unlock', compact('com_id'));
   }
+
+  public function status($device)
+  {
+    return $this->get('/status', compact('device'));
+  }
 }

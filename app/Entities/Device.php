@@ -31,6 +31,9 @@ class Device extends Eloquent
 
     public static $GOOD_FREQ_RATIO = 0.7;
     public static $MEDIUM_FREQ_RATIO = 0.3;
+    
+    public static $ENGINE_CONTROL_LOCK = 'lock';
+    public static $ENGINE_CONTROL_WARM = 'warm';
 
     public static $STATUS_OFFLINE = 0;
     public static $STATUS_ONLINE = 1;
@@ -50,6 +53,13 @@ class Device extends Eloquent
     public function getLockStatusAttribute($value)
     {
         return is_null($value) ? self::$STATUS_UNLOCKED : $value;
+    }
+
+    public function getEngineControlMethod() {
+        if (!array_key_exists('engine_control', $this->attributes)) {
+            return self::$ENGINE_CONTROL_LOCK;
+        }
+        return $this->attributes['engine_control']; // possible values are: lock, warm
     }
 
     public function getEngineStatusAttribute($value)

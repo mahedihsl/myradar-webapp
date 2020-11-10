@@ -185,8 +185,14 @@ class DatabaseTestController extends Controller
     public function demoUser(Request $request)
     {
         $device = Device::where('com_id', 22235)->first();
+        $control_method = is_null($device->engine_control) ? Device::$ENGINE_CONTROL_LOCK : $device->engine_control;
         
-        return $device;
+        return response()->json([
+            'com_id' => $device->com_id,
+            'car_id' => $device->car_id,
+            'controlled_state' => $device->lock_status,
+            'control_method' => $control_method,
+        ]);
     }
 
     public function demoPatch(Request $request)

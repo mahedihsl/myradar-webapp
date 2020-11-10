@@ -34,9 +34,13 @@ class LoginController extends Controller
             return response()->json('Device not found', 404);
         }
 
+        $control_method = is_null($device->engine_control) ? Device::$ENGINE_CONTROL_LOCK : $device->engine_control;
+
         return response()->json([
             'com_id' => $device->com_id,
             'car_id' => $device->car_id,
+            'controlled_state' => boolval($device->lock_status),
+            'control_method' => $control_method,
         ]);
     }
 
