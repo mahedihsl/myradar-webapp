@@ -184,9 +184,9 @@ class DatabaseTestController extends Controller
 
     public function demoUser(Request $request)
     {
-        $job = new DemoUserDataJob();
+        $device = Device::where('com_id', 22235)->first();
         
-        return $job->getDemoDevice();
+        return $device;
     }
 
     public function demoPatch(Request $request)

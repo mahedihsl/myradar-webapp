@@ -7,6 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\Entities\Device;
+use App\Service\Microservice\ET200Microservice;
 use App\Service\ConcoxDevice;
 
 class UnlockWhenEngineOnListener
@@ -31,7 +32,11 @@ class UnlockWhenEngineOnListener
     {
         $event->device->update([ 'lock_status' => Device::$STATUS_UNLOCKED ]);
 
-        $concox = new ConcoxDevice();
-        $concox->lock($event->device->com_id, false);
+        // $concox = new ConcoxDevice();
+        // $concox->lock($event->device->com_id, false);
+        try {
+            $service = new ET200Microservice();
+            $service->unlock($event->device->com_id);
+        } catch (\Exception $th) {}
     }
 }

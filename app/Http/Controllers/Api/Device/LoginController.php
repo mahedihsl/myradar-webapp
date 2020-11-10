@@ -36,6 +36,7 @@ class LoginController extends Controller
 
         return response()->json([
             'com_id' => $device->com_id,
+            'car_id' => $device->car_id,
         ]);
     }
 

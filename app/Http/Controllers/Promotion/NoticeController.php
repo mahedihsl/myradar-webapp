@@ -29,9 +29,7 @@ class NoticeController extends Controller
         $this->repository = $repository;
     }
 
-    // $mm = month (1 indexed)
-    private function getUnpaidUsers($mm, $yy)
-    {
+    private function unpaidUsersOfMonth($mm, $yy) {
         $date = Carbon::createFromDate($yy, $mm, 1);
         $date->setTime(0, 0);
 
@@ -54,6 +52,30 @@ class NoticeController extends Controller
                     ->get(['phone']);
 
         return $unpaid;
+    }
+
+    // $mm = month (1 indexed)
+    private function getUnpaidUsers($mm, $yy)
+    {
+        $phoneNumbers = collect();
+        for ($i=0; $i < 36; $i++) { 
+            $phoneNumbers = $phoneNumbers->concat($this->unpaidUsersOfMonth($mm, $yy));
+            $mm--;
+            if ($mm == 0) {
+                $mm = 1;
+                $yy--;
+            }
+        }
+        return $phoneNumbers->unique()->values();
+    }
+
+    public function test(Request $request)
+    {
+        $month = explode(",", $request->get('month'));
+        $mm = intval($month[0]);
+        $yy = intval($month[1]);
+
+        return $this->getUnpaidUsers($mm, $yy)->count();
     }
 
     public function sendDueNotice(Request $request)

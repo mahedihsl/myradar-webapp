@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Service\Microservice\GeofenceMicroservice;
 use App\Service\Microservice\ServiceException;
 use App\Service\Microservice\SmsMicroservice;
+use App\Service\Microservice\SpeedMicroservice;
 use App\Service\Microservice\UserMicroservice;
 use App\Service\Microservice\SocketMicroservice;
 
@@ -33,6 +34,16 @@ class MicroServiceController extends Controller
     {
         $service = new UserMicroservice();
         $data = $service->getSessionList('5f63f8719dbb7723d01f7396');
+        return response()->json($data);
+    }
+
+    public function speed(Request $request)
+    {
+        $car_id = '5f63facb36374b3de61bae06';
+        $speed = $request->get('speed');
+
+        $service = new SpeedMicroservice();
+        $data = $service->observe($car_id, $speed);
         return response()->json($data);
     }
 
