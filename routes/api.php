@@ -124,4 +124,6 @@ Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     // New api developed for Android App migration by PALATOK
     Route::post('/session/register', 'Api\Account\SessionController@register');
     Route::post('/session/logout', 'Api\Account\SessionController@logout');
+
+    Route::get('/device/config', 'Api\Device\ConfigController@fetch');
 });

@@ -8,6 +8,7 @@ use App\Service\Microservice\GeofenceMicroservice;
 use App\Service\Microservice\ServiceException;
 use App\Service\Microservice\SmsMicroservice;
 use App\Service\Microservice\SpeedMicroservice;
+use App\Service\Microservice\DeviceMicroservice;
 use App\Service\Microservice\UserMicroservice;
 use App\Service\Microservice\SocketMicroservice;
 
@@ -104,6 +105,17 @@ class MicroServiceController extends Controller
             return $response;
         } catch (ServiceException $e) {
             return $e;
+        }
+    }
+
+    public function deviceConfig(Request $request)
+    {
+        try {
+            $device_id = '5f63fbc832ebd87dc662fb56';
+            $service = new DeviceMicroservice();
+            return response()->json($service->deviceConfig($device_id));
+        } catch (\Exception $error) {
+            return response()->json(['error' => $error->getMessage()]);
         }
     }
 }

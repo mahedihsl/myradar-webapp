@@ -27,4 +27,9 @@ class DeviceMicroservice extends BaseService
     $page = $params->get('page', '1');
     return $this->get('/car/bind/history', compact('reg_no', 'com_id', 'page'));
   }
+
+  public function deviceConfig($device)
+  {
+    return $this->get('/device/config', compact('device'));
+  }
 }

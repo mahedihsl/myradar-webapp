@@ -29,7 +29,7 @@ class ConcoxController extends Controller
 
     public function status(Request $request)
     {
-        $res = $this->microservice->status(22235);
+        $res = $this->microservice->status($request->get('device'));
         return response()->json($res);
     }
 }
