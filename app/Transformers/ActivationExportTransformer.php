@@ -27,7 +27,8 @@ class ActivationExportTransformer extends TransformerAbstract
             'Key'     => $model->key,
             'Com. ID' => $model->car->device ? $model->car->device->com_id : 'N/A',
             'Car No.' => $model->car->reg_no,
-            'Enabled' => $model->car->user->isEnabled() ? 'Yes' : 'No',
+            'Car Enabled' => $model->car->status == 1 ? 'Yes' : 'No',
+            'Acc Enabled' => $model->car->user->isEnabled() ? 'Yes' : 'No',
             'Date'    => $model->created_at->toDayDateTimeString(),
             'Status'  => $model->car->user->status ? 'Current' : 'Old',
         ];

@@ -52,7 +52,7 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
 
     public function change(Collection $data)
     {
-        return $this->update([
+        $car = $this->update([
             'name'     => $data->get('name'),
             'model'    => $data->get('model'),
             'reg_no'   => $data->get('reg_no'),
@@ -63,6 +63,13 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
             'voice_service' => intval($data->get('voice_service')),
             'bill'        => $data->get('bill'),
         ], $data->get('id'));
+        $device = $car->device;
+        if ( ! is_null($device)) {
+            $device->update([
+                'engine_control' => $data->get('engine_control'),
+            ]);
+        }
+        return $car;
     }
 
     public function updateDates($car, Collection $dates)

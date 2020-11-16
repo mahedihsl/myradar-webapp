@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Entities\Car;
+use App\Entities\Device;
 
 /**
  * Class CarDetailsTransformer.
@@ -22,6 +23,10 @@ class CarDetailsTransformer extends TransformerAbstract
     public function transform(Car $model)
     {
         $device_id = $model->device ? $model->device->id : null;
+        $control_method = Device::$ENGINE_CONTROL_LOCK;
+        if ( ! is_null($model->device)) {
+            $control_method = is_null($model->device->engine_control) ? Device::$ENGINE_CONTROL_LOCK : $model->device->engine_control;
+        }
 
         return [
             'id'        => $model->id,
@@ -40,6 +45,7 @@ class CarDetailsTransformer extends TransformerAbstract
             'package'   => $model->package,
             'new_service' => $model->new_service,
             'voice_service' => intval($model->voice_service),
+            'engine_control' => $control_method,
             'bill'      => $model->bill,
         ];
     }

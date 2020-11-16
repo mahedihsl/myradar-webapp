@@ -78,6 +78,15 @@
         </div>
         <div class="col-xs-6">
           <div class="form-group">
+            <label>Engine Control</label>
+            <select class="form-control" v-model="info.engine_control">
+              <option value="lock">Lock</option>
+              <option value="warm">Warm</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group">
             <label>Bill</label>
             <input type="text" v-model="info.bill" class="form-control" placeholder="ex: 500">
           </div>
@@ -113,6 +122,7 @@ export default {
       services: [],
       new_service:'1',
       voice_service: '0',
+      engine_control: 'lock',
       bill: '',
     },
     error: {
@@ -142,6 +152,7 @@ export default {
       this.info.reg_no = data.reg_no;
       this.info.new_service = data.new_service;
       this.info.voice_service = data.voice_service;
+      this.info.engine_control = data.engine_control;
       this.info.bill = data.bill;
       if (data.type) {
         this.info.type = `${data.type}`;
