@@ -29,10 +29,10 @@
 
 	<div class="bg-contact100" style="background-image: url('/bikroy/images/bg-01.jpg');">
 		<div class="container-contact100">
-			<div class="wrap-contact100" style="padding-left: 50px; padding-right: 0;">
-				<div class="w-full flex flex-row">
+			<div class="wrap-contact100" style="padding-left: 0px; padding-right: 0;">
+				<div class="w-full flex flex-col md:flex-row">
 
-					<div class="w-1/2">
+					<div class="w-full md:w-1/2 px-12">
 						<div class="flex flex-col">
 							<div class="w-full flex flex-row justify-start items-center">
 								<img src="{{asset('images/web_logo.png')}}" alt="myRADAR" class="w-auto h-32" />
@@ -62,7 +62,7 @@
 						</div>
 					</div>
 
-					<div class="w-1/2 ml-4">
+					<div class="w-full md:w-1/2 mt-12 md:mt-0 flex flex-row justify-center px-8">
 						@if ($status == 1)
 						<h2 class="text-success"><strong>We will contact you soon</strong></h2>
 						@else
