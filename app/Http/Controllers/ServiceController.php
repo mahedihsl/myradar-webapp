@@ -31,7 +31,7 @@ class ServiceController extends Controller
 		$start = round(microtime(true) * 1000);
 		$com_id = intval($request->get('ss'));
 
-		if (in_array($com_id, [47630, 36584, 48878, 26826, 82770, 33333, 86228, 39344, 15950])) {
+		if (in_array($com_id, [84796])) {
 			Log::info('Service String received', $request->all());
 		}
 		

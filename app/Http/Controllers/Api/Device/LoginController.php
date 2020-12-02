@@ -41,6 +41,8 @@ class LoginController extends Controller
             'car_id' => $device->car_id,
             'controlled_state' => boolval($device->lock_status),
             'control_method' => $control_method,
+            'engine' => $device->engine_status,
+            'synthetic_engine' => $device->engine_status,
         ]);
     }
 

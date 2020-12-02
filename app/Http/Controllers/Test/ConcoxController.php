@@ -17,13 +17,15 @@ class ConcoxController extends Controller
 
     public function lock(Request $request)
     {
-        $res = $this->microservice->lock(22235);
+        $comId = 59113;
+        $res = $this->microservice->lock($comId);
         return response()->json($res);
     }
 
     public function unlock(Request $request)
     {
-        $res = $this->microservice->unlock(22235);
+        $comId = 59113;
+        $res = $this->microservice->unlock($comId);
         return response()->json($res);
     }
 

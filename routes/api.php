@@ -57,6 +57,7 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
     Route::post('/device/consume/service', 'ServiceController@consume');
 
     Route::post('/device/engine/update', 'Api\Device\EngineController@update');
+    Route::post('/device/lock/update', 'Api\Device\EngineController@updateLock');
     Route::post('/device/engine/update/test', 'Api\Device\EngineController@test');
 });
 
@@ -98,6 +99,8 @@ Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::post('/settings/toggle', 'Api\Account\SettingsController@toggle');
 
     Route::post('/lock/status/toggle', 'Api\Device\EngineController@toggle');
+    Route::post('/control/status/toggle', 'Api\Device\EngineController@updateControlState');
+    Route::get('/lock/transition/status', 'Api\Device\EngineController@transitionStatus');
 
     Route::get('/noti/test/{id}', 'Api\User\NotificationController@test');
 

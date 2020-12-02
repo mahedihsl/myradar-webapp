@@ -11,6 +11,7 @@ use Vinkla\Pusher\Facades\Pusher;
 use App\Service\PusherService;
 use App\Criteria\CommercialIdCriteria;
 use App\Contract\Repositories\DeviceRepository;
+use App\Service\Microservice\ET200Microservice;
 
 use App\Events\EngineStatusChanged;
 use App\Events\LockWhenEngineOnEvent;
@@ -30,6 +31,7 @@ class EngineController extends Controller
     public function __construct(DeviceRepository $repository)
     {
         $this->repository = $repository;
+        $this->concox = new ET200Microservice();
     }
 
     public function status(Request $request, $id)
@@ -44,6 +46,35 @@ class EngineController extends Controller
         }
 
         return response()->error('Device not Found');
+    }
+
+    public function transitionStatus(Request $request)
+    {
+        try {
+            $device = $this->repository->find($request->get('device_id'));
+            if (!is_null($device)) {
+                $info = $this->concox->status($device->com_id);
+                return response()->ok([
+                    "transition" => intval($info['transition']),
+                    "engine" => intval($info['synthetic_engine']),
+                    "lock" => intval($info['controlled_state']),
+                ]);
+            }
+        } catch (\Exception $th) {}
+        return response()->error('Device not connected');
+    }
+
+    public function updateLock(Request $request)
+    {
+        $device = Device::where('com_id', intval($request->get('com_id')))->first();
+        if (! is_null($device)) {
+            $device->update([
+                'lock_status' => intval($request->get('lock'))
+                ]);
+            return response()->ok();
+        }
+
+        return response()->error();
     }
 
     public function toggle(Request $request)
@@ -86,6 +117,38 @@ class EngineController extends Controller
 
         }
         return response()->error();
+    }
+
+    public function updateControlState(Request $request)
+    {
+        $target_lock = intval($request->get('lock_status'));
+        $device = $this->repository->find($request->get('device_id'));
+
+        if (is_null($device)) {
+            return response()->json(['message' => 'Device not found'], 400);
+        }
+
+        if (!$device->car->status) {
+            return response()->json(['message' => 'Car is not active'], 400);
+        }
+
+        if ($device->engine_status === 1 && $target_lock === 1) {
+            return response()->json(['message' => 'You can not warm engine'], 400);
+        }
+
+        try {
+            if ($target_lock === 1) {
+                $this->concox->lock($device->com_id);
+            } else {
+                $this->concox->unlock($device->com_id);
+            }
+        } catch (\Exception $th) {
+            return response()->json(['message' => 'Car is offline now'], 400);
+        }
+
+        $device->update([ 'lock_status' => $target_lock ]);
+
+        return response()->ok();
     }
 
     public function update(Request $request)

@@ -1,42 +1,83 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
+
 <head>
-	<title>My Radar</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="My Radar">
-    <meta name="keywords" content="Radar, Car, Vehicle, Tracking">
-    <meta name="author" content="HyperSystems">
+  <title>My Radar</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="My Radar">
+  <meta name="keywords" content="Radar, Car, Vehicle, Tracking">
+  <meta name="author" content="HyperSystems">
 
-    <!-- Mobile Specific Meta -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-		<!-- Favicons -->
-		<link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-		<link rel="apple-touch-icon" href="{{ asset('landing/images/apple-touch-icon.png') }}">
-		<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('landing/images/apple-touch-icon-72x72.png') }}">
-		<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('landing/images/apple-touch-icon-114x114.png') }}">
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ asset('landing/images/apple-touch-icon.png') }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('landing/images/apple-touch-icon-72x72.png') }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('landing/images/apple-touch-icon-114x114.png') }}">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Asap:400,400i,700" rel="stylesheet" type="text/css">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Asap:400,400i,700" rel="stylesheet" type="text/css">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ asset('landing/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('landing/css/ionicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('landing/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('landing/css/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('landing/css/jquery.fancybox.css') }}">
- 		<link rel="stylesheet" href="{{ asset('landing/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}">
-		{{-- owl.carousel --}}
-		<link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.carousel.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ asset('landing/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/ionicons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/slick.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/slick-theme.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/jquery.fancybox.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/animate.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}">
+  {{-- owl.carousel --}}
+  <link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <noscript><link rel="stylesheet" href="{{ asset('landing/css/no-js.css') }}"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="{{ asset('landing/css/no-js.css') }}"></noscript>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <style type="text/css">
+    @keyframes tada {
+      from {
+        transform: scale3d(1, 1, 1);
+      }
+
+      10%,
+      20% {
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      }
+
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, 3deg);
+      }
+
+      40%,
+      60%,
+      80% {
+        transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, -3deg);
+      }
+
+      to {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    .tada {
+      animation: tada 1.5s infinite;
+    }
+    .product-banner {
+      background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+    }
+  </style>
 
 </head>
+
 <body>
 
   <!-- #header -->
@@ -80,7 +121,7 @@
   <!-- #pricing end -->
 
   <div class="container">
-  	<div class="sep-border"></div> <!-- separator -->
+    <div class="sep-border"></div> <!-- separator -->
   </div>
 
   <!-- #counter -->
@@ -96,71 +137,76 @@
   <!-- #clients end -->
 
   <div class="container">
-  	<div class="sep-border"></div> <!-- separator -->
+    <div class="sep-border"></div> <!-- separator -->
   </div>
 
-    <!-- #footer -->
-    <footer id="footer">
+  <!-- #footer -->
+  <footer id="footer">
 
-      <!-- #contact -->
-      @include('landing.contact')
-      <!-- #contact end -->
+    <!-- #contact -->
+    @include('landing.contact')
+    <!-- #contact end -->
 
-      <!-- .footer-txt -->
-      <div class="footer-txt">
+    <!-- .footer-txt -->
+    <div class="footer-txt">
 
-        <!-- .container -->
-        <div class="container">
+      <!-- .container -->
+      <div class="container">
 
-          <div class="footer-logo">
-						{{-- <img src="{{ asset('landing/images/logo_footer.png') }}" alt="Logo"> --}}
-						<a href="{{ route('welcome') }}">
-							<img src="{{ asset('images/web_logo.png') }}" alt="Logo">
-						</a> <!-- site logo -->
-						myRADAR
-					</div> <!-- site logo -->
+        <div class="footer-logo">
+          {{-- <img src="{{ asset('landing/images/logo_footer.png') }}" alt="Logo"> --}}
+          <a href="{{ route('welcome') }}">
+            <img src="{{ asset('images/web_logo.png') }}" alt="Logo">
+          </a> <!-- site logo -->
+          myRADAR
+        </div> <!-- site logo -->
 
-          <div class="footer-copyright">
-          	<p class="copyright-txt">&copy; 2017, by <a href="{{route('welcome')}}" target="_blank">HyperSystems.com.bd</a></p>
-              <div class="socials">
-              	<a href="https://www.facebook.com/myradartracker/" title="Facebook" target="_blank"><i class="ion ion-social-facebook"></i></a>
-                  {{-- <a href="#" title="Twitter"><i class="ion ion-social-twitter"></i></a>
+        <div class="footer-copyright">
+          <p class="copyright-txt">&copy; 2017, by <a href="{{route('welcome')}}"
+              target="_blank">HyperSystems.com.bd</a></p>
+          <div class="socials">
+            <a href="https://www.facebook.com/myradartracker/" title="Facebook" target="_blank"><i
+                class="ion ion-social-facebook"></i></a>
+            {{-- <a href="#" title="Twitter"><i class="ion ion-social-twitter"></i></a>
                   <a href="#" title="Youtube"><i class="ion ion-social-youtube"></i></a>
                   <a href="#" title="Dribbble"><i class="ion ion-social-dribbble"></i></a> --}}
-              </div>
           </div>
-
         </div>
-        <!-- .container end -->
 
       </div>
-      <!-- .footer-txt end -->
+      <!-- .container end -->
 
-      <a href="#" class="" title="Back to Top!"><i class="ion ion-ios-arrow-up"></i></a>
+    </div>
+    <!-- .footer-txt end -->
 
-    </footer>
-    <!-- #footer end -->
+    <a href="#" class="" title="Back to Top!"><i class="ion ion-ios-arrow-up"></i></a>
 
-    <!-- JavaScripts -->
-		<script type="text/javascript" src="{{ asset('landing/js/jquery-1.11.3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('landing/js/jquery-migrate-1.2.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('landing/js/bootstrap.min.js') }}"></script>
+  </footer>
+  <!-- #footer end -->
+
+  <!-- JavaScripts -->
+  <script type="text/javascript" src="{{ asset('landing/js/jquery-1.11.3.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery-migrate-1.2.1.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/bootstrap.min.js') }}"></script>
 
 
-		<script type="text/javascript" src="{{ asset('landing/js/jquery.placeholder.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('landing/js/jquery.fitvids.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('landing/js/jquery.imgpreload.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('landing/js/waypoints.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('landing/js/slick.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('landing/js/jquery.fancybox.pack.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.placeholder.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.fitvids.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.imgpreload.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/waypoints.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/slick.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.fancybox.pack.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('landing/js/jquery.counterup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('landing/js/parallax.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendors/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('landing/js/script.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.counterup.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/parallax.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('vendors/owl.carousel/dist/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/script.js') }}"></script>
 
-		<script type="text/javascript">
-		$(document).ready(function(){
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#btn-e-heater').click(function() {
+        window.location.href = 'http://myradar.com.bd/eheater'
+      })
 			$('.owl-carousel').owlCarousel({
 				items: 1,
 				loop: true,
@@ -172,7 +218,8 @@
 	    	animateIn: 'fadeIn',
 			});
 		});
-	</script>
+  </script>
 
 </body>
+
 </html>

@@ -28,6 +28,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/enroll', 'Promotion\CampaignController@bikroy');
+Route::get('/eheater', 'Promotion\CampaignController@eheater');
 Route::post('/enroll/save', 'Promotion\CampaignController@enroll');
 
 Route::post('/login', 'Auth\CustomLoginController@login');

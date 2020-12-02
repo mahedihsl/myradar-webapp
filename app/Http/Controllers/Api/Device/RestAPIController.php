@@ -185,26 +185,30 @@ class RestAPIController extends Controller
     {
         // 0 means unlocked 1->locked
         // 0 means engine off 1 means on
-        $device_id = $request->get('device_id');
-        $car_id   = $request->get('car_id');
+        try {
+            $device_id = $request->get('device_id');
+            $car_id   = $request->get('car_id');
 
-        $Device = null;
-        $status = true;
-        if ($car_id) {
-            $Device = Car::find($car_id);
-            $status = $Device->status;
-            $Device = $Device->device;
-        } elseif ($device_id) {
-            $Device = Device::with(['car'])->find($device_id);
-            $status = $Device->car->status;
-        }
-        if (!is_null($Device) && $status) {
-            return response()->json([
-            'status'=>1,
-            'data'=>[
-                'lock_status'=> $Device->lock_status,
-                'engine_status'=> $Device->engine_status]
-            ]);
+            $Device = null;
+            $status = true;
+            if ($car_id) {
+                $Device = Car::find($car_id);
+                $status = $Device->status;
+                $Device = $Device->device;
+            } elseif ($device_id) {
+                $Device = Device::with(['car'])->find($device_id);
+                $status = $Device->car->status;
+            }
+            if (!is_null($Device) && $status) {
+                return response()->json([
+                'status'=>1,
+                'data'=>[
+                    'lock_status'=> $Device->lock_status,
+                    'engine_status'=> $Device->engine_status]
+                ]);
+            }
+        } catch (\Exception $th) {
+            //throw $th;
         }
         return response()->json([
             'status'=>0,

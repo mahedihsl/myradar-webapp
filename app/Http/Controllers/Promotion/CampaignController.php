@@ -15,6 +15,13 @@ class CampaignController extends Controller
         ]);
     }
 
+    public function eheater(Request $request)
+    {
+        return view('promotion.eheater')->with([
+            'status' => 0,
+        ]);
+    }
+
     public function enroll(Request $request)
     {
         Enroll::create([
@@ -23,7 +30,7 @@ class CampaignController extends Controller
             'email' => $request->get('email'),
         ]);
 
-        return view('promotion.bikroy')->with([
+        return redirect()->back()->with([
             'status' => 1,
         ]);
     }

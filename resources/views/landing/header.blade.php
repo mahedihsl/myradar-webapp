@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <div class="col-xs-12 col-md-10 col-md-offset-1" style="margin-top: 30px;">
                 <div class="owl-carousel">
                     <div>
                         <img src="{{ asset('images/features/vts.png') }}" alt="" class="img-rounded">
