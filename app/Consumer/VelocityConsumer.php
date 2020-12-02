@@ -6,6 +6,7 @@ use App\Entities\Device;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redis;
 use App\Events\SpeedLimitCrossEvent;
+use App\Service\Microservice\SpeedMicroservice;
 
 /**
  * @class VelocityConsumer
@@ -62,37 +63,40 @@ class VelocityConsumer extends ServiceConsumer
         $versionNumber = intval(str_replace('.', '', $device->version));
         if ($versionNumber < 484) return;
 
-        $key = 'speed:' . $device->com_id;
-        $speedRecords = Redis::command('LRANGE', [$key, 0, -1]);
-        if (sizeof($speedRecords) < 3) return;
+        $service = new SpeedMicroservice();
+        $service->observe($device->car_id, $this->getData());
 
-        $avgSpeed = collect($speedRecords)
-                        ->map(function($item) {
-                            return intval($item);
-                        })
-                        ->avg();
-        $limits = $device->car->speed_limit;
-        $key2 = 'current_speed_voilation:' . $device->com_id;
-        $currentViolation = intval(Redis::command('GET', [$key2]));
+        // $key = 'speed:' . $device->com_id;
+        // $speedRecords = Redis::command('LRANGE', [$key, 0, -1]);
+        // if (sizeof($speedRecords) < 3) return;
 
-        $hardLimit = $limits['hard']['value'];
-        $softLimit = $limits['soft']['value'];
+        // $avgSpeed = collect($speedRecords)
+        //                 ->map(function($item) {
+        //                     return intval($item);
+        //                 })
+        //                 ->avg();
+        // $limits = $device->car->speed_limit;
+        // $key2 = 'current_speed_voilation:' . $device->com_id;
+        // $currentViolation = intval(Redis::command('GET', [$key2]));
+
+        // $hardLimit = $limits['hard']['value'];
+        // $softLimit = $limits['soft']['value'];
         
-        if ($avgSpeed > $hardLimit && $currentViolation != $hardLimit) {
-            Redis::command('SET', [$key2, $hardLimit]);
-            event(new SpeedLimitCrossEvent($device, $hardLimit, 1));
-            return;
-        }
+        // if ($avgSpeed > $hardLimit && $currentViolation != $hardLimit) {
+        //     Redis::command('SET', [$key2, $hardLimit]);
+        //     event(new SpeedLimitCrossEvent($device, $hardLimit, 1));
+        //     return;
+        // }
 
-        if ($avgSpeed > $softLimit && $currentViolation != $softLimit) {
-            Redis::command('SET', [$key2, $softLimit]);
-            event(new SpeedLimitCrossEvent($device, $softLimit, 1));
-            return;
-        }
+        // if ($avgSpeed > $softLimit && $currentViolation != $softLimit) {
+        //     Redis::command('SET', [$key2, $softLimit]);
+        //     event(new SpeedLimitCrossEvent($device, $softLimit, 1));
+        //     return;
+        // }
 
-        if ($avgSpeed < $softLimit) {
-            Redis::command('SET', [$key2, 0]);
-        }
+        // if ($avgSpeed < $softLimit) {
+        //     Redis::command('SET', [$key2, 0]);
+        // }
     }
 
     public function setPositions($list)
