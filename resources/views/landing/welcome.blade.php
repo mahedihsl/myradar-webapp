@@ -71,6 +71,7 @@
     .tada {
       animation: tada 1.5s infinite;
     }
+
     .product-banner {
       background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
     }

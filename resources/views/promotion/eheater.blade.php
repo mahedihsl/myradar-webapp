@@ -35,8 +35,8 @@
 					<div class="w-full md:w-1/2 px-12">
 						<div class="flex flex-col">
 							<div class="w-full flex flex-row justify-start items-center">
-								<img src="{{asset('images/web_logo.png')}}" alt="myRADAR" class="w-auto h-32" />
-								<img src="{{asset('images/e-heater.png')}}" alt="e-Heater" class="w-auto h-24 ml-12 rounded" />
+								<img src="{{asset('images/web_logo.png')}}" alt="myRADAR" class="w-auto h-24 md:h-32" />
+								<img src="{{asset('images/e-heater.png')}}" alt="e-Heater" class="w-auto h-16 md:h-24 ml-4 md:ml-12 rounded" />
 							</div>
 							<div class="w-full">
 								<p class="mt-2">

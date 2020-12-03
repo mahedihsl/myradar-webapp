@@ -1,10 +1,12 @@
-<div class="header-content bg-color">
+<div class="header-content">
+
+    @include('landing.eheater')
 
     <!-- .container -->
     <div class="container">
 
         <div class="row">
-            <div class="col-xs-12 col-md-10 col-md-offset-1" style="margin-top: 30px;">
+            <div class="col-xs-12 col-md-10 col-md-offset-1 mt-12">
                 <div class="owl-carousel">
                     <div>
                         <img src="{{ asset('images/features/vts.png') }}" alt="" class="img-rounded">
