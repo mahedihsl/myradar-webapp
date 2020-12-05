@@ -1111,7 +1111,7 @@ img.parallax-slider.loaded, .ie img.parallax-slider, .ie9 img.parallax-slider {
 	color:#FFF;
 	text-align:center;
 	/*background:url(../images/bg-header-content.png) repeat top left;*/
-	padding-top:100px;
+	padding-top:85px;
 }
 #header .header-content.bg-color { background-color:transparent; }
 #header.header-no-img .header-content { padding-bottom:40px; }

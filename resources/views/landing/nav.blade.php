@@ -3,9 +3,13 @@
 	<!-- .container -->
 	<div class="container py-2">
 
-		<p class="py-2" style="border-bottom: 1px solid #f2f7ff25;">Sales: +8801907888839 &nbsp;&nbsp; |
-			&nbsp;&nbsp; Support: +8801907888899</p>
-		<div class="navbar-brand flex flex-row items-center">
+		<div class="w-full flex flex-col md:flex-row justify-start items-center border-b border-gray-100 border-opacity-50 py-2 mb-2">
+			<span class="text-2xl text-white">Sales: +8801907888839</span>
+			<span class="text-2xl text-white ml-0 md:ml-6">Support: +8801907888899</span>
+		</div>
+		{{-- <p class="py-2" style="border-bottom: 1px solid #f2f7ff25;">Sales: +8801907888839 &nbsp;&nbsp; |
+			&nbsp;&nbsp; Support: +8801907888899</p> --}}
+		<div class="navbar-brand flex flex-row items-center justify-center md:justify-start">
 			<a href="{{ route('welcome') }}">
 				<img src="{{ asset('images/web_logo.png') }}" alt="Logo">
 			</a> <!-- site logo -->
