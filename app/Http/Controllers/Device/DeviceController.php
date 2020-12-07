@@ -105,6 +105,11 @@ class DeviceController extends Controller
 
     public function changePhone(Request $request)
     {
+        $user = $this->getWebUser();
+        if (!$user->isAdmin()) {
+            return response()->error('Only admin can change device phone number');
+        }
+        
         $phone = $request->get('phone');
         $device = Device::where('car_id', $request->get('car_id'))->first();
 

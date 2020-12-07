@@ -13,7 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 <script>
-import CarCount from './CarCount.vue';
 import LastUsed from './LastUsed.vue';
 import VehiclesTable from './VehiclesTable.vue';
 import LastPosition from './LastPosition.vue';
@@ -39,7 +38,6 @@ export default {
   },
 
   components:{
-    CarCount,
     LastUsed,
     VehiclesTable,
     LastPosition

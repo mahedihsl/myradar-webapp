@@ -181,10 +181,10 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     public function getLatestActivity()
     {
         $records = Activity::where('user_id', $this->id)
-                        ->where('when', '>=', Carbon::today()->subDays(2))
+                        ->where('when', '>=', Carbon::today()->subDays(6))
                         ->get();
         $data = [];
-        for ($i=0; $i < 3; $i++) {
+        for ($i=0; $i < 7; $i++) {
             $data[$i] = ['l' => 0, 'r' => 0];
             for ($j=0; $j < $records->count(); $j++) {
                 if ($records[$j]->when->eq(Carbon::today()->subDays($i))) {

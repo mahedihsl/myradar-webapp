@@ -68,6 +68,10 @@ class EngagementController extends Controller
                 $data[0]['r'],
                 $data[1]['r'],
                 $data[2]['r'],
+                $data[3]['r'],
+                $data[4]['r'],
+                $data[5]['r'],
+                $data[6]['r'],
             ]);
         }
 
