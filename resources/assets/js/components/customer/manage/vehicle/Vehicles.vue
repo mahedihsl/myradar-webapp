@@ -123,7 +123,9 @@ export default {
     },
 
     onServiceLog(vehicle) {
-      this.renderTechnicalComp(LogTable, vehicle);
+      this.resetProps();
+      this.current = LogTable;
+      this.props.vehicle = vehicle;
     },
 
     onEventLog(vehicle) {
