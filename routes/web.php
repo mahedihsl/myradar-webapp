@@ -217,9 +217,6 @@ Route::group(['middleware' => ['auth', 'role:3']], function() {
     Route::get('/services/api', 'Service\ServiceApiController@index');
     Route::post('/services/api/update', 'Service\ServiceApiController@update');
 
-    Route::get('/service/log/{car}/{service}', 'Service\ServiceLogController@history');
-    Route::get('/service/report/{car_id}', 'Service\ServiceLogController@report');
-
     Route::get('/fuel/calibration/log/{id}', 'Calibration\FuelCalibrationController@index');
     Route::get('/user/fuel/calibration/log/{id}', 'Input\FuelCalibrationInputController@userData');
     Route::post('/fuel/calibration/save', 'Calibration\FuelCalibrationController@store');
@@ -325,6 +322,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/customer/info/{id}', 'Customer\ManageController@info');
     Route::get('/manage/customer/{id}', 'User\CustomerController@manage')->name('manage.customer');
     Route::get('/service/view', 'Customer\ServiceController@show')->name('service-view');
+
+    Route::get('/service/log/{car}/{service}', 'Service\ServiceLogController@history');
+    Route::get('/service/report/{car_id}', 'Service\ServiceLogController@report');
 
     // AJAX API
     Route::get('/user/account/info/{id}', 'Customer\AccountController@info');
