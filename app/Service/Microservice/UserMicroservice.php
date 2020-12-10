@@ -44,6 +44,10 @@ class UserMicroservice extends BaseService
     return $this->get('/session/list', compact('user_id'));
   }
 
+  public function logPasswordChange($user_id) {
+    return $this->post('/session/password-changed', compact('user_id'));
+  }
+
   public function test()
   {
     return $this->get('/test', [ 'user' => 'palatok' ]);

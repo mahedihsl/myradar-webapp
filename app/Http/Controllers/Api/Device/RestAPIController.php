@@ -33,6 +33,7 @@ use App\Mail\setNewPasswordMail;
 use App\Helpers\AppHelper;
 use Illuminate\Support\Facades\DB;
 use App\Service\Microservice\SmsMicroservice;
+use App\Service\Microservice\UserMicroservice;
 
 class RestAPIController extends Controller
 {
@@ -460,6 +461,10 @@ class RestAPIController extends Controller
             // The passwords match...
             $User->password = bcrypt($new_pass);
             $User->save();
+
+            $userService = new UserMicroservice();
+            $userService->logPasswordChange($User->id);
+            
             return response()->json(['status'=> 1,'message'=>'Password updated.Please Login'], 200);
         }
         return response()->json(['status'=> 0,'message'=>'Old password did not match! please provide correct one'], 200);
