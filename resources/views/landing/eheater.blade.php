@@ -6,7 +6,7 @@
 
   <div class="w-full flex flex-col md:flex-row items-center mt-4 md:mt-0">
     <div class="flex-shrink-0">
-      <img class="w-auto h-24 rounded" src="{{ asset('images/e-heater.png') }}" alt="" />
+      <img class="w-auto h-24 rounded" src="{{ asset('images/e-heater.jpg') }}" alt="" />
     </div>
     <div class="flex flex-col pl-6 flex-grow py-4 md:py-0">
       <span class="text-white font-bold text-4xl text-center md:text-left">

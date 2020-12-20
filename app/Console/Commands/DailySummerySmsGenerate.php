@@ -43,7 +43,10 @@ class DailySummerySmsGenerate extends Command
     public function handle()
     {
         $this->getEligibleCarIds()->each(function($item) {
-            dispatch(new DailySummerySmsJob($item));
+            dispatch(new DailySummerySmsJob($item, 'sms'));
+        });
+        $this->getNotifyableCarIds()->each(function($item) {
+            dispatch(new DailySummerySmsJob($item, 'push'));
         });
     }
 
@@ -67,5 +70,15 @@ class DailySummerySmsGenerate extends Command
                                         return $val->car_id;
                                     });
         return $car_ids;
+    }
+
+    public function getNotifyableCarIds()
+    {
+        return DrivingHour::where('when', Carbon::yesterday())
+                            ->where('duration', '>', 0)
+                            ->get(['car_id'])
+                            ->map(function ($val) {
+                                return $val->car_id;
+                            });
     }
 }

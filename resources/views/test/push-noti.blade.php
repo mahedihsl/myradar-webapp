@@ -20,6 +20,7 @@
               <option value="22">Geo Fence</option>
               <option value="23">Mileage</option>
               <option value="24">Payment</option>
+              <option value="26">Password</option>
             </select>
           </div>
           <div class="form-group">
