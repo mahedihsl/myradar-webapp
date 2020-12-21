@@ -1,11 +1,16 @@
 <template lang="html">
     <div class="col-xs-12 col-md-6">
       <div class="info-boxx large-box">
-        <div class="col-xs-6 col-md-8" style="padding-top: 10px;">
+        <div class="col-xs-12 col-md-6" style="padding-top: 10px;">
             <span class="box-title">MILEAGE REPORT</span>
         </div>
-        <div class="col-xs-6 col-md-4">
-            <div class="select-style pull-right" v-show="subscribed">
+        <div class="col-xs-12 col-md-6" style="display: flex; flex-direction: row; justify-content: end; align-items: center;">
+            <div>
+              <span v-if="total" class="total-value">
+                Total - {{ total }} Km
+              </span>
+            </div>
+            <div class="select-style" v-show="subscribed">
                 <select v-model="days">
                     <option value="5">Last 5 Days</option>
                     <option value="10">Last 10 Days</option>
@@ -41,6 +46,7 @@ export default {
     days: '5',
     empty: false,
     loading: true,
+    total: 0,
   }),
   watch: {
     days: function(newVal, oldVal) {
@@ -62,6 +68,7 @@ export default {
       this.loading = false;
       this.empty = !list.length;
       if (list.length) {
+        this.total = list.reduce((sum, item) => sum + item.value, 0).toFixed(1)
         let max = _.maxBy(list, o => o.value);
         this.chart.data.labels = list.map(el => el.date);
         this.chart.data.datasets[0].data = list.map(el => el.value);
@@ -121,4 +128,13 @@ export default {
 </script>
 
 <style lang="css">
+.total-value {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  padding: 5px 12px;
+  color: #616161;
+  font-size: 14px;
+  margin-right: 8px;
+  font-weight: 600;
+}
 </style>
