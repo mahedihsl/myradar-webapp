@@ -31,7 +31,8 @@ class AreaController extends Controller
 
   public function save(Request $request)
   {
-    $model = $this->repository->save(collect($request->all()), $this->getWebUser());
+    $user = User::find($request->get('user_id'));
+    $model = $this->repository->save(collect($request->all()), $user);
     return response()->json([
       'status' => 1,
       'id' => $model->id,

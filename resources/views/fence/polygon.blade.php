@@ -27,18 +27,18 @@ Area Geofence <strong> - {{ $customer->name }}</strong>
             <div class="col-md-3"
                 style="display: flex; flex-direction: column; justify-content: space-between; padding-right: 5px;">
                 <div class="flex-grow: 1; display: flex; flex-direction: column; overflow: scroll;">
-                    <area-list :items="geofences" @item-click="onGeofenceClick" @create="showAreaBuilder"></area-list>
+                    <area-list :items="geofences" @item-click="onGeofenceClick"></area-list>
 
                     <div style="display: flex; flex-direction: column;">
                         <strong>Geofence Library</strong>
                         <span>You can add geofence from this predefined list</span>
                     </div>
 
-                    <template-list :items="templates" @item-click="onTemplateClick" @create="showAreaBuilder">
+                    <template-list :items="templates" @item-click="onTemplateClick">
                     </template-list>
                 </div>
 
-                <button class="btn btn-primary" style="flex-shrink: 0" @click="$emit('create')">
+                <button class="btn btn-primary" style="flex-shrink: 0" @click="showAreaBuilder">
                     <i class="fa fa-plus mr-4"></i> Add Geofence
                 </button>
             </div>

@@ -9,21 +9,29 @@
     </div>
     <div class="col-xs-12 builder-content">
       <div class="how-it-works" v-show="showManual">
-        <button class="btn btn-default btn-sm btn-close-manual" @click="showManual = false">
+        <button
+          class="btn btn-default btn-sm btn-close-manual"
+          @click="showManual = false"
+        >
           <i class="fa fa-times"></i>
         </button>
         <label for="">How It Works ?</label>
         <ul>
-            <li>Give a meaningful name to your geofence</li>
-            <li>Click on the map to add a pin</li>
-            <li>You can add multiple pin to the map</li>
-            <li>You can drag a pin to change geofence area</li>
-            <li>Click an existing pin to remove from map</li>
-          </ul>
+          <li>Give a meaningful name to your geofence</li>
+          <li>Click on the map to add a pin</li>
+          <li>You can add multiple pin to the map</li>
+          <li>You can drag a pin to change geofence area</li>
+          <li>Click an existing pin to remove from map</li>
+        </ul>
       </div>
       <div class="form-group input-wrapper">
         <label for="name">Name of the Geofence</label>
-        <input type="text" class="form-control" v-model="name" placeholder="Ex: Dhanmondi"/>
+        <input
+          type="text"
+          class="form-control"
+          v-model="name"
+          placeholder="Ex: Dhanmondi"
+        />
         <div class="error-wrapper">
           <p v-for="(e, i) in errors" :key="i" class="text-danger single-error">
             <i class="fa fa-exclamation-circle mr-4"></i> {{ e }}
@@ -54,7 +62,7 @@ import SavingSpinner from './SavingSpinner'
 
 export default {
   components: {
-    SavingSpinner
+    SavingSpinner,
   },
   data: () => ({
     name: '',
@@ -71,11 +79,14 @@ export default {
     async save() {
       if (this.validate()) {
         this.loading = true
+        const userId = document.getElementsByName('customer_id')[0].value
         await this.$store.dispatch('save', {
           name: this.name,
-          coordinates: this.map.coordinates()
+          coordinates: this.map.coordinates(),
+          user_id: userId,
         })
-        await this.$store.dispatch('fetch')
+        await this.$store.dispatch('fetch', userId)
+        await this.$store.dispatch('templates')
         this.$emit('cancel')
       }
     },
@@ -92,8 +103,8 @@ export default {
         validationStatus = false
       }
       return validationStatus
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -109,7 +120,8 @@ export default {
   right: 20px;
   top: 20px;
 }
-.input-wrapper, .how-it-works {
+.input-wrapper,
+.how-it-works {
   width: 90%;
   margin: 20px auto;
 }
@@ -127,7 +139,7 @@ export default {
 }
 .how-it-works > p {
   font-weight: 500;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 .how-it-works > ul {
   font-size: 1.2rem;

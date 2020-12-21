@@ -83,10 +83,11 @@ export default new Vuex.Store({
       commit('ADD_GEOFENCE', res.body.data)
     },
 
-    async save({ commit }, { name, coordinates }) {
+    async save({ commit }, { name, coordinates, user_id }) {
       const res = await Vue.http.post('/geofence/save', {
         name,
         coordinates,
+        user_id,
       })
     },
 
