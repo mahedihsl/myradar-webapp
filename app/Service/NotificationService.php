@@ -8,11 +8,11 @@ use App\Events\UnregisteredTokenFound;
 
 class NotificationService
 {
-    public static $TYPE_ENGINE  = 2;
-    public static $TYPE_FENCE   = 3;
+    public static $TYPE_ENGINE  = 20;
+    public static $TYPE_FENCE   = 22;
     public static $TYPE_DATE    = 1;
-    public static $TYPE_SPEED   = 4;
-    public static $TYPE_BILL    = 5;
+    public static $TYPE_SPEED   = 21;
+    public static $TYPE_BILL    = 24;
     public static $TYPE_FUEL    = 6;
     public static $TYPE_GAS     = 7;
 

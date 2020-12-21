@@ -28,14 +28,19 @@ class GeofenceRepositoryEloquent extends BaseRepository implements GeofenceRepos
 
     public function save(Collection $data, User $user)
     {
-        return $this->create([
+        $props = [
             'name' => $data->get('name'),
             'vertices' => [
                 'type' => 'Polygon',
                 'coordinates' => $data->get('coordinates'),
-            ],
-            'user_id' => $user->id,
-        ]);
+            ]
+        ];
+        if (!$user->isCustomer()) {
+            $props['type'] = 'template';
+        } else {
+            $props['user_id'] = $user->id;
+        }
+        return $this->create($props);
     }
 
     public function ofUser($userId)
@@ -44,6 +49,27 @@ class GeofenceRepositoryEloquent extends BaseRepository implements GeofenceRepos
             return $query->where('user_id', $userId)
                 ->orderBy('created_at', 'desc');
         })->get();
+    }
+
+    public function templates()
+    {
+        return $this->scopeQuery(function($query) {
+            return $query->where('type', 'template')
+                ->orderBy('created_at', 'desc');
+        })->get();
+    }
+
+    public function attachTemplate($templateId, $userId)
+    {
+        $user = User::find($userId);
+        $template = Geofence::find($templateId);
+
+        $props = [
+            'user_id' => $user->id,
+            'name' => $template->name,
+            'vertices' => $template->vertices,
+        ];
+        return $this->create($props);
     }
 
     /**

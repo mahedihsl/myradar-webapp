@@ -25,7 +25,8 @@ class GeofenceTransformer extends TransformerAbstract
             'name'   => $model->name,
             'cars'   => $model->cars,
             'coordinates' => $model->vertices['coordinates'],
-            'created_at' => $model->created_at->format('d M Y')
+            'created_at' => $model->created_at->format('d M Y'),
+            'type' => strval($model->type),
         ];
     }
 }

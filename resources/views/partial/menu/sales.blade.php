@@ -23,6 +23,11 @@
   </a>
 </li>
 <li>
+  <a href="/geofence/library">
+    <i class="fa fa-map-signs"></i> <span>Geofence Library</span>
+  </a>
+</li>
+<li>
   <a href="/performance">
     <i class="fa fa-tachometer"></i> <span>Performance</span>
   </a>

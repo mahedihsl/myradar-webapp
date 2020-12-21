@@ -6,11 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     geofences: [],
+    templates: [],
     cars: [],
   },
   getters: {
     geofences(state) {
       return state.geofences
+    },
+    templates(state) {
+      return state.templates
     },
     cars(state) {
       return geofenceId => {
@@ -26,6 +30,14 @@ export default new Vuex.Store({
   mutations: {
     SET_GEOFENCES(state, list) {
       state.geofences = list
+    },
+
+    ADD_GEOFENCE(state, item) {
+      state.geofences.unshift(item)
+    },
+
+    SET_TEMPLATES(state, list) {
+      state.templates = list
     },
 
     SET_CARS(state, list) {
@@ -53,9 +65,22 @@ export default new Vuex.Store({
       commit('SET_CARS', res.body.data.items)
     },
 
-    async fetch({ commit }) {
-      const res = await Vue.http.get('/geofence/fetch')
+    async fetch({ commit }, userId) {
+      const res = await Vue.http.get(`/geofence/fetch?user_id=${userId}`)
       commit('SET_GEOFENCES', res.body.data)
+    },
+
+    async templates({ commit }) {
+      const res = await Vue.http.get('/geofence/templates')
+      commit('SET_TEMPLATES', res.body.data)
+    },
+
+    async attachTemplate({ commit }, { templateId, userId }) {
+      const res = await Vue.http.post('/geofence/attach/template', {
+        user_id: userId,
+        template_id: templateId,
+      })
+      commit('ADD_GEOFENCE', res.body.data)
     },
 
     async save({ commit }, { name, coordinates }) {

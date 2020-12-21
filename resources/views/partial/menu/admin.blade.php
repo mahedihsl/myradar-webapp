@@ -9,6 +9,11 @@
   </a>
 </li>
 <li>
+  <a href="/geofence/library">
+    <i class="fa fa-map-signs"></i> <span>Geofence Library</span>
+  </a>
+</li>
+<li>
   <a href="/billing">
     <i class="fa fa-money"></i> <span>Billing</span>
   </a>

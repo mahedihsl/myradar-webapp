@@ -1,7 +1,7 @@
 <template>
   <div class="info-panel">
     <div class="info-header">
-      <h4>Geofence Details</h4>
+      <h4>Template Details</h4>
     </div>
     <span class="close-round" @click="$emit('close')">
       <i class="fa fa-times"></i>
@@ -14,24 +14,15 @@
       </span>
     </div>
     <div class="info-actions">
-      <button class="btn btn-info"><i class="fa fa-pencil"></i> Edit</button>
-      <button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+      <button class="btn btn-info" @click="attach">
+        <i class="fa fa-add"></i>Add to my list
+      </button>
     </div>
-
-    <h5 class="car-list-title" v-if="geofence.type != 'template'">Manage Cars</h5>
-    <car-list
-      :items="vehicles"
-      @subscribe="onSubscribe"
-      @unsubscribe="onUnsubscribe"
-      v-if="geofence.type != 'template'"
-    ></car-list>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-
-import CarList from './CarList'
 
 export default {
   props: {
@@ -41,34 +32,10 @@ export default {
       default: null,
     },
   },
-  components: { CarList },
-  computed: {
-    ...mapGetters(['cars']),
-    vehicles() {
-      try {
-        return this.cars(this.geofence.id)
-      } catch (error) {
-        return []
-      }
-    },
-  },
   methods: {
-    async onSubscribe(c) {
-      try {
-        await this.$store.dispatch('subscribe', {
-          geofence: this.geofence,
-          car: c,
-        })
-      } catch (error) {}
-    },
-    async onUnsubscribe(c) {
-      try {
-        await this.$store.dispatch('unsubscribe', {
-          geofence: this.geofence,
-          car: c,
-        })
-      } catch (error) {}
-    },
+    attach() {
+      this.$emit('attach', this.geofence)
+    }
   },
 }
 </script>
@@ -118,10 +85,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-.info-actions > .btn {
-  width: 35%;
+  align-items: stretch;
 }
 
 .close-round {

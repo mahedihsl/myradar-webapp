@@ -9,11 +9,9 @@
         :class="{ active: i === activeIndex }"
       >
         <span class="area-name">{{ i + 1 }}. {{ v.name }}</span>
-        <div class="right-section" v-if="v.type != 'template'">
-          <span class="badge-car-count mr-6">
-            <i class="fa fa-car mr-2"></i>
-            <strong>{{ v.cars.length }}</strong>
-          </span>
+        <div
+          class="right-section"
+        >
           <i class="fa fa-chevron-right"></i>
         </div>
       </li>
@@ -41,7 +39,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .area-list {
   list-style: none;
   padding-left: 0;

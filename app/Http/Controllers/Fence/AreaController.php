@@ -16,16 +16,17 @@ class AreaController extends Controller
     $this->repository = $repository;    
   }
 
-  public function index(Request $request, $id)
+  public function index(Request $request)
   {
-    $customerName = '';
-    if ($id != \Auth::user()->id) {
-      $customerName = User::find($id)->name;
-    }
+    $customer = User::find($request->get('user_id'));
     return view('fence.polygon')->with([
-      'customer_id' => $id,
-      'customer_name' => $customerName,
+      'customer' => $customer,
     ]);
+  }
+
+  public function library(Request $request)
+  {
+    return view('fence.library');
   }
 
   public function save(Request $request)
@@ -41,8 +42,29 @@ class AreaController extends Controller
   {
     $geofences = $this->repository
                   ->setPresenter(GeofencePresenter::class)
-                  ->ofUser($this->getWebUser()->id);
+                  ->ofUser($request->get('user_id'));
+    
     return response()->json($geofences);
+  }
+
+  public function templates(Request $request)
+  {
+    $geofences = $this->repository
+                  ->setPresenter(GeofencePresenter::class)
+                  ->templates();
+    
+    return response()->json($geofences);
+  }
+
+  public function attachTemplate(Request $request)
+  {
+    $userId = $request->get('user_id');
+    $templateId = $request->get('template_id');
+
+    $geofence = $this->repository
+                  ->setPresenter(GeofencePresenter::class)
+                  ->attachTemplate($templateId, $userId);
+    return response()->json($geofence);
   }
 
   public function subscribe(Request $request)

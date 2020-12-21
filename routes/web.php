@@ -297,6 +297,8 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
 
     Route::get('/engagement/report', 'Admin\EngagementController@index');
     Route::get('/engagement/export', 'Admin\EngagementController@export');
+
+    Route::get('/geofence/library', 'Fence\AreaController@library');
 });
 
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');
@@ -350,11 +352,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/mileage/records/{carId}/{days}', 'Service\MileageController@records');
 
-    Route::get('/geofence/manage/{id}', 'Fence\AreaController@index')->name('area-fence');
+    Route::get('/geofence/manage', 'Fence\AreaController@index')->name('area-fence');
     Route::post('/geofence/save', 'Fence\AreaController@save');
     Route::post('/geofence/subscribe', 'Fence\AreaController@subscribe');
     Route::post('/geofence/unsubscribe', 'Fence\AreaController@unsubscribe');
     Route::get('/geofence/fetch', 'Fence\AreaController@fetch');
+    Route::get('/geofence/templates', 'Fence\AreaController@templates');
+    Route::post('/geofence/attach/template', 'Fence\AreaController@attachTemplate');
     Route::get('/geofence', 'Fence\FenceController@index');
     
     Route::get('/get/fence/log', 'Fence\FenceLogController@index');
