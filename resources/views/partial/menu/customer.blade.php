@@ -57,7 +57,7 @@
     </a>
   </li>
   <li>
-    <a href="{{route('area-fence', ['id' => $user->id])}}">
+    <a href="{{route('area-fence', ['user_id' => $user->id])}}">
       <i class="fa fa-map"></i> <span>Area Geofence</span>
     </a>
   </li>
@@ -83,7 +83,7 @@
     </a>
   </li>
   <li>
-    <a href="{{route('area-fence', ['id' => $user->id])}}">
+    <a href="{{route('area-fence', ['user_id' => $user->id])}}">
       <i class="fa fa-map"></i> <span>Area Geofence</span>
     </a>
   </li>
