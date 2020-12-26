@@ -19,7 +19,7 @@
         <label for="amount">Spare Amount (Tk)</label>
         <div class="form-inline">
 
-          <input type="text" class="form-control" id="spare-amount" v-model="spareAmount" placeholder="spareAmount">
+          <input type="text" class="form-control" id="spare-amount" v-model="spareAmount" placeholder="spareAmount" readonly/>
 
           <input type="radio" id="extra" value="extra" v-model="spareType">
           <label for="extra">Extra</label>
@@ -34,7 +34,7 @@
 
       <div class="form-group">
         <label for="date">Payment Date</label>
-        <datepicker v-model="date" name="uniquename" placeholder="Pick Date" input-class="form-control"></datepicker>
+        <datepicker v-model="date" :highlighted="[new Date()]" name="uniquename" placeholder="Pick Date" input-class="form-control"></datepicker>
         <p class="help-block"></p>
       </div>
 
@@ -107,7 +107,7 @@ export default {
       paid:[],
       amount: '',
       cars: [],
-      date: '',
+      date: new Date(),
 			note: '',
       selectedCar: null,
       loading: false,
