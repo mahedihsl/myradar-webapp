@@ -15,6 +15,9 @@
                     <option value="5">Last 5 Days</option>
                     <option value="10">Last 10 Days</option>
                     <option value="15">Last 15 Days</option>
+                    <option value="20">Last 20 Days</option>
+                    <option value="25">Last 25 Days</option>
+                    <option value="30">Last 30 Days</option>
                 </select>
             </div>
         </div>
