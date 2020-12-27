@@ -135,7 +135,13 @@ export default {
     },
 
     onDevicePhone(vehicle) {
-      this.renderTechnicalComp(DevicePhone, vehicle);
+      this.resetProps();
+      if (this.meta.admin === true) {
+        this.current = DevicePhone;
+        this.props.vehicle = vehicle;
+      } else {
+        toastr.error('Sorry, you do not have access');
+      }
     },
 
     onCarSettings(vehicle) {

@@ -25,6 +25,7 @@ class AccessController extends Controller
                 'meta' => [
                     'create' => $user->isAdmin() || $user->isAgent(),
                     'tech' => $user->isAdmin() || $user->isOperation(),
+                    'admin' => $user->isAdmin(),
                 ]
             ],
             'payment'   => [
