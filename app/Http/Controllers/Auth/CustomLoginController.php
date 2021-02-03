@@ -54,7 +54,11 @@ class CustomLoginController extends Controller
        {
            $user = Auth::user();
            if ($user->isEnabled()) {
-            $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+            if ($user->email == 'enterprise@myradar.com') {
+              $url = '/enterprise/demo-modules';
+            } else {
+              $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+            }
 
             return redirect($url);
            } else {
@@ -78,7 +82,11 @@ class CustomLoginController extends Controller
           {
               $user = Auth::user();
               if ($user->isEnabled()) {
-                $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+                if ($user->email == 'enterprise@myradar.com') {
+                  $url = '/enterprise/demo-modules';
+                } else {
+                  $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+                }
 
                 return redirect($url);
               } else {

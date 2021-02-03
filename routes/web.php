@@ -100,6 +100,10 @@ Route::get('/concox/lock/test', 'Device\ConcoxController@test');
 
 // Enterprise
 Route::group(['middleware' => ['auth', 'role:4', 'customer:2']], function() {
+    Route::get('/enterprise/demo-modules', function() {
+        return view('enterprise.modules');
+    });
+    
     Route::get('/enterprise/car/list/{id}', 'Enterprise\CarController@all');
 
     Route::get('/driver/manage', 'Enterprise\DriverController@manage')->name('drivers');
