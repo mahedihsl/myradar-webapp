@@ -102,7 +102,10 @@ class BillingController extends Controller
         $data = $this->repository
                     ->pushCriteria(new LastCreatedCriteria())
                     ->with(['car.payments'])
-                    ->all();
+                    ->all()
+                    ->filter(function($record) {
+                        return ! is_null($record->car);
+                    });
 
         Excel::create('FullBillingReport', function ($excel) use ($data) {
             $excel->sheet('data', function ($sheet) use ($data) {

@@ -99,7 +99,7 @@ class CustomerController extends Controller
 
     public function findByPhone(Request $request, $phone)
     {
-        $user = User::where('phone', 'like', '%'.$phone.'%')->first();
+        $user = User::where('phone', '=', $phone)->first();
 
         if ( ! is_null($user)) {
             $cars = $user->cars->map(function($car) {

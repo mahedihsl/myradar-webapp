@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\checkTaxDateExpired::class,
         \App\Console\Commands\checkFitnessDateExpired::class,
         \App\Console\Commands\DeviceResetMessage::class,
-        \App\Console\Commands\DailySummerySmsGenerate::class,
+        // \App\Console\Commands\DailySummerySmsGenerate::class,
 
         // Demo User purpose
         \App\Console\Commands\UpdateDemoCarEngine::class,
@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('engine:off 300')->cron('*/5 * * * * *');
         $schedule->command('taxDate:expiration')->dailyAt('24:00');
         $schedule->command('fitnessDate:expiration')->dailyAt('24:00');
-        $schedule->command('sms:summery')->dailyAt('09:00');
+        // $schedule->command('sms:summery')->dailyAt('09:00');
         $schedule->command('device:reset')->dailyAt('12:00');
         $schedule->command('queue:flush')->dailyAt('04:00');
 

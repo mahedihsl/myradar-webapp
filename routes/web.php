@@ -283,6 +283,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
 
     Route::get('/messages', 'Contact\MessageController@index');
 
+    Route::get('/car/everything', 'Car\CarController@everything');
     Route::get('/car/speed-limit/get/{id}', 'Car\SpeedController@show');
     Route::post('/car/speed-limit/update', 'Car\SpeedController@update');
 
@@ -303,6 +304,9 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::get('/engagement/export', 'Admin\EngagementController@export');
 
     Route::get('/geofence/library', 'Fence\AreaController@library');
+    Route::post('/geofence/remove', 'Fence\AreaController@remove');
+    Route::post('/geofence/sync-subscriptions', 'Fence\AreaController@syncSubscriptions');
+    Route::get('/geofence/fetch-subscriptions', 'Fence\AreaController@fetchSubscriptions');
 });
 
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');

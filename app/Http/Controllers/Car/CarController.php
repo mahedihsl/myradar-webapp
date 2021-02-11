@@ -22,6 +22,7 @@ use App\Entities\PromoScheme;
 use Carbon\Carbon;
 use Excel;
 use App\Transformers\VehicleExportTransformer;
+use App\Service\Microservice\CarMicroservice;
 
 class CarController extends Controller
 {
@@ -29,10 +30,12 @@ class CarController extends Controller
      * @var CarRepository
      */
     private $repository;
+    private $carService;
 
     public function __construct(CarRepository $repository)
     {
         $this->repository = $repository;
+        $this->carService = new CarMicroservice();
     }
 
     public function index(Request $request)
@@ -198,6 +201,11 @@ class CarController extends Controller
       }
 
       return ['status' => true, 'msg' => 'promo valid'];
+    }
+
+    public function everything(Request $request)
+    {
+        return response()->json($this->carService->all());
     }
 
 }

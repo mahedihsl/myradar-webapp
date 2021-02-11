@@ -33,4 +33,8 @@ return [
     'url' => 'http://myradar-speed',
     'port' => 6010,
   ],
+  'car' => [
+    'url' => 'http://myradar-car',
+    'port' => 6012,
+  ],
 ];

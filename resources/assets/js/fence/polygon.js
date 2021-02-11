@@ -15,6 +15,7 @@ import AreaList from './comp/AreaList.vue'
 import TemplateList from './comp/TemplateList.vue'
 import GeofenceInfo from './comp/GeofenceInfo.vue'
 import TemplateInfo from './comp/TemplateInfo.vue'
+import CarChooser from './comp/CarChooser.vue'
 
 new Vue({
   el: '#app',
@@ -26,6 +27,7 @@ new Vue({
     TemplateList,
     GeofenceInfo,
     TemplateInfo,
+    CarChooser,
   },
   data: {
     map: null,
@@ -41,11 +43,21 @@ new Vue({
 
     this.$store.dispatch('fetchCars', this.userId)
     this.$store.dispatch('fetch', this.userId)
+    this.$store.dispatch('fetchAllCars')
     this.$store.dispatch('templates')
-    this.map = new GeofenceMap('common-map')
-    this.map.init()
+
+    this.initMap()
   },
   methods: {
+    initMap() {
+      try {
+        this.map = new GeofenceMap('common-map')
+        this.map.init()
+      } catch (error) {
+        console.log(error)
+      }
+    },
+
     onGeofenceClick(geofence) {
       this.currentGeofence = geofence
       this.currentTemplate = null
@@ -71,6 +83,17 @@ new Vue({
 
     closeAreaBuilder() {
       this.$modal.hide('area-builder')
+    },
+
+    showCarChooser(geofence) {
+      this.currentGeofence = geofence
+      this.$store.dispatch('fetchSubscriptions', geofence.id)
+      this.$modal.show('car-chooser')
+    },
+
+    closeCarChooser() {
+      this.currentGeofence = null
+      this.$modal.hide('car-chooser')
     },
   },
 })

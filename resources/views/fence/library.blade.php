@@ -19,24 +19,19 @@ Area Geofence Library
     <modal name="area-builder" width="50%" height="auto" draggable="#builder-header">
         <area-builder @cancel="closeAreaBuilder"></area-builder>
     </modal>
+    <modal name="car-chooser" width="50%" height="80%" draggable="#chooser-header">
+        <car-chooser :geofence="currentGeofence" @cancel="closeCarChooser"></car-chooser>
+    </modal>
     <div class="col-md-12" v-if="!templates.length">
         <no-area-found @create="showAreaBuilder"></no-area-found>
     </div>
-    <div class="col-md-12" v-if="templates.length">
+    <div class="col-md-12">
         <div class="row row-eq-height">
             <div class="col-md-3"
                 style="display: flex; flex-direction: column; justify-content: space-between; padding-right: 5px;">
                 <div class="flex-grow: 1; display: flex; flex-direction: column; overflow: scroll;">
                     <area-list :items="templates" @item-click="onGeofenceClick">
                     </area-list>
-
-                    {{-- <div style="display: flex; flex-direction: column;">
-                        <strong>Geofence Library</strong>
-                        <span>You can add geofence from this predefined list</span>
-                    </div>
-
-                    <template-list :items="templates" @item-click="onTemplateClick" @create="showAreaBuilder">
-                    </template-list> --}}
                 </div>
 
                 <button class="btn btn-primary" style="flex-shrink: 0" @click="showAreaBuilder">
@@ -46,7 +41,8 @@ Area Geofence Library
             <div class="col-md-9" style="padding-left: 5px;">
                 <div style="position: relative; padding-left: 0; padding-right: 0;">
                     <div id="common-map"></div>
-                    <geofence-info :geofence="currentGeofence" @close="currentGeofence = null" v-if="!!currentGeofence">
+                    <geofence-info :geofence="currentGeofence" :choose-car="true" @chooser="showCarChooser"
+                        @close="currentGeofence = null" v-if="!!currentGeofence">
                     </geofence-info>
                 </div>
             </div>

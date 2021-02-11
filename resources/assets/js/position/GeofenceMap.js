@@ -9,7 +9,7 @@ export default class GeofenceMap extends Map {
     this.polygon = null
     this.pins = []
 
-    this.markerMap = new Map()
+    // this.markerMap = new Map()
   }
 
   showPolygon(coordinates) {

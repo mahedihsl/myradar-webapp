@@ -15,10 +15,21 @@
     </div>
     <div class="info-actions">
       <button class="btn btn-info"><i class="fa fa-pencil"></i> Edit</button>
-      <button class="btn btn-danger"><i class="fa fa-trash"></i> Delete</button>
+      <button class="btn btn-danger" @click="deleteFence">
+        <i class="fa fa-trash"></i> Delete
+      </button>
+      <button
+        class="btn btn-success"
+        style="margin-top: 20px; width: 50%;"
+        @click="$emit('chooser', geofence)"
+      >
+        <i class="fa fa-plus"></i> Assign Car
+      </button>
     </div>
 
-    <h5 class="car-list-title" v-if="geofence.type != 'template'">Manage Cars</h5>
+    <h5 class="car-list-title" v-if="geofence.type != 'template'">
+      Manage Cars
+    </h5>
     <car-list
       :items="vehicles"
       @subscribe="onSubscribe"
@@ -40,6 +51,11 @@ export default {
       required: false,
       default: null,
     },
+    chooseCar: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   components: { CarList },
   computed: {
@@ -53,6 +69,12 @@ export default {
     },
   },
   methods: {
+    async deleteFence() {
+      try {
+        await this.$store.dispatch('remove', this.geofence.id)
+        this.$emit('close')
+      } catch (error) {}
+    },
     async onSubscribe(c) {
       try {
         await this.$store.dispatch('subscribe', {
@@ -117,6 +139,7 @@ export default {
   padding: 15px 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
