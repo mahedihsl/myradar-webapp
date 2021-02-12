@@ -2,8 +2,10 @@
   <div class="row">
     <div class="row header">
       <div class="col-md-12">
-        <h4 class="text-center text-primary">Update Car: {{vehicle.reg_no}}</h4>
-        <hr>
+        <h4 class="text-center text-primary">
+          Update Car: {{ vehicle.reg_no }}
+        </h4>
+        <hr />
       </div>
     </div>
     <div class="col-md-8 col-md-offset-2">
@@ -11,22 +13,37 @@
         <div class="col-xs-6">
           <div class="form-group">
             <label>Name <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.name" class="form-control" placeholder="ex: Toyota">
-            <span class="helper-text text-danger">{{error.name}}</span>
+            <input
+              type="text"
+              v-model="info.name"
+              class="form-control"
+              placeholder="ex: Toyota"
+            />
+            <span class="helper-text text-danger">{{ error.name }}</span>
           </div>
         </div>
         <div class="col-xs-6">
           <div class="form-group">
             <label>Model <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.model" class="form-control" placeholder="ex: 2012">
-            <span class="helper-text text-danger">{{error.model}}</span>
+            <input
+              type="text"
+              v-model="info.model"
+              class="form-control"
+              placeholder="ex: 2012"
+            />
+            <span class="helper-text text-danger">{{ error.model }}</span>
           </div>
         </div>
         <div class="col-xs-6">
           <div class="form-group">
             <label>Reg No. <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.reg_no" class="form-control" placeholder="ex: Dhaka-Ka xx-xxxx">
-            <span class="helper-text text-danger">{{error.reg_no}}</span>
+            <input
+              type="text"
+              v-model="info.reg_no"
+              class="form-control"
+              placeholder="ex: Dhaka-Ka xx-xxxx"
+            />
+            <span class="helper-text text-danger">{{ error.reg_no }}</span>
           </div>
         </div>
         <div class="col-xs-6">
@@ -37,7 +54,20 @@
               <option value="2">Van</option>
               <option value="3">Bike</option>
               <option value="4">Bus</option>
+              <option value="5">Generator</option>
+              <option value="6">RMS</option>
             </select>
+          </div>
+        </div>
+        <div class="col-xs-6" v-if="info.type == 5">
+          <div class="form-group">
+            <label>Fuel Tank Volume (in Litre)</label>
+            <input
+              type="number"
+              v-model="info.volume"
+              class="form-control"
+              placeholder="Volume in Litre"
+            />
           </div>
         </div>
         <div class="col-xs-6">
@@ -53,7 +83,12 @@
           <div class="form-group">
             <label>Package</label>
             <select class="form-control" v-model="selectedPackage">
-              <option v-bind:value="v.id" v-for="(v, i) in packages" v-bind:key="i">{{v.name}}</option>
+              <option
+                v-bind:value="v.id"
+                v-for="(v, i) in packages"
+                v-bind:key="i"
+                >{{ v.name }}</option
+              >
             </select>
           </div>
         </div>
@@ -88,11 +123,20 @@
         <div class="col-xs-6">
           <div class="form-group">
             <label>Bill</label>
-            <input type="text" v-model="info.bill" class="form-control" placeholder="ex: 500">
+            <input
+              type="text"
+              v-model="info.bill"
+              class="form-control"
+              placeholder="ex: 500"
+            />
           </div>
         </div>
         <div class="pull-right">
-          <button class="btn btn-success right-space" :class="{disabled: spinner}" @click="save">
+          <button
+            class="btn btn-success right-space"
+            :class="{ disabled: spinner }"
+            @click="save"
+          >
             <i class="fa fa-spinner fa-spin" v-if="spinner"></i>
             <i class="fa fa-save" v-if="!spinner"></i> Update
           </button>
@@ -105,8 +149,8 @@
   </div>
 </template>
 <script>
-import EventBus from '../../../../util/EventBus';
-import CarApi from '../../../../api/CarApi';
+import EventBus from '../../../../util/EventBus'
+import CarApi from '../../../../api/CarApi'
 
 export default {
   props: ['vehicle'],
@@ -120,10 +164,11 @@ export default {
       cng: '1',
       reg_no: '',
       services: [],
-      new_service:'1',
+      new_service: '1',
       voice_service: '0',
       engine_control: 'lock',
       bill: '',
+      volume: 0,
     },
     error: {
       name: '',
@@ -134,81 +179,86 @@ export default {
     packages: [],
   }),
   mounted() {
-    EventBus.$on('car-details-found', this.onCarDetailsFound.bind(this));
-    EventBus.$on('car-update-done', this.onCarUpdated.bind(this));
-    EventBus.$on('car-validation-failed', this.onValidationFailed.bind(this));
-    EventBus.$on('service-packages-found', this.onPackagesFound.bind(this));
+    EventBus.$on('car-details-found', this.onCarDetailsFound.bind(this))
+    EventBus.$on('car-update-done', this.onCarUpdated.bind(this))
+    EventBus.$on('car-validation-failed', this.onValidationFailed.bind(this))
+    EventBus.$on('service-packages-found', this.onPackagesFound.bind(this))
 
-    let api = new CarApi(EventBus);
-    api.find(this.vehicle.id);
-    api.getPackages();
+    let api = new CarApi(EventBus)
+    api.find(this.vehicle.id)
+    api.getPackages()
   },
   methods: {
     onCarDetailsFound(data) {
-      this.info.id = data.id;
-      this.info.name = data.name;
-      this.info.model = data.model;
-      this.info.cng = data.cng;
-      this.info.reg_no = data.reg_no;
-      this.info.new_service = data.new_service;
-      this.info.voice_service = data.voice_service;
-      this.info.engine_control = data.engine_control;
-      this.info.bill = data.bill;
+      this.info.id = data.id
+      this.info.name = data.name
+      this.info.model = data.model
+      this.info.cng = data.cng
+      this.info.reg_no = data.reg_no
+      this.info.new_service = data.new_service
+      this.info.voice_service = data.voice_service
+      this.info.engine_control = data.engine_control
+      this.info.bill = data.bill
       if (data.type) {
-        this.info.type = `${data.type}`;
+        this.info.type = `${data.type}`
+      }
+      if (data.meta.volume) {
+        this.info.volume = +data.meta.volume
       }
       if (data.package > -1) {
-        this.selectedPackage = `${data.package}`;
+        this.selectedPackage = `${data.package}`
       }
     },
 
     save() {
-      this.spinner = true;
+      this.spinner = true
 
-      this.info.services = _.find(this.packages, p => p.id == this.selectedPackage).services;
+      this.info.services = _.find(
+        this.packages,
+        p => p.id == this.selectedPackage
+      ).services
 
-      let api = new CarApi(EventBus);
-      api.update(this.info);
+      let api = new CarApi(EventBus)
+      api.update(this.info)
     },
 
     cancel() {
-      EventBus.$emit('show-car-list');
+      EventBus.$emit('show-car-list')
     },
 
     onCarUpdated(data) {
       if (this.vehicle.id == data.id) {
-        this.spinner = false;
-        toastr.success('Car information updated');
-        this.cancel();
+        this.spinner = false
+        toastr.success('Car information updated')
+        this.cancel()
       }
     },
 
     onValidationFailed(error) {
-      this.spinner = false;
+      this.spinner = false
       for (let k in this.error) {
-        this.error[k] = '';
+        this.error[k] = ''
       }
 
       for (let k in error) {
         if (error.hasOwnProperty(k)) {
           if (error[k].length) {
-            this.error[k] = error[k][0];
+            this.error[k] = error[k][0]
           }
         }
       }
     },
 
     onPackagesFound(list) {
-      this.packages = list;
-    }
+      this.packages = list
+    },
   },
   beforeDestroy() {
-    EventBus.$off('car-details-found', this.onCarDetailsFound);
-    EventBus.$off('car-update-done', this.onCarUpdated);
-    EventBus.$off('car-validation-failed', this.onValidationFailed);
-    EventBus.$off('service-packages-found', this.onPackagesFound);
-  }
+    EventBus.$off('car-details-found', this.onCarDetailsFound)
+    EventBus.$off('car-update-done', this.onCarUpdated)
+    EventBus.$off('car-validation-failed', this.onValidationFailed)
+    EventBus.$off('service-packages-found', this.onPackagesFound)
+  },
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

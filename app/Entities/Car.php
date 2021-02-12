@@ -23,6 +23,8 @@ class Car extends Eloquent implements Presentable
     const TYPE_MICRO = 2;
     const TYPE_BIKE = 3;
     const TYPE_BUS = 4;
+    const TYPE_GENERATOR = 5;
+    const TYPE_RMS = 6;
 
     const CNG_TYPE_A = 1;
     const CNG_TYPE_B = 2;

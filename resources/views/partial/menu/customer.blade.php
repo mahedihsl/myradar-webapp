@@ -118,6 +118,11 @@
     </a>
   </li>
   <li>
+    <a href="{{route('generators')}}">
+      <i class="fa fa-flash"></i> <span>Generators</span>
+    </a>
+  </li>
+  <li>
     <a href="{{route('drivers')}}">
       <i class="fa fa-users"></i> <span>Manage Drivers</span>
     </a>

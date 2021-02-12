@@ -33,8 +33,16 @@ return [
     'url' => 'http://myradar-speed',
     'port' => 6010,
   ],
+  'mileage' => [
+    'url' => 'http://myradar-mileage',
+    'port' => 6011,
+  ],
   'car' => [
     'url' => 'http://myradar-car',
     'port' => 6012,
+  ],
+  'fuel' => [
+    'url' => 'http://myradar-fuel',
+    'port' => 6013,
   ],
 ];

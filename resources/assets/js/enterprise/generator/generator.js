@@ -1,0 +1,39 @@
+require('../../bootstrap')
+
+import store from './store'
+import { mapGetters } from 'vuex'
+
+import EmptyBox from '../../components/util/EmptyBox.vue'
+import FuelMeter from '../../components/customer/service/FuelMeter.vue'
+import FuelGraph from '../../components/customer/service/FuelGraph.vue'
+
+new Vue({
+  el: '#app',
+  store,
+  components: {
+    EmptyBox,
+    FuelMeter,
+    FuelGraph,
+  },
+  data: {
+    chartType: 'daily',
+  },
+  computed: {
+    ...mapGetters(['generators', 'fuel', 'history']),
+  },
+  mounted() {},
+  methods: {
+    async initialize() {
+      await this.$store.dispatch('fetch')
+
+      this.fetchFuelValue()
+      setInterval(this.fetchFuelValue.bind(this), 10000)
+    },
+
+    fetchFuelValue() {
+      if (this.generators.length) {
+        this.$store.dispatch('fetchFuel', this.generators[0].id)
+      }
+    }
+  },
+})

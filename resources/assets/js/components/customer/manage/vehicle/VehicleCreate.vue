@@ -50,7 +50,16 @@
               <option value="1">Car</option>
               <option value="2">Van</option>
               <option value="3">Bike</option>
+              <option value="4">Bus</option>
+              <option value="5">Generator</option>
+              <option value="6">RMS</option>
             </select>
+          </div>
+        </div>
+        <div class="col-xs-6" v-if="info.type == 5">
+          <div class="form-group">
+            <label>Fuel Tank Volume (in Litre)</label>
+            <input type="number" v-model="info.volume" class="form-control" placeholder="Volume in Litre">
           </div>
         </div>
         <div class="col-xs-6">
@@ -122,6 +131,7 @@ export default {
       activation_key: '',
       new_service: '1',
       voice_service: '0',
+      volume: 0, // application for 'generator' type
     },
     error: {
       name: '',

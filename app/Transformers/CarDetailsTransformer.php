@@ -47,6 +47,7 @@ class CarDetailsTransformer extends TransformerAbstract
             'voice_service' => intval($model->voice_service),
             'engine_control' => $control_method,
             'bill'      => $model->bill,
+            'meta'      => $model->meta_data,
         ];
     }
 

@@ -104,6 +104,9 @@ Route::group(['middleware' => ['auth', 'role:4', 'customer:2']], function() {
         return view('enterprise.modules');
     });
     
+    Route::get('/generators', 'Enterprise\GeneratorController@index')->name('generators');
+    Route::get('/generator/list', 'Enterprise\GeneratorController@all');
+
     Route::get('/enterprise/car/list/{id}', 'Enterprise\CarController@all');
 
     Route::get('/driver/manage', 'Enterprise\DriverController@manage')->name('drivers');
@@ -312,6 +315,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');
 
 Route::get('/fuel/latest/{id}', 'Service\FuelController@latest');
+Route::get('/fuel/latestv2', 'Service\FuelController@latestv2');
 Route::get('/fuel/history/{id}/{day}', 'Service\FuelController@history');
 Route::get('/gas/latest/{id}', 'Service\GasController@latest');
 Route::get('/gas/history/{id}/{day}', 'Service\GasController@history');

@@ -14,6 +14,8 @@ use App\Criteria\BeforeWhenCriteria;
 use App\Criteria\LastUpdatedCriteria;
 use App\Presenters\DailyFuelPresenter;
 use App\Entities\Device;
+use App\Service\Microservice\FuelMicroservice;
+use App\Service\Microservice\ServiceException;
 use Carbon\Carbon;
 
 class FuelController extends Controller
@@ -22,10 +24,12 @@ class FuelController extends Controller
      * @var DailyFuelRepository
      */
     private $dailyRepo;
+    private $fuelService;
 
     public function __construct(DailyFuelRepository $dailyRepo)
     {
         $this->dailyRepo = $dailyRepo;
+        $this->fuelService = new FuelMicroservice();
     }
 
     public function latest(Request $request, $id)
@@ -45,6 +49,18 @@ class FuelController extends Controller
         }
 
         return response()->ok(['value' => 0]);
+    }
+
+    public function latestv2(Request $request)
+    {
+        try {
+            $car_id = $request->get('car_id', null);
+            $device_id = $request->get('device_id', null);
+            $data = $this->fuelService->latest($device_id, $car_id);
+            return response()->json($data);
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     /**

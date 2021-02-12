@@ -28,15 +28,21 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
 
     public function save(Collection $data)
     {
+        $vehicleType = intval($data->get('type'));
+        $metaInfo = [ 'cng_type' => intval($data->get('cng')) ];
+
+        if ($vehicleType == Car::TYPE_GENERATOR) {
+            $metaInfo['volume'] = floatval($data->get('volume'));
+        }
 
         $car = $this->create([
             'name'        => $data->get('name'),
             'model'       => $data->get('model'),
             'reg_no'      => $data->get('reg_no'),
             'user_id'     => $data->get('user_id'),
-            'type'        => intval($data->get('type')),
+            'type'        => $vehicleType,
             'services'    => $data->get('services'),
-            'meta_data'   => ['cng_type' => intval($data->get('cng'))],
+            'meta_data'   => $metaInfo,
             'new_service' => intval($data->get('new_service')),
             'voice_service'  => intval($data->get('voice_service')),
         ]);
@@ -52,7 +58,8 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
 
     public function change(Collection $data)
     {
-        $car = $this->update([
+        $vehicleType = intval($data->get('type'));
+        $props = [
             'name'     => $data->get('name'),
             'model'    => $data->get('model'),
             'reg_no'   => $data->get('reg_no'),
@@ -62,7 +69,13 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
             'new_service' => intval($data->get('new_service')),
             'voice_service' => intval($data->get('voice_service')),
             'bill'        => $data->get('bill'),
-        ], $data->get('id'));
+        ];
+
+        if ($vehicleType == Car::TYPE_GENERATOR) {
+            $props['meta_data.volume'] = floatval($data->get('volume'));
+        }
+
+        $car = $this->update($props, $data->get('id'));
         $device = $car->device;
         if ( ! is_null($device)) {
             $device->update([

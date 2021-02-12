@@ -14,4 +14,9 @@ class CarMicroservice extends BaseService
   {
     return $this->get('/car/all');
   }
+  
+  public function carsOfUser($user_id, $type)
+  {
+    return $this->get('/car/of-user', compact('user_id', 'type'));
+  }
 }

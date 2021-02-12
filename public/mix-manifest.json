@@ -1,5 +1,5 @@
 {
-    "/js/customer/manage.js": "/js/customer/manage.js?id=9bbef81b9d9cce035e0c",
+    "/js/customer/manage.js": "/js/customer/manage.js?id=ca3bd056bb88e646be16",
     "/js/fence/polygon.js": "/js/fence/polygon.js?id=051c14defc9a3697c852",
     "/js/enterprise/tail.js": "/js/enterprise/tail.js?id=5148c1d4ba0a47874f31",
     "/js/customer/promotion/index.js": "/js/customer/promotion/index.js?id=2b9d21357073a04b8fdb",
@@ -8,7 +8,7 @@
     "/js/enterprise/driving.js": "/js/enterprise/driving.js?id=4805261cca2c730216a5",
     "/js/device/performance.js": "/js/device/performance.js?id=f4d4df4ffbea18029e93",
     "/js/device/last_pulse.js": "/js/device/last_pulse.js?id=c02903fb3da002d3a4e8",
-    "/js/enterprise/map.js": "/js/enterprise/map.js?id=a3aa63a58562bc7c503e",
+    "/js/enterprise/map.js": "/js/enterprise/map.js?id=d37fb224cf7cc8d3caac",
     "/js/position/live.js": "/js/position/live.js?id=3da559cdf546a7bcced3",
     "/js/position/history.js": "/js/position/history.js?id=188d4fa54dd2c662987c",
     "/js/enterprise/driver.js": "/js/enterprise/driver.js?id=b2a5149d8064edf56ea0",
@@ -16,14 +16,15 @@
     "/js/enterprise/settings.js": "/js/enterprise/settings.js?id=9dc2aa023a797b0b7d75",
     "/js/customer/index.js": "/js/customer/index.js?id=b2e9c1e3bcdcb7d857a9",
     "/js/enterprise/employee.js": "/js/enterprise/employee.js?id=ba145e144096b0d37c87",
-    "/js/service/complain/index.js": "/js/service/complain/index.js?id=1584ee14096bec733ac6",
+    "/js/service/complain/index.js": "/js/service/complain/index.js?id=196cbcd67de2b67ef2f2",
     "/js/fence/index.js": "/js/fence/index.js?id=8382c356a1804926d585",
+    "/js/enterprise/generator.js": "/js/enterprise/generator.js?id=91340e3ca5fc097f1582",
     "/js/car/index.js": "/js/car/index.js?id=e15dfceb53813bfed8b0",
-    "/js/bus/index.js": "/js/bus/index.js?id=4738cf5c34ea51cddea2",
+    "/js/bus/index.js": "/js/bus/index.js?id=ff877fb9d28ef518f52a",
     "/js/enterprise/tracker.js": "/js/enterprise/tracker.js?id=ff8785607716df144b75",
     "/js/device/index.js": "/js/device/index.js?id=cc273cd4f4fbd6697701",
     "/js/customer/refuel.js": "/js/customer/refuel.js?id=9e33131f49e39a8e0c3b",
     "/js/app.js": "/js/app.js?id=66dfbdaa1afcf8c39939",
     "/css/app.css": "/css/app.css?id=671e6b445b7d2780718c",
-    "/js/customer/tracker.js": "/js/customer/tracker.js?id=204f3c7bc89f12f261ab"
+    "/js/customer/tracker.js": "/js/customer/tracker.js?id=ebe7143097a7a0928b0c"
 }
