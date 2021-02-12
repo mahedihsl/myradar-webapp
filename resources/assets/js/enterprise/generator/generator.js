@@ -21,19 +21,33 @@ new Vue({
   computed: {
     ...mapGetters(['generators', 'fuel', 'history']),
   },
-  mounted() {},
+  mounted() {
+    this.initialize()
+  },
   methods: {
     async initialize() {
       await this.$store.dispatch('fetch')
 
       this.fetchFuelValue()
+      this.fetchFuelHistory()
+
       setInterval(this.fetchFuelValue.bind(this), 10000)
+      setInterval(this.fetchFuelHistory.bind(this), 60000)
     },
 
     fetchFuelValue() {
       if (this.generators.length) {
         this.$store.dispatch('fetchFuel', this.generators[0].id)
       }
-    }
+    },
+
+    fetchFuelHistory() {
+      if (this.generators.length) {
+        this.$store.dispatch('fetchHistory', {
+          car_id: this.generators[0].id,
+          type: this.chartType,
+        })
+      }
+    },
   },
 })

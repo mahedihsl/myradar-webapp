@@ -41,5 +41,10 @@ export default new Vuex.Store({
       const res = await Vue.http.get(`/fuel/latestv2?car_id=${car_id}`)
       commit('SET_FUEL', res.body.value)
     },
+    
+    async fetchHistory({ commit }, {car_id, type}) {
+      const res = await Vue.http.get(`/fuel/historyv2?car_id=${car_id}&type=${type}`)
+      commit('SET_HISTORY', res.body)
+    },
   },
 })

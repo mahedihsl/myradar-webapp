@@ -85,6 +85,18 @@ class FuelController extends Controller
         ]);
     }
 
+    public function historyv2(Request $request)
+    {
+        try {
+            $car_id = $request->get('car_id');
+            $type = $request->get('type');
+            $data = $this->fuelService->history($car_id, $type);
+            return response()->json($data);
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
+
     /**
      * Api for Mobile client
      * @param  Request $request [description]

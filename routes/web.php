@@ -317,6 +317,7 @@ Route::post('/message/save', 'Contact\MessageController@store')->name('save-mess
 Route::get('/fuel/latest/{id}', 'Service\FuelController@latest');
 Route::get('/fuel/latestv2', 'Service\FuelController@latestv2');
 Route::get('/fuel/history/{id}/{day}', 'Service\FuelController@history');
+Route::get('/fuel/historyv2', 'Service\FuelController@historyv2');
 Route::get('/gas/latest/{id}', 'Service\GasController@latest');
 Route::get('/gas/history/{id}/{day}', 'Service\GasController@history');
 
