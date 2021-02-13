@@ -73,8 +73,10 @@ export default {
   methods: {
     async deleteFence() {
       try {
-        await this.$store.dispatch('remove', this.geofence.id)
-        this.$emit('close')
+        if (confirm('Are you sure ?')) {
+          await this.$store.dispatch('remove', this.geofence.id)
+          this.$emit('close')
+        }
       } catch (error) {}
     },
     async onSubscribe(c) {

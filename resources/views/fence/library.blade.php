@@ -16,13 +16,13 @@ Area Geofence Library
 @section('content')
 <div class="row" id="app">
     <input type="hidden" name="customer_id" value="{{ Auth::user()->id }}" />
-    <modal name="area-builder" width="50%" height="auto" draggable="#builder-header">
+    <modal name="area-builder" width="65%" height="auto" draggable="#builder-header">
         <area-builder @cancel="closeAreaBuilder"></area-builder>
     </modal>
     <modal name="car-chooser" width="50%" height="80%" draggable="#chooser-header">
         <car-chooser :geofence="currentGeofence" @cancel="closeCarChooser"></car-chooser>
     </modal>
-    <modal name="area-editor" width="50%" height="auto" draggable="#editor-header">
+    <modal name="area-editor" width="65%" height="auto" draggable="#editor-header">
         <area-editor @cancel="closeAreaEditor" :geofence="currentGeofence"></area-editor>
     </modal>
     <div class="col-md-12" v-if="!templates.length">
