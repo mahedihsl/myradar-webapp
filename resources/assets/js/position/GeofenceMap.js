@@ -64,10 +64,10 @@ export default class GeofenceMap extends Map {
     }
   }
 
-  addPin(event) {
+  addPin(latlng) {
     const newId = uuid()
     const pin = new Pin(this, newId, {
-      position: event.latLng,
+      position: latlng,
       map: this.map,
       draggable: true,
     })
@@ -81,10 +81,14 @@ export default class GeofenceMap extends Map {
     return pin
   }
 
+  onClick(event) {
+    this.addPin(event.latLng)
+  }
+
   init(center = null) {
     super.init(center)
 
-    this.map.addListener('click', this.addPin.bind(this))
+    this.map.addListener('click', this.onClick.bind(this))
   }
 
   isPolygonDefined() {

@@ -22,10 +22,13 @@ Area Geofence Library
     <modal name="car-chooser" width="50%" height="80%" draggable="#chooser-header">
         <car-chooser :geofence="currentGeofence" @cancel="closeCarChooser"></car-chooser>
     </modal>
+    <modal name="area-editor" width="50%" height="auto" draggable="#editor-header">
+        <area-editor @cancel="closeAreaEditor" :geofence="currentGeofence"></area-editor>
+    </modal>
     <div class="col-md-12" v-if="!templates.length">
         <no-area-found @create="showAreaBuilder"></no-area-found>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" v-show="templates.length">
         <div class="row row-eq-height">
             <div class="col-md-3"
                 style="display: flex; flex-direction: column; justify-content: space-between; padding-right: 5px;">
@@ -42,7 +45,7 @@ Area Geofence Library
                 <div style="position: relative; padding-left: 0; padding-right: 0;">
                     <div id="common-map"></div>
                     <geofence-info :geofence="currentGeofence" :choose-car="true" @chooser="showCarChooser"
-                        @close="currentGeofence = null" v-if="!!currentGeofence">
+                        @close="currentGeofence = null" @edit="onGeofenceEdit" v-if="!!currentGeofence">
                     </geofence-info>
                 </div>
             </div>

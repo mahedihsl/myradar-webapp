@@ -10,6 +10,7 @@ import { mapGetters } from 'vuex'
 import GeofenceMap from '../position/GeofenceMap'
 
 import AreaBuilder from './comp/AreaBuilder.vue'
+import AreaEditor from './comp/AreaEditor.vue'
 import NoAreaFound from './comp/NoAreaFound.vue'
 import AreaList from './comp/AreaList.vue'
 import TemplateList from './comp/TemplateList.vue'
@@ -23,6 +24,7 @@ new Vue({
   components: {
     NoAreaFound,
     AreaBuilder,
+    AreaEditor,
     AreaList,
     TemplateList,
     GeofenceInfo,
@@ -64,6 +66,11 @@ new Vue({
       this.map.showPolygon(geofence.coordinates)
     },
 
+    onGeofenceEdit() {
+      console.log(`showing area editor`)
+      this.$modal.show('area-editor')
+    },
+
     onTemplateClick(geofence) {
       this.currentTemplate = geofence
       this.currentGeofence = null
@@ -83,6 +90,10 @@ new Vue({
 
     closeAreaBuilder() {
       this.$modal.hide('area-builder')
+    },
+
+    closeAreaEditor() {
+      this.$modal.hide('area-editor')
     },
 
     showCarChooser(geofence) {

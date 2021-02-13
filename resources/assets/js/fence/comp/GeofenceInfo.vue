@@ -14,7 +14,9 @@
       </span>
     </div>
     <div class="info-actions">
-      <button class="btn btn-info"><i class="fa fa-pencil"></i> Edit</button>
+      <button class="btn btn-info" @click="$emit('edit')">
+        <i class="fa fa-pencil"></i> Edit
+      </button>
       <button class="btn btn-danger" @click="deleteFence">
         <i class="fa fa-trash"></i> Delete
       </button>
