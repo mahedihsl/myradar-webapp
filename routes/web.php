@@ -307,7 +307,6 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::get('/engagement/export', 'Admin\EngagementController@export');
 
     Route::get('/geofence/library', 'Fence\AreaController@library');
-    Route::post('/geofence/remove', 'Fence\AreaController@remove');
     Route::post('/geofence/update', 'Fence\AreaController@update');
     Route::post('/geofence/sync-subscriptions', 'Fence\AreaController@syncSubscriptions');
     Route::get('/geofence/fetch-subscriptions', 'Fence\AreaController@fetchSubscriptions');
@@ -373,6 +372,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/geofence/fetch', 'Fence\AreaController@fetch');
     Route::get('/geofence/templates', 'Fence\AreaController@templates');
     Route::post('/geofence/attach/template', 'Fence\AreaController@attachTemplate');
+    Route::post('/geofence/remove', 'Fence\AreaController@remove');
     Route::get('/geofence', 'Fence\FenceController@index');
     
     Route::get('/get/fence/log', 'Fence\FenceLogController@index');

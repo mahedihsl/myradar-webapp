@@ -22,12 +22,12 @@ Generators
       <div>
         <strong>Fuel History</strong>
       </div>
-      <div class="btn-group">
+      {{-- <div class="btn-group">
         <button class="btn" :class="{'btn-primary': chartType == 'daily', 'btn-default': chartType != 'daily'}"
           @click="chartType = 'daily'">Daily</button>
         <button class="btn" :class="{'btn-primary': chartType == 'hourly', 'btn-default': chartType != 'hourly'}"
           @click="chartType = 'hourly'">Hourly</button>
-      </div>
+      </div> --}}
     </div>
     <fuel-graph :items="history" />
   </div>

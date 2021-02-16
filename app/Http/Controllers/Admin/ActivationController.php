@@ -49,7 +49,9 @@ class ActivationController extends Controller
         $this->repository->pushCriteria(new WithinDatesCriteria($from, $to));
         $this->repository->pushCriteria(new LastCreatedCriteria());
 
-        $data = $this->repository->all();
+        $data = $this->repository->with(['car'])->all()->filter(function ($model) {
+            return !is_null($model->car);
+        });
 
         Excel::create('ActivationKeys', function ($excel) use ($data) {
             $excel->sheet('data', function ($sheet) use ($data) {
