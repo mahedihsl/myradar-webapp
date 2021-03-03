@@ -43,6 +43,12 @@ class MileageController extends Controller
                         ->where('when', '=', $time)
                         ->sum('value');
 
+            // special check for a customer. Reduce mileage by 7%
+            $cars = ['5f63fac936374b3de61baa97', '5f63fac936374b3de61baa99'];
+            if (in_array($carId, $cars)) {
+                $value = $value * 0.93;
+            }
+
             return ['value' => round($value / 1000, 2), 'date' => $time->format('j M'), 'year' => $time->format('Y')];
         });
 
