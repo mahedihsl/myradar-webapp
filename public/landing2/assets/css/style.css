@@ -955,6 +955,23 @@ section {
   font-weight: 300;
 }
 
+.pricing .price2 {
+  font-size: 20px;
+  color: #444444;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.pricing .price2 sup {
+  font-size: 16px;
+}
+
+.pricing .price2 span {
+  color: #bababa;
+  font-size: 16px;
+  font-weight: 300;
+}
+
 .pricing img {
   padding: 30px 40px;
 }

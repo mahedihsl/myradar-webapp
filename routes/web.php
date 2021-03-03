@@ -23,7 +23,9 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('/', function () {
     return view('landing.welcome');
 })->name('welcome');
-
+Route::get('/revamp', function() {
+    return view('landing.revamp');
+});
 
 Auth::routes();
 
