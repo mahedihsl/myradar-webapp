@@ -162,7 +162,7 @@
             <div class="box" data-aos="fade-up" data-aos-delay="200">
               <img src="{{ asset('landing2/assets/img/values-1.png') }}" class="img-fluid" alt="">
               <h3>লাইভ ট্র্যাকিং</h3>
-              <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
+              <p>লাইভ ট্র্যাকিং এর মাধ্যমে জানতে পারবেন গাড়ি এখন কোথায় আছে</p>
             </div>
           </div>
 
@@ -170,7 +170,7 @@
             <div class="box" data-aos="fade-up" data-aos-delay="400">
               <img src="{{ asset('landing2/assets/img/values-2.png') }}" class="img-fluid" alt="">
               <h3>ইঞ্জিন লক/আনলক</h3>
-              <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
+              <p>দূরে থেকে ও গাড়ি নিয়ন্ত্রণ করুন অনায়সে</p>
             </div>
           </div>
 
@@ -178,7 +178,7 @@
             <div class="box" data-aos="fade-up" data-aos-delay="600">
               <img src="{{ asset('landing2/assets/img/values-3.png') }}" class="img-fluid" alt="">
               <h3>সি এন জি মনিটরিং</h3>
-              <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
+              <p>নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ করলে এলার্ট পাবেন</p>
             </div>
           </div>
 
@@ -367,7 +367,7 @@
           </div>
 
           <div class="col-lg-6">
-            <h3>গাড়ি চূরি নিয়ে চিন্তিত !!সুরক্ষায় আছি আমরা।</h3>
+            <h3>গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা।</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -417,7 +417,7 @@
         <!-- Feature Tabs 3 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <h3>ফুয়েলের হিসেব রাখতে হিমসিম খাচ্ছেন!নো টেনশন।</h3>
+            <h3>ফুয়েলের হিসেব রাখতে হিমসিম খাচ্ছেন! নো টেনশন</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -474,7 +474,7 @@
           </div>
 
           <div class="col-lg-6">
-            <h3>নির্দিষ্ট এলাকার বাইরে গাড়ির যাতায়াত মনিটর করতে চান!!সমাধানে মাইরাডার</h3>
+            <h3>নির্দিষ্ট এলাকার বাইরে গাড়ির যাতায়াত মনিটর করতে চান!! সমাধানে মাইরাডার</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -517,7 +517,7 @@
         <!-- Feature Tabs 5 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <h3>গাড়ির খরচ দিন দিন বেড়েই চলেছে !!হিসাব রাখবে মাইরাডার</h3>
+            <h3>গাড়ির খরচ দিন দিন বেড়েই চলেছে !! হিসাব রাখবে মাইরাডার</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -565,11 +565,30 @@
 
         <!-- Feature Icons -->
         <div class="row feature-icons" data-aos="fade-up">
-          <h3>Ratione mollitia eos ab laudantium rerum beatae quo</h3>
+          <h3>মোবাইল অ্যাপ ফিচার</h3>
 
           <div class="row">
+            <div class="col-xs-12">
+              <div style="display: flex; flex-direction: row;">
+                <div style="padding: 10px;">
+                  <img src="{{ asset('images/screenshots/1.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                </div>
+                <div style="padding: 10px;">
+                  <img src="{{ asset('images/screenshots/2.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                </div>
+                <div style="padding: 10px;">
+                  <img src="{{ asset('images/screenshots/3.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                </div>
+                <div style="padding: 10px;">
+                  <img src="{{ asset('images/screenshots/4.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                </div>
+                <div style="padding: 10px;">
+                  <img src="{{ asset('images/screenshots/5.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                </div>
+              </div>
+            </div>
 
-            <div class="col-xl-4 text-center" data-aos="fade-right" data-aos-delay="100">
+            {{-- <div class="col-xl-4 text-center" data-aos="fade-right" data-aos-delay="100">
               <img src="{{ asset('landing2/assets/img/features-3.png') }}" class="img-fluid p-4" alt="">
             </div>
 
@@ -625,7 +644,7 @@
                 </div>
 
               </div>
-            </div>
+            </div> --}}
 
           </div>
 
@@ -1006,7 +1025,7 @@
     </section><!-- End F.A.Q Section -->
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    {{-- <section id="portfolio" class="portfolio">
 
       <div class="container" data-aos="fade-up">
 
@@ -1167,10 +1186,11 @@
 
       </div>
 
-    </section><!-- End Portfolio Section -->
+    </section> --}}
+    <!-- End Portfolio Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
+    {{-- <section id="testimonials" class="testimonials">
 
       <div class="container" data-aos="fade-up">
 
@@ -1283,10 +1303,11 @@
 
       </div>
 
-    </section><!-- End Testimonials Section -->
+    </section> --}}
+    <!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
+    {{-- <section id="team" class="team">
 
       <div class="container" data-aos="fade-up">
 
@@ -1381,7 +1402,8 @@
 
       </div>
 
-    </section><!-- End Team Section -->
+    </section> --}}
+    <!-- End Team Section -->
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients">
@@ -1416,7 +1438,8 @@
         </div>
       </div>
 
-    </section><!-- End Clients Section -->
+    </section>
+    <!-- End Clients Section -->
 
     <!-- ======= Recent Blog Posts Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
