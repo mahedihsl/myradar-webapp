@@ -19,4 +19,9 @@ class FuelMicroservice extends BaseService
   {
     return $this->get('/fuel/history', compact('car_id', 'type'));
   }
+
+  public function storeAvarage($value, $device_id)
+  {
+    return $this->post('/fuel/store-avarage', compact('value', 'device_id'));
+  }
 }

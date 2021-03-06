@@ -5,9 +5,7 @@ namespace App\Listeners;
 use App\Events\FuelReceived;
 use App\Events\FuelRefueled;
 use App\Service\Refuel\DetectFuelRefuel;
-
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Service\Microservice\FuelMicroservice;
 
 class CheckFuelRefuel
 {
@@ -16,6 +14,9 @@ class CheckFuelRefuel
      * @var DetectFuelRefuel
      */
     private $service;
+
+    private $fuelService;
+
     /**
      * Create the event listener.
      *
@@ -24,6 +25,7 @@ class CheckFuelRefuel
     public function __construct()
     {
         $this->service = new DetectFuelRefuel();
+        $this->fuelService = new FuelMicroservice();
     }
 
     /**
@@ -52,11 +54,10 @@ class CheckFuelRefuel
                 event(new FuelRefueled($event->device, [$prevFuel, $value]));
               }
               $event->device->update(["meta.prev_fuel" =>  $value ]);
+              
+              $this->fuelService->storeAvarage($value, $event->device->id);
             }
           }
         } catch (\Exception $e) {}
-
-
-
     }
 }

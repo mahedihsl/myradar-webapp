@@ -68,7 +68,8 @@ class UpdateDrivingHour
                 $this->updateYesterdayRecord($event->device);
             }
 
-            $start = is_null($model->start) ? Carbon::today()->addHours($offset) : $model->start;
+            // $start = is_null($model->start) ? Carbon::today()->addHours($offset) : $model->start;
+            $start = is_null($model->start) ? Carbon::now() : $model->start;
             $diff = $start->diffInMinutes(Carbon::now());
             $model->update([
                 'start' => null,
