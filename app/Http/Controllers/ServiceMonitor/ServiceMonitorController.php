@@ -19,6 +19,7 @@ use Excel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Service\Microservice\FuelMicroservice;
 
 class ServiceMonitorController extends Controller
 {
@@ -174,6 +175,17 @@ class ServiceMonitorController extends Controller
 
           $file_name = "Gas_Export_".$User;
            $headings = array('Date Time', 'Gas Value');
+        }
+
+        if ($sid == 21) {
+          $fuelService = new FuelMicroservice();
+          $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $curr_page, $per_page);
+          $items = collect($data['items'])->map(function($row) {
+            return (object) $row;
+          });
+          $data = new LengthAwarePaginator($items, $data['total'], $per_page, $curr_page);
+          $file_name = "Fuel_Avarage_Export_".$User;
+          $headings = array('Date Time', 'Avg. Fuel Value');
         }
 
         if($sid==0)//Lat lng

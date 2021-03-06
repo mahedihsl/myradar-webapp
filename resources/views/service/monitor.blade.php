@@ -41,6 +41,7 @@ float:left;
                                 <option value="777">Device Health</option>
                                 <option value="0">Lat/Lng</option>
                                 <option value="16">Fuel</option>
+                                <option value="21">Fuel (Avg.)</option>
                                 <option value="17">Gas</option>
                                 <option value="20">IBS</option>
                             </select>
