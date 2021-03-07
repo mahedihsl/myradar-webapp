@@ -32,5 +32,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/emergency/restore2',
         '/emergency/restore3',
         '/emergency/patch',
+        '/test/fuel-avarage'
     ];
 }
