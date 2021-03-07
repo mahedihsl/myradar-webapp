@@ -29,4 +29,9 @@ class FuelMicroservice extends BaseService
   {
     return $this->post('/fuel/store-avarage', compact('value', 'device_id'));
   }
+
+  public function getRefuelEvents($car_id, $days)
+  {
+    return $this->get('/refuel/events', compact('car_id', 'days'));
+  }
 }

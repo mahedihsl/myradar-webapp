@@ -90,8 +90,13 @@ class FuelController extends Controller
         try {
             $car_id = $request->get('car_id');
             $type = $request->get('type');
+            $days = 90;
             $data = $this->fuelService->history($car_id, $type);
-            return response()->json($data);
+            $events = $this->fuelService->getRefuelEvents($car_id, $days);
+            return response()->json([
+                'values' => $data,
+                'events' => $events,
+            ]);
         } catch (ServiceException $e) {
             return response()->json(['message' => $e->getMessage()], 400);
         }

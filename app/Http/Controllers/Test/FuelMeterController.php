@@ -3,19 +3,25 @@
 namespace App\Http\Controllers\Test;
 
 use Illuminate\Http\Request;
-use App\Entities\Device;
-use App\Entities\FuelHistory;
 use App\Http\Controllers\Controller;
 use App\Service\Refuel\DetectFuelRefuel;
-use Carbon\Carbon;
+use App\Service\Microservice\FuelMicroservice;
 
 class FuelMeterController extends Controller
 {
     public function test(Request $request)
     {
-        $service = new DetectFuelRefuel();
-        return response()->json([
-            'value' => $service->check(collect($request->get('values'))),
-        ]);
+        try {
+            $car_id = '5fc8ccfd9617052e31ddefc3';
+            $days = 90;
+            $fuelService = new FuelMicroservice();
+            return response()->json([
+                'value' => $fuelService->getRefuelEvents($car_id, $days),
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => $th->getMessage(),
+            ]);
+        }
     }
 }

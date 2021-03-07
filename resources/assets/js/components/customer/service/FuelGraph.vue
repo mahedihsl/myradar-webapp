@@ -13,7 +13,7 @@ import Spinner from '../../util/Spinner'
 export default {
   props: {
     items: {
-      type: Array,
+      type: Object,
       required: true,
     },
     loading: {
@@ -28,12 +28,12 @@ export default {
   },
   computed: {
     empty() {
-      return !this.items.length
+      return !this.items.values.length
     },
   },
   watch: {
-    items(list, old) {
-      this.updateChartData(list)
+    items(data, old) {
+      this.updateChartData(data)
     },
   },
   mounted() {
@@ -41,25 +41,48 @@ export default {
     this.updateChartData(this.items)
   },
   methods: {
-    updateChartData(list) {
-      this.chart.data.labels = list.map(el => el.when)
-      this.chart.data.datasets[0].data = list.map(el => el.value)
+    /**
+     * @param data
+     * @param data.values daily fuel percentage values
+     * @param data.events refuel events
+     */
+    updateChartData({ values, events }) {
+      const eventValues = new Array(values.length).fill(0)
+      for (const e of events) {
+        const i = values.findIndex(v => v.when === e.when)
+        if (i !== -1) {
+          eventValues[i] = e.value
+        }
+      }
+
+      this.chart.data.labels = values.map(el => el.when)
+      this.chart.data.datasets[0].data = values.map(el => el.value)
+      this.chart.data.datasets[1].data = eventValues
       this.chart.update()
     },
     drawChart() {
       this.chart = new Chart(
         document.getElementById('fuel-graph').getContext('2d'),
         {
-          type: 'line',
+          type: 'bar',
           data: {
             labels: [],
             datasets: [
               {
+                type: 'line',
                 label: '%',
                 backgroundColor: '#EF5350',
                 borderColor: '#EF5350',
                 data: [],
                 fill: false,
+              },
+              {
+                type: 'bar',
+                label: 'Refuel %',
+                backgroundColor: '#3f51b5',
+                borderColor: '#3f51b5',
+                data: [],
+                fill: true,
               },
             ],
           },
