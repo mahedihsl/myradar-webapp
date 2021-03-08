@@ -85,6 +85,9 @@ class FuelController extends Controller
         ]);
     }
 
+    /**
+     * This is for the generator fuel meter webpage
+     */
     public function historyv2(Request $request)
     {
         try {

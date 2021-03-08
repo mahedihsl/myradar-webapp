@@ -22,7 +22,7 @@ class DailyFuelTransformer extends TransformerAbstract
     {
         return [
             'id' => $model->id,
-            'value' => $model->value,
+            'value' => is_null($model->max) ? $model->value : $model->max,
             'when' => $model->when->format('j M'),
         ];
     }

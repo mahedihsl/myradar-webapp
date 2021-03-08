@@ -54,14 +54,23 @@ class UpdateDailyFuel
         if(is_null($avg)){
           $avg = floor($meter->get('fuel')->avg());
         }
+        $fuelPercentage = $service->fuel($event->device, $avg);
         if ( ! is_null($record)) {
             $interval = config('car.meter.fuel.interval');
+            $currMin = is_null($record->min) ? $record->value : $record->min;
+            $currMax = is_null($record->max) ? $record->value : $record->max;
             if ($record->updated_at->diffInMinutes(Carbon::now()) > $interval) {
-                $record->update([ 'value' => $service->fuel($event->device, $avg) ]);
+                $record->update([
+                    'value' => $fuelPercentage,
+                    'min' => min($currMin, $fuelPercentage),
+                    'max' => max($currMax, $fuelPercentage),
+                ]);
             }
         } else {
             $this->repository->create([
-                'value' => $service->fuel($event->device, $avg),
+                'value' => $fuelPercentage,
+                'min' => $fuelPercentage,
+                'max' => $fuelPercentage,
                 'device_id' => $event->device->id,
                 'when' => Carbon::today(),
             ]);
