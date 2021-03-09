@@ -244,6 +244,22 @@ class ServiceMonitorController extends Controller
                        }
                     }
 
+                    else if ($sid == 21) {
+                      $page = 1;
+                      $perPage = 1000000;
+                      $fuelService = new FuelMicroservice();
+                      $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $page, $perPage);
+                      $items = collect($data['items'])->reverse()->map(function($row) {
+                        return (object) $row;
+                      });
+                      foreach ($items as $item) {
+                        $exportResult[] = [
+                          Carbon::parse($item->when)->format('d M Y g:i:s A'),
+                          $item->value
+                        ];
+                      }
+                    }
+
                     else if($sid==16){
 
                       $data=  FuelHistory::where('device_id',$Device->id)
