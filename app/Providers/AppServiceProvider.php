@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Jenssegers\Mongodb\Eloquent\Builder;
 use Prettus\Repository\Providers\RepositoryServiceProvider;
 use Validator;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        URL::forceScheme('https');
 
        Validator::extend('bd_phone', function($attribute, $value, $parameters, $validator) {
           return preg_match('^(?:\+?88)?01[15-9]\d{8}$^', $value) && strlen($value) >= 10;
