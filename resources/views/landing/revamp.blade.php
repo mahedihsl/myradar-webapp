@@ -12,8 +12,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('landing2/assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('landing2/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('landing2/assets/img/favicon.png', true) }}" rel="icon">
+  <link href="{{ asset('landing2/assets/img/apple-touch-icon.png', true) }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -21,15 +21,15 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{ asset('landing2/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing2/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing2/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing2/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('landing2/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/vendor/bootstrap/css/bootstrap.min.css', true) }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/vendor/bootstrap-icons/bootstrap-icons.css', true) }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/vendor/aos/aos.css', true) }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/vendor/remixicon/remixicon.css', true) }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.css', true) }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/vendor/glightbox/css/glightbox.min.css', true) }}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{{ asset('landing2/assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: FlexStart - v1.1.1
@@ -46,7 +46,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('landing2/assets/img/logo.png') }}" alt="">
+        <img src="{{ asset('landing2/assets/img/logo.png', true) }}" alt="">
         <span>FlexStart</span>
       </a>
 
@@ -103,7 +103,7 @@
           </div>
         </div> --}}
         <div class="col-lg-12 hero-img" data-aos="zoom-out" data-aos-delay="200" style="margin-top: 200px;">
-          <img src="{{ asset('landing2/assets/img/banner.jpg') }}" class="img-fluid" alt="">
+          <img src="{{ asset('landing2/assets/img/banner.jpg', true) }}" class="img-fluid" alt="">
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@
 
           <div class="col-lg-4">
             <div class="box" data-aos="fade-up" data-aos-delay="200">
-              <img src="{{ asset('landing2/assets/img/values-1.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/values-1.png', true) }}" class="img-fluid" alt="">
               <h3>লাইভ ট্র্যাকিং</h3>
               <p>লাইভ ট্র্যাকিং এর মাধ্যমে জানতে পারবেন গাড়ি এখন কোথায় আছে</p>
             </div>
@@ -168,7 +168,7 @@
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="400">
-              <img src="{{ asset('landing2/assets/img/values-2.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/values-2.png', true) }}" class="img-fluid" alt="">
               <h3>ইঞ্জিন লক/আনলক</h3>
               <p>অ্যাপ এর মাধ্যমে দূরে থেকেও গাড়ি নিয়ন্ত্রণ করুন অনায়সে</p>
             </div>
@@ -176,7 +176,7 @@
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="600">
-              <img src="{{ asset('landing2/assets/img/values-3.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/values-3.png', true) }}" class="img-fluid" alt="">
               <h3>সি এন জি মনিটরিং</h3>
               <p>শুধুমাত্র আমরাই দিচ্ছি সি এন জি মনিটরিং সুবিধা</p>
             </div>
@@ -256,7 +256,7 @@
         <div class="row">
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/img/features.png', true) }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -362,7 +362,7 @@
           </div>
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -371,7 +371,7 @@
         <!-- Feature Tabs 2 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6">
@@ -481,7 +481,7 @@
           </div>
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -490,7 +490,7 @@
         <!-- Feature Tabs 4 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6">
@@ -584,7 +584,7 @@
           </div>
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -704,19 +704,19 @@
             <div class="col-xs-12">
               <div style="display: flex; flex-direction: row;">
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/1.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/2.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/3.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/4.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/5.jpg') }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
                 </div>
               </div>
             </div>
@@ -804,7 +804,7 @@
               <h3 style="color: #07d5c0;">Standard</h3>
               <div class="price"><sup></sup>৬,০০০<span> টাকা</span></div>
               <div class="price2"><span>মাসিক চার্জ </span>৪০০<span> টাকা</span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-free.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/pricing-free.png', true) }}" class="img-fluid" alt="">
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
@@ -836,7 +836,7 @@
               <h3 style="color: #65c600;">Special</h3>
               <div class="price"><sup></sup>৮,০০০<span> টাকা</span></div>
               <div class="price2"><span>মাসিক চার্জ </span>৫০০<span> টাকা</span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-starter.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/pricing-starter.png', true) }}" class="img-fluid" alt="">
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
@@ -867,7 +867,7 @@
               <h3 style="color: #ff901c;">Advanced</h3>
               <div class="price"><sup></sup>১৫,০০০<span> টাকা</span></div>
               <div class="price2"><span>মাসিক চার্জ </span>৮০০<span> টাকা</span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-business.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/pricing-business.png', true) }}" class="img-fluid" alt="">
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
@@ -897,7 +897,7 @@
             <div class="box">
               <h3 style="color: #ff0071;">Business</h3>
               <div class="price"><sup></sup>Custom<span></span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-ultimate.png') }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/img/pricing-ultimate.png', true) }}" class="img-fluid" alt="">
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
@@ -1446,21 +1446,21 @@
 
         <div class="clients-slider swiper-container">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-1.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-1.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-2.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-2.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-3.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-3.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-4.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-4.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-5.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-5.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-6.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-6.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-7.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-7.png', true) }}"
                 class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-8.png') }}"
+            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-8.png', true) }}"
                 class="img-fluid" alt=""></div>
           </div>
           <div class="swiper-pagination"></div>
@@ -1637,7 +1637,7 @@
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
-              <img src="{{ asset('landing2/assets/img/logo.png') }}" alt="">
+              <img src="{{ asset('landing2/assets/img/logo.png', true) }}" alt="">
               <span>FlexStart</span>
             </a>
             <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies
@@ -1708,15 +1708,15 @@
 
   <!-- Vendor JS Files -->
   {{-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script> --}}
-  <script src="{{ asset('landing2/assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('landing2/assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('landing2/assets/vendor/purecounter/purecounter.js') }}"></script>
-  <script src="{{ asset('landing2/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ asset('landing2/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/aos/aos.js', true) }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/php-email-form/validate.js', true) }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.js', true) }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/purecounter/purecounter.js', true) }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/isotope-layout/isotope.pkgd.min.js', true) }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/glightbox/js/glightbox.min.js', true) }}"></script>
 
   <!-- Template Main JS File -->
-  <script src="{{ asset('landing2/assets/js/main.js') }}"></script>
+  <script src="{{ asset('landing2/assets/js/main.js', true) }}"></script>
 
   {{-- <script>if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } </script> --}}
 </body>

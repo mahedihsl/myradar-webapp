@@ -13,19 +13,19 @@
 
             <div class="col-sm-4"> <!-- 1 -->
                 <div class="affa-client-logo">
-                    <img src="{{ asset('images/partners/banglalink.png') }}" alt="Logo">
+                    <img src="{{ asset('images/partners/banglalink.png', true) }}" alt="Logo">
                 </div>
             </div>
 
             <div class="col-sm-4"> <!-- 2 -->
                 <div class="affa-client-logo">
-                    <img src="{{ asset('images/partners/robi.png') }}" alt="Logo">
+                    <img src="{{ asset('images/partners/robi.png', true) }}" alt="Logo">
                 </div>
             </div>
 
             <div class="col-sm-4"> <!-- 3 -->
                 <div class="affa-client-logo">
-                    <img src="{{ asset('images/partners/jural.png') }}" alt="Logo">
+                    <img src="{{ asset('images/partners/jural.png', true) }}" alt="Logo">
                 </div>
             </div>
 

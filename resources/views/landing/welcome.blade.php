@@ -2,7 +2,7 @@
 <html lang="{{ config('app.locale') }}">
 
 <head>
-  <title>My Radar</title>
+  <title>myRADAR</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="My Radar">
@@ -13,31 +13,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Favicons -->
-  <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
-  <link rel="apple-touch-icon" href="{{ asset('landing/images/apple-touch-icon.png') }}">
-  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('landing/images/apple-touch-icon-72x72.png') }}">
-  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('landing/images/apple-touch-icon-114x114.png') }}">
+  <link rel="shortcut icon" href="{{ asset('images/favicon.ico', true) }}">
+  <link rel="apple-touch-icon" href="{{ asset('landing/images/apple-touch-icon.png', true) }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('landing/images/apple-touch-icon-72x72.png', true) }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('landing/images/apple-touch-icon-114x114.png', true) }}">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Asap:400,400i,700" rel="stylesheet" type="text/css">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="{{ asset('landing/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('landing/css/ionicons.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('landing/css/slick.css') }}">
-  <link rel="stylesheet" href="{{ asset('landing/css/slick-theme.css') }}">
-  <link rel="stylesheet" href="{{ asset('landing/css/jquery.fancybox.css') }}">
-  <link rel="stylesheet" href="{{ asset('landing/css/animate.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('landing/css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/bootstrap.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/ionicons.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/slick.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/slick-theme.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/jquery.fancybox.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/animate.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('landing/css/style.css', true) }}">
   {{-- owl.carousel --}}
-  <link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.carousel.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.carousel.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('vendors/owl.carousel/dist/assets/owl.theme.default.min.css', true) }}">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   <noscript>
-    <link rel="stylesheet" href="{{ asset('landing/css/no-js.css') }}"></noscript>
+    <link rel="stylesheet" href="{{ asset('landing/css/no-js.css', true) }}"></noscript>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <style type="text/css">
     @keyframes tada {
@@ -186,22 +186,22 @@
   <!-- #footer end -->
 
   <!-- JavaScripts -->
-  <script type="text/javascript" src="{{ asset('landing/js/jquery-1.11.3.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/jquery-migrate-1.2.1.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery-1.11.3.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery-migrate-1.2.1.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/bootstrap.min.js', true) }}"></script>
 
 
-  <script type="text/javascript" src="{{ asset('landing/js/jquery.placeholder.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/jquery.fitvids.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/jquery.imgpreload.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/waypoints.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/slick.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/jquery.fancybox.pack.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.placeholder.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.fitvids.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.imgpreload.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/waypoints.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/slick.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.fancybox.pack.js', true) }}"></script>
 
-  <script type="text/javascript" src="{{ asset('landing/js/jquery.counterup.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/parallax.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('vendors/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('landing/js/script.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/jquery.counterup.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/parallax.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('vendors/owl.carousel/dist/owl.carousel.min.js', true) }}"></script>
+  <script type="text/javascript" src="{{ asset('landing/js/script.js', true) }}"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {

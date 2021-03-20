@@ -116,17 +116,14 @@ export default {
       this.getGasData(this.deviceId, newVal)
     },
     deviceId: function(newVal, oldVal) {
-      this.getGasData(newVal, this.days)
+      this.getEventHistory(newVal)
     },
   },
   mounted() {
     EventBus.$on('gas-chart-found', this.onDataFound.bind(this))
     if (this.subscribed) {
       // this.getGasData(this.deviceId, this.days)
-      EventApi.recent(this.deviceId, 30, 3).then(list => {
-        console.log(`refill history`, list.length)
-        this.refillHistory = list
-      })
+      this.getEventHistory(this.deviceId)
     }
   },
   methods: {
@@ -147,6 +144,12 @@ export default {
       this.loading = true
       let api = new GasApi(EventBus)
       api.history(id, days)
+    },
+    getEventHistory(deviceId) {
+      EventApi.recent(this.deviceId, 30, 3).then(list => {
+        console.log(`refill history`, list.length)
+        this.refillHistory = list
+      })
     },
     onDataFound(list) {
       this.loading = false

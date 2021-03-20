@@ -12,9 +12,9 @@
             <div class="slick-slide"> <!-- 1 -->
                 <div class="img-hover">
                     {{-- <h4>Account Login Form</h4> --}}
-                    <a href="{{ asset('images/screenshots/1.jpg') }}" class="fancybox" data-fancybox-group="images_gallery" title="">
+                    <a href="{{ asset('images/screenshots/1.jpg', true) }}" class="fancybox" data-fancybox-group="images_gallery" title="">
                         <figure>
-                            <img src="{{ asset('images/screenshots/1.jpg') }}" alt="Account Login Form">
+                            <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt="Account Login Form">
                             <div class="hover-masked"></div>
                         </figure>
                     </a>
@@ -24,9 +24,9 @@
             <div class="slick-slide"> <!-- 2 -->
                 <div class="img-hover">
                     {{-- <h4>Installation Guide</h4> --}}
-                    <a href="{{ asset('images/screenshots/2.jpg') }}" class="fancybox" data-fancybox-group="images_gallery" title="">
+                    <a href="{{ asset('images/screenshots/2.jpg', true) }}" class="fancybox" data-fancybox-group="images_gallery" title="">
                         <figure>
-                            <img src="{{ asset('images/screenshots/2.jpg') }}" alt="Installation Guide">
+                            <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt="Installation Guide">
                             <div class="hover-masked"></div>
                         </figure>
                     </a>
@@ -36,9 +36,9 @@
             <div class="slick-slide"> <!-- 3 -->
                 <div class="img-hover">
                     {{-- <h4>Profile Dashboard</h4> --}}
-                    <a href="{{ asset('images/screenshots/3.jpg') }}" class="fancybox" data-fancybox-group="images_gallery" title="">
+                    <a href="{{ asset('images/screenshots/3.jpg', true) }}" class="fancybox" data-fancybox-group="images_gallery" title="">
                         <figure>
-                            <img src="{{ asset('images/screenshots/3.jpg') }}" alt="Profile Dashboard">
+                            <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt="Profile Dashboard">
                             <div class="hover-masked"></div>
                         </figure>
                     </a>
@@ -48,9 +48,9 @@
             <div class="slick-slide"> <!-- 4 -->
                 <div class="img-hover">
                     {{-- <h4>Music Background</h4> --}}
-                    <a href="{{ asset('images/screenshots/4.jpg') }}" class="fancybox" data-fancybox-group="images_gallery" title="">
+                    <a href="{{ asset('images/screenshots/4.jpg', true) }}" class="fancybox" data-fancybox-group="images_gallery" title="">
                         <figure>
-                            <img src="{{ asset('images/screenshots/4.jpg') }}" alt="Music Background">
+                            <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt="Music Background">
                             <div class="hover-masked"></div>
                         </figure>
                     </a>
@@ -60,9 +60,9 @@
             <div class="slick-slide"> <!-- 6 -->
                 <div class="img-hover">
                     {{-- <h4>Minimalize Player</h4> --}}
-                    <a href="{{ asset('images/screenshots/5.jpg') }}" class="fancybox" data-fancybox-group="images_gallery" title="">
+                    <a href="{{ asset('images/screenshots/5.jpg', true) }}" class="fancybox" data-fancybox-group="images_gallery" title="">
                         <figure>
-                            <img src="{{ asset('images/screenshots/5.jpg') }}" alt="Minimalize Player">
+                            <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt="Minimalize Player">
                             <div class="hover-masked"></div>
                         </figure>
                     </a>

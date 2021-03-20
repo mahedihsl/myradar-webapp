@@ -68,7 +68,8 @@ class EventController extends Controller
     public function recent(Request $request, $id)
     {
         $device= Device::find($id);
-        $models = $this->repository->pushCriteria(new CarIdCriteria($device->car_id))
+        $models = $this->repository
+                        ->pushCriteria(new CarIdCriteria($device->car_id))
                         ->pushCriteria(new OrderByIdCriteria(false))
                         ->pushCriteria(new EventTypeCriteria($request->get('type')))
                         ->pushCriteria(new NRecordsCriteria($request->get('limit')))

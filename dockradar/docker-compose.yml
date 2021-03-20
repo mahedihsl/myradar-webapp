@@ -438,7 +438,7 @@ services:
       volumes_from:
         - applications
       volumes:
-        - ${CADDY_CUSTOM_CADDYFILE}:/etc/Caddyfile
+        - ${CADDY_CUSTOM_CADDYFILE}:/etc/caddy/Caddyfile
         - ${CADDY_HOST_LOG_PATH}:/var/log/caddy
         - ${DATA_SAVE_PATH}:/root/.caddy
       ports:

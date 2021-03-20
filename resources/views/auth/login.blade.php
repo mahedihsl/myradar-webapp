@@ -7,35 +7,35 @@
   <meta name="description" content="bootstrap material admin template">
   <meta name="author" content="">
 
-  <title>Login | My Radar</title>
+  <title>Login | myRADAR</title>
 
-  <link rel="apple-touch-icon" href="{{ asset('auth/images/apple-touch-icon.png') }}">
-  <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ asset('auth/images/apple-touch-icon.png', true) }}">
+  <link rel="shortcut icon" href="{{ asset('images/favicon.ico', true) }}">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="{{ asset('auth/global/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/css/bootstrap-extend.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/css/site.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/css/bootstrap.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/css/bootstrap-extend.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/css/site.min.css', true) }}">
 
   <!-- Plugins -->
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/animsition/animsition.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/asscrollable/asScrollable.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/switchery/switchery.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/intro-js/introjs.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/slidepanel/slidePanel.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/flag-icon-css/flag-icon.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/vendor/waves/waves.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/animsition/animsition.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/asscrollable/asScrollable.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/switchery/switchery.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/intro-js/introjs.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/slidepanel/slidePanel.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/flag-icon-css/flag-icon.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/vendor/waves/waves.min.css', true) }}">
 
   <!-- Page -->
-  <link rel="stylesheet" href="{{ asset('auth/examples/css/pages/login-v3.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/examples/css/pages/login-v3.min.css', true) }}">
 
   <!-- Fonts -->
-  <link rel="stylesheet" href="{{ asset('auth/global/fonts/material-design/material-design.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('auth/global/fonts/brand-icons/brand-icons.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/fonts/material-design/material-design.min.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('auth/global/fonts/brand-icons/brand-icons.min.css', true) }}">
   <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,700">
 
   <!-- Scripts -->
-  <script src="{{ asset('auth/global/vendor/breakpoints/breakpoints.min.js') }}"></script>
+  <script src="{{ asset('auth/global/vendor/breakpoints/breakpoints.min.js', true) }}"></script>
   <script>
     Breakpoints();
   </script>
@@ -48,7 +48,7 @@
       <div class="panel">
         <div class="panel-body">
           <div class="brand">
-            <img class="brand-img" src="{{ asset('images/web_logo.png') }}" alt="..." style="width: 60px;">
+            <img class="brand-img" src="{{ asset('images/web_logo.png', true) }}" alt="..." style="width: 60px;">
             <h2 class="brand-text font-size-18">My Radar</h2>
           </div>
           <form method="post" action="{{ route('login') }}" autocomplete="off">
@@ -103,54 +103,54 @@
   <!-- End Page -->
 
   <!-- Core  -->
-  <script src="{{ asset('auth/global/vendor/babel-external-helpers/babel-external-helpers.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/popper-js/umd/popper.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/bootstrap/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/animsition/animsition.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/asscrollbar/jquery-asScrollbar.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/asscrollable/jquery-asScrollable.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/waves/waves.min.js') }}"></script>
+  <script src="{{ asset('auth/global/vendor/babel-external-helpers/babel-external-helpers.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/jquery/jquery.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/popper-js/umd/popper.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/bootstrap/bootstrap.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/animsition/animsition.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/mousewheel/jquery.mousewheel.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/asscrollbar/jquery-asScrollbar.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/asscrollable/jquery-asScrollable.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/ashoverscroll/jquery-asHoverScroll.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/waves/waves.min.js', true) }}"></script>
 
   <!-- Plugins -->
-  <script src="{{ asset('auth/global/vendor/switchery/switchery.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/intro-js/intro.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/screenfull/screenfull.min.js') }}"></script>
-  <script src="{{ asset('auth/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
+  <script src="{{ asset('auth/global/vendor/switchery/switchery.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/intro-js/intro.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/screenfull/screenfull.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/vendor/slidepanel/jquery-slidePanel.min.js', true) }}"></script>
 
   <!-- Plugins For This Page -->
-  <script src="{{ asset('auth/global/vendor/jquery-placeholder/jquery.placeholder.min.js') }}"></script>
+  <script src="{{ asset('auth/global/vendor/jquery-placeholder/jquery.placeholder.min.js', true) }}"></script>
 
   <!-- Scripts -->
-  <script src="{{ asset('auth/global/js/State.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Component.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Plugin.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Base.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Config.min.js') }}"></script>
+  <script src="{{ asset('auth/global/js/State.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Component.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Plugin.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Base.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Config.min.js', true) }}"></script>
 
-  <script src="{{ asset('auth/js/Section/Menubar.min.js') }}"></script>
-  <script src="{{ asset('auth/js/Section/Sidebar.min.js') }}"></script>
-  <script src="{{ asset('auth/js/Section/PageAside.min.js') }}"></script>
-  <script src="{{ asset('auth/js/Plugin/menu.min.js') }}"></script>
+  <script src="{{ asset('auth/js/Section/Menubar.min.js', true) }}"></script>
+  <script src="{{ asset('auth/js/Section/Sidebar.min.js', true) }}"></script>
+  <script src="{{ asset('auth/js/Section/PageAside.min.js', true) }}"></script>
+  <script src="{{ asset('auth/js/Plugin/menu.min.js', true) }}"></script>
 
   <!-- Config -->
-  <script src="{{ asset('auth/global/js/config/colors.min.js') }}"></script>
-  <script src="{{ asset('auth/js/config/tour.min.js') }}"></script>
+  <script src="{{ asset('auth/global/js/config/colors.min.js', true) }}"></script>
+  <script src="{{ asset('auth/js/config/tour.min.js', true) }}"></script>
   <script>
     Config.set('assets', '../assets');
   </script>
 
   <!-- Page -->
-  <script src="{{ asset('auth/js/Site.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Plugin/asscrollable.min.js') }}"></script>
+  <script src="{{ asset('auth/js/Site.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Plugin/asscrollable.min.js', true) }}"></script>
 
-  <script src="{{ asset('auth/global/js/Plugin/slidepanel.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Plugin/switchery.min.js') }}"></script>
+  <script src="{{ asset('auth/global/js/Plugin/slidepanel.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Plugin/switchery.min.js', true) }}"></script>
 
-  <script src="{{ asset('auth/global/js/Plugin/jquery-placeholder.min.js') }}"></script>
-  <script src="{{ asset('auth/global/js/Plugin/material.min.js') }}"></script>
+  <script src="{{ asset('auth/global/js/Plugin/jquery-placeholder.min.js', true) }}"></script>
+  <script src="{{ asset('auth/global/js/Plugin/material.min.js', true) }}"></script>
 
 
   <script>
