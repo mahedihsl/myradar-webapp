@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
 
-    <link rel="stylesheet" href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" media="all">
+    <link rel="stylesheet" href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css', true)}}" media="all">
     <style media="all">
         .small-code {
             width: 90%;

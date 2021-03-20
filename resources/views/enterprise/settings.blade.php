@@ -34,7 +34,7 @@
   </div>
 @endsection
 @push('script')
-  <script src="{{ mix('js/enterprise/settings.js') }}" charset="utf-8"></script>
+  <script src="{{ asset('js/enterprise/settings.js', true) }}" charset="utf-8"></script>
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
   <script type="text/javascript">
