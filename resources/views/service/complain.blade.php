@@ -25,5 +25,5 @@
 @endsection
 
 @push('script')
-  <script src="{{mix('js/service/complain/index.js')}}"></script>
+  <script src="{{asset('js/service/complain/index.js', true)}}"></script>
 @endpush

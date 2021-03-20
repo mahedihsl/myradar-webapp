@@ -2,7 +2,7 @@
 
 @push('style')
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/datetimepicker.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/datetimepicker.min.css', true) }}">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <style>
   td.highlight {
@@ -164,8 +164,8 @@ float:left;
 <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="//cdn.datatables.net/plug-ins/1.10.12/sorting/datetime-moment.js"></script>
-<script src="{{ asset('js/moment.min.js') }}" charset="utf-8"></script>
-<script src="{{ asset('js/datetimepicker.min.js') }}" charset="utf-8"></script>
+<script src="{{ asset('js/moment.min.js', true) }}" charset="utf-8"></script>
+<script src="{{ asset('js/datetimepicker.min.js', true) }}" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </script>
 <script>
