@@ -11,5 +11,5 @@
 
 @push('script')
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf9yCy5ZZ6iEo0EyOWjUg4EpUHIeuZVWQ&libraries=geometry"></script>
-<script src="{{ mix('js/customer/tracker.js') }}" charset="utf-8"></script>
+<script src="{{ asset('js/customer/tracker.js') }}" charset="utf-8"></script>
 @endpush

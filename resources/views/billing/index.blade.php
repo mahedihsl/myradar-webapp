@@ -57,8 +57,8 @@
 @endsection
 
 @push('script')
-  <script src="{{ asset('js/moment.min.js') }}" charset="utf-8"></script>
-  <script src="{{asset('vendors/datetimepicker/build/jquery.datetimepicker.full.min.js')}}"></script>
+  <script src="{{ asset('js/moment.min.js', true) }}" charset="utf-8"></script>
+  <script src="{{asset('vendors/datetimepicker/build/jquery.datetimepicker.full.min.js', true)}}"></script>
   <script type="text/javascript">
     $(function() {
       $('input.date-picker').datetimepicker({

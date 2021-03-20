@@ -9,5 +9,5 @@
 @endsection
 
 @push('script')
-<script src="{{ mix('js/car/index.js') }}"></script>
+<script src="{{ asset('js/car/index.js', true) }}"></script>
 @endpush
