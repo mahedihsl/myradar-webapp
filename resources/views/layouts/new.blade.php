@@ -11,6 +11,12 @@
 
   <title>{{ config('app.name') }}</title>
 
+  <link rel="shortcut icon" href="{{ asset('images/favicon.ico', true) }}">
+  <link rel="apple-touch-icon" href="{{ asset('landing/images/apple-touch-icon.png', true) }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('landing/images/apple-touch-icon-72x72.png', true) }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('landing/images/apple-touch-icon-114x114.png', true) }}">
+
+
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- Font Awesome -->
