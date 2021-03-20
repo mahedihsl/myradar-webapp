@@ -29,5 +29,5 @@
 @push('script')
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAf9yCy5ZZ6iEo0EyOWjUg4EpUHIeuZVWQ&libraries=geometry"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-<script src="{{ mix('js/customer/manage.js') }}"></script>
+<script src="{{ asset('js/customer/manage.js', true) }}"></script>
 @endpush

@@ -13,5 +13,5 @@
 @endsection
 
 @push('script')
-    <script src="{{ mix('js/customer/refuel.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('js/customer/refuel.js', true) }}" charset="utf-8"></script>
 @endpush
