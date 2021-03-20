@@ -15,5 +15,5 @@
 @endsection
 
 @push('script')
-  <script src="{{mix('js/customer/promotion/index.js')}}"></script>
+  <script src="{{asset('js/customer/promotion/index.js', true)}}"></script>
 @endpush

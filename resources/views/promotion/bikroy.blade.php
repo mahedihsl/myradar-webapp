@@ -4,14 +4,14 @@
 	<title>Contact V12</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="{{ asset('bikroy/images/icons/favicon.ico') }}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/animate/animate.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/css-hamburgers/hamburgers.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/select2/select2.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/css/main.css') }}">
+	<link rel="icon" type="image/png" href="{{ asset('bikroy/images/icons/favicon.ico', true) }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/bootstrap/css/bootstrap.min.css', true) }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/fonts/font-awesome-4.7.0/css/font-awesome.min.css', true) }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/animate/animate.css', true) }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/css-hamburgers/hamburgers.min.css', true) }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/vendor/select2/select2.min.css', true) }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/css/util.css', true) }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('bikroy/css/main.css', true) }}">
 </head>
 <body>
 
@@ -19,7 +19,7 @@
 		<div class="container-contact100">
 			<div class="wrap-contact100">
 				<div class="contact100-pic js-tilt" data-tilt>
-					<img src="{{asset('images/web_logo.png')}}" alt="myRADAR">
+					<img src="{{asset('images/web_logo.png', true)}}" alt="myRADAR">
 				</div>
 
 				@if ($status == 1)
@@ -66,7 +66,7 @@
   						</button>
   					</div>
 						<div class="container-contact100-form-btn">
-  						<span style="margin-right: 10px;">For Details, Visit Our</span> <a href="http://myradar.com.bd">Website</a>
+  						<span style="margin-right: 10px;">For Details, Visit Our</span> <a href="https://myradar.com.bd">Website</a>
   					</div>
   				</form>
         @endif
@@ -74,17 +74,17 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('bikroy/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-	<script src="{{ asset('bikroy/vendor/bootstrap/js/popper.js') }}"></script>
-	<script src="{{ asset('bikroy/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('bikroy/vendor/select2/select2.min.js') }}"></script>
-	<script src="{{ asset('bikroy/vendor/tilt/tilt.jquery.min.js') }}"></script>
+	<script src="{{ asset('bikroy/vendor/jquery/jquery-3.2.1.min.js', true) }}"></script>
+	<script src="{{ asset('bikroy/vendor/bootstrap/js/popper.js', true) }}"></script>
+	<script src="{{ asset('bikroy/vendor/bootstrap/js/bootstrap.min.js', true) }}"></script>
+	<script src="{{ asset('bikroy/vendor/select2/select2.min.js', true) }}"></script>
+	<script src="{{ asset('bikroy/vendor/tilt/tilt.jquery.min.js', true) }}"></script>
 	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
 	</script>
-	<script src="{{ asset('bikroy/js/main.js') }}"></script>
+	<script src="{{ asset('bikroy/js/main.js', true) }}"></script>
 
 </body>
 </html>

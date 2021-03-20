@@ -27,5 +27,5 @@
 @endsection
 
 @section('js')
-<script src="{{ mix('js/fence/index.js') }}" charset="utf-8"></script>
+<script src="{{ asset('js/fence/index.js', true) }}" charset="utf-8"></script>
 @endsection
