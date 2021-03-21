@@ -167,7 +167,6 @@ float:left;
 <script src="{{ asset('js/moment.min.js', true) }}" charset="utf-8"></script>
 <script src="{{ asset('js/datetimepicker.min.js', true) }}" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-</script>
 <script>
 
 function getDevices(userId) {
