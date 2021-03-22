@@ -158,4 +158,21 @@ class FuelController extends Controller
         });
     }
 
+    public function fetchGroups(Request $request)
+    {
+        try {
+            return response()->json($this->fuelService->fetchGroups());
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
+
+    public function seedGroups(Request $request)
+    {
+        try {
+            return response()->json($this->fuelService->seedGroups());
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 }

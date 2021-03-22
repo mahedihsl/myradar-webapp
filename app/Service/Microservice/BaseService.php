@@ -27,7 +27,7 @@ class BaseService {
     return $this->client;
   }
 
-  public function post($path, $data)
+  public function post($path, $data = [])
   {
     try {
       $res = $this->client->post($path, [ 'json' => $data ]);
@@ -39,7 +39,7 @@ class BaseService {
     }
   }
 
-  public function postAsync($path, $data)
+  public function postAsync($path, $data = [])
   {
     try {
       $promise = $this->client->postAsync($path, [ 'json' => $data ]);

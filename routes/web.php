@@ -312,6 +312,9 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/geofence/update', 'Fence\AreaController@update');
     Route::post('/geofence/sync-subscriptions', 'Fence\AreaController@syncSubscriptions');
     Route::get('/geofence/fetch-subscriptions', 'Fence\AreaController@fetchSubscriptions');
+
+    // Route::get('/fuel/seed-groups', 'Service\FuelController@seedGroups');
+    Route::get('/fuel/fetch-groups', 'Service\FuelController@fetchGroups');
 });
 
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');

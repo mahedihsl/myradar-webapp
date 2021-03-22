@@ -34,4 +34,14 @@ class FuelMicroservice extends BaseService
   {
     return $this->get('/refuel/events', compact('car_id', 'days'));
   }
+
+  public function fetchGroups()
+  {
+    return $this->get('/fuel/fetch-groups');
+  }
+
+  public function seedGroups()
+  {
+    return $this->post('/fuel/seed-groups');
+  }
 }
