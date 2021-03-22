@@ -102,8 +102,12 @@
             </div>
           </div>
         </div> --}}
-        <div class="col-lg-12 hero-img" data-aos="zoom-out" data-aos-delay="200" style="margin-top: 200px;">
-          <img src="{{ asset('landing2/assets/img/banner.jpg', true) }}" class="img-fluid" alt="">
+        {{-- <div class="col-lg-12">
+          <img src="{{ asset('cars.gif', true) }}" class="img-fluid" alt=""/>
+        </div> --}}
+        <div class="col-lg-12 hero-img" data-aos="zoom-out" data-aos-delay="200" style="margin-top: 100px;">
+          {{-- <img src="{{ asset('landing2/assets/img/banner.jpg', true) }}" class="img-fluid" alt=""> --}}
+          <img src="{{ asset('cars.gif', true) }}" class="img-fluid" alt="" />
         </div>
       </div>
     </div>
