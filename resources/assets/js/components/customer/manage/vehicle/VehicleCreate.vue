@@ -3,7 +3,7 @@
     <div class="row header">
       <div class="col-md-12">
         <h4 class="text-center text-primary">Add New Car</h4>
-        <hr>
+        <hr />
       </div>
     </div>
     <div class="col-md-8 col-md-offset-2">
@@ -11,36 +11,63 @@
         <div class="col-xs-6">
           <div class="form-group">
             <label>Name <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.name" class="form-control" placeholder="ex: Toyota">
-            <span class="helper-text text-danger">{{error.name}}</span>
+            <input
+              type="text"
+              v-model="info.name"
+              class="form-control"
+              placeholder="ex: Toyota"
+            />
+            <span class="helper-text text-danger">{{ error.name }}</span>
           </div>
         </div>
         <div class="col-xs-6">
           <div class="form-group">
             <label>Model <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.model" class="form-control" placeholder="ex: 2012">
-            <span class="helper-text text-danger">{{error.model}}</span>
+            <input
+              type="text"
+              v-model="info.model"
+              class="form-control"
+              placeholder="ex: 2012"
+            />
+            <span class="helper-text text-danger">{{ error.model }}</span>
           </div>
         </div>
         <div class="col-xs-6">
           <div class="form-group">
             <label>Reg No. <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.reg_no" class="form-control" placeholder="ex: Dhaka-Ka xx-xxxx">
-            <span class="helper-text text-danger">{{error.reg_no}}</span>
+            <input
+              type="text"
+              v-model="info.reg_no"
+              class="form-control"
+              placeholder="ex: Dhaka-Ka xx-xxxx"
+            />
+            <span class="helper-text text-danger">{{ error.reg_no }}</span>
           </div>
         </div>
         <div class="col-xs-6">
           <div class="form-group">
             <label>Activation Key <span class="text-maroon">*</span></label>
-            <input type="text" v-model="info.activation_key" class="form-control" placeholder="4 digit code">
-            <span class="helper-text text-danger">{{error.activation_key}}</span>
+            <input
+              type="text"
+              v-model="info.activation_key"
+              class="form-control"
+              placeholder="4 digit code"
+            />
+            <span class="helper-text text-danger">{{
+              error.activation_key
+            }}</span>
           </div>
         </div>
         <div class="col-xs-6">
           <div class="form-group">
             <label>Promo Key</label>
-            <input type="text" v-model="info.promo_key" class="form-control" placeholder="6 digit code">
-            <span class="helper-text text-danger">{{error.promo_key}}</span>
+            <input
+              type="text"
+              v-model="info.promo_key"
+              class="form-control"
+              placeholder="6 digit code"
+            />
+            <span class="helper-text text-danger">{{ error.promo_key }}</span>
           </div>
         </div>
         <div class="col-xs-6">
@@ -59,7 +86,12 @@
         <div class="col-xs-6" v-if="info.type == 5">
           <div class="form-group">
             <label>Fuel Tank Volume (in Litre)</label>
-            <input type="number" v-model="info.volume" class="form-control" placeholder="Volume in Litre">
+            <input
+              type="number"
+              v-model="info.volume"
+              class="form-control"
+              placeholder="Volume in Litre"
+            />
           </div>
         </div>
         <div class="col-xs-6">
@@ -75,7 +107,22 @@
           <div class="form-group">
             <label>Package</label>
             <select class="form-control" v-model="selectedPackage">
-              <option v-bind:value="i" v-for="(v, i) in packages" v-bind:key="i">{{v.name}}</option>
+              <option
+                v-bind:value="i"
+                v-for="(v, i) in packages"
+                v-bind:key="i"
+                >{{ v.name }}</option
+              >
+            </select>
+          </div>
+        </div>
+        <div v-if="isPro2PackageSelected" class="col-xs-6">
+          <div class="form-group">
+            <label>Fuel Group</label>
+            <select class="form-control" v-model="selectedFuelGroup">
+              <option :value="v.tag" v-for="(v, i) in fuel_groups" :key="i">
+                {{ v.name }}
+              </option>
             </select>
           </div>
         </div>
@@ -99,7 +146,11 @@
           </div>
         </div>
         <div class="pull-right">
-          <button class="btn btn-success right-space" :class="{disabled: spinner}" @click="save">
+          <button
+            class="btn btn-success right-space"
+            :class="{ disabled: spinner }"
+            @click="save"
+          >
             <i class="fa fa-spinner fa-spin" v-if="spinner"></i>
             <i class="fa fa-save" v-if="!spinner"></i> Save
           </button>
@@ -112,8 +163,9 @@
   </div>
 </template>
 <script>
-import EventBus from '../../../../util/EventBus';
-import CarApi from '../../../../api/CarApi';
+import EventBus from '../../../../util/EventBus'
+import CarApi from '../../../../api/CarApi'
+import FuelApi from '../../../../api/FuelApi'
 
 export default {
   props: ['customer'],
@@ -130,6 +182,7 @@ export default {
       promo_key: '',
       activation_key: '',
       new_service: '1',
+      fuel_group: null,
       voice_service: '0',
       volume: 0, // application for 'generator' type
     },
@@ -141,63 +194,80 @@ export default {
       activation_key: '',
     },
     selectedPackage: '0',
+    selectedFuelGroup: null,
     packages: [],
   }),
+  computed: {
+    isPro2PackageSelected() {
+      return this.selectedPackage == 4
+    },
+  },
   mounted() {
-    EventBus.$on('car-save-done', this.onCarSaved.bind(this));
-    EventBus.$on('car-validation-failed', this.onValidationFailed.bind(this));
-    EventBus.$on('service-packages-found', this.onPackagesFound.bind(this));
-    EventBus.$on('promo-invalid',this.onInvalidPromo.bind(this));
-    this.info.user_id = this.customer.id;
+    EventBus.$on('car-save-done', this.onCarSaved.bind(this))
+    EventBus.$on('car-validation-failed', this.onValidationFailed.bind(this))
+    EventBus.$on('service-packages-found', this.onPackagesFound.bind(this))
+    EventBus.$on('promo-invalid', this.onInvalidPromo.bind(this))
+    this.info.user_id = this.customer.id
 
-    let api = new CarApi(EventBus);
-    api.getPackages();
+    let api = new CarApi(EventBus)
+    api.getPackages()
+
+    this.fetchFuelGroups()
   },
   methods: {
     save() {
-      this.spinner = true;
+      this.spinner = true
 
-      this.info.services = this.packages[parseInt(this.selectedPackage)].services;
+      this.info.services = this.packages[
+        parseInt(this.selectedPackage)
+      ].services
 
-      let api = new CarApi(EventBus);
-      api.save(this.info);
+      this.info.fuel_group = this.selectedFuelGroup
+
+      let api = new CarApi(EventBus)
+      api.save(this.info)
+    },
+
+    async fetchFuelGroups() {
+      let api = new FuelApi(EventBus)
+      this.fuel_groups = [{ id: null, tag: null, name: 'Unspecified' }]
+      this.fuel_groups.push(...(await api.fetchGroups()))
     },
 
     cancel() {
-      EventBus.$emit('show-car-list');
+      EventBus.$emit('show-car-list')
     },
 
     onCarSaved() {
-      this.spinner = false;
-      toastr.success('Car information saved');
-      this.cancel();
+      this.spinner = false
+      toastr.success('Car information saved')
+      this.cancel()
     },
 
     onValidationFailed(error) {
-      this.spinner = false;
+      this.spinner = false
       for (let k in this.error) {
-        this.error[k] = '';
+        this.error[k] = ''
       }
 
       for (let k in error) {
         if (error.hasOwnProperty(k)) {
           if (error[k].length) {
-            this.error[k] = error[k][0];
+            this.error[k] = error[k][0]
           }
         }
       }
     },
 
     onPackagesFound(list) {
-      this.packages = list;
+      this.packages = list
     },
 
-    onInvalidPromo(data){
-      toastr.error(data.message);
-      this.spinner = false;
-    }
-  }
+    onInvalidPromo(data) {
+      toastr.error(data.message)
+      this.spinner = false
+    },
+  },
 }
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

@@ -83,12 +83,19 @@
           <div class="form-group">
             <label>Package</label>
             <select class="form-control" v-model="selectedPackage">
-              <option
-                v-bind:value="v.id"
-                v-for="(v, i) in packages"
-                v-bind:key="i"
-                >{{ v.name }}</option
-              >
+              <option :value="v.id" v-for="(v, i) in packages" :key="i">
+                {{ v.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div v-if="isPro2PackageSelected" class="col-xs-6">
+          <div class="form-group">
+            <label>Fuel Group</label>
+            <select class="form-control" v-model="selectedFuelGroup">
+              <option :value="v.tag" v-for="(v, i) in fuel_groups" :key="i">
+                {{ v.name }}
+              </option>
             </select>
           </div>
         </div>
@@ -151,6 +158,7 @@
 <script>
 import EventBus from '../../../../util/EventBus'
 import CarApi from '../../../../api/CarApi'
+import FuelApi from '../../../../api/FuelApi'
 
 export default {
   props: ['vehicle'],
@@ -165,6 +173,7 @@ export default {
       reg_no: '',
       services: [],
       new_service: '1',
+      fuel_group: null,
       voice_service: '0',
       engine_control: 'lock',
       bill: '',
@@ -176,8 +185,15 @@ export default {
       reg_no: '',
     },
     selectedPackage: '0',
+    selectedFuelGroup: null,
     packages: [],
+    fuel_groups: [],
   }),
+  computed: {
+    isPro2PackageSelected() {
+      return this.selectedPackage == 4
+    },
+  },
   mounted() {
     EventBus.$on('car-details-found', this.onCarDetailsFound.bind(this))
     EventBus.$on('car-update-done', this.onCarUpdated.bind(this))
@@ -187,6 +203,8 @@ export default {
     let api = new CarApi(EventBus)
     api.find(this.vehicle.id)
     api.getPackages()
+
+    this.fetchFuelGroups()
   },
   methods: {
     onCarDetailsFound(data) {
@@ -198,6 +216,7 @@ export default {
       this.info.new_service = data.new_service
       this.info.voice_service = data.voice_service
       this.info.engine_control = data.engine_control
+      this.info.fuel_group = data.meta.fuel_group
       this.info.bill = data.bill
       if (data.type) {
         this.info.type = `${data.type}`
@@ -210,6 +229,12 @@ export default {
       }
     },
 
+    async fetchFuelGroups() {
+      let api = new FuelApi(EventBus)
+      this.fuel_groups = [{ id: null, tag: null, name: 'Unspecified' }]
+      this.fuel_groups.push(...(await api.fetchGroups()))
+    },
+
     save() {
       this.spinner = true
 
@@ -217,6 +242,8 @@ export default {
         this.packages,
         p => p.id == this.selectedPackage
       ).services
+
+      this.info.fuel_group = this.selectedFuelGroup
 
       let api = new CarApi(EventBus)
       api.update(this.info)

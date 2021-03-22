@@ -15,10 +15,19 @@ class SimpleCalibrator extends BaseCalibrator
 
     public function fuel($value)
     {
-        $ret = (99 - (($value - 30) / 6)) * 1.50;
-        $offset = 0;
-        $ret = intval(floor($ret + $offset));
-        return min(100, max(0, $ret));
+        $percentage = 0;
+        switch ($this->getFuelGroup()) {
+            case 'g1':
+                $percentage = (99 - (($value - 30) / 6)) * 1.50;
+                break;
+            case 'g2':
+                $percentage = (($value - 30) / 6) * 1.3;
+                break;
+            default:
+                break;
+        }
+        $percentage = intval(floor($percentage));
+        return min(100, max(0, $percentage));
     }
 
     public function gas($value)

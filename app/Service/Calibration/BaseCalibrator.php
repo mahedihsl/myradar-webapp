@@ -38,6 +38,10 @@ abstract class BaseCalibrator {
         return $this->device->car->meta_data['cng_type'];
     }
 
+    protected function getFuelGroup() {
+        return $this->device->car->fule_group;
+    }
+
     abstract public function fuel($value);
 
     abstract public function gas($value);

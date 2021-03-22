@@ -29,7 +29,10 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
     public function save(Collection $data)
     {
         $vehicleType = intval($data->get('type'));
-        $metaInfo = [ 'cng_type' => intval($data->get('cng')) ];
+        $metaInfo = [
+            'cng_type' => intval($data->get('cng')),
+            'fuel_group' => $data->get('fuel_group', null),
+        ];
 
         if ($vehicleType == Car::TYPE_GENERATOR) {
             $metaInfo['volume'] = floatval($data->get('volume'));
@@ -65,6 +68,7 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
             'reg_no'   => $data->get('reg_no'),
             'type'     => intval($data->get('type')),
             'services' => $data->get('services'),
+            'meta_data.fuel_group' => $data->get('fuel_group', null),
             'meta_data.cng_type' => intval($data->get('cng')),
             'new_service' => intval($data->get('new_service')),
             'voice_service' => intval($data->get('voice_service')),

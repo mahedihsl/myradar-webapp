@@ -94,6 +94,7 @@ class Car extends Eloquent implements Presentable
         $value->put('fuel_factor', FuelPriceFactor::mutate($factor));
 
         if ( ! $value->has('cng_type')) $value->put('cng_type', self::CNG_TYPE_A);
+        if ( ! $value->has('fuel_group')) $value->put('fuel_group', null);
 
         return $value;
     }
@@ -101,6 +102,11 @@ class Car extends Eloquent implements Presentable
     public function getCngTypeAttribute()
     {
         return $this->meta_data->get('cng_type', self::CNG_TYPE_A);
+    }
+    
+    public function getFuelGroupAttribute()
+    {
+        return $this->meta_data->get('fuel_group', 'g1');
     }
 
     public function getServicesAttribute($value)
