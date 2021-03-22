@@ -179,13 +179,26 @@ class ServiceMonitorController extends Controller
 
         if ($sid == 21) {
           $fuelService = new FuelMicroservice();
-          $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $curr_page, $per_page);
+          $first_avarage_type = 1;
+          $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $curr_page, $per_page, $first_avarage_type);
           $items = collect($data['items'])->map(function($row) {
             return (object) $row;
           });
           $data = new LengthAwarePaginator($items, $data['total'], $per_page, $curr_page);
           $file_name = "Fuel_Avarage_Export_".$User;
-          $headings = array('Date Time', 'Avg. Fuel Value');
+          $headings = array('Date Time', '1st Avg. Fuel Value');
+        }
+        
+        if ($sid == 22) {
+          $fuelService = new FuelMicroservice();
+          $second_avarage_type = 2;
+          $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $curr_page, $per_page, $second_avarage_type);
+          $items = collect($data['items'])->map(function($row) {
+            return (object) $row;
+          });
+          $data = new LengthAwarePaginator($items, $data['total'], $per_page, $curr_page);
+          $file_name = "Fuel_Avarage_Export_".$User;
+          $headings = array('Date Time', '2nd Avg. Fuel Value');
         }
 
         if($sid==0)//Lat lng
@@ -248,7 +261,25 @@ class ServiceMonitorController extends Controller
                       $page = 1;
                       $perPage = 1000000;
                       $fuelService = new FuelMicroservice();
-                      $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $page, $perPage);
+                      $avarage_type = 1;
+                      $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $page, $perPage, $avarage_type);
+                      $items = collect($data['items'])->reverse()->map(function($row) {
+                        return (object) $row;
+                      });
+                      foreach ($items as $item) {
+                        $exportResult[] = [
+                          Carbon::parse($item->when)->format('d M Y g:i:s A'),
+                          $item->value
+                        ];
+                      }
+                    }
+                    
+                    else if ($sid == 22) {
+                      $page = 1;
+                      $perPage = 1000000;
+                      $fuelService = new FuelMicroservice();
+                      $avarage_type = 2;
+                      $data = $fuelService->fetchAvarage($Device->id, $from_date->timestamp, $to_date->timestamp, $page, $perPage, $avarage_type);
                       $items = collect($data['items'])->reverse()->map(function($row) {
                         return (object) $row;
                       });

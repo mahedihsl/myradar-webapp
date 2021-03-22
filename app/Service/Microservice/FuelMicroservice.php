@@ -20,9 +20,9 @@ class FuelMicroservice extends BaseService
     return $this->get('/fuel/history', compact('car_id', 'type'));
   }
 
-  public function fetchAvarage($device_id, $from, $to, $page, $per_page)
+  public function fetchAvarage($device_id, $from, $to, $page, $per_page, $type = 1)
   {
-    return $this->get('/fuel/fetch-avarage', compact('device_id', 'from', 'to', 'page', 'per_page'));
+    return $this->get('/fuel/fetch-avarage', compact('device_id', 'from', 'to', 'page', 'per_page', 'type'));
   }
 
   public function storeAvarage($value, $device_id)
