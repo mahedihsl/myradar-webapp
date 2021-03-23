@@ -62,7 +62,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         'App\Events\FuelReceived' => [
-            'App\Listeners\UpdateDailyFuel',
+            // 'App\Listeners\UpdateDailyFuel',
             'App\Listeners\CheckFuelRefuel',
         ],
 
