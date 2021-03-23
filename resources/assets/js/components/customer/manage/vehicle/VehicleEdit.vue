@@ -227,6 +227,7 @@ export default {
       if (data.package > -1) {
         this.selectedPackage = `${data.package}`
       }
+      this.selectedFuelGroup = data.meta.fuel_group
     },
 
     async fetchFuelGroups() {
