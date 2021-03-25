@@ -83,11 +83,6 @@ class EngagementController extends Controller
         $data = $this->records($this->repository->all(['name', 'phone']));
         Excel::create('CustomerEngagement', function ($excel) use ($data) {
             $excel->sheet('data', function ($sheet) use ($data) {
-                // $data->transform(function ($item) {
-                //     $transformer = new ActivationExportTransformer();
-                //     return $transformer->transform($item);
-                // });
-
                 $sheet->fromArray($data->toArray(), null, 'A1', false, true);
             });
         })->download('xls');
@@ -99,7 +94,7 @@ class EngagementController extends Controller
     {
 		$uids = $users->map(function($u) { return $u->id; })->toArray();
 		$activities = Activity::whereIn('user_id', $uids)
-			->where('when', '>', Carbon::today()->subDays(15))
+			->where('when', '>', Carbon::today()->subDays(30))
 			->get()
 			->groupBy(function ($val) {
 				return $val->user_id;
@@ -113,7 +108,7 @@ class EngagementController extends Controller
                 'Cars' => 0, // $user->cars()->count()
             ];
 
-			for ($i=0; $i < 15; $i++) {
+			for ($i=0; $i < 30; $i++) {
 				$dt = Carbon::today()->subDays($i);
 				$itm = $data->first(function($val, $key) use ($dt) {
 					return $val->when->equalTo($dt);
@@ -129,7 +124,7 @@ class EngagementController extends Controller
 				$str = $dt->format('j M');
 				$arr = [
 					$str.'(API)' => $xx,
-					$str.'(OPEN)' => $yy,
+					// $str.'(OPEN)' => $yy,
 				];
 
 				$ret = array_merge($ret, $arr);
