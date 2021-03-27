@@ -80,8 +80,10 @@ class EngagementController extends Controller
 
     public function export(Request $request)
     {
-        $data = $this->records($this->repository->all(['name', 'phone']));
-        Excel::create('CustomerEngagement', function ($excel) use ($data) {
+        $users = $this->repository->all(['name', 'phone']);
+        $data = $this->records($users, $request->all());
+
+        Excel::create('CustomerEngagement (API Count)', function ($excel) use ($data) {
             $excel->sheet('data', function ($sheet) use ($data) {
                 $sheet->fromArray($data->toArray(), null, 'A1', false, true);
             });
@@ -90,17 +92,27 @@ class EngagementController extends Controller
         return redirect()->back();
     }
 
-    private function records($users)
+    private function records($users, $query)
     {
 		$uids = $users->map(function($u) { return $u->id; })->toArray();
+        
+        $year = intval($query['year']);
+        $month = intval($query['month']);
+        $startDate = Carbon::createFromDate($year, $month, 1);
+        $startDate->setTime(0, 0, 0);
+        $endDate = $startDate->copy()->addMonth();
+
 		$activities = Activity::whereIn('user_id', $uids)
-			->where('when', '>', Carbon::today()->subDays(30))
+			->where('when', '>=', $startDate)
+			->where('when', '<', $endDate)
 			->get()
 			->groupBy(function ($val) {
 				return $val->user_id;
 			});
 
-        return $users->map(function ($user) use ($activities) {
+        // return $activities;
+
+        return $users->map(function ($user) use ($activities, $startDate, $endDate) {
             $data = collect($activities->get($user->id));
             $ret = [
                 'Name' => $user->name,
@@ -108,22 +120,21 @@ class EngagementController extends Controller
                 'Cars' => 0, // $user->cars()->count()
             ];
 
-			for ($i=0; $i < 30; $i++) {
-				$dt = Carbon::today()->subDays($i);
-				$itm = $data->first(function($val, $key) use ($dt) {
-					return $val->when->equalTo($dt);
+			for ($i=$startDate->copy(); $i->lessThan($endDate); $i->addDay()) {
+				$itm = $data->first(function($val, $key) use ($i) {
+					return $val->when->equalTo($i);
 				});
 
 				$xx = 0;
 				$yy = 0;
 				if ( ! is_null($itm)) {
 					$xx = $itm->request;
-					$yy = $itm->login;
+					// $yy = $itm->login;
 				}
 
-				$str = $dt->format('j M');
+				$str = $i->format('j M');
 				$arr = [
-					$str.'(API)' => $xx,
+					$str => $xx,
 					// $str.'(OPEN)' => $yy,
 				];
 
