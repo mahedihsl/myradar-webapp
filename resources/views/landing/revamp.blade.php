@@ -164,7 +164,7 @@
 
           <div class="col-lg-4">
             <div class="box" data-aos="fade-up" data-aos-delay="200">
-              <img src="{{ asset('landing2/assets/img/values-1.png', true) }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/image/live_tracking.png', true) }}" class="img-fluid" alt="">
               <h3>লাইভ ট্র্যাকিং</h3>
               <p>লাইভ ট্র্যাকিং এর মাধ্যমে জানতে পারবেন গাড়ি এখন কোথায় আছে</p>
             </div>
@@ -172,7 +172,7 @@
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="400">
-              <img src="{{ asset('landing2/assets/img/values-2.png', true) }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/image/lock_unlock.png', true) }}" class="img-fluid" alt="">
               <h3>ইঞ্জিন লক/আনলক</h3>
               <p>অ্যাপ এর মাধ্যমে দূরে থেকেও গাড়ি নিয়ন্ত্রণ করুন অনায়সে</p>
             </div>
@@ -180,7 +180,7 @@
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="600">
-              <img src="{{ asset('landing2/assets/img/values-3.png', true) }}" class="img-fluid" alt="">
+              <img src="{{ asset('landing2/assets/image/cng_monitoring.png', true) }}" class="img-fluid" alt="">
               <h3>সি এন জি মনিটরিং</h3>
               <p>শুধুমাত্র আমরাই দিচ্ছি সি এন জি মনিটরিং সুবিধা</p>
             </div>
@@ -260,7 +260,7 @@
         <div class="row">
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features.png', true) }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/image/features.png', true) }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6 mt-5 mt-lg-0 d-flex">
@@ -366,7 +366,7 @@
           </div>
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/image/car_safety.png', true) }}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -375,7 +375,7 @@
         <!-- Feature Tabs 2 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/image/theft_protection.png', true) }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6">
@@ -485,7 +485,7 @@
           </div>
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/image/cng_monitoring2.png', true) }}" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -494,7 +494,7 @@
         <!-- Feature Tabs 4 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/image/live_tracking2.png', true) }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6">
@@ -588,7 +588,7 @@
           </div>
 
           <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/img/features-2.png', true) }}" class="img-fluid" alt="">
+            <img src="{{ asset('landing2/assets/image/family_safety.png', true) }}" class="img-fluid" alt="">
           </div>
 
         </div>
