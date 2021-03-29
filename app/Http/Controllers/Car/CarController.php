@@ -151,6 +151,7 @@ class CarController extends Controller
         return response()->ok([
             Package::basicCar(),
             Package::proCar(),
+            Package::proCarIII(),
             Package::proCarII(),
             Package::basicBike(),
             Package::proBike(),

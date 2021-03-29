@@ -19,12 +19,14 @@ class PackageService
     const CAR_BASIC = 0;
     const CAR_PRO_1 = 1;
     const CAR_PRO_2 = 4;
+    const CAR_PRO_3 = 5;
     const BIKE_BASIC = 2;
     const BIKE_PRO = 3;
 
     private $package1; // Car Basic
     private $package2; // Car Pro
     private $package5; // Car Pro II
+    private $package6; // Car Pro III
     private $package3; // Bike Basic
     private $package4; // Bike Pro
 
@@ -33,6 +35,7 @@ class PackageService
         $this->package1 = [self::LATLNG, self::ENGINE, self::MILEAGE, self::GEOFENCE, self::SPEED];
         $this->package2 = [self::LATLNG, self::ENGINE, self::GAS, self::MILEAGE, self::GEOFENCE, self::SPEED];
         $this->package5 = [self::LATLNG, self::ENGINE, self::FUEL, self::GAS, self::MILEAGE, self::GEOFENCE, self::SPEED];
+        $this->package6 = [self::LATLNG, self::ENGINE, self::FUEL, self::MILEAGE, self::GEOFENCE, self::SPEED];
         $this->package3 = [self::ENGINE];
         $this->package4 = [self::LATLNG, self::ENGINE, self::MILEAGE];
     }
@@ -41,7 +44,7 @@ class PackageService
     {
         return [
             'id' => 0,
-            'name' => 'Car Basic',
+            'name' => 'Standard',
             'services' => $this->package1,
             'labels' => $this->getServiceNames($this->package1),
         ];
@@ -51,7 +54,7 @@ class PackageService
     {
         return [
             'id' => 1,
-            'name' => 'Car Pro (I)',
+            'name' => 'Special',
             'services' => $this->package2,
             'labels' => $this->getServiceNames($this->package2),
         ];
@@ -61,9 +64,19 @@ class PackageService
     {
         return [
             'id' => 4,
-            'name' => 'Car Pro (II)',
+            'name' => 'Premium',
             'services' => $this->package5,
             'labels' => $this->getServiceNames($this->package5),
+        ];
+    }
+    
+    public function proCarIII()
+    {
+        return [
+            'id' => 5,
+            'name' => 'Advanced',
+            'services' => $this->package6,
+            'labels' => $this->getServiceNames($this->package6),
         ];
     }
 
@@ -95,6 +108,8 @@ class PackageService
             return self::CAR_PRO_1;
         } else if ($services == $this->package5) {
             return self::CAR_PRO_2;
+        } else if ($services == $this->package6) {
+            return self::CAR_PRO_3;
         } else if ($services == $this->package3) {
             return self::BIKE_BASIC;
         } else if ($services == $this->package4) {
