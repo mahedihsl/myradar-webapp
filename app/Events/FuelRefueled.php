@@ -62,7 +62,7 @@ class FuelRefueled
 
     public function title()
     {
-        if($this->title == null){
+        if($this->title == null) {
           $this->title = "Alert for car: {$this->device->car->reg_no}";
         }
 
