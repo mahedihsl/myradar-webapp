@@ -54,7 +54,7 @@ class PackageService
     {
         return [
             'id' => 1,
-            'name' => 'Special',
+            'name' => 'Special (Gas Only)',
             'services' => $this->package2,
             'labels' => $this->getServiceNames($this->package2),
         ];
@@ -64,7 +64,7 @@ class PackageService
     {
         return [
             'id' => 4,
-            'name' => 'Premium',
+            'name' => 'Premium (Gas & Fuel)',
             'services' => $this->package5,
             'labels' => $this->getServiceNames($this->package5),
         ];
@@ -74,7 +74,7 @@ class PackageService
     {
         return [
             'id' => 5,
-            'name' => 'Advanced',
+            'name' => 'Advanced (Fuel Only)',
             'services' => $this->package6,
             'labels' => $this->getServiceNames($this->package6),
         ];

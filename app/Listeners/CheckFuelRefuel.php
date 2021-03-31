@@ -45,8 +45,7 @@ class CheckFuelRefuel
             $value = $this->service->check($batch);
             if($value == -1){
               $event->device->update([ 'meter.new_fuel' => [] ]);
-            }
-            else {
+            } else {
               $prevFuel = $event->device->meta->get('prevFuel');
 
               $threshold = config('car.refuelByFiltering.fuel.threshold');

@@ -116,7 +116,7 @@
             </select>
           </div>
         </div>
-        <div v-if="isPro2PackageSelected" class="col-xs-6">
+        <div v-if="isFuelPackageSelected" class="col-xs-6">
           <div class="form-group">
             <label>Fuel Group</label>
             <select class="form-control" v-model="selectedFuelGroup">
@@ -198,8 +198,8 @@ export default {
     packages: [],
   }),
   computed: {
-    isPro2PackageSelected() {
-      return this.selectedPackage == 4
+    isFuelPackageSelected() {
+      return this.selectedPackage == 4 || this.selectedPackage == 5
     },
   },
   mounted() {
