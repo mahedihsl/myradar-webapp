@@ -15,21 +15,27 @@ use App\Entities\ExecTime;
 use App\Jobs\DemoUserDataJob;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use App\Transformers\PositionTransformer;
 use Carbon\Carbon;
 
 class DatabaseTestController extends Controller
 {
-    public function jobs(Request $request)
+    public function lastPost(Request $request)
     {
-        $KEEP_COUNT = 5000;
-        $count = DB::table('jobs')->count();
-
-        $records = DB::table('jobs')->orderBy('_id', 'asc')->limit(2)->get();
-
-        return [
-            'a' => $count,
-            'b' => $records,
-        ];
+        $devices = Device::all();
+        $count = 0;
+        $transformer = new PositionTransformer();
+        for ($i = 0; $i < $devices->count(); $i++) { 
+            $lastPos = $devices->get($i)->positions()->orderBy('when', 'desc')->first();
+            if ( ! is_null($lastPos)) {
+                $devices->get($i)->update([
+                    'meta.pos' => $transformer->transform($lastPos),
+                    'meta.mil_pos' => $transformer->transform($lastPos),
+                ]);
+                $count++;
+            }
+        }
+        return $count;
     }
 
 	public function remove(Request $request)

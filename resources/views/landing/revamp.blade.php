@@ -375,6 +375,63 @@
         <!-- Feature Tabs 2 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
+            <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6">
+            <h3>গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা</h3>
+
+            <!-- Tabs -->
+            <ul class="nav nav-pills mb-3">
+              <li>
+                <a class="nav-link active" data-bs-toggle="pill" href="#tab1"></a>
+              </li>
+            </ul>
+            <!-- End Tabs -->
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+
+              <div class="tab-pane fade show active" id="tab1">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল আপনার
+                    অ্যাপে</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে ইঞ্জিন অফ
+                    করে দিতে পারবেন</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ করলে এলার্ট
+                    পেয়ে যাবেন সাথে সাথেই ।</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে ইমারজেঞ্ছি
+                    এলার্ট</span>
+                </div>
+                <a href="#about"
+                  style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
+                  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span>প্যাকেজ দেখুন</span>
+                  <i class="bi bi-arrow-right text-white"></i>
+                </a>
+              </div>
+              <!-- End Tab 1 Content -->
+
+            </div>
+
+          </div>
+
+        </div>
+        <!-- End Feature Tabs -->
+
+        <!-- Feature Tabs 2 -->
+        <div class="row feture-tabs" data-aos="fade-up">
+          <div class="col-lg-6">
             <img src="{{ asset('landing2/assets/image/theft_protection.png', true) }}" class="img-fluid" alt="">
           </div>
 

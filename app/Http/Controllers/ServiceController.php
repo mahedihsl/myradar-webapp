@@ -28,7 +28,7 @@ class ServiceController extends Controller
 
     public function consume(Request $request)
     {
-		$start = round(microtime(true) * 1000);
+		// $start = round(microtime(true) * 1000);
 		$com_id = intval($request->get('ss'));
 
 		if (in_array($com_id, [71791])) {
@@ -73,15 +73,13 @@ class ServiceController extends Controller
 				]);
 			}
 
-			try {
-				$end = round(microtime(true) * 1000);
-				ExecTime::create([
-					'device' => $com_id,
-					'time' => $end - $start,
-				]);
-			} catch (\Exception $e) {
-				//throw $th;
-			}
+			// try {
+			// 	$end = round(microtime(true) * 1000);
+			// 	ExecTime::create([
+			// 		'device' => $com_id,
+			// 		'time' => $end - $start,
+			// 	]);
+			// } catch (\Exception $e) {}
 
             // return '0';
             return strval($device->lock_status);

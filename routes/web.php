@@ -63,6 +63,7 @@ Route::get('/test/redis', 'Test\DatabaseTestController@redis');
 Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/bill-notice', 'Promotion\NoticeController@test');
 Route::get('/test/sms', 'Test\NotificationController@sms');
+// Route::get('/test/last-pos', 'Test\DatabaseTestController@lastPost');
 Route::get('/test/bill', 'Test\BillInsertController@test');
 Route::get('/test/remove', 'Test\DatabaseTestController@remove');
 Route::get('/test/throttle', 'Test\DatabaseTestController@throttle');
