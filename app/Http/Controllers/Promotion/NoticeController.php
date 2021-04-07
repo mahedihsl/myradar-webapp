@@ -195,7 +195,7 @@ class NoticeController extends Controller
                 return response()->json([
                     'sent' => $sent,
                     'remaining' => PendingNotice::where('via', $via)
-                        ->where('notice_id', $model->notice_id)
+                        ->where('attempt', 0)
                         ->count(),
                 ]);
             } catch (Exception $error) {

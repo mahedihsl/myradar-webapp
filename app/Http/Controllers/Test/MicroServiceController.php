@@ -50,7 +50,7 @@ class MicroServiceController extends Controller
 
     public function testGeofence(Request $request)
     {
-        $car_id = '5f63faca36374b3de61bac6e';
+        $car_id = '5f63facb36374b3de61bae06';
 
         // Outside geofence
         // $lat = 23.8379784;
@@ -61,8 +61,7 @@ class MicroServiceController extends Controller
         $lng = 90.3696889;
         
         $service = new GeofenceMicroservice();
-        $service->observe($car_id, $lat, $lng);
-        return response()->json(['status' => 1]);
+        return response()->json($service->test($car_id));
     }
 
     public function testPush(Request $request)
