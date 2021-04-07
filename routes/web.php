@@ -209,6 +209,7 @@ Route::group(['middleware' => ['auth', 'role:1']], function() {
     Route::post('/save/scheme','Promotion\PromotionController@save');
     Route::get('/customer/ids','User\CustomerController@getIds');
 
+
     Route::get('/due/notice', 'Promotion\NoticeController@dueNotice')->name('due-notice');
     Route::post('/send/single/notice', 'Promotion\NoticeController@sendSingleNotice');
     Route::post('/send/due/notice', 'Promotion\NoticeController@sendDueNotice');

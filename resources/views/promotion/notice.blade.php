@@ -69,11 +69,28 @@ Due Bill SMS/Push Notice
   <div class="col-xs-12">
     <h4>Notice History</h4>
     @foreach ($history as $key => $notice)
-    <div class="col-xs-12">
-      <strong><small>{{ $notice->created_at->toDayDateTimeString() }}</small></strong><br>
+    <div class="col-xs-12" style="margin-top: 25px;">
+      <div style="display: flex; flex-direction: row; justify-content: start;">
+        <strong><small>{{ $notice->created_at->toDayDateTimeString() }}</small></strong><br>
+        @if ( ! is_null($notice->via))
+        <span class="label label-default label-sm" style="margin-left: 15px;">{{ $notice->via }}</span>
+        @endif
+      </div>
       <p>{{ $notice->message }}</p>
+      <div style="display: flex; flex-direction: row; justify-content: start;">
+        @if ($notice->getPendingCount() != -1)
+        <span class="label label-primary label-sm" style="margin-right: 10px;">Pending: {{ $notice->getPendingCount() }}</span>
+        @endif
+        @if ($notice->getSentCount() != -1)
+        <span class="label label-success label-sm" style="margin-right: 10px;">Sent: {{ $notice->getSentCount() }}</span>
+        @endif
+        @if ($notice->getFailedCount() != -1)
+        <span class="label label-danger label-sm">Failed: {{ $notice->getFailedCount() }}</span>
+        @endif
+      </div>
     </div>
     @endforeach
+    {!! $history->links() !!}
   </div>
 </div>
 @endsection

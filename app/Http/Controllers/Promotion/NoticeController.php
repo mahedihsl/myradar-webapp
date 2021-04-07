@@ -89,12 +89,23 @@ class NoticeController extends Controller
 
         if (strlen($message)) {
             $unpaid = $this->getUnpaidUsers($mm, $yy);
-            $unpaid->each(function($user) use ($message, $via) {
+
+            $notice = $this->repository->create([
+                'message' => $message,
+                'via' => $via,
+                'pending' => $unpaid->count(),
+                'sent' => 0,
+                'failed' => 0,
+            ]);
+
+            $unpaid->each(function($user) use ($message, $via, $notice) {
                 if ($via == 'sms') {
                     PendingNotice::create([
                         'via' => $via,
                         'to' => $user->phone,
                         'payload' => $message,
+                        'notice_id' => $notice->id,
+                        'attempt' => 0,
                     ]);
                 } else {
                     $payload = [
@@ -106,15 +117,16 @@ class NoticeController extends Controller
                         'via' => $via,
                         'to' => $user->id,
                         'payload' => $payload,
+                        'notice_id' => $notice->id,
+                        'attempt' => 0,
                     ]);
                 }
             });
 
-            $this->repository->create([ 'message' => $message ]);
-
             return redirect()->route('due-notice', [
                 'status' => 1,
                 'via' => $via,
+                'notice_id' => $notice->id,
                 'count' => PendingNotice::where('via', $via)->count(),
             ]);
         }
@@ -152,14 +164,18 @@ class NoticeController extends Controller
     public function sendSingleNotice(Request $request)
     {
         $via = $request->get('via', 'none');
-        $model = PendingNotice::where('via', $via)->first();
+        // $notice_id = $request->get('notice_id');
+        $model = PendingNotice::where('via', $via)
+                    ->where('attempt', 0)
+                    ->first();
         if ( ! is_null($model)) {
             try {
-                $sent = 0;
+                $notice = $this->repository->find($model->notice_id);
+                $sent = 1;
                 if ($model->via == 'sms') {
                     $s = new SmsService();
-                    $s->send($model->to, $model->payload);
-                    $sent = 1;
+                    $reply = $s->send($model->to, $model->payload);
+                    $sent = $reply['status'];
                 } else if ($model->via == 'push') {
                     $service = new PushMicroservice();
                     $res = $service->send($model->to, collect($model->payload));
@@ -168,10 +184,19 @@ class NoticeController extends Controller
                     $oneSignalRecipients = $res['recipients']['onesignal'];
                     $sent = $socketRecipients + $oneSignalRecipients;
                 }
-                $model->delete();
+                if ($sent > 0) {
+                    $model->delete();
+                    $notice->increment('sent');
+                } else {
+                    $model->increment('attempt');
+                    $notice->increment('failed');
+                }
+                $notice->decrement('pending');
                 return response()->json([
                     'sent' => $sent,
-                    'remaining' => PendingNotice::where('via', $via)->count(),
+                    'remaining' => PendingNotice::where('via', $via)
+                        ->where('notice_id', $model->notice_id)
+                        ->count(),
                 ]);
             } catch (Exception $error) {
                 Log::info('Single Notice Delivery Error', [
@@ -200,8 +225,8 @@ class NoticeController extends Controller
             ];
         });
         $history = Notice::orderBy('_id', 'desc')
-                    ->limit(5)
-                    ->get();
+                    ->limit(10)
+                    ->paginate();
 
         return view('promotion.notice')->with([
             'months' => $months,
