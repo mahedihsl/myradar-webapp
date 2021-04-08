@@ -15,8 +15,6 @@ class DetectFuelRefuel extends DetectRefuel
 {
     const COUNT = 10;
 
-
-
     function __construct()
     {
         parent::__construct();
