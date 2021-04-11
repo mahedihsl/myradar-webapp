@@ -131,6 +131,7 @@ class ServiceConsumerGenerator
                         'message' => $e->getMessage(),
                         'file' => $e->getFile(),
                         'line' => $e->getLine(),
+                        'key' => $key,
 						'data' => $this->data->toArray(),
                     ]);
                     continue;

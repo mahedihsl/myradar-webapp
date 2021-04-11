@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\UserRepository;
+use App\Service\Microservice\UserMicroservice;
 use App\Criteria\WithTypeCriteria;
 use App\Criteria\UserNameCriteria;
 use App\Criteria\PhoneNumberCriteria;
 use App\Presenters\UserActivityPresenter;
 use App\Entities\User;
 use App\Entities\Activity;
+use App\Service\Microservice\ServiceException;
 use Carbon\Carbon;
 use Excel;
 
@@ -18,10 +20,14 @@ class EngagementController extends Controller
 {
     private $repository;
 
+    private $userService;
+
     public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
         $this->repository->pushCriteria(new WithTypeCriteria(User::$TYPE_CUSTOMER));
+
+        $this->userService = new UserMicroservice();
     }
 
     public function index(Request $request)
@@ -147,4 +153,19 @@ class EngagementController extends Controller
 	public function test() {
 
 	}
+
+    public function smsPack1Enabler(Request $request)
+    {
+        try {
+            $data = $this->userService->scanUnderengagedUsers();
+            Excel::create('SMS Pack1 Altered Users (Engagement)', function ($excel) use ($data) {
+                $excel->sheet('data', function ($sheet) use ($data) {
+                    $sheet->fromArray($data, null, 'A1', false, true);
+                });
+            })->download('xls');
+            return redirect()->back();
+        } catch (ServiceException $e) {
+            return response()->json([ 'error' => $e->getMessage() ]);
+        }
+    }
 }

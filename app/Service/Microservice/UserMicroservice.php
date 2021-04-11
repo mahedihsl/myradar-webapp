@@ -48,6 +48,11 @@ class UserMicroservice extends BaseService
     return $this->post('/session/password-changed', compact('user_id'));
   }
 
+  public function scanUnderengagedUsers()
+  {
+    return $this->post('/engage/sms-pack1-enable');
+  }
+
   public function test()
   {
     return $this->get('/test', [ 'user' => 'palatok' ]);

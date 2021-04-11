@@ -309,6 +309,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
 
     Route::get('/engagement/report', 'Admin\EngagementController@index');
     Route::get('/engagement/export', 'Admin\EngagementController@export');
+    Route::get('/engagement/smspack1-enabler', 'Admin\EngagementController@smsPack1Enabler');
 
     Route::get('/geofence/library', 'Fence\AreaController@library');
     Route::post('/geofence/update', 'Fence\AreaController@update');

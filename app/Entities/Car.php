@@ -148,6 +148,20 @@ class Car extends Eloquent implements Presentable
             ];
         }
 
+        if ( ! array_key_exists('soft', $value)) {
+            $value['soft'] = [
+                'value' => 60,
+                'flag' => true,
+            ];
+        }
+
+        if ( ! array_key_exists('hard', $value)) {
+            $value['hard'] = [
+                'value' => 80,
+                'flag' => true,
+            ];
+        }
+
         return $value;
     }
 
