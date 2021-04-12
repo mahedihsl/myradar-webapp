@@ -87,28 +87,20 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center">
 
-    <div class="" style="padding: 0; margin-top: 40px;">
-      <div class="row">
-        {{-- <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Product TAG line will be here</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">This line will describe the main product features</h2>
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a href="#about"
-                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>অর্ডার করুন</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </div> --}}
-        {{-- <div class="col-lg-12">
-          <img src="{{ asset('cars.gif', true) }}" class="img-fluid" alt=""/>
-        </div> --}}
-        <div class="col-lg-12 hero-img" data-aos="zoom-out" data-aos-delay="200" style="margin-top: 100px;">
-          {{-- <img src="{{ asset('landing2/assets/img/banner.jpg', true) }}" class="img-fluid" alt=""> --}}
-          <img src="{{ asset('cars.gif', true) }}" class="img-fluid" alt="" />
-        </div>
+    <div class="row" style="width: 100%;">
+      <div class="col-lg-12" style="display: flex; flex-direction: column; align-items: center;">
+        <img src="{{ asset('cars.gif', true) }}" class="img-fluid" alt="" style="width: 100%;" />
+        <h2 class="text-center" style="font-weight: 800; color: #424242; font-size: 24px;">
+          আপনার প্রিয় গাড়ীটি রেখে দুরে এসেছেন!! ভয় নেই, পাহারায় আছে মাইরাডার
+        </h2>
+        <p class="text-enter" style="margin-top: 10px; font-size: 16px;">
+          শুধুমাত্র আমরাই দিচ্ছি ফুয়েল এবং সিএনজি মনিটরিং সুবিধাসহ সার্বক্ষণিক লাইভ ট্র্যাকিং সার্ভিস 
+        </p>
+        <a href="#about" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
+          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+          <span>প্যাকেজ দেখুন</span>
+          <i class="bi bi-arrow-right text-white"></i>
+        </a>
       </div>
     </div>
 
@@ -624,13 +616,14 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল App - এ জানতে পারবেন</span>
+                  <span><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল App - এ জানতে
+                    পারবেন</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
                   <span>আপনার সেট করে দেয়া গন্তব্যে আপনজন পৌঁছা মাত্র জানিয়ে দেবে myRadar</span>
                 </div>
-                
+
                 <a href="#about"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
@@ -765,19 +758,24 @@
             <div class="col-xs-12">
               <div style="display: flex; flex-direction: row;">
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt=""
+                    style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt=""
+                    style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt=""
+                    style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt=""
+                    style="width: 100%; border-radius: 4px;" />
                 </div>
                 <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt="" style="width: 100%; border-radius: 4px;" />
+                  <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt=""
+                    style="width: 100%; border-radius: 4px;" />
                 </div>
               </div>
             </div>
@@ -1546,39 +1544,39 @@
           <div class="col-lg-4">
             <div class="post-box">
               <div class="post-img"><img src="{{ asset('landing2/assets/img/blog/blog-1.jpg') }}" class="img-fluid"
-                  alt=""></div>
-              <span class="post-date">Tue, September 15</span>
-              <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
-              <a href="blog-singe.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+    alt=""></div>
+    <span class="post-date">Tue, September 15</span>
+    <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
+    <a href="blog-singe.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
+        class="bi bi-arrow-right"></i></a>
+    </div>
+    </div>
 
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="{{ asset('landing2/assets/img/blog/blog-2.jpg') }}" class="img-fluid"
-                  alt=""></div>
-              <span class="post-date">Fri, August 28</span>
-              <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-              <a href="blog-singe.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="{{ asset('landing2/assets/img/blog/blog-3.jpg') }}" class="img-fluid"
-                  alt=""></div>
-              <span class="post-date">Mon, July 11</span>
-              <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-              <a href="blog-singe.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
-                  class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
+    <div class="col-lg-4">
+      <div class="post-box">
+        <div class="post-img"><img src="{{ asset('landing2/assets/img/blog/blog-2.jpg') }}" class="img-fluid" alt="">
         </div>
-
+        <span class="post-date">Fri, August 28</span>
+        <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
+        <a href="blog-singe.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
+            class="bi bi-arrow-right"></i></a>
       </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="post-box">
+        <div class="post-img"><img src="{{ asset('landing2/assets/img/blog/blog-3.jpg') }}" class="img-fluid" alt="">
+        </div>
+        <span class="post-date">Mon, July 11</span>
+        <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
+        <a href="blog-singe.html" class="readmore stretched-link mt-auto"><span>Read More</span><i
+            class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+
+    </div>
+
+    </div>
 
     </section> --}}
     <!-- End Recent Blog Posts Section -->
