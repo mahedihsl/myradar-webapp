@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Car;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\CarRepository;
+use App\Service\Microservice\SpeedMicroservice;
+use App\Service\Microservice\ServiceException;
 
 class SpeedController extends Controller
 {
@@ -13,44 +15,39 @@ class SpeedController extends Controller
      */
     private $repository;
 
+    private $speedService;
+
     public function __construct(CarRepository $repository)
     {
         $this->repository = $repository;
+        $this->speedService = new SpeedMicroservice();
     }
 
     public function show(Request $request, $id)
     {
-        $car = $this->repository->skipPresenter()->find($id);
-
-        if ( ! is_null($car)) {
-            return response()->ok($car->speed_limit);
+        try {
+            return response()->ok($this->speedService->find($id));
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
         }
-
-        return response()->error('Car Not Found');
     }
 
     public function update(Request $request)
     {
-        $car = $this->repository->skipPresenter()->find($request->get('id'));
+        $car_id = $request->get('id');
 
-        if ( ! is_null($car)) {
-            $car->update([
-                'speed_limit' => [
-                    'soft' => [
-                        'value' => intval($request->get('soft_limit')),
-                        'flag' => boolval($request->get('soft_flag')),
-                    ],
-                    'hard' => [
-                        'value' => intval($request->get('hard_limit')),
-                        'flag' => boolval($request->get('hard_flag')),
-                    ]
-                ]
-            ]);
+        $soft_value = intval($request->get('soft_limit'));
+        $soft_active = boolval($request->get('soft_flag'));
+        
+        $hard_value = intval($request->get('hard_limit'));
+        $hard_active = boolval($request->get('hard_flag'));
 
+        try {
+            $this->speedService->update($car_id, $soft_value, $soft_active, $hard_value, $hard_active);
             return response()->ok();
+        } catch (ServiceException $e) {
+            return response()->error($e->getMessage());
         }
-
-        return response()->error('Car Not Found');
     }
 
 }

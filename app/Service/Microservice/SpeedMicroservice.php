@@ -15,4 +15,14 @@ class SpeedMicroservice extends BaseService
     return $this->post('/observe', compact('car_id', 'speed'));
   }
 
+  public function update($car_id, $soft_value, $soft_active, $hard_value, $hard_active)
+  {
+    return $this->post('/update', compact('car_id', 'soft_value', 'soft_active', 'hard_value', 'hard_active'));
+  }
+
+  public function find($car_id)
+  {
+    return $this->get('/find', compact('car_id'));
+  }
+
 }
