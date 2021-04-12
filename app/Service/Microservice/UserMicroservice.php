@@ -53,6 +53,11 @@ class UserMicroservice extends BaseService
     return $this->post('/engage/sms-pack1-enable');
   }
 
+  public function testMileagePush($user_id)
+  {
+    return $this->get('/test/mileage-push', compact('user_id'));
+  }
+
   public function test()
   {
     return $this->get('/test', [ 'user' => 'palatok' ]);

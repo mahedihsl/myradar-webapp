@@ -20,6 +20,17 @@ use Carbon\Carbon;
 
 class NotificationController extends Controller
 {
+    public function testMileagePush(Request $request)
+    {
+        try {
+            $service = new UserMicroservice();
+            $data = $service->testMileagePush($request->get('user_id'));
+            return response()->json($data);
+        } catch (ServiceException $e) {
+            return response()->json(['error' => $e->getMessage()]);
+        }
+    }
+
     public function sms(Request $request)
     {
         $phone = $request->get('phone');
