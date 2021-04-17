@@ -65,6 +65,8 @@ Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/bill-notice', 'Promotion\NoticeController@test');
 // Route::get('/test/sms', 'Test\NotificationController@sms');
 // Route::get('/test/last-pos', 'Test\DatabaseTestController@lastPost');
+Route::get('/test/geofence/read-cache', 'Test\GeofenceController@testCacheRead');
+Route::get('/test/geofence/write-cache', 'Test\GeofenceController@testCacheWrite');
 Route::get('/test/bill', 'Test\BillInsertController@test');
 Route::get('/test/remove', 'Test\DatabaseTestController@remove');
 Route::get('/test/throttle', 'Test\DatabaseTestController@throttle');

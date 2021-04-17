@@ -39,4 +39,14 @@ class GeofenceMicroservice extends BaseService
   {
     return $this->get('/geofence/test', compact('car'));
   }
+
+  public function testCacheRead($car_id)
+  {
+    return $this->post('/test/read-cache', compact('car_id'));
+  }
+
+  public function testCacheWrite($car_id)
+  {
+    return $this->post('/test/write-cache', compact('car_id'));
+  }
 }
