@@ -6,8 +6,10 @@ use Carbon\Carbon;
 use App\Entities\Device;
 use App\Events\FuelReceived;
 use App\Criteria\ExactDateCriteria;
+use App\Service\Microservice\FuelMicroservice;
 
 use App\Contract\Repositories\FuelHistoryRepository;
+use App\Service\Microservice\ServiceException;
 
 /**
  * @class FuelConsumer
@@ -15,6 +17,8 @@ use App\Contract\Repositories\FuelHistoryRepository;
 class FuelConsumer extends ServiceConsumer
 {
     const SAMPLE_COUNT = 30;
+
+    private $fuelService;
 
     /**
      * @var FuelHistoryRepository
@@ -25,6 +29,7 @@ class FuelConsumer extends ServiceConsumer
     {
         parent::__construct($data);
 
+        $this->fuelService = new FuelMicroservice();
         $this->repository = resolve(FuelHistoryRepository::class);
     }
 
@@ -35,25 +40,29 @@ class FuelConsumer extends ServiceConsumer
 
     public function consume(Device $device)
     {
-        $status = $device->engine_status;
-        if ($status) {
-            $record = $this->repository->save($device, $this->getData());
-            if ($this->getData() > 0) {
-                $meter = $device->meter;
-                $count = config('car.refuelByFiltering.fuel.minBatchSize');
-                while($meter->get('fuel')->count() >= $count){
-                  $meter->get('fuel')->shift();
-                }
-                while ($meter->get('newFuel')->count() >= $count) {
-                    $meter->get('newFuel')->shift();
-                }
-                $meter->get('fuel')->push($this->getData());
-                $meter->get('newFuel')->push($this->getData());
-                $device->meter = $meter;
-                $device->save();
+        try {
+            $this->fuelService->consume($device->com_id, $this->getData());
+        } catch (ServiceException $e) {}
+        
+        // $status = $device->engine_status;
+        // if ($status) {
+        //     $record = $this->repository->save($device, $this->getData());
+        //     if ($this->getData() > 0) {
+        //         $meter = $device->meter;
+        //         $count = config('car.refuelByFiltering.fuel.minBatchSize');
+        //         while($meter->get('fuel')->count() >= $count){
+        //           $meter->get('fuel')->shift();
+        //         }
+        //         while ($meter->get('newFuel')->count() >= $count) {
+        //             $meter->get('newFuel')->shift();
+        //         }
+        //         $meter->get('fuel')->push($this->getData());
+        //         $meter->get('newFuel')->push($this->getData());
+        //         $device->meter = $meter;
+        //         $device->save();
 
-                event(new FuelReceived($device, $record));
-            }
-        }
+        //         event(new FuelReceived($device, $record));
+        //     }
+        // }
     }
 }

@@ -14,6 +14,11 @@ class FuelMicroservice extends BaseService
   {
     return $this->get('/fuel/latest', compact('device_id', 'car_id'));
   }
+  
+  public function consume($com_id, $value)
+  {
+    return $this->post('/fuel/receive', compact('com_id', 'value'));
+  }
 
   public function history($car_id, $type)
   {
