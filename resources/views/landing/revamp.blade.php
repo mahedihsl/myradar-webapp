@@ -89,12 +89,13 @@
 
     <div class="row" style="width: 100%;">
       <div class="col-lg-12" style="display: flex; flex-direction: column; align-items: center;">
-        <img src="{{ asset('cars.gif', true) }}" class="img-fluid" alt="" style="width: 100%;" />
+        <img src="{{ asset('landing2/assets/image/banner.gif', true) }}" class="img-fluid d-none d-lg-block" alt="" style="width: 100%;" />
+        <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt="" style="width: 100%;" />
         <h2 class="text-center" style="font-weight: 800; color: #424242; font-size: 24px;">
-          আপনার প্রিয় গাড়ীটি রেখে দুরে এসেছেন!! ভয় নেই, পাহারায় আছে মাইরাডার
+          মাইরাডার অ্যাপ এর স্মার্ট ফিচারে, গাড়ি থাকুক নিরাপদে
         </h2>
         <p class="text-enter" style="margin-top: 10px; font-size: 16px;">
-          শুধুমাত্র আমরাই দিচ্ছি ফুয়েল এবং সিএনজি মনিটরিং সুবিধাসহ সার্বক্ষণিক লাইভ ট্র্যাকিং সার্ভিস 
+          আপনার প্রিয় গাড়ির সুরক্ষায়, আস্থা ও বিশ্বাসের আরেক নাম মাইরাডার
         </p>
         <a href="#about" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
           class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
@@ -165,7 +166,7 @@
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="400">
               <img src="{{ asset('landing2/assets/image/lock_unlock.png', true) }}" class="img-fluid" alt="">
-              <h3>ইঞ্জিন লক/আনলক</h3>
+              <h3>ডিজিটাল ইঞ্জিন লক</h3>
               <p>অ্যাপ এর মাধ্যমে দূরে থেকেও গাড়ি নিয়ন্ত্রণ করুন অনায়সে</p>
             </div>
           </div>
@@ -173,8 +174,8 @@
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="600">
               <img src="{{ asset('landing2/assets/image/cng_monitoring.png', true) }}" class="img-fluid" alt="">
-              <h3>সি এন জি মনিটরিং</h3>
-              <p>শুধুমাত্র আমরাই দিচ্ছি সি এন জি মনিটরিং সুবিধা</p>
+              <h3>ফুয়েল ও সিএনজি মনিটরিং</h3>
+              <p>শুধুমাত্র আমরাই দিচ্ছি ফুয়েল এবং সিএনজি মনিটরিং সুবিধা</p>
             </div>
           </div>
 
@@ -371,7 +372,7 @@
           </div>
 
           <div class="col-lg-6">
-            <h3>গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা</h3>
+            <h3>গাড়ি কি আপনার চোখের আড়ালে !! নজরদারি করুন মাইরাডার লাইভ ট্র্যাকিং দিয়ে</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -387,23 +388,23 @@
               <div class="tab-pane fade show active" id="tab1">
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল আপনার
-                    অ্যাপে</span>
+                  <span><strong>লাইভ ট্র্যাকিং ২৪ ঘণ্টা - </strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা যাবে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে ইঞ্জিন অফ
-                    করে দিতে পারবেন</span>
+                  <span><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার করছে তা এক ক্লিকেই মুঠোফোনে দেখা যাবে। History ট্র্যাকিং রেকর্ড থাকবে ৩ মাস পর্যন্ত</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ করলে এলার্ট
-                    পেয়ে যাবেন সাথে সাথেই ।</span>
+                  <span><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট থাকবে মাইরাডার অ্যাপ এ</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে ইমারজেঞ্ছি
-                    এলার্ট</span>
+                  <span><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন গাড়ি কতবার অন/অফ করা হয়েছে</span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা যাবে অনায়াসে</span>
                 </div>
                 <a href="#about"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
@@ -423,9 +424,7 @@
 
         <!-- Feature Tabs 2 -->
         <div class="row feture-tabs" data-aos="fade-up">
-          <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/image/theft_protection.png', true) }}" class="img-fluid" alt="">
-          </div>
+
 
           <div class="col-lg-6">
             <h3>গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা</h3>
@@ -475,13 +474,21 @@
 
           </div>
 
+          <div class="col-lg-6">
+            <img src="{{ asset('landing2/assets/image/theft_protection.png', true) }}" class="img-fluid" alt="">
+          </div>
+
         </div>
         <!-- End Feature Tabs -->
 
         <!-- Feature Tabs 3 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <h3>সি এন জি, ফুয়েল এবং অন্যান্য হিসাব রাখতে হিমসিম খাচ্ছেন!! নো টেনশন</h3>
+            <img src="{{ asset('landing2/assets/image/cng_monitoring2.png', true) }}" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-6">
+            <h3>ফুয়েল, সিএনজি এবং অন্যান্য হিসাব রাখতে হিমসিম খাচ্ছেন!! নো টেনশন</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -533,18 +540,14 @@
 
           </div>
 
-          <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/image/cng_monitoring2.png', true) }}" class="img-fluid" alt="">
-          </div>
+
 
         </div>
         <!-- End Feature Tabs -->
 
         <!-- Feature Tabs 4 -->
         <div class="row feture-tabs" data-aos="fade-up">
-          <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/image/live_tracking2.png', true) }}" class="img-fluid" alt="">
-          </div>
+
 
           <div class="col-lg-6">
             <h3>নির্দিষ্ট এলাকার বাইরে গাড়ির যাতায়াত মনিটর করতে চান!! সমাধানে মাইরাডার</h3>
@@ -588,11 +591,19 @@
 
           </div>
 
+          <div class="col-lg-6">
+            <img src="{{ asset('landing2/assets/image/live_tracking2.png', true) }}" class="img-fluid" alt="">
+          </div>
+
         </div>
         <!-- End Feature Tabs -->
 
         <!-- Feature Tabs 5 -->
         <div class="row feture-tabs" data-aos="fade-up">
+          <div class="col-lg-6">
+            <img src="{{ asset('landing2/assets/image/family_safety.png', true) }}" class="img-fluid" alt="">
+          </div>
+
           <div class="col-lg-6">
             <h3>আপনজনদের সুরক্ষায় myRadar</h3>
 
@@ -616,7 +627,7 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল App - এ জানতে
+                  <span><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল অ্যাপ - এ জানতে
                     পারবেন</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
@@ -637,9 +648,7 @@
 
           </div>
 
-          <div class="col-lg-6">
-            <img src="{{ asset('landing2/assets/image/family_safety.png', true) }}" class="img-fluid" alt="">
-          </div>
+
 
         </div>
         <!-- End Feature Tabs -->
@@ -853,7 +862,7 @@
 
         <header class="section-header">
           <h2>Pricing</h2>
-          <p>Check our Pricing</p>
+          <p>আমাদের প্যাকেজ সমূহ</p>
         </header>
 
         <div class="row gy-4" data-aos="fade-left">
@@ -867,20 +876,20 @@
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
-                <li>অডিও মনিটরিং</li>
-                <li class="na">ইঞ্জিন লক/আনলক</li>
-                <li class="na">ইঞ্জিন অন/অফ এলার্ট</li>
-                <li>লাইভ সি এন জি মিটার</li>
-                <li>সি এন জি রিফিল এলার্ট</li>
+                <li class="na">অডিও মনিটরিং</li>
+                <li>ইঞ্জিন লক/আনলক</li>
+                <li>ইঞ্জিন অন/অফ এলার্ট</li>
+                <li class="na">লাইভ সি এন জি মিটার</li>
+                <li class="na">সি এন জি রিফিল এলার্ট</li>
                 <li>জিইও ফেন্স</li>
                 <li>কাস্টমাইজড জিইও ফেন্স</li>
                 <li>স্পিড ভায়োলেশন এলার্ট</li>
                 <li>ডেসটিনেশন এলার্ট</li>
-                <li>এসি অন/অফ নোটিফিকেশন</li>
-                <li>প্যানিক বাটন</li>
+                <li class="na">এসি অন/অফ নোটিফিকেশন</li>
+                <li class="na">প্যানিক বাটন</li>
                 <li>ডেইলি সামারি এসএমএস</li>
-                <li>ফুয়েল মনিটরিং সিস্টেম</li>
-                <li>ডোর লক নোটিফিকশন</li>
+                <li class="na">ফুয়েল মনিটরিং সিস্টেম</li>
+                <li class="na">ডোর লক নোটিফিকশন</li>
                 <li>৩ মাস পর্যন্ত ট্র্যাকিং হিস্ট্রি</li>
                 <li>২৪ মাসের ওয়ারেন্টি</li>
                 <li>২৪x৭ হেল্পলাইন সুবিধা</li>
@@ -891,7 +900,7 @@
 
           <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="box">
-              <span class="featured">Featured</span>
+              {{-- <span class="featured">Featured</span> --}}
               <h3 style="color: #65c600;">Special</h3>
               <div class="price"><sup></sup>৮,০০০<span> টাকা</span></div>
               <div class="price2"><span>মাসিক চার্জ </span>৫০০<span> টাকা</span></div>
@@ -899,20 +908,20 @@
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
-                <li>অডিও মনিটরিং</li>
-                <li class="na">ইঞ্জিন লক/আনলক</li>
-                <li class="na">ইঞ্জিন অন/অফ এলার্ট</li>
+                <li class="na">অডিও মনিটরিং</li>
+                <li>ইঞ্জিন লক/আনলক</li>
+                <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li>লাইভ সি এন জি মিটার</li>
                 <li>সি এন জি রিফিল এলার্ট</li>
                 <li>জিইও ফেন্স</li>
                 <li>কাস্টমাইজড জিইও ফেন্স</li>
                 <li>স্পিড ভায়োলেশন এলার্ট</li>
                 <li>ডেসটিনেশন এলার্ট</li>
-                <li>এসি অন/অফ নোটিফিকেশন</li>
-                <li>প্যানিক বাটন</li>
+                <li class="na">এসি অন/অফ নোটিফিকেশন</li>
+                <li class="na">প্যানিক বাটন</li>
                 <li>ডেইলি সামারি এসএমএস</li>
                 <li>ফুয়েল মনিটরিং সিস্টেম</li>
-                <li>ডোর লক নোটিফিকশন</li>
+                <li class="na">ডোর লক নোটিফিকশন</li>
                 <li>৩ মাস পর্যন্ত ট্র্যাকিং হিস্ট্রি</li>
                 <li>২৪ মাসের ওয়ারেন্টি</li>
                 <li>২৪x৭ হেল্পলাইন সুবিধা</li>
@@ -931,8 +940,8 @@
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
                 <li>অডিও মনিটরিং</li>
-                <li class="na">ইঞ্জিন লক/আনলক</li>
-                <li class="na">ইঞ্জিন অন/অফ এলার্ট</li>
+                <li>ইঞ্জিন লক/আনলক</li>
+                <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li>লাইভ সি এন জি মিটার</li>
                 <li>সি এন জি রিফিল এলার্ট</li>
                 <li>জিইও ফেন্স</li>
@@ -956,13 +965,14 @@
             <div class="box">
               <h3 style="color: #ff0071;">Business</h3>
               <div class="price"><sup></sup>Custom<span></span></div>
+              <div class="price2">&nbsp;</div>
               <img src="{{ asset('landing2/assets/img/pricing-ultimate.png', true) }}" class="img-fluid" alt="">
               <ul>
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
                 <li>অডিও মনিটরিং</li>
-                <li class="na">ইঞ্জিন লক/আনলক</li>
-                <li class="na">ইঞ্জিন অন/অফ এলার্ট</li>
+                <li>ইঞ্জিন লক/আনলক</li>
+                <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li>লাইভ সি এন জি মিটার</li>
                 <li>সি এন জি রিফিল এলার্ট</li>
                 <li>জিইও ফেন্স</li>
