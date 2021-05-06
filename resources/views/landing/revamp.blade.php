@@ -34,6 +34,10 @@
   <link href="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.css', true) }}" rel="stylesheet">
   <link href="{{ asset('landing2/assets/vendor/glightbox/css/glightbox.min.css', true) }}" rel="stylesheet">
 
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
 
@@ -68,12 +72,19 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a class="nav-link scrollto active" href="#hero">হোম</a></li>
+          <li><a class="nav-link scrollto" href="#about">ফিচার</a></li>
+          <li><a class="nav-link scrollto" href="#services">সেবাসমূহ</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio">মোবাইল অ্যাপ</a></li>
+          <li><a class="nav-link scrollto" href="#team">প্যাকেজ</a></li>
+          <li><a class="nav-link scrollto" href="#team">ফ্রি ডেমো</a></li>
+          <li>
+            <a class="nav-link scrollto" href="#team">
+              <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite" alt="" style="width: 24px;" />
+              <span style="margin-left: 12px;">+8801907888839</span>
+            </a>
+          </li>
+          {{-- <li><a href="blog.html">Blog</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -91,8 +102,8 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li> --}}
+          <li><a class="getstarted scrollto" href="#about">লগ ইন</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -105,8 +116,10 @@
 
     <div class="row" style="width: 100%;">
       <div class="col-lg-12" style="display: flex; flex-direction: column; align-items: center;">
-        <img src="{{ asset('landing2/assets/image/banner.gif', true) }}" class="img-fluid d-none d-lg-block" alt="" style="width: 100%;" />
-        <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt="" style="width: 100%;" />
+        <img src="{{ asset('landing2/assets/image/banner.gif', true) }}" class="img-fluid d-none d-lg-block" alt=""
+          style="width: 100%;" />
+        <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt=""
+          style="width: 100%;" />
         <h2 class="text-center" style="font-weight: 800; color: #424242; font-size: 24px;">
           মাইরাডার অ্যাপ এর স্মার্ট ফিচারে, গাড়ি থাকুক নিরাপদে
         </h2>
@@ -408,19 +421,23 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার করছে তা এক ক্লিকেই মুঠোফোনে দেখা যাবে। History ট্র্যাকিং রেকর্ড থাকবে ৩ মাস পর্যন্ত</span>
+                  <span><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার করছে তা এক
+                    ক্লিকেই মুঠোফোনে দেখা যাবে। History ট্র্যাকিং রেকর্ড থাকবে ৩ মাস পর্যন্ত</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট থাকবে মাইরাডার অ্যাপ এ</span>
+                  <span><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট থাকবে মাইরাডার
+                    অ্যাপ এ</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন গাড়ি কতবার অন/অফ করা হয়েছে</span>
+                  <span><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন গাড়ি কতবার অন/অফ
+                    করা হয়েছে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা যাবে অনায়াসে</span>
+                  <span><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা যাবে
+                    অনায়াসে</span>
                 </div>
                 <a href="#about"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
