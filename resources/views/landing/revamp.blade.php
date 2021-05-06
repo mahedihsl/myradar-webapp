@@ -62,8 +62,8 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{{ asset('landing2/assets/img/logo.png', true) }}" alt="">
-        <span>FlexStart</span>
+        <img src="{{ asset('images/web_logo.png', true) }}" alt="myRADAR logo">
+        <span>myRADAR</span>
       </a>
 
       <nav id="navbar" class="navbar">
