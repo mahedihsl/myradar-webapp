@@ -5,15 +5,21 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>FlexStart Bootstrap Template - Index</title>
+  <title>myRADAR</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta content="" name="description">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="myRADAR vehicle tracker">
+  <meta name="keywords" content="Radar, Car, Vehicle, Tracking">
+  <meta name="author" content="HyperSystems">
 
-  <meta content="" name="keywords">
+  <!-- Mobile Specific Meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <!-- Favicons -->
-  <link href="{{ asset('landing2/assets/img/favicon.png', true) }}" rel="icon">
-  <link href="{{ asset('landing2/assets/img/apple-touch-icon.png', true) }}" rel="apple-touch-icon">
+  <link rel="shortcut icon" href="{{ asset('images/favicon.ico', true) }}">
+  <link rel="apple-touch-icon" href="{{ asset('landing/images/apple-touch-icon.png', true) }}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('landing/images/apple-touch-icon-72x72.png', true) }}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('landing/images/apple-touch-icon-114x114.png', true) }}">
 
   <!-- Google Fonts -->
   <link
