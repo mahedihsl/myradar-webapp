@@ -34,10 +34,7 @@
   <link href="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.css', true) }}" rel="stylesheet">
   <link href="{{ asset('landing2/assets/vendor/glightbox/css/glightbox.min.css', true) }}" rel="stylesheet">
 
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
 
@@ -80,7 +77,8 @@
           <li><a class="nav-link scrollto" href="{{ route('login') }}">ফ্রি ডেমো</a></li>
           <li>
             <a class="nav-link scrollto" href="#contact">
-              <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite" alt="" style="width: 24px;" />
+              <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite"
+                alt="" style="width: 24px;" />
               <span style="margin-left: 12px;">+8801907888839</span>
             </a>
           </li>
@@ -767,10 +765,10 @@
                 </div>
               </div>
             </div>
-        </div>
+          </div>
 
-      </div>
-      <!-- End Feature Icons -->
+        </div>
+        <!-- End Feature Icons -->
       </div>
     </section>
 
@@ -936,13 +934,15 @@
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq-content-1">
-                    Non consectetur a erat nam at lectus urna duis?
+                    কিভাবে আমার পাসওয়ার্ড উদ্ধার করবো ?
                   </button>
                 </h2>
                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
-                    Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur
-                    gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                    লগ ইন পৃষ্ঠায় পাসওয়ার্ড ভুলে গেছেন? চাপুন >> নিজের পুনরুদ্ধারের বিকল্পগুলি ই-মেইলের মাধ্যমে বা
+                    স্ব-পুনরুদ্ধারের জন্য এসএমএস নির্বাচন করুন >> এগিয়ে যান >> পিন কোডটি লিখুন >> আপনার পাসওয়ার্ড
+                    পরিবর্তন করুন
+                    আপনি আমাদের কল সেন্টার থেকে সহায়তা নিতে পারেন তারা আপনাকে সহায়তা করতে পেরে খুশি হবে।
                   </div>
                 </div>
               </div>
@@ -951,14 +951,13 @@
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq-content-2">
-                    Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                    আমি কি আমার গাড়ী দূরবর্তীভাবে লক করতে পারব ?
                   </button>
                 </h2>
                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-                    donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque
-                    elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                    হ্যাঁ। আপনি যে কোনো সময় থেকে যে কোন জায়গা থেকে করতে পারেন। এমনকি আপনার গাড়ী বন্ধ থাকা অবস্থায় ও
+                    হয়।
                   </div>
                 </div>
               </div>
@@ -967,15 +966,72 @@
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq-content-3">
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                    চলমান মোডে আমার গাড়ী লক করা কি নিরাপদ ?
                   </button>
                 </h2>
                 <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
-                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar
-                    elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque
-                    eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis
-                    sed odio morbi quis
+                    হ্যাঁ। এটা নিরাপদ. ইঞ্জিন বন্ধ করার সময় এটিতে স্বয়ংক্রিয় নিরাপদ গতি পরীক্ষা এবং বুদ্ধিমত্তা
+                    রয়েছে
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-3">
+                    আমি কি অ্যাপ দিয়ে গাড়ী চালু করতে পারব ?
+                  </button>
+                </h2>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    না, আপনি করতে পারেন না। অ্যাপ থেকে চালু হওয়ার পরে আপনাকে একটি ডবল নিরাপত্তা বিকল্প দেওয়ার জন্য
+                    গাড়ী থেকে চালু করতে হবে।
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-3">
+                    আমার গাড়ি চালু হচ্ছে না। কি করব ?
+                  </button>
+                </h2>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    আপনার অ্যাপ্লিকেশন চেক করুন। আনলক মোডে আপনার গাড়ী নিশ্চিত করুন। আরো তথ্যের জন্য কল সেন্টার থেকে
+                    সমর্থন নিন।
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-3">
+                    আমি কি পুশ নোটিফিকেশান বন্ধ করতে পারব ?
+                  </button>
+                </h2>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    হ্যাঁ। আপনি করতে পারেন। অ্যাকাউন্ট >> সেটিংস >> নোটিফিকেশান বন্ধ করুন।
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq-content-3">
+                    কেন আমার ট্র্যাকার কাজ করছে না ?
+                  </button>
+                </h2>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                  <div class="accordion-body">
+                    আপনার ইন্টারনেট ডাটা চেক করুন >> যদি ঠিক থাকে তবে আপনার বিল তথ্য পরীক্ষা করুন। >> অন্যথাই আমাদের কল
+                    সেন্টারে কল করুন ।
                   </div>
                 </div>
               </div>
@@ -992,14 +1048,13 @@
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq2-content-1">
-                    Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
+                    বিল পরিশোধ করবো কিভাবে ?
                   </button>
                 </h2>
                 <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
-                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id
-                    donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque
-                    elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                    বিকাশ, রকেট, ক্রেডিট কার্ড, ময়দদার ব্যাংক অ্যাকাউন্টের মাধ্যমে।
+                    বিশেষ ক্ষেত্রে আমরা আমাদের কর্মকর্তাকে নগদ সংগ্রহ করতে পাঠাই।
                   </div>
                 </div>
               </div>
@@ -1008,14 +1063,14 @@
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq2-content-2">
-                    Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                    আমার জ্বালানী / গ্যাস মিটার সঠিক নয়। কি করবো ?
                   </button>
                 </h2>
                 <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
-                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in.
-                    Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est.
-                    Purus gravida quis blandit turpis cursus in
+                    আমাদের ওয়েবসাইটে লগইন করুন (http://www.myradar.com.bd/)...>> ফিক্সিং / গ্যাস মিটার >> সরবরাহ ইনপুট
+                    রিফিল / রিজার্ভ।\n অথবা\n
+                    প্রথমে সার্ভিস এ যান >> তেল >>ফিক্স ফুয়েল মিটার>>বর্তমান ফুয়েলের পরিমাণ প্রদান করুন।
                   </div>
                 </div>
               </div>
@@ -1024,15 +1079,57 @@
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                     data-bs-target="#faq2-content-3">
-                    Varius vel pharetra vel turpis nunc eget lorem dolor?
+                    কিভাবে সঠিক গ্যাসের পরিমাণ মূল্য পেতে পারব ?
                   </button>
                 </h2>
                 <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
-                    Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada
-                    nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut
-                    venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas
-                    egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
+                    সঠিক গ্যাসের পরিমাণের মূল্য পাওয়ার জন্য আপনাকে আমাদের কয়েকটি গ্যাস ইভেন্টের জন্য ব্যয় করা
+                    পরিমাণটি দিতে হবে।
+                    প্রথমে সার্ভিস এ যান >>গ্যাস >>গ্যাস হিস্ট্রি>>Give amount
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq2-content-3">
+                    আমি কি দ্রুত সতর্কতা পেতে পারি ?
+                  </button>
+                </h2>
+                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                  <div class="accordion-body">
+                    হ্যাঁ, আপনার গাড়ীর গতি 60 বা 80 কিলোমিটারের বেশি হলে আপনি গতির বিজ্ঞপ্তি পাবেন।
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq2-content-3">
+                    আমি কি অ্যাপের মাধ্যমে একাধিক গাড়ী ট্র্যাক করতে পারব ?
+                  </button>
+                </h2>
+                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                  <div class="accordion-body">
+                    হ্যাঁ, আপনি পারবেন, (যদি আপনার মাল্টি গাড়ি থাকে)। লগইন করার পরে আপনি গাড়ী নির্বাচন জন্য সতর্কতা
+                    পাবেন। পাশাপাশি উপরের ডানদিকের গাড়ির আইকন ক্লিক করে আপনার গাড়িটি চয়ন করতে পারেন
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq2-content-3">
+                    আমি কি অ্যাপের মাধ্যমে মাইলেজ তথ্য পেতে ?
+                  </button>
+                </h2>
+                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                  <div class="accordion-body">
+                    হ্যাঁ, আপনি পারেন। সার্ভিস এ যান >> মাইলেজ।
                   </div>
                 </div>
               </div>
@@ -1274,6 +1371,7 @@
   <script src="{{ asset('landing2/assets/vendor/purecounter/purecounter.js', true) }}"></script>
   <script src="{{ asset('landing2/assets/vendor/isotope-layout/isotope.pkgd.min.js', true) }}"></script>
   <script src="{{ asset('landing2/assets/vendor/glightbox/js/glightbox.min.js', true) }}"></script>
+  <script src="{{ asset('landing2/assets/vendor/bootstrap/js/bootstrap.bundle.js', true) }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('landing2/assets/js/main.js', true) }}"></script>
