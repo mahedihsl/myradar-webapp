@@ -74,7 +74,7 @@
           <li><a class="nav-link scrollto" href="#services">সেবাসমূহ</a></li>
           <li><a class="nav-link scrollto" href="#mobile">মোবাইল অ্যাপ</a></li>
           <li><a class="nav-link scrollto" href="#pricing">প্যাকেজ</a></li>
-          <li><a class="nav-link scrollto" href="{{ route('login') }}">ফ্রি ডেমো</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('login', ['demo' => 'yes']) }}">ফ্রি ডেমো</a></li>
           <li>
             <a class="nav-link scrollto" href="#contact">
               <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite"

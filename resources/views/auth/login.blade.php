@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,6 +41,7 @@
     Breakpoints();
   </script>
 </head>
+
 <body class="animsition page-login-v3 layout-full">
 
   <!-- Page -->
@@ -53,22 +55,22 @@
           </div>
           <form method="post" action="{{ route('login') }}" autocomplete="off">
             <div class="form-group form-material floating" data-plugin="formMaterial">
-              <input type="text" class="form-control" name="username" value="{{ old('username') }}"/>
+              <input type="text" class="form-control" name="username" value="{{ old('username') }}" />
               <label class="floating-label">Email or Phone</label>
               @if ($errors->has('username'))
-                 <span class="help-block text-danger">
-                     {{ $errors->first('username') }}
-                 </span>
-             @endif 
+              <span class="help-block text-danger">
+                {{ $errors->first('username') }}
+              </span>
+              @endif
             </div>
             <div class="form-group form-material floating" data-plugin="formMaterial">
               <input type="password" class="form-control" name="password" />
               <label class="floating-label">Password</label>
               @if ($errors->has('password'))
-                 <span class="help-block text-danger">
-                     {{ $errors->first('password') }}
-                 </span>
-             @endif
+              <span class="help-block text-danger">
+                {{ $errors->first('password') }}
+              </span>
+              @endif
             </div>
             <div class="form-group clearfix">
               <div class="checkbox-custom checkbox-inline checkbox-primary checkbox-lg float-left">
@@ -154,6 +156,19 @@
 
 
   <script>
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
     (function(document, window, $) {
       'use strict';
 
@@ -161,6 +176,16 @@
       $(document).ready(function() {
         Site.run();
       });
+
+      var demoAccount = {
+        username: 'demo@myradar.com',
+        password: 'Pixel123456',
+      }
+      var isDemoLogin = getUrlVars()['demo'] || 'no'
+      if (isDemoLogin === 'yes') {
+        $('input[name="username"]').val(demoAccount.username)
+        $('input[name="password"]').val(demoAccount.password)
+      }
     })(document, window, jQuery);
   </script>
 
