@@ -105,7 +105,7 @@
         <p class="text-enter" style="margin-top: 10px; font-size: 16px;">
           আপনার প্রিয় গাড়ির সুরক্ষায়, আস্থা ও বিশ্বাসের আরেক নাম মাইরাডার
         </p>
-        <a href="#about" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
+        <a href="#pricing" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
           class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
           <span>প্যাকেজ দেখুন</span>
           <i class="bi bi-arrow-right text-white"></i>
@@ -318,7 +318,7 @@
                   <i class="bi bi-check2"></i>
                   <span>এক পলকে দেখে নিতে পারবেন গাড়ির ভ্রমন পথ</span>
                 </div>
-                <a href="#about"
+                <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>প্যাকেজ দেখুন</span>
@@ -383,7 +383,7 @@
                   <span><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা যাবে
                     অনায়াসে</span>
                 </div>
-                <a href="#about"
+                <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>প্যাকেজ দেখুন</span>
@@ -438,7 +438,7 @@
                   <span><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে ইমারজেঞ্ছি
                     এলার্ট</span>
                 </div>
-                <a href="#about"
+                <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>প্যাকেজ দেখুন</span>
@@ -504,7 +504,7 @@
                   <span><strong>ডেইলি সামারি:</strong> কতবার ইঞ্জিন অন/অফ করা হয়েছে, কতটুকু সময় চলেছে, কত দুরুত্ত
                     অতিক্রম করেছে নোটিফিকেশন এবং SMS-এর মাধ্যমে জানিয়ে দেয়া হবে</span>
                 </div>
-                <a href="#about"
+                <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>প্যাকেজ দেখুন</span>
@@ -555,7 +555,7 @@
                   <i class="bi bi-check2"></i>
                   <span>সকল গুরত্তপুরন শহরে প্রবেশ এবং প্রস্থান এর সময় নোটিফিকেশান পাবেন অটোমেটিক্যালি ।</span>
                 </div>
-                <a href="#about"
+                <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>প্যাকেজ দেখুন</span>
@@ -612,7 +612,7 @@
                   <span>আপনার সেট করে দেয়া গন্তব্যে আপনজন পৌঁছা মাত্র জানিয়ে দেবে myRadar</span>
                 </div>
 
-                <a href="#about"
+                <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                   <span>প্যাকেজ দেখুন</span>
