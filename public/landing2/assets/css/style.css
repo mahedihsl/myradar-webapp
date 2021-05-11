@@ -2463,7 +2463,7 @@ section {
   top: 75%;
 }
 
-.fab-links a {
+.fab-links button, .fab-links a {
   width: 50px;
   height: 50px;
   border-radius: 999px;
@@ -2475,11 +2475,9 @@ section {
   justify-content: center;
   align-items: center;
 
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  border: 0;
 
-  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  -moz-box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .bg-blue {

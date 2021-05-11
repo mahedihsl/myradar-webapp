@@ -91,12 +91,30 @@
   </header><!-- End Header -->
 
   <div class="fab-links">
-    <a href="#" class="bg-blue">
+    <button class="bg-blue" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
       <i class="bi bi-telephone-fill" style="margin-bottom: 5px;"></i>
-    </a>
-    <a href="#" class="bg-pink">
+    </button>
+    <a class="bg-pink" href="https://www.facebook.com/myradartracker/" target="_blank">
       <i class="bi bi-chat-square-dots-fill"></i>
     </a>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="phoneNumberModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Call Us</h5>
+        </div>
+        <div class="modal-body">
+          <p>+880 1907888839 <br>+880 1907888899</p>
+        </div>
+        {{-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> --}}
+      </div>
+    </div>
   </div>
 
   <!-- ======= Hero Section ======= -->
@@ -1306,7 +1324,8 @@
             </a>
             <p></p>
             <div class="social-links mt-3">
-              <a href="https://www.facebook.com/myradartracker/" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.facebook.com/myradartracker/" target="_blank" class="facebook"><i
+                  class="bi bi-facebook"></i></a>
               {{-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="instagram"><i class="bi bi-instagram bx bxl-instagram"></i></a>
               <a href="#" class="linkedin"><i class="bi bi-linkedin bx bxl-linkedin"></i></a> --}}
@@ -1340,7 +1359,8 @@
             <p>
               2nd Floor, House - 744<br>Road - 10, Mirpur DOHS<br>Dhaka, Bangladesh
               <strong>Phone:</strong> +880 1907888839<br>
-              <strong>Email:</strong> <a href="href:hs@hypersystems.com.bd" class="__cf_email__">hs@hypersystems.com.bd</a><br>
+              <strong>Email:</strong> <a href="href:hs@hypersystems.com.bd"
+                class="__cf_email__">hs@hypersystems.com.bd</a><br>
             </p>
           </div>
         </div>
