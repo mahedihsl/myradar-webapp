@@ -1166,26 +1166,25 @@
           <p>Temporibus omnis officia</p>
         </header>
 
-        <div class="clients-slider swiper-container">
+        <div class="clients-wrapper">
+          <img src="{{ asset('images/partners/banglalink.png', true) }}" alt="">
+          <img src="{{ asset('images/partners/robi.png', true) }}" alt="" style="margin: 0 50px;">
+          <img src="{{ asset('images/partners/jural.png', true) }}" alt="">
+        </div>
+
+        {{-- <div class="clients-slider swiper-container">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-1.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-2.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-3.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-4.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-5.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-6.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-7.png', true) }}"
-                class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="{{ asset('landing2/assets/img/clients/client-8.png', true) }}"
-                class="img-fluid" alt=""></div>
-          </div>
-          <div class="swiper-pagination"></div>
+            <div class="swiper-slide">
+              <img src="{{ asset('images/partners/banglalink.png', true) }}" class="img-fluid" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ asset('images/partners/robi.png', true) }}" class="img-fluid" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ asset('images/partners/jural.png', true) }}" class="img-fluid" alt="">
+            </div>
+          </div> --}}
+          {{-- <div class="swiper-pagination"></div> --}}
         </div>
       </div>
 
