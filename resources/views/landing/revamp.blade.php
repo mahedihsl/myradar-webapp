@@ -90,10 +90,19 @@
     </div>
   </header><!-- End Header -->
 
+  <div class="fab-links">
+    <a href="#" class="bg-blue">
+      <i class="bi bi-telephone-fill" style="margin-bottom: 5px;"></i>
+    </a>
+    <a href="#" class="bg-pink">
+      <i class="bi bi-chat-square-dots-fill"></i>
+    </a>
+  </div>
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero d-flex align-items-center">
 
-    <div class="row" style="width: 100%;">
+    <div class="row" style="width: 100%; --bs-gutter-x: 0;">
       <div class="col-lg-12" style="display: flex; flex-direction: column; align-items: center;">
         <img src="{{ asset('landing2/assets/image/banner.gif', true) }}" class="img-fluid d-none d-lg-block" alt=""
           style="width: 100%;" />
