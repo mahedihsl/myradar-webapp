@@ -738,7 +738,7 @@
       <div class="container" data-aos="fade-up">
         <!-- Feature Icons -->
         <div class="row feature-icons" data-aos="fade-up">
-          <h3>মোবাইল অ্যাপ ফিচার</h3>
+          <h3>মোবাইল অ্যাপ</h3>
 
           <div class="row">
             <div class="col-xs-12">
@@ -764,6 +764,18 @@
                     style="width: 100%; border-radius: 4px;" />
                 </div>
               </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+              <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734"
+                title="Download from App Store" class="btn-appstore">App Store</a>
+              <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware"
+                title="Download from Play Store" class="btn-playstore">Play Store</a>
             </div>
           </div>
 
