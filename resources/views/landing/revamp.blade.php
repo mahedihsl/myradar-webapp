@@ -1172,20 +1172,7 @@
           <img src="{{ asset('images/partners/jural.png', true) }}" alt="">
         </div>
 
-        {{-- <div class="clients-slider swiper-container">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide">
-              <img src="{{ asset('images/partners/banglalink.png', true) }}" class="img-fluid" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{{ asset('images/partners/robi.png', true) }}" class="img-fluid" alt="">
-            </div>
-            <div class="swiper-slide">
-              <img src="{{ asset('images/partners/jural.png', true) }}" class="img-fluid" alt="">
-            </div>
-          </div> --}}
-          {{-- <div class="swiper-pagination"></div> --}}
-        </div>
+      </div>
       </div>
 
     </section>
@@ -1210,31 +1197,32 @@
                 <div class="info-box">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>A108 Adam Street,<br>New York, NY 535022</p>
+                  <p>2nd Floor, House - 744, Road - 10<br>Mirpur DOHS, Dhaka</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                  <p>+880 1907888839<br>+880 1907888899</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
-                  <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                      data-cfemail="8be2e5ede4cbeef3eae6fbe7eea5e8e4e6">[email&#160;protected]</a><br><a
-                      href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                      data-cfemail="41222e2f35202235012439202c312d246f222e2c">[email&#160;protected]</a></p>
+                  <p>
+                    <a href="mailto:hs@hypersystems.com.bd" class="__cf_email__">hs@hypersystems.com.bd</a>
+                    <br>
+                    <a href="mailto:hscare@hypersystems.com.bd" class="__cf_email__">hscare@hypersystems.com.bd</a>
+                  </p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-clock"></i>
                   <h3>Open Hours</h3>
-                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                  <p>Saturday - Thursday<br>10:00AM - 07:00PM</p>
                 </div>
               </div>
             </div>
@@ -1242,7 +1230,8 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form action="{{route('save-message')}}" method="post" class="php-email-form">
+              {!! csrf_field() !!}
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -1250,11 +1239,11 @@
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                  <input type="text" class="form-control" name="phone" placeholder="Your Phone Number" required>
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                  <input type="email" class="form-control" name="email" placeholder="Email Address" required>
                 </div>
 
                 <div class="col-md-12">
@@ -1271,11 +1260,8 @@
 
               </div>
             </form>
-
           </div>
-
         </div>
-
       </div>
 
     </section><!-- End Contact Section -->
@@ -1285,7 +1271,7 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
+    {{-- <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 text-center">
@@ -1299,75 +1285,69 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <div class="footer-top">
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-5 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
-              <img src="{{ asset('landing2/assets/img/logo.png', true) }}" alt="">
-              <span>FlexStart</span>
+              <img src="{{ asset('images/web_logo.png', true) }}" alt="">
+              <span>myRADAR</span>
             </a>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies
-              darta donna mare fermentum iaculis eu non diam phasellus.</p>
+            <p></p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.facebook.com/myradartracker/" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+              {{-- <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="instagram"><i class="bi bi-instagram bx bxl-instagram"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin bx bxl-linkedin"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin bx bxl-linkedin"></i></a> --}}
             </div>
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
-            <h4>Useful Links</h4>
+            {{-- <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
+            </ul> --}}
           </div>
 
           <div class="col-lg-2 col-6 footer-links">
-            <h4>Our Services</h4>
+            {{-- <h4>Our Services</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
+            </ul> --}}
           </div>
 
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                data-cfemail="bcd5d2dad3fcd9c4ddd1ccd0d992dfd3d1">[email&#160;protected]</a><br>
+              2nd Floor, House - 744<br>Road - 10, Mirpur DOHS<br>Dhaka, Bangladesh
+              <strong>Phone:</strong> +880 1907888839<br>
+              <strong>Email:</strong> <a href="href:hs@hypersystems.com.bd" class="__cf_email__">hs@hypersystems.com.bd</a><br>
             </p>
-
           </div>
-
         </div>
       </div>
     </div>
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved
+        {{-- &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved --}}
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
       </div>
     </div>
   </footer><!-- End Footer -->

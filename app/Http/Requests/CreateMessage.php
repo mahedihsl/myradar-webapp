@@ -25,7 +25,7 @@ class CreateMessage extends FormRequest
     {
         return [
             'phone' => 'required|min:10',
-            'message' => 'required|min:10'
+            'message' => 'required'
         ];
     }
 }
