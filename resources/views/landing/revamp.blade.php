@@ -159,7 +159,7 @@
     </section><!-- End Values Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
+    {{-- <section id="counts" class="counts">
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
@@ -211,7 +211,8 @@
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section> --}}
+    <!-- End Counts Section -->
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
@@ -824,7 +825,7 @@
                 <li>২৪ মাসের ওয়ারেন্টি</li>
                 <li>২৪x৭ হেল্পলাইন সুবিধা</li>
               </ul>
-              <a href="#" class="btn-buy">Buy Now</a>
+              <a href="#contact" class="btn-buy">Buy Now</a>
             </div>
           </div>
 
@@ -856,7 +857,7 @@
                 <li>২৪ মাসের ওয়ারেন্টি</li>
                 <li>২৪x৭ হেল্পলাইন সুবিধা</li>
               </ul>
-              <a href="#" class="btn-buy">Buy Now</a>
+              <a href="#contact" class="btn-buy">Buy Now</a>
             </div>
           </div>
 
@@ -887,7 +888,7 @@
                 <li>২৪ মাসের ওয়ারেন্টি</li>
                 <li>২৪x৭ হেল্পলাইন সুবিধা</li>
               </ul>
-              <a href="#" class="btn-buy">Buy Now</a>
+              <a href="#contact" class="btn-buy">Buy Now</a>
             </div>
           </div>
 
@@ -918,7 +919,7 @@
                 <li>২৪ মাসের ওয়ারেন্টি</li>
                 <li>২৪x৭ হেল্পলাইন সুবিধা</li>
               </ul>
-              <a href="#" class="btn-buy">Buy Now</a>
+              <a href="#contact" class="btn-buy">Buy Now</a>
             </div>
           </div>
 
@@ -992,11 +993,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq-content-3">
+                    data-bs-target="#faq-content-4">
                     আমি কি অ্যাপ দিয়ে গাড়ী চালু করতে পারব ?
                   </button>
                 </h2>
-                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
                     না, আপনি করতে পারেন না। অ্যাপ থেকে চালু হওয়ার পরে আপনাকে একটি ডবল নিরাপত্তা বিকল্প দেওয়ার জন্য
                     গাড়ী থেকে চালু করতে হবে।
@@ -1007,11 +1008,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq-content-3">
+                    data-bs-target="#faq-content-5">
                     আমার গাড়ি চালু হচ্ছে না। কি করব ?
                   </button>
                 </h2>
-                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
                     আপনার অ্যাপ্লিকেশন চেক করুন। আনলক মোডে আপনার গাড়ী নিশ্চিত করুন। আরো তথ্যের জন্য কল সেন্টার থেকে
                     সমর্থন নিন।
@@ -1022,11 +1023,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq-content-3">
+                    data-bs-target="#faq-content-6">
                     আমি কি পুশ নোটিফিকেশান বন্ধ করতে পারব ?
                   </button>
                 </h2>
-                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                <div id="faq-content-6" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
                     হ্যাঁ। আপনি করতে পারেন। অ্যাকাউন্ট >> সেটিংস >> নোটিফিকেশান বন্ধ করুন।
                   </div>
@@ -1036,11 +1037,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq-content-3">
+                    data-bs-target="#faq-content-7">
                     কেন আমার ট্র্যাকার কাজ করছে না ?
                   </button>
                 </h2>
-                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
+                <div id="faq-content-7" class="accordion-collapse collapse" data-bs-parent="#faqlist1">
                   <div class="accordion-body">
                     আপনার ইন্টারনেট ডাটা চেক করুন >> যদি ঠিক থাকে তবে আপনার বিল তথ্য পরীক্ষা করুন। >> অন্যথাই আমাদের কল
                     সেন্টারে কল করুন ।
@@ -1059,11 +1060,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq2-content-1">
+                    data-bs-target="#faq2-content-8">
                     বিল পরিশোধ করবো কিভাবে ?
                   </button>
                 </h2>
-                <div id="faq2-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                <div id="faq2-content-8" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     বিকাশ, রকেট, ক্রেডিট কার্ড, ময়দদার ব্যাংক অ্যাকাউন্টের মাধ্যমে।
                     বিশেষ ক্ষেত্রে আমরা আমাদের কর্মকর্তাকে নগদ সংগ্রহ করতে পাঠাই।
@@ -1074,11 +1075,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq2-content-2">
+                    data-bs-target="#faq2-content-9">
                     আমার জ্বালানী / গ্যাস মিটার সঠিক নয়। কি করবো ?
                   </button>
                 </h2>
-                <div id="faq2-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                <div id="faq2-content-9" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     আমাদের ওয়েবসাইটে লগইন করুন (http://www.myradar.com.bd/)...>> ফিক্সিং / গ্যাস মিটার >> সরবরাহ ইনপুট
                     রিফিল / রিজার্ভ।\n অথবা\n
@@ -1090,11 +1091,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq2-content-3">
+                    data-bs-target="#faq2-content-10">
                     কিভাবে সঠিক গ্যাসের পরিমাণ মূল্য পেতে পারব ?
                   </button>
                 </h2>
-                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                <div id="faq2-content-10" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     সঠিক গ্যাসের পরিমাণের মূল্য পাওয়ার জন্য আপনাকে আমাদের কয়েকটি গ্যাস ইভেন্টের জন্য ব্যয় করা
                     পরিমাণটি দিতে হবে।
@@ -1106,11 +1107,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq2-content-3">
+                    data-bs-target="#faq2-content-11">
                     আমি কি দ্রুত সতর্কতা পেতে পারি ?
                   </button>
                 </h2>
-                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                <div id="faq2-content-11" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     হ্যাঁ, আপনার গাড়ীর গতি 60 বা 80 কিলোমিটারের বেশি হলে আপনি গতির বিজ্ঞপ্তি পাবেন।
                   </div>
@@ -1120,11 +1121,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq2-content-3">
+                    data-bs-target="#faq2-content-12">
                     আমি কি অ্যাপের মাধ্যমে একাধিক গাড়ী ট্র্যাক করতে পারব ?
                   </button>
                 </h2>
-                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                <div id="faq2-content-12" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     হ্যাঁ, আপনি পারবেন, (যদি আপনার মাল্টি গাড়ি থাকে)। লগইন করার পরে আপনি গাড়ী নির্বাচন জন্য সতর্কতা
                     পাবেন। পাশাপাশি উপরের ডানদিকের গাড়ির আইকন ক্লিক করে আপনার গাড়িটি চয়ন করতে পারেন
@@ -1135,11 +1136,11 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#faq2-content-3">
+                    data-bs-target="#faq2-content-13">
                     আমি কি অ্যাপের মাধ্যমে মাইলেজ তথ্য পেতে ?
                   </button>
                 </h2>
-                <div id="faq2-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
+                <div id="faq2-content-13" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     হ্যাঁ, আপনি পারেন। সার্ভিস এ যান >> মাইলেজ।
                   </div>
