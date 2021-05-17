@@ -92,10 +92,10 @@
   </header><!-- End Header -->
 
   <div class="fab-links">
-    <button class="bg-blue" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
+    <button class="bg-pink" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
       <i class="fas fa-phone-alt"></i>
     </button>
-    <a class="bg-pink" href="#contact">
+    <a class="bg-blue" href="#contact">
       <i class="fab fa-facebook-messenger"></i>
     </a>
   </div>
@@ -1109,7 +1109,7 @@
                 <div id="faq2-content-9" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
                   <div class="accordion-body">
                     আমাদের ওয়েবসাইটে লগইন করুন (http://www.myradar.com.bd/)...>> ফিক্সিং / গ্যাস মিটার >> সরবরাহ ইনপুট
-                    রিফিল / রিজার্ভ।\n অথবা\n
+                    রিফিল / রিজার্ভ। অথবা
                     প্রথমে সার্ভিস এ যান >> তেল >>ফিক্স ফুয়েল মিটার>>বর্তমান ফুয়েলের পরিমাণ প্রদান করুন।
                   </div>
                 </div>
