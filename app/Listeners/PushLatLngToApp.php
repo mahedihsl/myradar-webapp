@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\LatLngReceived;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 use Vinkla\Pusher\Facades\Pusher;
 use Vinkla\Pusher\PusherFactory;
 use Carbon\Carbon;
@@ -38,13 +39,21 @@ class PushLatLngToApp
         array_push($user_ids, $event->device->user_id);//actual user
 
         foreach ($user_ids as $key => $user_id) {  //show live to all users
-            Pusher::trigger('map-channel-' . $user_id, 'map-event', [
+            $reply = Pusher::trigger('map-channel-' . $user_id, 'map-event', [
                 'message' => [
                     'lat' => strval($event->position->lat),
                     'lng' => strval($event->position->lng),
                     'time' => $event->position->when->timestamp,
                     'device_id' => $event->device->id,
                 ]
+            ]);
+
+            Log::info('pushing lat/lng: ', [
+                'channel' => 'map-channel-' . $user_id,
+                // 'com_id' => $event->device->com_id,
+                // 'lat' => $event->position->lat,
+                // 'lng' => $event->position->lng,
+                'reply' => $reply,
             ]);
 
             try {

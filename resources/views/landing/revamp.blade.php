@@ -34,6 +34,7 @@
   <link href="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.css', true) }}" rel="stylesheet">
   <link href="{{ asset('landing2/assets/vendor/glightbox/css/glightbox.min.css', true) }}" rel="stylesheet">
 
+  <link rel="stylesheet" href="{{ asset('vendors/fa5/css/all.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
@@ -92,10 +93,10 @@
 
   <div class="fab-links">
     <button class="bg-blue" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
-      <i class="bi bi-telephone-fill" style="margin-bottom: 5px;"></i>
+      <i class="fas fa-phone-alt"></i>
     </button>
-    <a class="bg-pink" href="https://www.facebook.com/myradartracker/" target="_blank">
-      <i class="bi bi-chat-square-dots-fill"></i>
+    <a class="bg-pink" href="#contact">
+      <i class="fab fa-facebook-messenger"></i>
     </a>
   </div>
 
@@ -812,7 +813,6 @@
       </div>
     </section>
 
-
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
 
@@ -963,7 +963,7 @@
 
         <header class="section-header">
           <h2>F.A.Q</h2>
-          <p>Frequently Asked Questions</p>
+          <p>মাইরাডার সম্পর্কিত জিজ্ঞাসা</p>
         </header>
 
         <div class="row">
@@ -1189,8 +1189,8 @@
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h2>Our Clients</h2>
-          <p>Temporibus omnis officia</p>
+          <h2></h2>
+          <p>কর্পোরেট পার্টনার</p>
         </header>
 
         <div class="clients-wrapper">
@@ -1224,7 +1224,7 @@
                 <div class="info-box">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>2nd Floor, House - 744, Road - 10<br>Mirpur DOHS, Dhaka</p>
+                  <p>House - 744, Road -10, avenue -04, 2nd floor<br>Mirpur DOHS, Dhaka 1216.</p>
                 </div>
               </div>
               <div class="col-md-6">
@@ -1357,7 +1357,7 @@
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
-              2nd Floor, House - 744<br>Road - 10, Mirpur DOHS<br>Dhaka, Bangladesh
+              House - 744, Road -10, avenue -04, 2nd floor<br>Mirpur DOHS, Dhaka 1216.
               <strong>Phone:</strong> +880 1907888839<br>
               <strong>Email:</strong> <a href="href:hs@hypersystems.com.bd"
                 class="__cf_email__">hs@hypersystems.com.bd</a><br>
