@@ -182,7 +182,6 @@ Route::group(['middleware' => ['auth', 'role:1']], function() {
     Route::get('/user/activate/{id}', 'User\UserController@activate');
     Route::get('/user/deactivate/{id}', 'User\UserController@deactivate');
 
-    Route::get('/bill/entry', 'Finance\BillingController@entry');
     Route::get('/billing/report', 'Admin\BillingController@index');
     Route::get('/billing/export', 'Admin\BillingController@export');
     Route::get('/billing/drilldown', 'Admin\BillingController@drilldown');
@@ -266,7 +265,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/save/payment', 'Payment\PaymentController@save');
     Route::get('/get/payments/{userId}','Payment\PaymentController@getPayments');
 
-    Route::post('/promotion/sms','Promotion\PromotionController@message');
+
     Route::post('/promotion/notification','Promotion\PromotionController@notification');
     Route::get('/promotion/schemelist','Promotion\PromotionController@show');
     Route::get('/promo/code/list','Promotion\PromoCodeController@show');
@@ -274,6 +273,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/save/promo','Promotion\PromoCodeController@save');
 
     Route::get('/billing', 'Account\BillingController@index')->name('billing');
+    Route::get('/bill/entry', 'Finance\BillingController@entry');
     Route::post('/importExcel', 'Account\BillingController@importExcel');
 
     Route::get('/find/customer/{phone}', 'User\CustomerController@findByPhone');

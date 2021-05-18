@@ -7,6 +7,11 @@
   </a>
 </li>
 <li>
+  <a href="/bill/entry">
+    <i class="fa fa-key"></i> <span>Bill Entry</span>
+  </a>
+</li>
+<li>
   <a href="/customers">
     <i class="fa fa-line-chart"></i> <span>Customers</span>
     {{-- <span class="pull-right-container">
@@ -46,12 +51,12 @@
   <a href="/messages">
     <i class="fa fa-envelope"></i> <span>Messages</span>
     @php
-      $n = \App\Entities\Message::where('created_at', '>', \Carbon\Carbon::today())->count()
+    $n = \App\Entities\Message::where('created_at', '>', \Carbon\Carbon::today())->count()
     @endphp
     @if ($n)
-      <span class="pull-right-container">
-        <small class="label pull-right bg-green">{{$n}}</small>
-      </span>
+    <span class="pull-right-container">
+      <small class="label pull-right bg-green">{{$n}}</small>
+    </span>
     @endif
   </a>
 </li>
