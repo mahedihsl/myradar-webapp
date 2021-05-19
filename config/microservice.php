@@ -45,4 +45,8 @@ return [
     'url' => 'http://myradar-fuel',
     'port' => 6013,
   ],
+  'supervisor' => [
+    'url' => 'http://myradar-supervisor',
+    'port' => 6014,
+  ],
 ];

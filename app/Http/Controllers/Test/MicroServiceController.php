@@ -11,6 +11,7 @@ use App\Service\Microservice\SpeedMicroservice;
 use App\Service\Microservice\DeviceMicroservice;
 use App\Service\Microservice\UserMicroservice;
 use App\Service\Microservice\SocketMicroservice;
+use App\Service\Microservice\SupervisorMicroservice;
 
 class MicroServiceController extends Controller
 {
@@ -113,6 +114,16 @@ class MicroServiceController extends Controller
             $device_id = '5f63fbc832ebd87dc662fb56';
             $service = new DeviceMicroservice();
             return response()->json($service->deviceConfig($device_id));
+        } catch (\Exception $error) {
+            return response()->json(['error' => $error->getMessage()]);
+        }
+    }
+
+    public function trimDatabase(Request $request)
+    {
+        try {
+            // $service = new SupervisorMicroservice();
+            // return response()->json($service->trimData());
         } catch (\Exception $error) {
             return response()->json(['error' => $error->getMessage()]);
         }

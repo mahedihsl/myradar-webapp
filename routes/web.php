@@ -57,6 +57,7 @@ Route::get('/test/microservice/geofence', 'Test\MicroServiceController@testGeofe
 Route::get('/test/microservice/session', 'Test\MicroServiceController@session');
 Route::get('/test/microservice/device', 'Test\MicroServiceController@deviceConfig');
 Route::get('/test/microservice/speed', 'Test\MicroServiceController@speed');
+// Route::get('/test/microservice/supervisor', 'Test\MicroServiceController@trimDatabase');
 Route::get('/test/fuel-events', 'Test\FuelMeterController@test');
 Route::get('/test/mileage-push', 'Test\NotificationController@testMileagePush');
 Route::get('/test/websocket', 'Test\MicroServiceController@socket');
