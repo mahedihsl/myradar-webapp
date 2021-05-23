@@ -70,11 +70,15 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Nunito', sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
 }
 
 .bangla {
-  font-family: 'Shurjo';
+  font-family: 'Shurjo' !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
 }
 
 /*--------------------------------------------------------------
@@ -268,7 +272,7 @@ section {
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 30px;
-  font-family: 'Nunito', sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
   font-size: 16px;
   font-weight: 700;
   color: #013289;
@@ -507,7 +511,7 @@ section {
 }
 
 .hero .btn-get-started span {
-  font-family: 'Nunito', sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 1px;
