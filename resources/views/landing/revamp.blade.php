@@ -390,26 +390,31 @@
               <div class="tab-pane fade show active" id="tab1">
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>লাইভ ট্র্যাকিং ২৪ ঘণ্টা - </strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা যাবে</span>
+                  <span class="bangla"><strong>লাইভ ট্র্যাকিং ২৪ ঘণ্টা - </strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা
+                    যাবে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার করছে তা এক
+                  <span class="bangla"><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার
+                    করছে তা এক
                     ক্লিকেই মুঠোফোনে দেখা যাবে। History ট্র্যাকিং রেকর্ড থাকবে ৩ মাস পর্যন্ত</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট থাকবে মাইরাডার
+                  <span class="bangla"><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট
+                    থাকবে মাইরাডার
                     অ্যাপ এ</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন গাড়ি কতবার অন/অফ
+                  <span class="bangla"><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন
+                    গাড়ি কতবার অন/অফ
                     করা হয়েছে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা যাবে
+                  <span class="bangla"><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা
+                    যাবে
                     অনায়াসে</span>
                 </div>
                 <a href="#pricing"
@@ -449,22 +454,26 @@
               <div class="tab-pane fade show active" id="tab1">
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল আপনার
+                  <span class="bangla"><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল
+                    আপনার
                     অ্যাপে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে ইঞ্জিন অফ
+                  <span class="bangla"><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে
+                    ইঞ্জিন অফ
                     করে দিতে পারবেন</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ করলে এলার্ট
+                  <span class="bangla"><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ
+                    করলে এলার্ট
                     পেয়ে যাবেন সাথে সাথেই ।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে ইমারজেঞ্ছি
+                  <span class="bangla"><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে
+                    ইমারজেঞ্ছি
                     এলার্ট</span>
                 </div>
                 <a href="#pricing"
@@ -517,12 +526,14 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>সি এন জি মনিটরিংঃ</strong> গাড়ির CNG মিটার myRADAR মোবাইল অ্যাপ-এ দেখতে পাবেন এবং গাড়িতে
+                  <span class="bangla"><strong>সি এন জি মনিটরিংঃ</strong> গাড়ির CNG মিটার myRADAR মোবাইল অ্যাপ-এ দেখতে
+                    পাবেন এবং গাড়িতে
                     CNG নেওয়ার সাথে সাথেই ফোনে নোটিফিকেশন পাবেন।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ফুয়েল মনিটরিংঃ </strong>গাড়ির ফুয়েল মিটার দেখতে পাবেন মোবাইল App - এ</span>
+                  <span class="bangla"><strong>ফুয়েল মনিটরিংঃ </strong>গাড়ির ফুয়েল মিটার দেখতে পাবেন মোবাইল App -
+                    এ</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
@@ -530,7 +541,8 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ডেইলি সামারি:</strong> কতবার ইঞ্জিন অন/অফ করা হয়েছে, কতটুকু সময় চলেছে, কত দুরুত্ত
+                  <span class="bangla"><strong>ডেইলি সামারি:</strong> কতবার ইঞ্জিন অন/অফ করা হয়েছে, কতটুকু সময় চলেছে,
+                    কত দুরুত্ত
                     অতিক্রম করেছে নোটিফিকেশন এবং SMS-এর মাধ্যমে জানিয়ে দেয়া হবে</span>
                 </div>
                 <a href="#pricing"
@@ -578,11 +590,13 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>এরাইভাল এলার্ট:</strong> নির্ধারিত এলাকার ভিতরে প্রবেশ করলে এলার্ট।</span>
+                  <span class="bangla"><strong>এরাইভাল এলার্ট:</strong> নির্ধারিত এলাকার ভিতরে প্রবেশ করলে
+                    এলার্ট।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">সকল গুরুত্বপূর্ণ শহরে প্রবেশ এবং প্রস্থান এর সময় নোটিফিকেশান পাবেন অটোমেটিক্যালি ।</span>
+                  <span class="bangla">সকল গুরুত্বপূর্ণ শহরে প্রবেশ এবং প্রস্থান এর সময় নোটিফিকেশান পাবেন অটোমেটিক্যালি
+                    ।</span>
                 </div>
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
@@ -633,7 +647,8 @@
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল অ্যাপ - এ জানতে
+                  <span class="bangla"><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল অ্যাপ - এ
+                    জানতে
                     পারবেন</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
@@ -770,28 +785,26 @@
           <h3 class="bangla">মোবাইল অ্যাপ</h3>
 
           <div class="row">
-            <div class="col-xs-12">
-              <div style="display: flex; flex-direction: row;">
-                <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt=""
-                    style="width: 100%; border-radius: 4px;" />
-                </div>
-                <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt=""
-                    style="width: 100%; border-radius: 4px;" />
-                </div>
-                <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt=""
-                    style="width: 100%; border-radius: 4px;" />
-                </div>
-                <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt=""
-                    style="width: 100%; border-radius: 4px;" />
-                </div>
-                <div style="padding: 10px;">
-                  <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt=""
-                    style="width: 100%; border-radius: 4px;" />
-                </div>
+            <div class="col-xs-12 d-flex flex-column flex-lg-row">
+              <div style="padding: 10px;">
+                <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt=""
+                  style="width: 100%; border-radius: 4px;" />
+              </div>
+              <div style="padding: 10px;">
+                <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt=""
+                  style="width: 100%; border-radius: 4px;" />
+              </div>
+              <div style="padding: 10px;">
+                <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt=""
+                  style="width: 100%; border-radius: 4px;" />
+              </div>
+              <div style="padding: 10px;">
+                <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt=""
+                  style="width: 100%; border-radius: 4px;" />
+              </div>
+              <div style="padding: 10px;">
+                <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt=""
+                  style="width: 100%; border-radius: 4px;" />
               </div>
             </div>
           </div>
@@ -799,13 +812,11 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-12">
-            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-              <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734"
-                title="Download from App Store" class="btn-appstore">App Store</a>
-              <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware"
-                title="Download from Play Store" class="btn-playstore">Play Store</a>
-            </div>
+          <div class="col-xs-12 d-flex flex-column flex-md-row justify-content-center align-items-center">
+            <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734"
+              title="Download from App Store" class="btn-appstore">App Store</a>
+            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware"
+              title="Download from Play Store" class="btn-playstore">Play Store</a>
           </div>
 
         </div>
