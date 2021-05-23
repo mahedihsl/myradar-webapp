@@ -63,7 +63,7 @@
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{ route('welcome') }}" class="logo d-flex align-items-center">
         <img src="{{ asset('images/web_logo.png', true) }}" alt="myRADAR logo">
         <span>myRADAR</span>
       </a>
@@ -838,14 +838,14 @@
 
           <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <h3 style="color: #07d5c0;">Standard</h3>
+              <h3 class="price-standard">Standard <div class="arrow"></div>
+              </h3>
               <div class="price bangla"><sup></sup>৬,০০০<span> টাকা</span></div>
               <div class="price2 bangla"><span>মাসিক চার্জ </span>৪০০<span> টাকা</span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-free.png', true) }}" class="img-fluid" alt="">
+              {{-- <img src="{{ asset('landing2/assets/img/pricing-free.png', true) }}" class="img-fluid" alt=""> --}}
               <ul class="bangla">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
-                <li class="na">অডিও মনিটরিং</li>
                 <li>ইঞ্জিন লক/আনলক</li>
                 <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li class="na">লাইভ সি এন জি মিটার</li>
@@ -870,14 +870,15 @@
           <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="box">
               {{-- <span class="featured">Featured</span> --}}
-              <h3 style="color: #65c600;">Special</h3>
+              <h3 class="price-special">Special <div class="arrow"></div>
+              </h3>
               <div class="price bangla"><sup></sup>৮,০০০<span> টাকা</span></div>
               <div class="price2 bangla"><span>মাসিক চার্জ </span>৫০০<span> টাকা</span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-starter.png', true) }}" class="img-fluid" alt="">
+              {{-- <img src="{{ asset('landing2/assets/img/pricing-starter.png', true) }}" class="img-fluid" alt="">
+              --}}
               <ul class="bangla">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
-                <li class="na">অডিও মনিটরিং</li>
                 <li>ইঞ্জিন লক/আনলক</li>
                 <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li>লাইভ সি এন জি মিটার</li>
@@ -901,14 +902,15 @@
 
           <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
             <div class="box">
-              <h3 style="color: #ff901c;">Advanced</h3>
+              <h3 class="price-advanced">Advanced <div class="arrow"></div>
+              </h3>
               <div class="price bangla"><sup></sup>১৫,০০০<span> টাকা</span></div>
               <div class="price2 bangla"><span>মাসিক চার্জ </span>৮০০<span> টাকা</span></div>
-              <img src="{{ asset('landing2/assets/img/pricing-business.png', true) }}" class="img-fluid" alt="">
+              {{-- <img src="{{ asset('landing2/assets/img/pricing-business.png', true) }}" class="img-fluid" alt="">
+              --}}
               <ul class="bangla">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
-                <li>অডিও মনিটরিং</li>
                 <li>ইঞ্জিন লক/আনলক</li>
                 <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li>লাইভ সি এন জি মিটার</li>
@@ -932,14 +934,15 @@
 
           <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
             <div class="box">
-              <h3 style="color: #ff0071;">Business</h3>
+              <h3 class="price-business">Business <div class="arrow"></div>
+              </h3>
               <div class="price bangla"><sup></sup>Custom<span></span></div>
               <div class="price2 bangla">&nbsp;</div>
-              <img src="{{ asset('landing2/assets/img/pricing-ultimate.png', true) }}" class="img-fluid" alt="">
+              {{-- <img src="{{ asset('landing2/assets/img/pricing-ultimate.png', true) }}" class="img-fluid" alt="">
+              --}}
               <ul class="bangla">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
-                <li>অডিও মনিটরিং</li>
                 <li>ইঞ্জিন লক/আনলক</li>
                 <li>ইঞ্জিন অন/অফ এলার্ট</li>
                 <li>লাইভ সি এন জি মিটার</li>
@@ -960,9 +963,7 @@
               <a href="#contact" class="btn-buy">Buy Now</a>
             </div>
           </div>
-
         </div>
-
       </div>
 
     </section><!-- End Pricing Section -->

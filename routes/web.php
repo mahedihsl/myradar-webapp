@@ -21,10 +21,10 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('/', function () {
-    return view('landing.welcome');
-})->name('welcome');
-Route::get('/revamp', function() {
     return view('landing.revamp');
+})->name('welcome');
+Route::get('/archive', function() {
+    return view('landing.welcome');
 });
 
 Auth::routes();

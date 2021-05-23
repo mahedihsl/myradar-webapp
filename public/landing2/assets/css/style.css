@@ -976,7 +976,7 @@ section {
 # Pricing
 --------------------------------------------------------------*/
 .pricing .box {
-  padding: 40px 20px;
+  padding-bottom: 30px;
   background: #fff;
   text-align: center;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
@@ -994,7 +994,45 @@ section {
 .pricing h3 {
   font-weight: 700;
   font-size: 18px;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
+  color: white;
+  padding: 25px 0;
+  position: relative;
+}
+
+.pricing h3 > .arrow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%) rotate(45deg);
+  width: 25px;
+  height: 25px;
+  border-bottom-right-radius: 3px;
+}
+
+.price-standard {
+  background: #07d5c0;
+}
+.price-standard .arrow {
+  background: #07d5c0;
+}
+.price-special {
+  background: #65c600;
+}
+.price-special .arrow {
+  background: #65c600;
+}
+.price-advanced {
+  background: #ff901c;
+}
+.price-advanced .arrow {
+  background: #ff901c;
+}
+.price-business {
+  background: #ff0071;
+}
+.price-business .arrow {
+  background: #ff0071;
 }
 
 .pricing .price {
@@ -1038,7 +1076,9 @@ section {
 }
 
 .pricing ul {
-  padding: 0;
+  margin-top: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
   list-style: disc;
   color: #444444;
   text-align: left;
