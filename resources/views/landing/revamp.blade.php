@@ -127,7 +127,7 @@
           style="width: 100%;" />
         <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt=""
           style="width: 100%;" />
-        <h2 class="text-center" style="font-weight: 800; color: #424242; font-size: 24px;">
+        <h2 class="text-center bangla" style="font-weight: 800; color: #424242; font-size: 24px;">
           মাইরাডার অ্যাপ এর স্মার্ট ফিচারে, গাড়ি থাকুক নিরাপদে
         </h2>
         <p class="text-enter" style="margin-top: 10px; font-size: 16px;">
