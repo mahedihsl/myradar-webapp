@@ -31,6 +31,9 @@ Route::post('/customer/login', 'Api\Auth\AuthController@login');
 Route::get('/app/version', function() {
     return response()->ok(config('app.version'));
 });
+Route::get('/health-check', function() {
+    return response()->json(['status' => true]);
+});
 
 Route::get('/device/find-by-imei', 'Api\Device\LoginController@find');
 
