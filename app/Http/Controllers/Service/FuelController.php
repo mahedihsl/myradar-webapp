@@ -34,6 +34,15 @@ class FuelController extends Controller
 
     public function latest(Request $request, $id)
     {
+        // If this is demo car
+        if ($id == '5f63fbca32ebd87dc663002a') {
+            return response()->ok([
+                'id' => '...',
+                'value' => 56,
+                'when' => Carbon::today()->format('j M'),
+            ]);
+        }
+
         $device = Device::with(['car'])->find($id);
         if (!$device->car->status) {
             return response()->ok(['value' => 0]);
