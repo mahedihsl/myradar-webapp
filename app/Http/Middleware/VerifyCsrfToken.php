@@ -25,6 +25,7 @@ class VerifyCsrfToken extends BaseVerifier
         'customers/sendCredential/api',
         'service/api/get_service_diagnosis',
         'send/single/notice',
+        '/test/*',
         '/test/excel-import',
         '/test/concox/lock',
         '/test/concox/unlock',

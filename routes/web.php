@@ -60,7 +60,7 @@ Route::get('/test/microservice/speed', 'Test\MicroServiceController@speed');
 // Route::get('/test/microservice/supervisor', 'Test\MicroServiceController@trimDatabase');
 Route::get('/test/fuel-events', 'Test\FuelMeterController@test');
 Route::get('/test/mileage-push', 'Test\NotificationController@testMileagePush');
-Route::get('/test/websocket', 'Test\MicroServiceController@socket');
+Route::post('/test/websocket', 'Test\SocketController@send');
 Route::get('/test/redis', 'Test\DatabaseTestController@redis');
 Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/bill-notice', 'Promotion\NoticeController@test');

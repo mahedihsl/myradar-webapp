@@ -25,6 +25,10 @@ return [
     'url' => 'http://myradar-health',
     'port' => 6005,
   ],
+  'socket' => [
+    'url' => 'http://myradar-socket',
+    'port' => 6007,
+  ],
   'et200' => [
     'url' => 'http://concox-et200',
     'port' => 5051,

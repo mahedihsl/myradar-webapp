@@ -7,14 +7,14 @@ namespace App\Service\Microservice;
  */
 class SocketMicroservice extends BaseService
 {
-  const SERVICE_NAME = 'socket2';
+  const SERVICE_NAME = 'socket';
 
   public function __construct() {
     parent::__construct(self::SERVICE_NAME);
   }
 
-  public function send($user_id, $payload)
+  public function send($data)
   {
-    return $this->post('/io/send/notification', compact('user_id', 'payload'));
+    return $this->post('/io/send', $data);
   }
 }
