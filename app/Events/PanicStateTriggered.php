@@ -43,7 +43,7 @@ class PanicStateTriggered
     }
 
     public function deliverable() {
-        $disabledDevices = [82422, 46131];
+        $disabledDevices = [82422, 46131, 63488];
         if (in_array($this->device->com_id, $disabledDevices)) {
             return false;
         }
