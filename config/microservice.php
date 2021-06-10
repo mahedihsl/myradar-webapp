@@ -53,4 +53,8 @@ return [
     'url' => 'http://myradar-supervisor',
     'port' => 6014,
   ],
+  'poi' => [
+    'url' => 'http://myradar-poi',
+    'port' => 6015,
+  ],
 ];

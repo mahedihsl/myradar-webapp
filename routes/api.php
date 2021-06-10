@@ -64,6 +64,7 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
     Route::post('/device/engine/update/test', 'Api\Device\EngineController@test');
 });
 
+Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 
 Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::get('/poi/list', 'Api\Poi\PoiController@index');

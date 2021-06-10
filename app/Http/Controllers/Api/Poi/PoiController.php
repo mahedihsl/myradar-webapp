@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\PoiRepository;
 use App\Criteria\LastUpdatedCriteria;
+use App\Service\Microservice\POIMicroservice;
+use App\Service\Microservice\ServiceException;
 
 class PoiController extends Controller
 {
@@ -13,10 +15,23 @@ class PoiController extends Controller
      * @var PoiRepository
      */
     private $repository;
+    private $service;
 
     public function __construct(PoiRepository $repository)
     {
         $this->repository = $repository;
+        $this->service = new POIMicroservice();
+    }
+
+    public function nearest(Request $request)
+    {
+        try {
+            $lat = $request->get('lat');
+            $lng = $request->get('lng');
+            return response()->json($this->service->nearest($lat, $lng));
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function index(Request $request)
