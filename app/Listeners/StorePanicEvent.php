@@ -33,6 +33,8 @@ class StorePanicEvent
      */
     public function handle(PanicStateTriggered $event)
     {
+        if ( ! $event->deliverable()) return;
+        
         $data = collect([
             'title' => $event->title(),
             'body' => $event->body(),
