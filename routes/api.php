@@ -65,6 +65,7 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
 });
 
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
+Route::get('/location/history', 'Api\Position\TrackingController@history');
 
 Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::get('/poi/list', 'Api\Poi\PoiController@index');

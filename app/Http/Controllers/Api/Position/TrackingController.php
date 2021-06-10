@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Contract\Repositories\PositionRepository;
-use App\Criteria\DeviceIdCriteria;
-use App\Criteria\AfterWhenCriteria;
-use App\Criteria\RecentItemCriteria;
-use App\Criteria\BeforeWhenCriteria;
-use App\Presenters\PositionPresenter;
+use App\Service\Microservice\LocationMicroservice;
+use App\Service\Microservice\ServiceException;
 
 class TrackingController extends Controller
 {
@@ -18,10 +15,12 @@ class TrackingController extends Controller
      * @var PositionRepository
      */
     private $repository;
+    private $locationService;
 
     public function __construct(PositionRepository $repository)
     {
         $this->repository = $repository;
+        $this->locationService = new LocationMicroservice();
     }
 
     public function last(Request $request, $id)
@@ -36,17 +35,16 @@ class TrackingController extends Controller
 
     public function history(Request $request)
     {
-        $this->repository->setPresenter(PositionPresenter::class);
+        try {
+            $device_id = $request->get('device_id');
+            $from = $request->get('from');
+            $to = $request->get('to');
 
-        $criteria = new DeviceIdCriteria($request->get('device_id'));
-        $this->repository->pushCriteria($criteria);
-
-        $from = null;
-        $to = null;
-
-        $this->repository->pushCriteria(new AfterWhenCriteria($from));
-        $this->repository->pushCriteria(new BeforeWhenCriteria($to));
-
+            $result = $this->locationService->history($device_id, $from, $to);
+            return response()->json($result);
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
 }

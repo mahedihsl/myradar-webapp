@@ -57,4 +57,8 @@ return [
     'url' => 'http://myradar-poi',
     'port' => 6015,
   ],
+  'location' => [
+    'url' => 'http://myradar-location',
+    'port' => 6016,
+  ],
 ];
