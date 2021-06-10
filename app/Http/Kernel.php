@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'BkashPayment' => \App\Http\Middleware\BkashPayment::class,
         'engage' => \App\Http\Middleware\EngagementMiddleware::class,
         'logcat' => \App\Http\Middleware\LogCat::class,
+        'cors' => \App\Http\Middleware\CORS::class,
         // 'querylog' => \App\Http\Middleware\QueryLog::class,
     ];
 }
