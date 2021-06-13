@@ -192,12 +192,12 @@
             <h2 class="accordion-header">
               <button class="accordion-button collapsed font-bold" type="button" data-bs-toggle="collapse"
                 data-bs-target="#faq2-content-13">
-                @lang('faq.12.q')
+                @lang('faq.13.q')
               </button>
             </h2>
             <div id="faq2-content-13" class="accordion-collapse collapse" data-bs-parent="#faqlist2">
               <div class="accordion-body">
-                @lang('faq.12.a')
+                @lang('faq.13.a')
               </div>
             </div>
           </div>

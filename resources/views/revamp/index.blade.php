@@ -160,7 +160,7 @@
 
         <header class="section-header">
           <h2></h2>
-          <p class="bangla">কর্পোরেট পার্টনার</p>
+          <p class="bangla">@lang('misc.corporate_partner')</p>
         </header>
 
         <div class="clients-wrapper">
