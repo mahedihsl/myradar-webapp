@@ -5,7 +5,7 @@ return [
     'home' => 'Home',
     'feature' => 'Features',
     'service' => 'Services',
-    'app' => 'Mobile APP',
+    'app' => 'Mobile App',
     'package' => 'Package',
     'demo' => 'Free Demo',
     'phone' => '+88 01907888839',
