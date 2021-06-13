@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'title' => 'myRadar related questions',
+  'title' => 'Query about myRadar',
   '1' => [
     'q' => 'How to Recover my Password?',
     'a' => 'Go to Forgot Password in Log In page >> Choose your recovery options via e-mail or SMS for self-recovery >> Go Forward >> Enter PIN code >> Change your password

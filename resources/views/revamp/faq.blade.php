@@ -5,7 +5,7 @@
 
     <header class="section-header">
       <h2>F.A.Q</h2>
-      <p class="bangla">মাইরাডার সম্পর্কিত জিজ্ঞাসা</p>
+      <p class="bangla">@lang('faq.title')</p>
     </header>
 
     <div class="row">

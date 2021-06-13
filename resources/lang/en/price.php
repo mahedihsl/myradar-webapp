@@ -4,12 +4,14 @@ return [
   'title' => 'Our Packages',
   'standard' => [
     'name' => 'Standard',
-    'price' => '6,000',
+    'price' => '3,950',
+    'price_prev' => '6,000',
     'bill' => '400',
   ],
   'special' => [
     'name' => 'Special',
-    'price' => '8,000',
+    'price' => '4,950',
+    'price_prev' => '8,000',
     'bill' => '500',
   ],
   'advanced' => [

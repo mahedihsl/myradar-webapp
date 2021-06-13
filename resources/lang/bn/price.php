@@ -4,12 +4,14 @@ return [
   'title' => 'আমাদের প্যাকেজ সমূহ',
   'standard' => [
     'name' => 'Standard',
-    'price' => '৬,০০০',
+    'price' => '৩,৯৫০',
+    'price_prev' => '৬,০০০',
     'bill' => '৪০০',
   ],
   'special' => [
     'name' => 'Special',
-    'price' => '৮,০০০',
+    'price' => '৪,৯৫০',
+    'price_prev' => '৮,০০০',
     'bill' => '৫০০',
   ],
   'advanced' => [

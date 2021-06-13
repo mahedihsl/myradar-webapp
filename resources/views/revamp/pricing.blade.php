@@ -14,7 +14,7 @@
         <div class="box">
           <h3 class="price-standard">@lang('price.standard.name') <div class="arrow"></div>
           </h3>
-          <div class="price bangla"><sup></sup>@lang('price.standard.price')<span> @lang('misc.currency')</span></div>
+          <div class="price bangla"><sup class="na">@lang('price.standard.price_prev')</sup>@lang('price.standard.price')<span> @lang('misc.currency')</span></div>
           <div class="price2 bangla"><span>@lang('misc.month_charge') </span>@lang('price.standard.bill')<span> @lang('misc.currency')</span></div>
           {{-- <img src="{{ asset('landing2/assets/img/pricing-free.png', true) }}" class="img-fluid" alt=""> --}}
           <ul class="bangla">
@@ -46,7 +46,7 @@
           {{-- <span class="featured">Featured</span> --}}
           <h3 class="price-special">@lang('price.special.name') <div class="arrow"></div>
           </h3>
-          <div class="price bangla"><sup></sup>@lang('price.special.price')<span> @lang('misc.currency')</span></div>
+          <div class="price bangla"><sup class="na">@lang('price.special.price_prev')</sup>@lang('price.special.price')<span> @lang('misc.currency')</span></div>
           <div class="price2 bangla"><span>@lang('misc.month_charge') </span>@lang('price.special.bill')<span> @lang('misc.currency')</span></div>
           {{-- <img src="{{ asset('landing2/assets/img/pricing-starter.png', true) }}" class="img-fluid" alt="">
           --}}
