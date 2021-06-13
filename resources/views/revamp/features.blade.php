@@ -67,7 +67,7 @@
     <!-- Feature Tabs 1 -->
     <div class="row feture-tabs" data-aos="fade-up">
       <div class="col-lg-6">
-        <h3 class="bangla">আপনার প্রিয় গাড়ীটি রেখে দুরে এসেছেন!! ভয় নেই, পাহারায় আছে মাইরাডার</h3>
+        <h3 class="bangla">@lang('story.1.title')</h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
@@ -85,28 +85,28 @@
               consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong></strong> কেউ দরজা খুললেই পেয়ে যাবেন "ডোর ওপেন এলার্ট"</span>
+              <span class="bangla"><strong></strong> @lang('story.1.items.1.normal')</span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla">কত সময় যাবত গাড়ি পারকিং এ আছে তাও জানতে পারবেন।</span>
+              <span class="bangla">@lang('story.1.items.2.normal')</span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla">ইঞ্জিন অন হলেই পেয়ে যাবেন "ইঞ্জিন অন এলার্ট"</span>
+              <span class="bangla">@lang('story.1.items.3.normal')</span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong></strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা যাবে</span>
+              <span class="bangla"><strong></strong> @lang('story.1.items.4.normal')</span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla">এক পলকে দেখে নিতে পারবেন গাড়ির ভ্রমন পথ</span>
+              <span class="bangla">@lang('story.1.items.5.normal')</span>
             </div>
             <a href="#pricing"
               style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-              <span class="bangla">প্যাকেজ দেখুন</span>
+              <span class="bangla">@lang('header.banner.action')</span>
               <i class="bi bi-arrow-right text-white"></i>
             </a>
           </div>
@@ -130,7 +130,7 @@
       </div>
 
       <div class="col-lg-6">
-        <h3 class="bangla">গাড়ি কি আপনার চোখের আড়ালে !! নজরদারি করুন মাইরাডার লাইভ ট্র্যাকিং দিয়ে</h3>
+        <h3 class="bangla">@lang('story.2.title')</h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
@@ -146,37 +146,43 @@
           <div class="tab-pane fade show active" id="tab1">
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>লাইভ ট্র্যাকিং ২৪ ঘণ্টা - </strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা
-                যাবে</span>
+              <span class="bangla">
+                <strong>@lang('story.2.items.1.bold')</strong>
+                @lang('story.2.items.1.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার
-                করছে তা এক
-                ক্লিকেই মুঠোফোনে দেখা যাবে। History ট্র্যাকিং রেকর্ড থাকবে ৩ মাস পর্যন্ত</span>
+              <span class="bangla">
+                <strong>@lang('story.2.items.2.bold')</strong>
+                @lang('story.2.items.2.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট
-                থাকবে মাইরাডার
-                অ্যাপ এ</span>
+              <span class="bangla">
+                <strong>@lang('story.2.items.3.bold')</strong> 
+                @lang('story.2.items.3.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন
-                গাড়ি কতবার অন/অফ
-                করা হয়েছে</span>
+              <span class="bangla">
+                <strong>@lang('story.2.items.4.bold')</strong> 
+                @lang('story.2.items.4.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা
-                যাবে
-                অনায়াসে</span>
+              <span class="bangla">
+                <strong>@lang('story.2.items.5.bold')</strong> 
+                @lang('story.2.items.5.normal')
+              </span>
             </div>
             <a href="#pricing"
               style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-              <span class="bangla">প্যাকেজ দেখুন</span>
+              <span class="bangla">@lang('header.banner.action')</span>
               <i class="bi bi-arrow-right text-white"></i>
             </a>
           </div>
@@ -189,12 +195,11 @@
     </div>
     <!-- End Feature Tabs -->
 
-    <!-- Feature Tabs 2 -->
+    <!-- Feature Tabs 3 -->
     <div class="row feture-tabs" data-aos="fade-up">
 
-
       <div class="col-lg-6">
-        <h3 class="bangla">গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা</h3>
+        <h3 class="bangla">@lang('story.3.title')</h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
@@ -210,32 +215,36 @@
           <div class="tab-pane fade show active" id="tab1">
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল
-                আপনার
-                অ্যাপে</span>
+              <span class="bangla">
+                <strong>@lang('story.3.items.1.bold')</strong> 
+                @lang('story.3.items.1.normal')  
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে
-                ইঞ্জিন অফ
-                করে দিতে পারবেন</span>
+              <span class="bangla">
+                <strong>@lang('story.3.items.2.bold')</strong> 
+                @lang('story.3.items.2.normal')  
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ
-                করলে এলার্ট
-                পেয়ে যাবেন সাথে সাথেই ।</span>
+              <span class="bangla">
+                <strong>@lang('story.3.items.3.bold')</strong> 
+                @lang('story.3.items.3.normal')  
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে
-                ইমারজেঞ্ছি
-                এলার্ট</span>
+              <span class="bangla">
+                <strong>@lang('story.3.items.4.bold')</strong> 
+                @lang('story.3.items.4.normal')
+              </span>
             </div>
             <a href="#pricing"
               style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-              <span class="bangla">প্যাকেজ দেখুন</span>
+              <span class="bangla">@lang('header.banner.action')</span>
               <i class="bi bi-arrow-right text-white"></i>
             </a>
           </div>
@@ -252,14 +261,14 @@
     </div>
     <!-- End Feature Tabs -->
 
-    <!-- Feature Tabs 3 -->
+    <!-- Feature Tabs 4 -->
     <div class="row feture-tabs" data-aos="fade-up">
       <div class="col-lg-6">
         <img src="{{ asset('landing2/assets/image/cng_monitoring2.png', true) }}" class="img-fluid" alt="">
       </div>
 
       <div class="col-lg-6">
-        <h3 class="bangla">ফুয়েল, সিএনজি এবং অন্যান্য হিসাব রাখতে হিমসিম খাচ্ছেন!! নো টেনশন</h3>
+        <h3 class="bangla">@lang('story.4.title')</h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
@@ -277,34 +286,50 @@
               consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>মাইলেজ রিপোর্টঃ</strong> মাইলেজ রিপোর্ট দেখে সহজেই পরিমাপ করতে
-                পারবেন ফুয়েলের হিসাব।</span>
+              <span class="bangla">
+                <strong>@lang('story.4.items.1.bold')</strong> 
+                @lang('story.4.items.1.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>সি এন জি মনিটরিংঃ</strong> গাড়ির CNG মিটার myRADAR মোবাইল অ্যাপ-এ দেখতে
-                পাবেন এবং গাড়িতে
-                CNG নেওয়ার সাথে সাথেই ফোনে নোটিফিকেশন পাবেন।</span>
+              <span class="bangla">
+                <strong>@lang('story.4.items.2.bold')</strong> 
+                @lang('story.4.items.2.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ফুয়েল মনিটরিংঃ </strong>গাড়ির ফুয়েল মিটার দেখতে পাবেন মোবাইল App -
-                এ</span>
+              <span class="bangla">
+                <strong>@lang('story.4.items.3.bold')</strong> 
+                @lang('story.4.items.3.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla">ফুয়েল রিফিল এবং লীকেজ এলার্ট (শিগ্রই আসছে)</span>
+              <span class="bangla">
+                <strong>@lang('story.4.items.4.bold')</strong> 
+                @lang('story.4.items.4.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ডেইলি সামারি:</strong> কতবার ইঞ্জিন অন/অফ করা হয়েছে, কতটুকু সময় চলেছে,
-                কত দুরুত্ত
-                অতিক্রম করেছে নোটিফিকেশন এবং SMS-এর মাধ্যমে জানিয়ে দেয়া হবে</span>
+              <span class="bangla">
+                <strong>@lang('story.4.items.5.bold')</strong> 
+                @lang('story.4.items.5.normal')
+              </span>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              <i class="bi bi-check2"></i>
+              <span class="bangla">
+                <strong>@lang('story.4.items.6.bold')</strong> 
+                @lang('story.4.items.6.normal')
+              </span>
             </div>
             <a href="#pricing"
               style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-              <span class="bangla">প্যাকেজ দেখুন</span>
+              <span class="bangla">@lang('header.banner.action')</span>
               <i class="bi bi-arrow-right text-white"></i>
             </a>
           </div>
@@ -314,17 +339,15 @@
 
       </div>
 
-
-
     </div>
     <!-- End Feature Tabs -->
 
-    <!-- Feature Tabs 4 -->
+    <!-- Feature Tabs 5 -->
     <div class="row feture-tabs" data-aos="fade-up">
 
 
       <div class="col-lg-6">
-        <h3 class="bangla">নির্দিষ্ট এলাকার বাইরে গাড়ির যাতায়াত মনিটর করতে চান!! সমাধানে মাইরাডার</h3>
+        <h3 class="bangla">@lang('story.5.title')</h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
@@ -342,22 +365,29 @@
               consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>ডেসটিনেশন এলার্ট:</strong> নির্ধারিত এলাকার বাহিরে গেলে এলার্ট।</span>
+              <span class="bangla">
+                <strong>@lang('story.5.items.1.bold')</strong> 
+                @lang('story.5.items.1.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong>এরাইভাল এলার্ট:</strong> নির্ধারিত এলাকার ভিতরে প্রবেশ করলে
-                এলার্ট।</span>
+              <span class="bangla">
+                <strong>@lang('story.5.items.2.bold')</strong> 
+                @lang('story.5.items.2.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla">সকল গুরুত্বপূর্ণ শহরে প্রবেশ এবং প্রস্থান এর সময় নোটিফিকেশান পাবেন অটোমেটিক্যালি
-                ।</span>
+              <span class="bangla">
+                <strong>@lang('story.5.items.3.bold')</strong> 
+                @lang('story.5.items.3.normal')
+              </span>
             </div>
             <a href="#pricing"
               style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-              <span class="bangla">প্যাকেজ দেখুন</span>
+              <span class="bangla">@lang('header.banner.action')</span>
               <i class="bi bi-arrow-right text-white"></i>
             </a>
           </div>
@@ -374,14 +404,14 @@
     </div>
     <!-- End Feature Tabs -->
 
-    <!-- Feature Tabs 5 -->
+    <!-- Feature Tabs 6 -->
     <div class="row feture-tabs" data-aos="fade-up">
       <div class="col-lg-6">
         <img src="{{ asset('landing2/assets/image/family_safety.png', true) }}" class="img-fluid" alt="">
       </div>
 
       <div class="col-lg-6">
-        <h3 class="bangla">আপনজনদের সুরক্ষায় myRadar</h3>
+        <h3 class="bangla">@lang('story.6.title')</h3>
 
         <!-- Tabs -->
         <ul class="nav nav-pills mb-3">
@@ -399,23 +429,30 @@
               consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong></strong> অতিরিক্ত গতিতে গাড়ি চললেই এলার্ট পাবেন সাথে সাথে</span>
+              <span class="bangla">
+                <strong>@lang('story.6.items.1.bold')</strong>
+                @lang('story.6.items.1.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla"><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল অ্যাপ - এ
-                জানতে
-                পারবেন</span>
+              <span class="bangla">
+                <strong>@lang('story.6.items.2.bold')</strong>
+                @lang('story.6.items.2.normal')
+              </span>
             </div>
             <div class="d-flex align-items-center mb-2">
               <i class="bi bi-check2"></i>
-              <span class="bangla">আপনার সেট করে দেয়া গন্তব্যে আপনজন পৌঁছা মাত্র জানিয়ে দেবে myRadar</span>
+              <span class="bangla">
+                <strong>@lang('story.6.items.3.bold')</strong>
+                @lang('story.6.items.3.normal')
+              </span>
             </div>
 
             <a href="#pricing"
               style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-              <span class="bangla">প্যাকেজ দেখুন</span>
+              <span class="bangla">@lang('header.banner.action')</span>
               <i class="bi bi-arrow-right text-white"></i>
             </a>
           </div>
