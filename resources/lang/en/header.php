@@ -8,7 +8,13 @@ return [
     'app' => 'Mobile APP',
     'package' => 'Package',
     'demo' => 'Free Demo',
-    'phone' => '+8801907888839',
+    'phone' => '+88 01907888839',
+    'phone2' => '+88 01907888899',
     'login' => 'Login',
-  ]
+  ],
+  'banner' => [
+    'title' => 'Keep your Car safe with myRADAR smart tracker',
+    'caption' => '',
+    'action' => 'See Package',
+  ],
 ];
