@@ -21,7 +21,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('/', function () {
-    return view('landing.revamp');
+    return view('revamp.index');
 })->name('welcome');
 Route::get('/archive', function() {
     return view('landing.welcome');
