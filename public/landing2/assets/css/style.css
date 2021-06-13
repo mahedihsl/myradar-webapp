@@ -500,7 +500,7 @@ section {
 }
 
 .hero .btn-get-started {
-  margin-top: 30px;
+  margin-top: 10px;
   line-height: 0;
   padding: 15px 40px;
   border-radius: 4px;
@@ -2512,7 +2512,7 @@ section {
   transition: opacity 0.2s ease-in-out;
 }
 .btn-playstore {
-  width: 166px;
+  width: 168px;
   background-image: url(../../../images/btn-playstore.png);
 }
 .btn-appstore:hover,
@@ -2525,9 +2525,10 @@ section {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 80px;
 }
 .clients-wrapper img {
-  height: 100px;
+  height: 100%;
   width: auto;
 }
 

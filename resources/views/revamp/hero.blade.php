@@ -7,22 +7,24 @@
           style="width: 100%;" />
         <div class="row d-none d-lg-block position-absolute bottom-0 start-50 translate-middle-x">
           <div class="col-xs-12 d-flex flex-row justify-content-center align-items-center">
-            <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734"
+            <a target="_blank" href="{{ config('myradar.appstore') }}"
               title="Download from App Store" class="btn-appstore">App Store</a>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware"
+            <a target="_blank" href="{{ config('myradar.playstore') }}"
               title="Download from Play Store" class="btn-playstore">Play Store</a>
           </div>
         </div>
       </div>
       <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt=""
         style="width: 100%;" />
-      <div class="row d-block d-lg-none">
-        <div class="col-xs-12 d-flex flex-row justify-content-center align-items-center">
-          <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734"
-            title="Download from App Store" class="btn-appstore">App Store</a>
-          <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware"
-            title="Download from Play Store" class="btn-playstore">Play Store</a>
-        </div>
+      <div class="w-100 d-flex flex-row justify-content-center align-items-center d-lg-none" style="gap: 30px;">
+        <a target="_blank" href="{{ config('myradar.appstore') }}"
+            title="Download from App Store" style="width: 35%;">
+          <img src="{{ asset('images/btn-appstore.png', true) }}" class="img-fluid" alt="">  
+        </a>
+        <a target="_blank" href="{{ config('myradar.playstore') }}"
+          title="Download from Play Store" style="width: 35%;">
+          <img src="{{ asset('images/btn-playstore.png', true) }}" class="img-fluid" alt="">  
+        </a>
       </div>
       <h2 class="text-center bangla" style="font-weight: 800; color: #424242; font-size: 24px; margin-top: 30px;">
         @lang('header.banner.title')

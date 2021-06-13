@@ -139,9 +139,9 @@
 
         <div class="row" style="margin-top: 30px;">
           <div class="col-xs-12 d-flex flex-row justify-content-center align-items-center">
-            <a target="_blank" href="https://apps.apple.com/jm/app/bangla-radar/id1526805734"
+            <a target="_blank" href="{{ config('myradar.appstore') }}"
               title="Download from App Store" class="btn-appstore">App Store</a>
-            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.mobile.hs.hyperware"
+            <a target="_blank" href="{{ config('myradar.playstore') }}"
               title="Download from Play Store" class="btn-playstore">Play Store</a>
           </div>
         </div>
