@@ -20,9 +20,7 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/insertbill', 'Test\BillInsertController@populate');
 });
 
-Route::get('/', function () {
-    return view('revamp.index');
-})->name('welcome');
+Route::get('/', 'HomeController@welcome')->name('welcome');
 Route::get('/archive', function() {
     return view('landing.welcome');
 });

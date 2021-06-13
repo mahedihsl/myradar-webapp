@@ -3,21 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Entities\Car;
 use App\Entities\User;
-use App\Entities\Device;
-use App\Entities\Position;
-use App\Contract\Repositories\UserRepository;
-use App\Jobs\PushNotificationJob;
-use App\Service\Refuel\DetectGasRefuel;
-use App\Criteria\CarIdCriteria;
-use App\Http\Controllers\Customer\PositionHistoryController;
-use App\Util\Test;
-use App\Util\Balance;
-use App\Consumer\EngineStatusConsumer;
-use Davibennun\LaravelPushNotification\Facades\PushNotification;
 
 class HomeController extends Controller
 {
@@ -29,6 +16,13 @@ class HomeController extends Controller
     public function __construct()
     {
         //
+    }
+
+    public function welcome(Request $request)
+    {
+        $lang = $request->get('lang', config('app.locale'));
+        \App::setLocale($lang);
+        return view('revamp.index');
     }
 
     /**
@@ -71,43 +65,4 @@ class HomeController extends Controller
     {
         return view('misc.privacy1');
     }
-
-    public function test(Request $request)
-    {
-        $start = microtime(true);
-        // $id = '5abb3c5089232c0c2747fb00';
-        $id = '5aeeb8b93264d350aa2ca8e2';
-        $device = Device::find($id);
-        $consumer = new EngineStatusConsumer('1');
-        $consumer->consume($device);
-        $test = new Test();
-        $status = $test->test($device);
-        $end = microtime(true);
-        return ['time' => $end - $start, 'data' => $status];
-
-        // return [
-        //     'user' => resolve(UserRepository::class)
-        //             ->scopeQuery(function($query) {
-        //                 return $query->where('email', 'demo@myradar.com.bd');
-        //             })
-        //             ->first()
-        // ];
-
-        // Md Babul data
-        // $data = [471,473,471,471,470,471,456,450,436,436,433,424,427,396,448,427,75,76];
-        // $data = [473,471,471,470,471,456,450,436,436,433,424,427,396,448,427,75,76,75];
-        // $data = [471,471,470,471,456,450,436,436,433,424,427,396,448,427,75,76,75,76];
-        // $data = [471,470,471,456,450,436,436,433,424,427,396,448,427,75,76,75,76,76];
-        // $data = [470,471,456,450,436,436,433,424,427,396,448,427,75,76,75,76,76,77];
-        // $data = [456,450,436,436,433,424,427,396,448,427,75,76,75,76,76,77,76,77];
-        // $data = [450,436,436,433,424,427,396,448,427,75,76,75,76,76,77,76,77,76];
-        // END
-
-        // Shahnewaz Arefeen Data
-        $data = [144,148,147,148,149,146,150,150,151,146,150,149,150,151,146,150,151,151];
-        $service = new DetectGasRefuel();
-        $service->setType(Car::CNG_TYPE_A);
-        return $service->check(collect($data));
-    }
-
 }

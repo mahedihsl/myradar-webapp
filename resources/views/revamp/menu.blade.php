@@ -22,7 +22,13 @@
             <span class="bangla" style="margin-left: 12px;">@lang('header.menu.phone')</span>
           </a>
         </li>
-        <li><a class="getstarted scrollto bangla" href="{{ route('login') }}">@lang('header.menu.login')</a></li>
+        <li><a class="getstarted scrollto bangla" style="justify-content: center" href="{{ route('login') }}">@lang('header.menu.login')</a></li>
+        <li>
+          <div class="language-switcher">
+            <a href="{{ route('welcome', ['lang' => 'bn']) }}" class="language bangla {{ App::isLocale('bn') ? 'active' : '' }}">বাংলা</a>
+            <a href="{{ route('welcome', ['lang' => 'en']) }}" class="language {{ App::isLocale('en') ? 'active' : '' }}">English</a>
+          </div>
+        </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav><!-- .navbar -->

@@ -2562,3 +2562,26 @@ section {
 .bg-pink {
   background: #e91e63;
 }
+
+.language-switcher {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid #4154f1;
+  border-radius: 100px;
+  padding: 2px;
+  margin: 0 15px;
+}
+
+.language-switcher .language {
+  font-size: 12px;
+  font-weight: 400;
+  color: #4154f1;
+  border-radius: 100px;
+  padding: 4px 12px !important;
+}
+
+.language-switcher .language.active {
+  color: white;
+  background: #4154f1;
+}
