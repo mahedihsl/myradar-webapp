@@ -5,7 +5,7 @@
 
     <header class="section-header">
       <h2>Features</h2>
-      <p class="bangla">আমাদের আকর্ষণীয় ফিচারসমূহ</p>
+      <p class="bangla">@lang('feature.title')</p>
     </header>
 
     <div class="row">
@@ -20,42 +20,42 @@
           <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
             <div class="feature-box d-flex align-items-center">
               <i class="bi bi-check"></i>
-              <h3 class="bangla">লাইভ ট্র্যাকিং</h3>
+              <h3 class="bangla">@lang('feature.items.1')</h3>
             </div>
           </div>
 
           <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
             <div class="feature-box d-flex align-items-center">
               <i class="bi bi-check"></i>
-              <h3 class="bangla">৩ মাসের ট্রিপ হিস্ট্রি</h3>
+              <h3 class="bangla">@lang('feature.items.2')</h3>
             </div>
           </div>
 
           <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
             <div class="feature-box d-flex align-items-center">
               <i class="bi bi-check"></i>
-              <h3 class="bangla">ইঞ্জিন লক/আনলক</h3>
+              <h3 class="bangla">@lang('feature.items.3')</h3>
             </div>
           </div>
 
           <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
             <div class="feature-box d-flex align-items-center">
               <i class="bi bi-check"></i>
-              <h3 class="bangla">ফুয়েল মনিটরিং সিস্টেম</h3>
+              <h3 class="bangla">@lang('feature.items.4')</h3>
             </div>
           </div>
 
           <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
             <div class="feature-box d-flex align-items-center">
               <i class="bi bi-check"></i>
-              <h3 class="bangla">সি এন জি মনিটরিং সিস্টেম</h3>
+              <h3 class="bangla">@lang('feature.items.5')</h3>
             </div>
           </div>
 
           <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
             <div class="feature-box d-flex align-items-center">
               <i class="bi bi-check"></i>
-              <h3 class="bangla">ডেসটিনেশন এলার্ট</h3>
+              <h3 class="bangla">@lang('feature.items.6')</h3>
             </div>
           </div>
 
