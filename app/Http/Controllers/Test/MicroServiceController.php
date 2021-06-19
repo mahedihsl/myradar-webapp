@@ -9,12 +9,16 @@ use App\Service\Microservice\ServiceException;
 use App\Service\Microservice\SmsMicroservice;
 use App\Service\Microservice\SpeedMicroservice;
 use App\Service\Microservice\DeviceMicroservice;
+use App\Service\Microservice\FuelMicroservice;
 use App\Service\Microservice\UserMicroservice;
-use App\Service\Microservice\SocketMicroservice;
-use App\Service\Microservice\SupervisorMicroservice;
 
 class MicroServiceController extends Controller
 {
+    public function testFuel(Request $request)
+    {
+        $service = new FuelMicroservice();
+    }
+
     public function session(Request $request)
     {
         $service = new UserMicroservice();

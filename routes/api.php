@@ -64,6 +64,11 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
     Route::post('/device/engine/update/test', 'Api\Device\EngineController@test');
 });
 
+Route::get('/stoppage/list', 'Api\Poi\StoppageController@list');
+Route::post('/stoppage/save', 'Api\Poi\StoppageController@save');
+Route::post('/stoppage/update', 'Api\Poi\StoppageController@update');
+Route::post('/stoppage/remove', 'Api\Poi\StoppageController@remove');
+
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');
 

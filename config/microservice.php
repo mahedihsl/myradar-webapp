@@ -61,4 +61,8 @@ return [
     'url' => 'http://myradar-location',
     'port' => 6016,
   ],
+  'stoppage' => [
+    'url' => 'http://myradar-stoppage',
+    'port' => 6017,
+  ],
 ];

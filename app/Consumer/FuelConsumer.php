@@ -2,10 +2,8 @@
 
 namespace App\Consumer;
 
-use Carbon\Carbon;
 use App\Entities\Device;
-use App\Events\FuelReceived;
-use App\Criteria\ExactDateCriteria;
+use Illuminate\Support\Facades\Log;
 use App\Service\Microservice\FuelMicroservice;
 
 use App\Contract\Repositories\FuelHistoryRepository;
@@ -42,7 +40,9 @@ class FuelConsumer extends ServiceConsumer
     {
         try {
             $this->fuelService->consume($device->com_id, $this->getData());
-        } catch (ServiceException $e) {}
+        } catch (\Exception $e) {
+            Log::info('Fuel microservice error:: ' . $e->getMessage());
+        }
         
         // $status = $device->engine_status;
         // if ($status) {

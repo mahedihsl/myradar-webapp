@@ -2575,11 +2575,11 @@ section {
 }
 
 .language-switcher .language {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 400;
   color: #4154f1;
   border-radius: 100px;
-  padding: 4px 12px !important;
+  padding: 4px 10px !important;
 }
 
 .language-switcher .language.active {

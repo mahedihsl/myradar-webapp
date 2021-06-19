@@ -26,7 +26,7 @@
         <li>
           <div class="language-switcher">
             <a href="{{ route('welcome', ['lang' => 'bn']) }}" class="language bangla {{ App::isLocale('bn') ? 'active' : '' }}">বাংলা</a>
-            <a href="{{ route('welcome', ['lang' => 'en']) }}" class="language {{ App::isLocale('en') ? 'active' : '' }}">English</a>
+            <a href="{{ route('welcome', ['lang' => 'en']) }}" class="language {{ App::isLocale('en') ? 'active' : '' }}">Eng</a>
           </div>
         </li>
       </ul>
