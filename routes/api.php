@@ -69,6 +69,8 @@ Route::post('/stoppage/save', 'Api\Poi\StoppageController@save');
 Route::post('/stoppage/update', 'Api\Poi\StoppageController@update');
 Route::post('/stoppage/remove', 'Api\Poi\StoppageController@remove');
 
+Route::post('/geofence/save', 'Fence\GeofenceController@save');
+
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');
 

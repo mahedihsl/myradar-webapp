@@ -15,6 +15,11 @@ class GeofenceMicroservice extends BaseService
     return $this->post('/observe', compact('car_id', 'lat', 'lng'));
   }
 
+  public function saveGeofence($data)
+  {
+    return $this->post('/geofence/save', $data);
+  }
+
   public function removeGeofence($id)
   {
     return $this->post('/geofence/remove', compact('id'));
