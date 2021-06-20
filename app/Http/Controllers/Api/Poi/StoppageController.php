@@ -43,7 +43,9 @@ class StoppageController extends Controller {
   public function remove(Request $request)
   {
     try {
-      return response()->json($this->service->remove($request->all()));
+      $stoppageId = $request->get('id');
+      $result = $this->service->remove($stoppageId);
+      return response()->json($result);
     } catch (\Exception $e) {
       return response()->json(['message' => $e->getMessage()], 400);
     }

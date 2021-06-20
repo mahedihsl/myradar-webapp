@@ -71,10 +71,10 @@ Route::post('/stoppage/remove', 'Api\Poi\StoppageController@remove');
 
 Route::get('/vessel/list', 'Test\VesselController@list');
 
-Route::get('/geofence/list', 'Fence\GeofenceController@list');
-Route::post('/geofence/save', 'Fence\GeofenceController@save');
-Route::post('/geofence/update', 'Fence\GeofenceController@update');
-Route::post('/geofence/remove', 'Fence\GeofenceController@remove');
+Route::get('/geofence/list', 'Api\GeoFence\GeofenceController@list');
+Route::post('/geofence/save', 'Api\GeoFence\GeofenceController@save');
+Route::post('/geofence/update', 'Api\GeoFence\GeofenceController@update');
+Route::post('/geofence/remove', 'Api\GeoFence\GeofenceController@remove');
 
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');

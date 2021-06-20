@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Fence;
+namespace App\Http\Controllers\Api\GeoFence;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
