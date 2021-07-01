@@ -79,6 +79,7 @@ Route::post('/geofence/remove', 'Api\GeoFence\GeofenceController@remove');
 
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');
+Route::get('/location/latest', 'Api\Position\TrackingController@latest');
 
 Route::group(['middleware' => ['auth:api', 'account', 'engage']], function() {
     Route::get('/poi/list', 'Api\Poi\PoiController@index');

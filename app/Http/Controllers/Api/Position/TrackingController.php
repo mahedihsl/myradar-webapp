@@ -23,6 +23,9 @@ class TrackingController extends Controller
         $this->locationService = new LocationMicroservice();
     }
 
+    /**
+     * Get last location by car id
+     */
     public function last(Request $request, $id)
     {
         $position = $this->repository->lastPosition($id);
@@ -31,6 +34,20 @@ class TrackingController extends Controller
         }
 
         return response()->error('No Position Found');
+    }
+
+    /**
+     * Get last location by commercial id
+     */
+    public function latest(Request $request)
+    {
+        try {
+            $com_id = $request->get('com_id');
+            $location = $this->locationService->latest($com_id);
+            return response()->json($location);
+        } catch (\Exception $th) {
+            return response()->json(['message' => $th->getMessage()], 400);
+        }
     }
 
     public function history(Request $request)
