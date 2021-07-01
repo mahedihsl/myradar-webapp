@@ -14,4 +14,14 @@ class LocationMicroservice extends BaseService
   {
     return $this->get('/api/history', compact('device_id', 'from', 'to'));
   }
+
+  public function latest($com_id)
+  {
+    return $this->get('/api/latest', compact('com_id'));
+  }
+
+  public function consume($com_id, $lat, $lng)
+  {
+    return $this->post('/api/consume', compact('com_id', 'lat', 'lng'));
+  }
 }

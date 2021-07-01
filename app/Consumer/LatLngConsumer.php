@@ -8,6 +8,7 @@ use App\Events\LatLngReceived;
 use App\Contract\Repositories\PositionRepository;
 use App\Consumer\DistanceConsumer;
 use App\Service\Microservice\GeofenceMicroservice;
+use App\Service\Microservice\LocationMicroservice;
 use App\Service\Microservice\ServiceException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
@@ -22,6 +23,7 @@ class LatLngConsumer extends ServiceConsumer
      * @var PositionRepository
      */
     private $repository;
+    private $service;
 
     private $device;
 
@@ -33,6 +35,7 @@ class LatLngConsumer extends ServiceConsumer
         parent::__construct($data);
 
         $this->repository = resolve(PositionRepository::class);
+        $this->service = new LocationMicroservice();
     }
 
     protected function transform($data)
@@ -105,6 +108,12 @@ class LatLngConsumer extends ServiceConsumer
 
             $this->setLastPos($position);
             $this->setLastMilPos($position);
+        }
+
+        try {
+            $this->service->consume($device->com_id, $lat, $lng);
+        } catch (\Exception $e) {
+            //throw $e;
         }
  
         return $position;
