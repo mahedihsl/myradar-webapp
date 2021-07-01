@@ -15,7 +15,7 @@ class SocketController extends Controller
             $service = new SocketMicroservice();
             return response()->json($service->send($request->all()));
         } catch (ServiceException $e) {
-            return response()->json(['error' => $e->getMessage()]);
+            return response()->json(['message' => $e->getMessage()], 400);
         }
 
     }
