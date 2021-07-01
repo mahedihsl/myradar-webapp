@@ -32,4 +32,9 @@ class DeviceMicroservice extends BaseService
   {
     return $this->get('/device/config', compact('device'));
   }
+
+  public function list($filter)
+  {
+    return $this->get('/device/list', $filter);
+  }
 }

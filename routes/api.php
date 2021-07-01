@@ -66,13 +66,12 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
 });
 
 Route::get('/car/list', 'Api\Car\CarController@list');
+Route::get('/device/list', 'Api\Device\DeviceController@list');
 
 Route::get('/stoppage/list', 'Api\Poi\StoppageController@list');
 Route::post('/stoppage/save', 'Api\Poi\StoppageController@save');
 Route::post('/stoppage/update', 'Api\Poi\StoppageController@update');
 Route::post('/stoppage/remove', 'Api\Poi\StoppageController@remove');
-
-Route::get('/vessel/list', 'Test\VesselController@list');
 
 Route::get('/geofence/list', 'Api\GeoFence\GeofenceController@list');
 Route::post('/geofence/save', 'Api\GeoFence\GeofenceController@save');
