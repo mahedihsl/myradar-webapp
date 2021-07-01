@@ -32,7 +32,10 @@ class GeneratorController extends Controller
     public function all(Request $request)
     {
         try {
-            $generators = $this->carService->carsOfUser(Auth::user()->id, Car::TYPE_GENERATOR);
+            $generators = $this->carService->list([
+                'user_id' => Auth::user()->id,
+                'type' => Car::TYPE_GENERATOR,
+            ]);
             return response()->json($generators);
         } catch (ServiceException $e) {
             return response()->json(['message' => $e->getMessage()], 400);

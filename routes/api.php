@@ -65,6 +65,8 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
     Route::post('/device/engine/update/test', 'Api\Device\EngineController@test');
 });
 
+Route::get('/car/list', 'Api\Car\CarController@list');
+
 Route::get('/stoppage/list', 'Api\Poi\StoppageController@list');
 Route::post('/stoppage/save', 'Api\Poi\StoppageController@save');
 Route::post('/stoppage/update', 'Api\Poi\StoppageController@update');

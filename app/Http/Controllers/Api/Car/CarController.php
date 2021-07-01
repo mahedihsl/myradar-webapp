@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contract\Repositories\CarRepository;
 use App\Presenters\CarDatePresenter;
+use App\Service\Microservice\CarMicroservice;
 
 class CarController extends Controller
 {
@@ -13,10 +14,21 @@ class CarController extends Controller
      * @var CarRepository
      */
     private $repository;
+    private $carService;
 
     public function __construct(CarRepository $repository)
     {
         $this->repository = $repository;
+        $this->carService = new CarMicroservice();
+    }
+
+    public function list(Request $request)
+    {
+        try {
+            return response()->json($this->carService->list($request->all()));
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function dates(Request $request, $id)
