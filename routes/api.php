@@ -77,6 +77,7 @@ Route::get('/geofence/list', 'Api\GeoFence\GeofenceController@list');
 Route::post('/geofence/save', 'Api\GeoFence\GeofenceController@save');
 Route::post('/geofence/update', 'Api\GeoFence\GeofenceController@update');
 Route::post('/geofence/remove', 'Api\GeoFence\GeofenceController@remove');
+Route::get('/geofence/violations', 'Api\GeoFence\GeofenceController@violations');
 
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');

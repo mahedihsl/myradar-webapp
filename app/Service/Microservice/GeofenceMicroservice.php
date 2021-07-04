@@ -45,6 +45,11 @@ class GeofenceMicroservice extends BaseService
     return $this->get('/geofence/subscriptions/fetch', compact('geofence_id'));
   }
 
+  public function getViolationHistory($query)
+  {
+    return $this->get('/violation/history', $query);
+  }
+
   public function test($car)
   {
     return $this->get('/geofence/test', compact('car'));
