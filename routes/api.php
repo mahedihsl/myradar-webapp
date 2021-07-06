@@ -79,6 +79,9 @@ Route::post('/geofence/update', 'Api\GeoFence\GeofenceController@update');
 Route::post('/geofence/remove', 'Api\GeoFence\GeofenceController@remove');
 Route::get('/geofence/violations', 'Api\GeoFence\GeofenceController@violations');
 
+// For Radar Pay
+Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
+
 Route::get('/mileage/list', 'Api\Position\MileageController@list');
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');

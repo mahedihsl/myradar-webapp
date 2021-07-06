@@ -69,4 +69,9 @@ return [
     'url' => 'http://myradar-demo',
     'port' => 6018,
   ],
+  
+  'msgid' => [
+    'url' => 'http://myradar-msgid',
+    'port' => 7001,
+  ],
 ];

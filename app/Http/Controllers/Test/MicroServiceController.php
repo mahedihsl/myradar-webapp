@@ -10,6 +10,7 @@ use App\Service\Microservice\SmsMicroservice;
 use App\Service\Microservice\SpeedMicroservice;
 use App\Service\Microservice\DeviceMicroservice;
 use App\Service\Microservice\FuelMicroservice;
+use App\Service\Microservice\MsgIdMicroservice;
 use App\Service\Microservice\UserMicroservice;
 
 class MicroServiceController extends Controller
@@ -17,6 +18,16 @@ class MicroServiceController extends Controller
     public function testFuel(Request $request)
     {
         $service = new FuelMicroservice();
+    }
+
+    public function messageId(Request $request)
+    {
+        try {
+            $service = new MsgIdMicroservice();
+            return response()->json($service->next());
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function session(Request $request)
