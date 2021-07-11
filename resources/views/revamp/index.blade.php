@@ -15,7 +15,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>myRADAR</title>
-  <meta name="robots" content="noindex, nofollow">
+  <meta name="robots" content="index, follow">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="myRADAR vehicle tracker">
   <meta name="keywords" content="Radar, Car, Vehicle, Tracking">

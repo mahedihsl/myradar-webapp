@@ -106,11 +106,7 @@ class AreaController extends Controller
   public function update(Request $request)
   {
     try {
-      $this->geofenceService->updateGeofence(
-        $request->get('id'), 
-        $request->get('name'), 
-        $request->get('coordinates')
-      );
+      $this->geofenceService->updateGeofence($request->all());
       return response()->ok();
     } catch (ServiceException $e) {
       return response()->json(['message' => $e->getMessage()], 400);

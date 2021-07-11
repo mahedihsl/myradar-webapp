@@ -32,6 +32,15 @@ class GeofenceController extends Controller
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+    
+    public function update(Request $request)
+    {
+        try {
+            return response()->json($this->service->updateGeofence($request->all()));
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 
     public function remove(Request $request)
     {

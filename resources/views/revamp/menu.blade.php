@@ -11,7 +11,7 @@
       <ul>
         <li><a class="bangla nav-link scrollto active" href="#hero">@lang('header.menu.home')</a></li>
         <li><a class="bangla nav-link scrollto" href="#features">@lang('header.menu.feature')</a></li>
-        <li><a class="bangla nav-link scrollto" href="#services">@lang('header.menu.service')</a></li>
+        <li><a class="bangla nav-link scrollto" href="#pricing">@lang('header.menu.service')</a></li>
         <li><a class="bangla nav-link scrollto" href="#mobile">@lang('header.menu.app')</a></li>
         <li><a class="bangla nav-link scrollto" href="#pricing">@lang('header.menu.package')</a></li>
         <li><a class="bangla nav-link scrollto" href="{{ route('login', ['demo' => 'yes']) }}">@lang('header.menu.demo')</a></li>

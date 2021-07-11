@@ -30,9 +30,9 @@ class GeofenceMicroservice extends BaseService
     return $this->post('/geofence/remove', compact('id'));
   }
 
-  public function updateGeofence($id, $name, $coordinates)
+  public function updateGeofence($data)
   {
-    return $this->post('/geofence/update', compact('id', 'name', 'coordinates'));
+    return $this->post('/geofence/update', $data);
   }
 
   public function syncSubscriptions($geofence_id, $car_ids)
