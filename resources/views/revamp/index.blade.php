@@ -14,12 +14,16 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>myRADAR</title>
+  <title>Best Vehicle Tracking System in Bangladesh-myRADAR.com.bd</title>
+
+  <meta name="title" content="Best Vehicle Tracking System in Bangladesh-myRADAR.com.bd">
+  <meta name="description"
+    content="myRadar offers Best Vehicle Tracking System in Bangladesh and the best GPS tracking service in Bangladesh with advanced IoT Devices.">
+  <meta name="keywords"
+    content="Vehicle Tracking System in Bangladesh, Smart GPS Tracker, vehicle tracker in bangladesh">
   <meta name="robots" content="index, follow">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="myRADAR vehicle tracker">
-  <meta name="keywords" content="Radar, Car, Vehicle, Tracking">
-  <meta name="author" content="HyperSystems">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
 
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -139,10 +143,10 @@
 
         <div class="row" style="margin-top: 30px;">
           <div class="col-xs-12 d-flex flex-row justify-content-center align-items-center">
-            <a target="_blank" href="{{ config('myradar.appstore') }}"
-              title="Download from App Store" class="btn-appstore">App Store</a>
-            <a target="_blank" href="{{ config('myradar.playstore') }}"
-              title="Download from Play Store" class="btn-playstore">Play Store</a>
+            <a target="_blank" href="{{ config('myradar.appstore') }}" title="Download from App Store"
+              class="btn-appstore">App Store</a>
+            <a target="_blank" href="{{ config('myradar.playstore') }}" title="Download from Play Store"
+              class="btn-playstore">Play Store</a>
           </div>
         </div>
         <!-- End Feature Icons -->
