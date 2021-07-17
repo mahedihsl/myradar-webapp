@@ -12,7 +12,7 @@ class GeofenceMicroservice extends BaseService
 
   public function observe($car_id, $lat, $lng)
   {
-    return $this->post('/observe', compact('car_id', 'lat', 'lng'));
+    return $this->post('/track/observe', compact('car_id', 'lat', 'lng'));
   }
 
   public function getGeofenceList($query)
@@ -33,6 +33,26 @@ class GeofenceMicroservice extends BaseService
   public function updateGeofence($data)
   {
     return $this->post('/geofence/update', $data);
+  }
+
+  public function getRingfenceList($query)
+  {
+    return $this->get('/ringfence/list', $query);
+  }
+
+  public function saveRingfence($data)
+  {
+    return $this->post('/ringfence/save', $data);
+  }
+
+  public function removeRingfence($id)
+  {
+    return $this->post('/ringfence/remove', compact('id'));
+  }
+
+  public function updateRingfence($data)
+  {
+    return $this->post('/ringfence/update', $data);
   }
 
   public function syncSubscriptions($geofence_id, $car_ids)

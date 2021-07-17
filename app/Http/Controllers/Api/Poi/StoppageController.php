@@ -4,19 +4,19 @@ namespace App\Http\Controllers\Api\Poi;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Microservice\StoppageMicroservice;
+use App\Service\Microservice\GeofenceMicroservice;
 
 class StoppageController extends Controller {
   private $service;
 
   public function __construct() {
-    $this->service = new StoppageMicroservice();
+    $this->service = new GeofenceMicroservice();
   }
 
   public function list(Request $request)
   {
     try {
-      return response()->json($this->service->list($request->all()));
+      return response()->json($this->service->getRingfenceList($request->all()));
     } catch (\Exception $e) {
       return response()->json(['message' => $e->getMessage()], 400);
     }
@@ -25,7 +25,7 @@ class StoppageController extends Controller {
   public function save(Request $request)
   {
     try {
-      return response()->json($this->service->save($request->all()));
+      return response()->json($this->service->saveRingfence($request->all()));
     } catch (\Exception $e) {
       return response()->json(['message' => $e->getMessage()], 400);
     }
@@ -34,7 +34,7 @@ class StoppageController extends Controller {
   public function update(Request $request)
   {
     try {
-      return response()->json($this->service->update($request->all()));
+      return response()->json($this->service->updateRingfence($request->all()));
     } catch (\Exception $e) {
       return response()->json(['message' => $e->getMessage()], 400);
     }
@@ -44,7 +44,7 @@ class StoppageController extends Controller {
   {
     try {
       $stoppageId = $request->get('id');
-      $result = $this->service->remove($stoppageId);
+      $result = $this->service->removeRingfence($stoppageId);
       return response()->json($result);
     } catch (\Exception $e) {
       return response()->json(['message' => $e->getMessage()], 400);
