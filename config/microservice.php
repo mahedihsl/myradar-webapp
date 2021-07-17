@@ -61,10 +61,10 @@ return [
     'url' => 'http://myradar-location',
     'port' => 6016,
   ],
-  'stoppage' => [
-    'url' => 'http://myradar-stoppage',
-    'port' => 6017,
-  ],
+  /**
+   * Previously there was a stoppage microservice which removed later
+   * port 6017 can now be used with any upcoming microservice
+   */
   'demo' => [
     'url' => 'http://myradar-demo',
     'port' => 6018,
