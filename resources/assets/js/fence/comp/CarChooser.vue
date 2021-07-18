@@ -39,7 +39,7 @@
               <td>
                 <input type="checkbox" v-model="car.selected" />
               </td>
-              <td>{{ car.name }}</td>
+              <td>{{ car.reg_no }}</td>
             </tr>
           </tbody>
         </table>
@@ -86,7 +86,7 @@ export default {
     filteredCars() {
       const search = this.query.trim()
       if (!search) return this.cars
-      return this.cars.filter(car => car.name.indexOf(search) > -1)
+      return this.cars.filter(car => car.reg_no.indexOf(search) > -1)
     },
   },
   watch: {

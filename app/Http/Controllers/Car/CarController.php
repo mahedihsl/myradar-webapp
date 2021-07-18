@@ -206,7 +206,7 @@ class CarController extends Controller
 
     public function everything(Request $request)
     {
-        return response()->json($this->carService->all());
+        return response()->json($this->carService->list());
     }
 
 }
