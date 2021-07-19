@@ -66,6 +66,7 @@ Route::group(['middleware' => ['LogMiddleware']], function () {
 });
 
 Route::get('/car/list', 'Api\Car\CarController@list');
+Route::post('/car/assign-route', 'Api\Car\CarController@assignRoute');
 Route::get('/device/list', 'Api\Device\DeviceController@list');
 
 Route::get('/stoppage/list', 'Api\Poi\StoppageController@list');

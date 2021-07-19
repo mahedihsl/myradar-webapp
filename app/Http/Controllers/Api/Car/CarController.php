@@ -56,4 +56,13 @@ class CarController extends Controller
         return response()->error('Car Not Found');
     }
 
+    public function assignRoute(Request $request)
+    {
+        try {
+            $result = $this->carService->assignRoute($request->all());
+            return response()->json($result);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 }

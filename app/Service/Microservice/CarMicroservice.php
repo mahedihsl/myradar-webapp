@@ -14,4 +14,9 @@ class CarMicroservice extends BaseService
   {
     return $this->get('/car/list', $filter);
   }
+
+  public function assignRoute($data)
+  {
+    return $this->post('/trip/assign-route', $data);
+  }
 }
