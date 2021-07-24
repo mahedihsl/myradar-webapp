@@ -25,6 +25,13 @@ class HomeController extends Controller
         return view('revamp.index');
     }
 
+    public function fuelMeter(Request $request)
+    {
+        $lang = $request->get('lang', config('app.locale'));
+        \App::setLocale($lang);
+        return view('revamp.fuel-meter');
+    }
+
     /**
      * Show the application dashboard.
      *

@@ -42,7 +42,7 @@
   <!-- Vendor CSS Files -->
   <link href="{{ asset('landing2/assets/vendor/bootstrap/css/bootstrap.min.css', true) }}" rel="stylesheet">
   <link href="{{ asset('landing2/assets/vendor/bootstrap-icons/bootstrap-icons.css', true) }}" rel="stylesheet">
-  <link href="{{ asset('landing2/assets/vendor/aos/aos.css', true) }}" rel="stylesheet">
+  {{-- <link href="{{ asset('landing2/assets/vendor/aos/aos.css', true) }}" rel="stylesheet"> --}}
   <link href="{{ asset('landing2/assets/vendor/remixicon/remixicon.css', true) }}" rel="stylesheet">
   <link href="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.css', true) }}" rel="stylesheet">
   <link href="{{ asset('landing2/assets/vendor/glightbox/css/glightbox.min.css', true) }}" rel="stylesheet">
@@ -72,7 +72,7 @@
 
 <body>
 
-  @include('revamp.menu', ['base' => ''])
+  @include('revamp.menu', ['base' => 'https://myradar.com.bd/'])
 
   <div class="fab-links">
     <button class="bg-pink" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
@@ -101,83 +101,92 @@
     </div>
   </div>
 
-  @include('revamp.hero')
-
   <main id="main">
-    @include('revamp.values')
+    <section id="features" class="features">
 
-    @include('revamp.features')
-
-    <section id="mobile" class="features">
       <div class="container" data-aos="fade-up">
-        <!-- Feature Icons -->
-        <div class="row feature-icons" data-aos="fade-up">
-          <h3 class="bangla">@lang('misc.mobile_app')</h3>
+        <!-- Feature Tabs 4 -->
+        <div id="fuel-meter" class="row feture-tabs" data-aos="fade-up" style="margin-top: 80px;">
+          <div class="col-lg-6">
+            <img src="{{ asset('landing2/assets/image/cng_monitoring2.png', true) }}" class="img-fluid" alt="">
+          </div>
 
-          <div class="row">
-            <div class="col-xs-12 d-flex flex-column flex-lg-row">
-              <div style="padding: 10px;">
-                <img src="{{ asset('images/screenshots/1.jpg', true) }}" alt=""
-                  style="width: 100%; border-radius: 4px;" />
+          <div class="col-lg-6">
+            <h3 class="bangla">@lang('story.4.title')</h3>
+
+            <!-- Tabs -->
+            <ul class="nav nav-pills mb-3">
+              <li>
+                <a class="nav-link active" data-bs-toggle="pill" href="#tab1"></a>
+              </li>
+            </ul>
+            <!-- End Tabs -->
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+
+              <div class="tab-pane fade show active" id="tab1">
+                {{-- <p>Consequuntur inventore voluptates consequatur aut vel et. Eos doloribus expedita. Sapiente atque
+              consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span class="bangla">
+                    <strong>@lang('story.4.items.1.bold')</strong>
+                    @lang('story.4.items.1.normal')
+                  </span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span class="bangla">
+                    <strong>@lang('story.4.items.2.bold')</strong>
+                    @lang('story.4.items.2.normal')
+                  </span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span class="bangla">
+                    <strong>@lang('story.4.items.3.bold')</strong>
+                    @lang('story.4.items.3.normal')
+                  </span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span class="bangla">
+                    <strong>@lang('story.4.items.4.bold')</strong>
+                    @lang('story.4.items.4.normal')
+                  </span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span class="bangla">
+                    <strong>@lang('story.4.items.5.bold')</strong>
+                    @lang('story.4.items.5.normal')
+                  </span>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="bi bi-check2"></i>
+                  <span class="bangla">
+                    <strong>@lang('story.4.items.6.bold')</strong>
+                    @lang('story.4.items.6.normal')
+                  </span>
+                </div>
+                <a href="https://myradar.com.bd/#pricing"
+                  style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
+                  class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                  <span class="bangla">@lang('header.banner.action')</span>
+                  <i class="bi bi-arrow-right text-white"></i>
+                </a>
               </div>
-              <div style="padding: 10px;">
-                <img src="{{ asset('images/screenshots/2.jpg', true) }}" alt=""
-                  style="width: 100%; border-radius: 4px;" />
-              </div>
-              <div style="padding: 10px;">
-                <img src="{{ asset('images/screenshots/3.jpg', true) }}" alt=""
-                  style="width: 100%; border-radius: 4px;" />
-              </div>
-              <div style="padding: 10px;">
-                <img src="{{ asset('images/screenshots/4.jpg', true) }}" alt=""
-                  style="width: 100%; border-radius: 4px;" />
-              </div>
-              <div style="padding: 10px;">
-                <img src="{{ asset('images/screenshots/5.jpg', true) }}" alt=""
-                  style="width: 100%; border-radius: 4px;" />
-              </div>
+              <!-- End Tab 1 Content -->
+
             </div>
+
           </div>
 
         </div>
-
-        <div class="row" style="margin-top: 30px;">
-          <div class="col-xs-12 d-flex flex-row justify-content-center align-items-center">
-            <a target="_blank" href="{{ config('myradar.appstore') }}" title="Download from App Store"
-              class="btn-appstore">App Store</a>
-            <a target="_blank" href="{{ config('myradar.playstore') }}" title="Download from Play Store"
-              class="btn-playstore">Play Store</a>
-          </div>
-        </div>
-        <!-- End Feature Icons -->
+        <!-- End Feature Tabs -->
       </div>
     </section>
-
-    @include('revamp.pricing')
-
-    @include('revamp.faq')
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-
-      <div class="container" data-aos="fade-up">
-
-        <header class="section-header">
-          <h2></h2>
-          <p class="bangla">@lang('misc.corporate_partner')</p>
-        </header>
-
-        <div class="clients-wrapper">
-          <img src="{{ asset('images/partners/banglalink.png', true) }}" alt="">
-          <img src="{{ asset('images/partners/robi.png', true) }}" alt="" style="margin: 0 50px;">
-          <img src="{{ asset('images/partners/jural.png', true) }}" alt="">
-        </div>
-
-      </div>
-      </div>
-
-    </section>
-    <!-- End Clients Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -360,7 +369,7 @@
 
   <!-- Vendor JS Files -->
   {{-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script> --}}
-  <script src="{{ asset('landing2/assets/vendor/aos/aos.js', true) }}"></script>
+  {{-- <script src="{{ asset('landing2/assets/vendor/aos/aos.js', true) }}"></script> --}}
   <script src="{{ asset('landing2/assets/vendor/php-email-form/validate.js', true) }}"></script>
   <script src="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.js', true) }}"></script>
   <script src="{{ asset('landing2/assets/vendor/purecounter/purecounter.js', true) }}"></script>

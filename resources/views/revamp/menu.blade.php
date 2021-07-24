@@ -9,14 +9,14 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="bangla nav-link scrollto active" href="#hero">@lang('header.menu.home')</a></li>
-        <li><a class="bangla nav-link scrollto" href="#features">@lang('header.menu.feature')</a></li>
-        <li><a class="bangla nav-link scrollto" href="#pricing">@lang('header.menu.service')</a></li>
-        <li><a class="bangla nav-link scrollto" href="#mobile">@lang('header.menu.app')</a></li>
-        <li><a class="bangla nav-link scrollto" href="#pricing">@lang('header.menu.package')</a></li>
+        <li><a class="bangla nav-link scrollto active" href="{{$base}}#hero">@lang('header.menu.home')</a></li>
+        <li><a class="bangla nav-link scrollto" href="{{$base}}#feature">@lang('header.menu.feature')</a></li>
+        <li><a class="bangla nav-link scrollto" href="{{$base}}#pricing">@lang('header.menu.service')</a></li>
+        <li><a class="bangla nav-link scrollto" href="{{$base}}#mobile">@lang('header.menu.app')</a></li>
+        <li><a class="bangla nav-link scrollto" href="{{$base}}#pricing">@lang('header.menu.package')</a></li>
         <li><a class="bangla nav-link scrollto" href="{{ route('login', ['demo' => 'yes']) }}">@lang('header.menu.demo')</a></li>
         <li>
-          <a class="nav-link scrollto" href="#contact">
+          <a class="nav-link scrollto" href="{{$base}}#contact">
             <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite"
               alt="" style="width: 24px;" />
             <span class="bangla" style="margin-left: 12px;">@lang('header.menu.phone')</span>

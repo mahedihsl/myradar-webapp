@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('/', 'HomeController@welcome')->name('welcome');
+Route::get('/fuel-meter', 'HomeController@fuelMeter')->name('fuel-meter');
 Route::get('/archive', function() {
     return view('landing.welcome');
 });

@@ -1,5 +1,5 @@
 <!-- ======= Features Section ======= -->
-<section id="features" class="features">
+<section id="feature" class="features">
 
   <div class="container" data-aos="fade-up">
 
@@ -262,7 +262,7 @@
     <!-- End Feature Tabs -->
 
     <!-- Feature Tabs 4 -->
-    <div class="row feture-tabs" data-aos="fade-up">
+    <div id="fuel-meter" class="row feture-tabs" data-aos="fade-up">
       <div class="col-lg-6">
         <img src="{{ asset('landing2/assets/image/cng_monitoring2.png', true) }}" class="img-fluid" alt="">
       </div>
