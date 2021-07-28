@@ -14,4 +14,9 @@ class TripMicroservice extends BaseService
   {
     return $this->get('/api/history', $filter);
   }
+  
+  public function test($params)
+  {
+    return $this->post('/api/test', $params);
+  }
 }

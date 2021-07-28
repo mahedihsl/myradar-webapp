@@ -81,6 +81,7 @@ Route::post('/geofence/remove', 'Api\GeoFence\GeofenceController@remove');
 Route::get('/geofence/violations', 'Api\GeoFence\GeofenceController@violations');
 
 Route::get('/trip/history', 'Api\Car\TripController@history');
+Route::post('/trip/test', 'Api\Car\TripController@test');
 
 // For Radar Pay
 Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');

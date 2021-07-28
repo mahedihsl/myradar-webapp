@@ -23,4 +23,13 @@ class TripController extends Controller
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+    
+    public function test(Request $request)
+    {
+        try {
+            return response()->json($this->tripService->test($request->all()));
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 }
