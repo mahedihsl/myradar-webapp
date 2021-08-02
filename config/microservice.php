@@ -70,6 +70,10 @@ return [
     'port' => 6018,
   ],
   
+  'radar-recharge' => [
+    'url' => 'http://radar-api',
+    'port' => 7000,
+  ],
   'msgid' => [
     'url' => 'http://myradar-msgid',
     'port' => 7001,
