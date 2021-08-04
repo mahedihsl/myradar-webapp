@@ -65,15 +65,20 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
         $props = [
             'name'     => $data->get('name'),
             'model'    => $data->get('model'),
-            'reg_no'   => $data->get('reg_no'),
             'type'     => intval($data->get('type')),
-            'services' => $data->get('services'),
             'meta_data.fuel_group' => $data->get('fuel_group', null),
             'meta_data.cng_type' => intval($data->get('cng')),
             'new_service' => intval($data->get('new_service')),
             'voice_service' => intval($data->get('voice_service')),
             'bill'        => $data->get('bill'),
         ];
+
+        if ($data->has('services')) {
+            $props['services'] = $data->get('services');
+        }
+        if ($data->has('reg_no')) {
+            $props['reg_no'] = $data->get('reg_no');
+        }
 
         if ($vehicleType == Car::TYPE_GENERATOR) {
             $props['meta_data.volume'] = floatval($data->get('volume'));

@@ -115,8 +115,15 @@ class CarController extends Controller
 
     public function update(UpdateCar $request)
     {
+        $data = collect($request->all());
+
+        if ( ! $request->user()->isAdmin()) {
+            $data->forget('reg_no');
+            $data->forget('services');
+        }
+
         $this->repository->setPresenter(CarInfoPresenter::class);
-        $car = $this->repository->skipPresenter()->change(collect($request->all()));
+        $car = $this->repository->skipPresenter()->change($data);
 
         if ( ! is_null($car)) {
             return response()->ok($car->presenter());

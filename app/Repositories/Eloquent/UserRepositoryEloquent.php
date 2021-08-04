@@ -48,16 +48,19 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function updateCustomer($id, Collection $data)
     {
-        return $this->update([
+        $props = [
             'name' => $data->get('name'),
-            'phone' => $data->get('phone'),
 			'address' => $data->get('address'),
             'nid' => $data->get('nid'),
             'email' => $data->get('email'),
             'customer_type' => intval($data->get('type')),
             'ref_no' => $data->get('ref_no'),
             'status' => $data->get('status'),
-        ], $id);
+        ];
+        if ($data->has('phone')) {
+            $props['phone'] = $data->get('phone');
+        }
+        return $this->update($props, $id);
     }
 
     public function saveUser(Collection $data)

@@ -72,6 +72,10 @@ class CustomerController extends Controller
     {
         $data = collect($request->all());
 
+        if (! $request->user()->isAdmin()) {
+            $data->forget('phone');
+        }
+
         $this->repository->setPresenter(CustomerPresenter::class);
         $user = $this->repository
                     ->skipPresenter()
