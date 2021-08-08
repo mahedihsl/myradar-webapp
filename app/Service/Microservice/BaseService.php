@@ -27,10 +27,10 @@ class BaseService {
     return $this->client;
   }
 
-  public function post($path, $data = [])
+  public function post($path, $data = [], $headers = [])
   {
     try {
-      $res = $this->client->post($path, [ 'json' => $data ]);
+      $res = $this->client->post($path, [ 'json' => $data, 'headers' => $headers ]);
       return json_decode($res->getBody()->getContents(), true);
     } catch (ClientException $e) {
       throw ServiceException::fromClientException($e);

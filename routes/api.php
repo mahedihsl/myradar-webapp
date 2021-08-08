@@ -85,6 +85,8 @@ Route::post('/trip/test', 'Api\Car\TripController@test');
 
 // For Radar Recharge
 Route::post('/radar/signup', 'Api\RadarRecharge\RadarController@signup');
+Route::post('/radar/validate', 'Api\RadarRecharge\RadarController@validateCard');
+Route::post('/radar/recharge', 'Api\RadarRecharge\RadarController@rechargeCard');
 Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
 
 Route::get('/mileage/list', 'Api\Position\MileageController@list');

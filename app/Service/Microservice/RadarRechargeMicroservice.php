@@ -14,4 +14,14 @@ class RadarRechargeMicroservice extends BaseService
   {
     return $this->post('/auth/signup', $data);
   }
+
+  public function validate($data, $headers)
+  {
+    return $this->post('/dpdc/validate', $data, $headers);
+  }
+  
+  public function recharge($data, $headers)
+  {
+    return $this->post('/dpdc/recharge', $data, $headers);
+  }
 }
