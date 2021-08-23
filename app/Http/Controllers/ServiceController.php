@@ -9,9 +9,10 @@ use App\Events\ExternalDeviceDataReceived;
 use App\Criteria\CommercialIdCriteria;
 use App\Generator\ServiceConsumerGenerator;
 use App\Contract\Repositories\DeviceRepository;
-use App\Entities\ExecTime;
+use App\Entities\ServiceString;
 use App\Entities\Device;
 use App\Service\Log\Log as LogLog;
+use Exception;
 use GuzzleHttp\Client;
 
 class ServiceController extends Controller
@@ -28,61 +29,61 @@ class ServiceController extends Controller
 
     public function consume(Request $request)
     {
-		// $start = round(microtime(true) * 1000);
-		$com_id = intval($request->get('ss'));
+			// $start = round(microtime(true) * 1000);
+			$com_id = intval($request->get('ss'));
 
-		if (in_array($com_id, [86717])) {
-			Log::info('Service String received', $request->all());
-		}
+			try {
+				ServiceString::create([
+					'com_id' => $com_id,
+					'data' => $request->all(),
+				]);
+				if (in_array($com_id, [19990, 32289, 18638])) {
+					Log::info('rms-string received', $request->all());
+					return '0';
+				}
+			} catch (\Exception $e) {
+				//throw $th;
+			}
 		
 
-		$device = Device::raw(function($collection) use ($com_id) {
-			return $collection->findOne([
-				'com_id' => ['$eq' => $com_id]
-			]);
-		});
+			$device = Device::raw(function($collection) use ($com_id) {
+				return $collection->findOne([
+					'com_id' => ['$eq' => $com_id]
+				]);
+			});
 
         if ( ! is_null($device)) {
 
-	    try {
+	    		try {
             	$generator = new ServiceConsumerGenerator($device, collect($request->all()));
             	$count = $generator->apply();
             	event(new ServiceStringReceived($device, $count));
-	    } catch(\Exception $e) {
+	    		} catch(\Exception $e) {
 	    
-	    }
+	    		}
 
-			try {
-				$client_id = '5f63f8599dbb7723d01f7224'; // Jatri App
-				if ($device->user_id == $client_id) {
-					// Log::info('Jatri data received');
-					if ($device->user->isEnabled()) {
-						$enabled = $device->car ? boolval($device->car->status) : false;
-						if ($enabled) {
-							// Log::info('Jatri data forwarded: ' . $device->com_id);
-							event(new ExternalDeviceDataReceived($device, $request->all()));
-						} else {
-							// Log::info('Jatri car disabled: ' . $device->com_id);
+					try {
+						$client_id = '5f63f8599dbb7723d01f7224'; // Jatri App
+						if ($device->user_id == $client_id) {
+							// Log::info('Jatri data received');
+							if ($device->user->isEnabled()) {
+								$enabled = $device->car ? boolval($device->car->status) : false;
+								if ($enabled) {
+									// Log::info('Jatri data forwarded: ' . $device->com_id);
+									event(new ExternalDeviceDataReceived($device, $request->all()));
+								} else {
+									// Log::info('Jatri car disabled: ' . $device->com_id);
+								}
+								
+							}
 						}
-						
+					} catch (\Exception $e) {
+						Log::info('Jatri data exception', [
+							'msg' => $e->getMessage(),
+						]);
 					}
-				}
-			} catch (\Exception $e) {
-				Log::info('Jatri data exception', [
-					'msg' => $e->getMessage(),
-				]);
-			}
-
-			// try {
-			// 	$end = round(microtime(true) * 1000);
-			// 	ExecTime::create([
-			// 		'device' => $com_id,
-			// 		'time' => $end - $start,
-			// 	]);
-			// } catch (\Exception $e) {}
-
-            // return '0';
-            return strval($device->lock_status);
+					// return '0';
+					return strval($device->lock_status);
         }
 
         return '-1';

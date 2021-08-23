@@ -12,9 +12,16 @@ use App\Service\Microservice\DeviceMicroservice;
 use App\Service\Microservice\FuelMicroservice;
 use App\Service\Microservice\MsgIdMicroservice;
 use App\Service\Microservice\UserMicroservice;
+use App\Service\Microservice\MileageMicroservice;
 
 class MicroServiceController extends Controller
 {
+    public function mileage(Request $request)
+    {
+        $service = new MileageMicroservice();
+        return response()->json($service->test());
+    }
+
     public function testFuel(Request $request)
     {
         $service = new FuelMicroservice();

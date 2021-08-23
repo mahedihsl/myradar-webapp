@@ -2,160 +2,171 @@
 
 @push('style')
 <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/datetimepicker.min.css', true) }}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('css/datetimepicker.min.css', true) }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 <style>
   td.highlight {
-      background-color: whitesmoke !important;
-}
-div.dt-buttons{
-position:relative;
-float:left;
-}
+    background-color: whitesmoke !important;
+  }
 
+  div.dt-buttons {
+    position: relative;
+    float: left;
+  }
 </style>
 @endpush
 
 @section('content')
-  <div class="col-md-12">
-          <div class="panel-body">
-              <div class="row" style="margin-bottom: 20px; padding-left: 10px;">
-                  <div class="form-inline">
-                    <form class="form" action="/service-monitor" method="get">
+<div class="col-md-12">
+  <div class="panel-body">
+    <div class="row" style="margin-bottom: 20px; padding-left: 10px;">
+      <div class="form-inline">
+        <form class="form" action="/service-monitor" method="get">
 
-                        <div class="form-group">
-                            <input type="hidden" name="user_name" value="" data-name="{{$user_name}}">
-                            <input  id="nameSuggests" type="hidden" placeholder="type user name" autocomplete="off" data-cache="{{$users}}">
-                            <select class="js-example-data-array" name="user_id" data-cache="{{$user_id}}">
+          <div class="form-group">
+            <input type="hidden" name="user_name" value="" data-name="{{$user_name}}">
+            <input id="nameSuggests" type="hidden" placeholder="type user name" autocomplete="off"
+              data-cache="{{$users}}">
+            <select class="js-example-data-array" name="user_id" data-cache="{{$user_id}}">
 
-                            </select>
-                        </div>
+            </select>
+          </div>
 
-                        <div class="form-group">
-                          <select class="form-control" id="devices" name="device_id" value="" data-cache="{{$device_id}}">
-                          </select>
-                        </div>
+          <div class="form-group">
+            <select class="form-control" id="devices" name="device_id" value="" data-cache="{{$device_id}}">
+            </select>
+          </div>
 
-                        <div class="form-group">
-                            <select class="form-control" name="service_id" data-cache="{{$service_id}}">
-                                <option value="777">Device Health</option>
-                                <option value="0">Lat/Lng</option>
-                                <option value="16">Fuel</option>
-                                <option value="21">Fuel (Avg. 1st)</option>
-                                <option value="22">Fuel (Avg. 2nd)</option>
-                                <option value="17">Gas</option>
-                                <option value="20">IBS</option>
-                            </select>
-                        </div>
+          <div class="form-group">
+            <select class="form-control" name="service_id" data-cache="{{$service_id}}">
+              <option value="777">Device Health</option>
+              <option value="0">Lat/Lng</option>
+              <option value="16">Fuel</option>
+              <option value="21">Fuel (Avg. 1st)</option>
+              <option value="22">Fuel (Avg. 2nd)</option>
+              <option value="17">Gas</option>
+              <option value="20">IBS</option>
+              <option value="23">Service String</option>
+            </select>
+          </div>
 
-                      <div class="form-group">
-                        <input type="text" required="required"  name="from_date" id="from_date" data-toggle="datepicker" class="form-control date" placeholder="from">
-                      </div>
-                      <div class="form-group">
-                        <input type="text" required="required"  name="to_date" id="to_date"  data-toggle="datepicker" class="form-control date" placeholder="to">
-                      </div>
-                      <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-sm btn-success pull-right" name="filter">Filter</button>
-                        </div>
+          <div class="form-group">
+            <input type="text" required="required" name="from_date" id="from_date" data-toggle="datepicker"
+              class="form-control date" placeholder="from">
+          </div>
+          <div class="form-group">
+            <input type="text" required="required" name="to_date" id="to_date" data-toggle="datepicker"
+              class="form-control date" placeholder="to">
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="submit" class="btn btn-sm btn-success pull-right" name="filter">Filter</button>
+            </div>
 
-                      </div>
-                     <div class="form-group">
-                      <!-- <button class="btn btn-sm btn-primary pull-right" value="2" type="submit" name="export">Export Shown <i class="fa fa-file-excel-o"></i></button> -->
+          </div>
+          <div class="form-group">
+            <!-- <button class="btn btn-sm btn-primary pull-right" value="2" type="submit" name="export">Export Shown <i class="fa fa-file-excel-o"></i></button> -->
 
-                      <button class="btn btn-sm btn-primary pull-right" value="1" type="submit" name="export">Export <i class="fa fa-file-excel-o"></i></button>
-                       </div>
-                      </form>
-                      </div>
-                  </div>
-              </div>
+            <button class="btn btn-sm btn-primary pull-right" value="1" type="submit" name="export">Export <i
+                class="fa fa-file-excel-o"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
-              @if(isset($histories))
+  @if(isset($histories))
 
-              {{ $histories->setPath('/service-monitor')->appends(request()->input())->links()}}
+  {{ $histories->setPath('/service-monitor')->appends(request()->input())->links()}}
+
+  @endif
+  <div class="container">
+    <!-- <a href="/service-monitor"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a> -->
+    <div class="row">
+      <div class="col-md-12 table-responsive">
+        <table id="myTable" class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th class="no-sort">Date Time </th>
+              @if($sid==0)
+              <th>Lat</th>
+              <th>Long</th>
+              @elseif($sid==777)
+              <th>Loop Count</th>
+              <th>ES</th>
+              <th>Setup Time (sec)</th>
+              <th>Avg Loop Time (sec)</th>
+              <th>Min Loop Time (sec)</th>
+              <th>Max Loop Time (sec)</th>
+              <th>Min Free Ram</th>
+              <th>Max Free Ram</th>
+              <th>Session Time</th>
+              <th>Shield Count</th>
+              <th>GPS Power</th>
+              <th>CR</th>
+              <th>WR</th>
+              <th>MCUCSR</th>
+              <th>Version</th>
+              @else
+              <th>Value</th>
+              @endif
+            </tr>
+
+          </thead>
+
+          <tbody>
+            @if(!empty($histories))
+            @foreach ($histories as $histories)
+            <tr>
+
+              @if(isset($histories->when))
+              <td> {{ Carbon\Carbon::parse($histories->when)->format('d M Y g:i:s A') }}</td>
+              @else
+              <td> {{ Carbon\Carbon::parse($histories->created_at)->format('d M Y g:i:s A') }}</td>
 
               @endif
-              <div class="container">
-                  <!-- <a href="/service-monitor"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a> -->
-                  <div class="row">
-                    <div class="col-md-12 table-responsive">
-                      <table  id="myTable" class="table table-striped table-bordered table-hover">
-                       <thead>
-                          <tr>
-                            <th class="no-sort">Date Time </th>
-                            @if($sid==0)
-                            <th>Lat</th>
-                             <th>Long</th>
-                             @elseif($sid==777)
-                             <th>Loop Count</th>
-                             <th>ES</th>
-                             <th>Setup Time (sec)</th>
-                             <th>Avg Loop Time (sec)</th>
-                             <th>Min Loop Time (sec)</th>
-                             <th>Max Loop Time (sec)</th>
-                             <th>Min Free Ram</th>
-                             <th>Max Free Ram</th>
-                             <th>Session Time</th>
-                             <th>Shield Count</th>
-                             <th>GPS Power</th>
-                             <th>CR</th>
-                             <th>WR</th>
-                             <th>MCUCSR</th>
-                             <th>Version</th>
-                             @else
-                             <th>Value</th>
-                            @endif
-                          </tr>
+              <!-- <td>{{$histories->when}}</td> -->
+              @if($sid==0)
+              <td>{{ $histories->lat }}</td>
+              <td>{{ $histories->lng}}</td>
+              @elseif($sid==777)
+              <td>{{ $histories->loop_count}}</td>
+              <td>{{ $histories->es or '-1' }}</td>
+              <td>{{ $histories->setup_time/1000 }}</td>
+              <td>{{ $histories->avg_loop_time/1000 }}</td>
+              <td>{{ $histories->min_loop_time/1000 }}</td>
+              <td>{{ $histories->max_loop_time/1000 }}</td>
+              <td>{{ $histories->min_free_ram }}</td>
+              <td>{{ $histories->max_free_ram }}</td>
+              <td>{{ $histories->session_time or '-1' }}</td>
+              <td>{{ $histories->shield_count or '-1' }}</td>
+              <td>{{ $histories->gps_power or '-1' }}</td>
+              <td>{{ $histories->cr or '-1' }}</td>
+              <td>{{ $histories->wr or '-1' }}</td>
+              <td>{{ $histories->mcucsr() }}</td>
+              <td>{{ $histories->version or '--' }}</td>
+              @else
+              <td>
+                @if (isset($histories->value))
+                {{ $histories->value }}
+                @elseif(isset($histories->data))
+                {{ $histories->data }}
+                @else
+                N/A
+                @endif
+              </td>
+              @endif
 
-                       </thead>
-
-                        <tbody>
-                        @if(!empty($histories))
-                            @foreach ($histories as $histories)
-                            <tr>
-
-                          <!-- <td>  {{ Carbon\Carbon::parse($histories->when)->format('g:i A, d M Y') }}</td>
-                           -->
-                             @if(isset($histories->when))
-                           <td>  {{ Carbon\Carbon::parse($histories->when)->format('d M Y g:i:s A') }}</td>
-                              @else
-                              <td>  {{ Carbon\Carbon::parse($histories->created_at)->format('d M Y g:i:s A') }}</td>
-
-                            @endif
-                          <!-- <td>{{$histories->when}}</td> -->
-                            @if($sid==0)
-                              <td>{{ $histories->lat }}</td>
-                              <td>{{ $histories->lng}}</td>
-                            @elseif($sid==777)
-                              <td>{{ $histories->loop_count}}</td>
-                              <td>{{ $histories->es or '-1' }}</td>
-                              <td>{{ $histories->setup_time/1000 }}</td>
-                              <td>{{ $histories->avg_loop_time/1000 }}</td>
-                              <td>{{ $histories->min_loop_time/1000 }}</td>
-                              <td>{{ $histories->max_loop_time/1000 }}</td>
-                              <td>{{ $histories->min_free_ram }}</td>
-                              <td>{{ $histories->max_free_ram }}</td>
-                              <td>{{ $histories->session_time or '-1' }}</td>
-                              <td>{{ $histories->shield_count or '-1' }}</td>
-                              <td>{{ $histories->gps_power or '-1' }}</td>
-                              <td>{{ $histories->cr or '-1' }}</td>
-                              <td>{{ $histories->wr or '-1' }}</td>
-                              <td>{{ $histories->mcucsr() }}</td>
-                              <td>{{ $histories->version or '--' }}</td>
-                            @else
-                              <td>{{ $histories->value }}</td>
-                             @endif
-
-                            </tr>
-                            @endforeach
-                           @endif
-                      </tbody>
-                    </table>
-                    </div>
-                  </div>
-              </div>
-          </div>
+            </tr>
+            @endforeach
+            @endif
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @push('script')
@@ -169,8 +180,7 @@ float:left;
 <script src="{{ asset('js/datetimepicker.min.js', true) }}" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script>
-
-function getDevices(userId) {
+  function getDevices(userId) {
   $.get('/user/devices/' + userId, function(response) {
     var select = $('select[name="device_id"]');
     select.empty();

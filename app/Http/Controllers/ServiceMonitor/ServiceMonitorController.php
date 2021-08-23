@@ -9,7 +9,7 @@ use App\Entities\User;
 use App\Entities\Service;
 use App\Entities\Position;
 use App\Entities\ServiceLog;
-use App\Entities\Subscription;
+use App\Entities\ServiceString;
 use App\Entities\FuelHistory;
 use App\Entities\GasHistory;
 use App\Entities\Health;
@@ -175,6 +175,38 @@ class ServiceMonitorController extends Controller
 
           $file_name = "Gas_Export_".$User;
            $headings = array('Date Time', 'Gas Value');
+        }
+
+        if($sid == 23) {
+          {
+            $query = [
+              '$and' => [
+                ['com_id' => ['$eq' => $Device->com_id]],
+                ['created_at' => ['$gt' => $st_time]],
+                ['created_at' => ['$lt' => $en_time]],
+              ]
+            ];
+            $options = [
+              'skip' => ($curr_page - 1) * $per_page,
+              'limit' => $per_page,
+              'sort' => ['created_at' => -1],
+              'projection' => [
+                'data' => true,
+                'created_at' => true,
+              ]
+            ];
+  
+            $total = ServiceString::raw(function($collection) use ($query) {
+              return $collection->count($query);
+            });
+            $items = ServiceString::raw(function($collection) use ($query, $options) {
+              return $collection->find($query, $options);
+            });
+            $data = new LengthAwarePaginator($items, $total, $per_page, $curr_page);
+  
+            $file_name = "Service_String_Export_".$User;
+            $headings = array('Date Time', 'Service String');
+          }
         }
 
         if ($sid == 21) {
@@ -359,7 +391,7 @@ class ServiceMonitorController extends Controller
                  });
 
              })->export('xls');
-   }
+      }
           return view('service.monitor')->with([
             'services'=>$services,
             'users'=> json_encode($users),

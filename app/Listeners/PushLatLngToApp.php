@@ -48,13 +48,13 @@ class PushLatLngToApp
                 ]
             ]);
 
-            Log::info('pushing lat/lng: ', [
-                'channel' => 'map-channel-' . $user_id,
-                // 'com_id' => $event->device->com_id,
-                // 'lat' => $event->position->lat,
-                // 'lng' => $event->position->lng,
-                'reply' => $reply,
-            ]);
+            // Log::info('pushing lat/lng: ', [
+            //     'channel' => 'map-channel-' . $user_id,
+            //     // 'com_id' => $event->device->com_id,
+            //     // 'lat' => $event->position->lat,
+            //     // 'lng' => $event->position->lng,
+            //     'reply' => $reply,
+            // ]);
 
             try {
                 $factory = new PusherFactory();
