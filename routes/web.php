@@ -76,9 +76,15 @@ Route::get('/test/notice', 'Promotion\NoticeController@lastMonthDue');
 Route::any('/test/speed-noti', 'Test\SpeedLimitController@noti');
 Route::any('/test/push-noti', 'Test\PushNotificationController@test');
 Route::any('/test/engine-noti', 'Test\EngineStatusController@noti');
+
 Route::post('/test/concox/lock', 'Test\ConcoxController@lock');
 Route::post('/test/concox/unlock', 'Test\ConcoxController@unlock');
 Route::get('/test/concox/status', 'Test\ConcoxController@status');
+
+Route::post('/test/jt808/lock', 'Test\JT808Controller@lock');
+Route::post('/test/jt808/unlock', 'Test\JT808Controller@unlock');
+Route::get('/test/jt808/status', 'Test\JT808Controller@status');
+
 Route::post('/test/excel-import', 'Test\ExcelController@testImport');
 Route::any('/concox/test', 'Test\ConcoxController@receive');
 

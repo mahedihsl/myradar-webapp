@@ -33,6 +33,10 @@ return [
     'url' => 'http://concox-et200',
     'port' => 5051,
   ],
+  'jt808' => [
+    'url' => 'http://jt808',
+    'port' => 5053,
+  ],
   'speed' => [
     'url' => 'http://myradar-speed',
     'port' => 6010,
