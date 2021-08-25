@@ -18,7 +18,7 @@ class JT808Controller extends Controller
     public function lock(Request $request)
     {
         try {
-            $comId = 59113;
+            $comId = 33573;
             $res = $this->microservice->lock($comId);
             return response()->json($res);
         } catch (\Exception $e) {
@@ -29,7 +29,7 @@ class JT808Controller extends Controller
     public function unlock(Request $request)
     {
         try {
-            $comId = 95194;
+            $comId = 33573;
             $res = $this->microservice->unlock($comId);
             return response()->json($res);
         } catch (\Exception $e) {

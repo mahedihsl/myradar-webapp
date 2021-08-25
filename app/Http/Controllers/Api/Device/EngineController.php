@@ -114,7 +114,6 @@ class EngineController extends Controller
                   'lock_status' => $device->lock_status,
               ]);
             }
-
         }
         return response()->error();
     }

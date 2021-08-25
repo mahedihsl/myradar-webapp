@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use App\Entities\Device;
 use App\Service\Microservice\ET200Microservice;
-use App\Service\ConcoxDevice;
+use App\Service\Microservice\JT808Microservice;
 
 class LockWhenEngineOnListener
 {
@@ -37,10 +37,13 @@ class LockWhenEngineOnListener
     {
         $event->device->update([ 'lock_status' => Device::$STATUS_LOCKED ]);
         
-        // $concox = new ConcoxDevice();
-        // $concox->lock($event->device->com_id, true);
         try {
             $service = new ET200Microservice();
+            $service->lock($event->device->com_id);
+        } catch (\Exception $th) {}
+
+        try {
+            $service = new JT808Microservice();
             $service->lock($event->device->com_id);
         } catch (\Exception $th) {}
     }
