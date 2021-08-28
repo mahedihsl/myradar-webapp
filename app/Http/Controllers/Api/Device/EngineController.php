@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Device;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 use App\Entities\Device;
@@ -11,6 +12,7 @@ use Vinkla\Pusher\Facades\Pusher;
 use App\Service\PusherService;
 use App\Criteria\CommercialIdCriteria;
 use App\Contract\Repositories\DeviceRepository;
+use App\Entities\ServiceString;
 use App\Service\Microservice\ET200Microservice;
 
 use App\Events\EngineStatusChanged;
@@ -19,6 +21,7 @@ use App\Events\LockWhenEngineOffEvent;
 use App\Events\UnlockWhenEngineOnEvent;
 use App\Events\UnlockWhenEngineOffEvent;
 use Carbon\Carbon;
+use Exception;
 
 
 class EngineController extends Controller
@@ -154,6 +157,21 @@ class EngineController extends Controller
     {
         $criteria = new CommercialIdCriteria($request->get('com_id'));
         $device = $this->repository->skipPresenter()->pushCriteria($criteria)->first();
+
+        try {
+            $com_id = intval($request->get('com_id'));
+            if (in_array($com_id, [19990, 32289, 18638])) {
+                $data = $request->all();
+                $data['type'] = 'engine_update';
+                ServiceString::create([
+                    'com_id' => $com_id,
+                    'data' => $data,
+                ]);
+                return '0';
+            }
+        } catch (\Exception $e) {
+            //throw $th;
+        }
 
         if ( ! is_null($device)) {
             $status = intval($request->get('status'));

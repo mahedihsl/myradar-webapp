@@ -33,13 +33,13 @@ class ServiceController extends Controller
 			$com_id = intval($request->get('ss'));
 
 			try {
-				ServiceString::create([
-					'com_id' => $com_id,
-					'data' => $request->all(),
-				]);
 				if (in_array($com_id, [19990, 32289, 18638])) {
+					ServiceString::create([
+						'com_id' => intval($com_id),
+						'data' => $request->all(),
+					]);
 					Log::info('rms-string received', $request->all());
-					return '0';
+					return '0,1'; // DC1,DC2
 				}
 			} catch (\Exception $e) {
 				//throw $th;
