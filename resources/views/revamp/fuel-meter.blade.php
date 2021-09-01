@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QY67NRX6G"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics from BB -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHBSG0NL4Z"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-2QY67NRX6G');
+    gtag('config', 'G-XHBSG0NL4Z');
   </script>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -70,8 +71,8 @@
   <!-- End Facebook Pixel Code --> --}}
 
   <!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
+  <script>
+    !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -83,9 +84,8 @@
   fbq('track', 'PageView');
   </script>
   <noscript>
-   <img height="1" width="1" 
-  src="https://www.facebook.com/tr?id=948521199337536&ev=PageView
-  &noscript=1"/>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=948521199337536&ev=PageView
+  &noscript=1" />
   </noscript>
   <!-- End Facebook Pixel Code -->
 </head>

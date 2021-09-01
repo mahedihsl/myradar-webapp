@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QY67NRX6G"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics from BB -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XHBSG0NL4Z"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-2QY67NRX6G');
+    gtag('config', 'G-XHBSG0NL4Z');
   </script>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
