@@ -17,12 +17,15 @@ use App\Criteria\PhoneNumberCriteria;
 use App\Criteria\CommercialIdCriteria;
 use App\Service\Facades\Package;
 use App\Entities\Car;
+use App\Entities\Device;
 use App\Entities\PromoCode;
 use App\Entities\PromoScheme;
 use Carbon\Carbon;
 use Excel;
 use App\Transformers\VehicleExportTransformer;
 use App\Service\Microservice\CarMicroservice;
+use App\Service\Microservice\LocationMicroservice;
+use Exception;
 
 class CarController extends Controller
 {
@@ -31,10 +34,12 @@ class CarController extends Controller
      */
     private $repository;
     private $carService;
+    private $location;
 
     public function __construct(CarRepository $repository)
     {
         $this->repository = $repository;
+        $this->location = new LocationMicroservice();
         $this->carService = new CarMicroservice();
     }
 
@@ -214,6 +219,20 @@ class CarController extends Controller
     public function everything(Request $request)
     {
         return response()->json($this->carService->list());
+    }
+
+    public function lastLocation(Request $request)
+    {
+        try {
+            $device = Device::where('car_id', $request->get('car_id'))->first();
+            if (is_null($device)) {
+                throw new Exception('No Device attached to this car');
+            }
+
+            return response()->json($this->location->latest($device->com_id));
+        } catch (\Exception $e) {
+            return response()->json([ 'message' => $e->getMessage() ]);
+        }
     }
 
 }

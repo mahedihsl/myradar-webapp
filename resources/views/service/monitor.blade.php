@@ -128,8 +128,10 @@
               @endif
               <!-- <td>{{$histories->when}}</td> -->
               @if($sid==0)
-              <td>{{ $histories->lat }}</td>
-              <td>{{ $histories->lng}}</td>
+              <td>xx.xxxx</td>
+              <td>xx.xxxx</td>
+              {{-- <td>{{ $histories->lat }}</td>
+              <td>{{ $histories->lng}}</td> --}}
               @elseif($sid==777)
               <td>{{ $histories->loop_count}}</td>
               <td>{{ $histories->es or '-1' }}</td>

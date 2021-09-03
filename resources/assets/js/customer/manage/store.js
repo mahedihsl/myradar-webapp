@@ -3,12 +3,14 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import {zone} from './modules/zone';
-import {share} from './modules/share';
-import {event} from './modules/event';
+import { car } from './modules/car';
+import { zone } from './modules/zone';
+import { share } from './modules/share';
+import { event } from './modules/event';
 
 export default new Vuex.Store({
     modules: {
+        car,
         zone,
         share,
         event,

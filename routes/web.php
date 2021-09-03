@@ -364,6 +364,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user/account/info/{id}', 'Customer\AccountController@info');
     Route::post('/user/account/toggle', 'Customer\AccountController@toggle');
     Route::get('/user/car/list/{id}', 'Car\CarController@all');
+    Route::get('/user/car/last-location', 'Car\CarController@lastLocation');
 
     Route::get('/car/details/{id}', 'Car\CarController@show');
     Route::post('/car/save', 'Car\CarController@save');

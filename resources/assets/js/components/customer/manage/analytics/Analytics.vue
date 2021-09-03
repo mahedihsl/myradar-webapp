@@ -3,117 +3,102 @@
     <div class="toptitle col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h4>Analytics</h4>
     </div>
-    <car-count :customer="customer.id"> </car-count>
+    <!-- <car-count :customer="customer.id"> </car-count> -->
     <last-used :customer="customer.id"> </last-used>
-    <vehicles-table :cars="cars"> </vehicles-table>
-    <last-position> </last-position>
+    <vehicles-table :cars="cars" @click="onCarClick"></vehicles-table>
+    <last-position></last-position>
   </div>
 </template>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 <script>
-import LastUsed from './LastUsed.vue';
-import VehiclesTable from './VehiclesTable.vue';
-import LastPosition from './LastPosition.vue';
-import EventBus from '../../../../util/EventBus';
-import CustomerApi from '../../../../api/CustomerApi';
-import CarApi from '../../../../api/CarApi';
+import LastUsed from './LastUsed.vue'
+import VehiclesTable from './VehiclesTable.vue'
+import LastPosition from './LastPosition.vue'
+import EventBus from '../../../../util/EventBus'
+import CustomerApi from '../../../../api/CustomerApi'
+import CarApi from '../../../../api/CarApi'
+
 export default {
   props: ['customer'],
   data: () => ({
-    cars:[],
-    noOfCars:0,
+    cars: [],
+    noOfCars: 0,
   }),
   mounted() {
-    EventBus.$on('car-names-found',this.carNamesFound.bind(this));
+    EventBus.$on('car-names-found', this.carNamesFound.bind(this))
 
-    let api= new CustomerApi(EventBus);
-    api.cars(this.customer.id);
+    let api = new CustomerApi(EventBus)
+    api.cars(this.customer.id)
 
     /*let lastusedapi=new CarApi(EventBus);
     lastusedapi.getCarsOfUser(this.customer.id);*/
 
-    this.initMap();
+    this.$store.dispatch('car/getCarsOfUser', this.customer.id)
   },
 
-  components:{
+  components: {
     LastUsed,
     VehiclesTable,
-    LastPosition
+    LastPosition,
   },
   methods: {
-    carNamesFound(data){
-      this.cars = data;
-      this.noOfCars=data.length;
+    carNamesFound(data) {
+      this.cars = data
+      this.noOfCars = data.length
       //console.log('car names', data);
+      if (data.length) {
+        this.onCarClick(data[0])
+      }
     },
-
-    initMap(center = null) {
-      let map=new google.maps.Map(document.getElementById('gmap'), {
-          zoom: 13,
-          center: {lat: 23.837139, lng: 90.367264},
-          gestureHandling: 'greedy',
-      });
-
-      let marker = new google.maps.Marker({
-        position: {lat: 23.837139, lng: 90.367264},
-        map: map
-      });
-
-      google.maps.event.addListenerOnce(map, 'idle', function(){
-          // fetchCars();
-          // var bound = map.getBounds();
-          // console.log(bound.getSouthWest().lat(), bound.getSouthWest().lng());
-          // console.log(bound.getNorthEast().lat(), bound.getNorthEast().lng());
-      });
-    }
-  }
-
+    onCarClick(car) {
+      this.$store.dispatch('car/getLastLocation', car.id)
+    },
+  },
 }
 </script>
 <style lang="scss" >
-.cardleftbar{
-  background-color: #2196F3;
+.cardleftbar {
+  background-color: #2196f3;
   text-align: center;
   vertical-align: middle;
   position: relative;
-  height:100%;
-  color:#ffebee;
-  width:25%;
-
+  height: 100%;
+  color: #ffebee;
+  width: 25%;
 }
-.leftbarspan{
-  font-size:16px;
+.leftbarspan {
+  font-size: 16px;
   display: inline;
 }
-.cardleftbar h1{
-  font-size:40px;
+.cardleftbar h1 {
+  font-size: 40px;
   margin: 0;
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-table{
+table {
   width: 100%;
-
 }
-td,th{
-  padding:5px;
-  text-allign:left;
+td,
+th {
+  padding: 5px;
+  text-allign: left;
   font-size: 105%;
 }
-.toptitle{
-  border-bottom:1px solid #E0E0E0;
-  margin-bottom:10px;
+.toptitle {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 10px;
 }
-.noofcars{
-  position:relative;
+.noofcars {
+  position: relative;
 }
-.vehiclestitle{
-  border-bottom: 1px solid #E0E0E0;
-  height:15%;
+.vehiclestitle {
+  border-bottom: 1px solid #e0e0e0;
+  height: 15%;
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -121,12 +106,12 @@ td,th{
 }
 
 .card:hover {
-    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.2);
 }
-.topcard{
-    height: 125px;
+.topcard {
+  height: 125px;
 }
-.bottomcard{
+.bottomcard {
   height: 260px;
 }
 .card {
@@ -138,10 +123,10 @@ td,th{
   width: 100%;
 }
 .card span.card-title {
-    color: #fff;
-    font-size: 24px;
-    font-weight: 300;
-    text-transform: uppercase;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 300;
+  text-transform: uppercase;
 }
 
 .card .card-image {
@@ -152,7 +137,7 @@ td,th{
   border-radius: 2px 2px 0 0;
   background-clip: padding-box;
   background-position: center;
-  position:relative;
+  position: relative;
   z-index: -1;
   width: 100%;
 }
@@ -162,16 +147,16 @@ td,th{
   left: 0;
   padding: 16px;
 }
-.card  .top{
+.card .top {
   padding: 16px;
   border-radius: 0 0 2px 2px;
   background-clip: padding-box;
   box-sizing: border-box;
-  width:75%;
-  height:100%;
+  width: 75%;
+  height: 100%;
 }
-.top h4{
-  font-size:20px;
+.top h4 {
+  font-size: 20px;
 }
 .card .card-content {
   padding: 16px;
@@ -181,11 +166,11 @@ td,th{
   width: 100%;
 }
 
-.card-content{
-  height:85%;
+.card-content {
+  height: 85%;
 }
 .card .top p {
-  color: #9E9E9E;
+  color: #9e9e9e;
   font-size: 14px;
 }
 .card .card-content span.card-title {
