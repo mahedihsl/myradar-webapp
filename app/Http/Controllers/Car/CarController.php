@@ -231,7 +231,7 @@ class CarController extends Controller
 
             return response()->json($this->location->latest($device->com_id));
         } catch (\Exception $e) {
-            return response()->json([ 'message' => $e->getMessage() ]);
+            return response()->json([ 'message' => $e->getMessage() ], 400);
         }
     }
 

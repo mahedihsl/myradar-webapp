@@ -112,6 +112,17 @@ class MicroServiceController extends Controller
             return $e;
         }
     }
+    
+    public function testEngineNotification(Request $request)
+    {
+        try {
+            $service = new DeviceMicroservice();
+            $response = $service->consumeEngineStatus(58813, 1);
+            return response()->json($response);
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 
     public function deviceConfig(Request $request)
     {

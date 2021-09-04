@@ -37,4 +37,9 @@ class DeviceMicroservice extends BaseService
   {
     return $this->get('/device/list', $filter);
   }
+
+  public function consumeEngineStatus($com_id, $status)
+  {
+    return $this->post('/engine/consume', compact('com_id', 'status'));
+  }
 }

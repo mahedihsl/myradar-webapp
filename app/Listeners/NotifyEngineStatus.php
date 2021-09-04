@@ -9,6 +9,7 @@ use App\Jobs\PushNotificationJob;
 use App\Entities\User;
 use App\Entities\Setting;
 use App\Service\Microservice\PushMicroservice;
+use App\Service\Microservice\DeviceMicroservice;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
@@ -65,8 +66,14 @@ class NotifyEngineStatus
 
     public function sendNotification($user, $device, $data)
     {
-      $service = new PushMicroservice();
-      $service->send($user->id, $data);
+    //   $service = new PushMicroservice();
+    //   $service->send($user->id, $data);
+        try {
+            $service = new DeviceMicroservice();
+            $service->consumeEngineStatus($device->com_id, $data->get('status'));
+        } catch (\Exception $e) {
+            //throw $th;
+        }
     }
 
     public function payload($event)
