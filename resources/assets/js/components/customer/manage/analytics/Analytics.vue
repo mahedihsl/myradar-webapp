@@ -7,6 +7,7 @@
     <last-used :customer="customer.id"> </last-used>
     <vehicles-table :cars="cars" @click="onCarClick"></vehicles-table>
     <last-position></last-position>
+    <mileage v-if="selectedCarId" :car-id="selectedCarId" :subscribed="true"></mileage>
   </div>
 </template>
 
@@ -16,15 +17,16 @@
 import LastUsed from './LastUsed.vue'
 import VehiclesTable from './VehiclesTable.vue'
 import LastPosition from './LastPosition.vue'
+import Mileage from '../../service/Mileage.vue'
 import EventBus from '../../../../util/EventBus'
 import CustomerApi from '../../../../api/CustomerApi'
-import CarApi from '../../../../api/CarApi'
 
 export default {
   props: ['customer'],
   data: () => ({
     cars: [],
     noOfCars: 0,
+    selectedCarId: '',
   }),
   mounted() {
     EventBus.$on('car-names-found', this.carNamesFound.bind(this))
@@ -32,13 +34,11 @@ export default {
     let api = new CustomerApi(EventBus)
     api.cars(this.customer.id)
 
-    /*let lastusedapi=new CarApi(EventBus);
-    lastusedapi.getCarsOfUser(this.customer.id);*/
-
     this.$store.dispatch('car/getCarsOfUser', this.customer.id)
   },
 
   components: {
+    Mileage,
     LastUsed,
     VehiclesTable,
     LastPosition,
@@ -47,13 +47,13 @@ export default {
     carNamesFound(data) {
       this.cars = data
       this.noOfCars = data.length
-      //console.log('car names', data);
       if (data.length) {
         this.onCarClick(data[0])
       }
     },
     onCarClick(car) {
       this.$store.dispatch('car/getLastLocation', car.id)
+      this.selectedCarId = car.id
     },
   },
 }

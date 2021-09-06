@@ -282,8 +282,8 @@ class ServiceMonitorController extends Controller
                      foreach ($data as $data) {
                        $exportResult[] = [
                          $data->when->format('d M Y g:i:s A'),
-                         $data->lat,
-                         $data->lng
+                         'xx.xxxx',
+                         'xx.xxxx'
                        ];
 
                        }
