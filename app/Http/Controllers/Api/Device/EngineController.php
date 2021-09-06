@@ -71,9 +71,7 @@ class EngineController extends Controller
     {
         $device = Device::where('com_id', intval($request->get('com_id')))->first();
         if (! is_null($device)) {
-            $device->update([
-                'lock_status' => intval($request->get('lock'))
-                ]);
+            $device->update([ 'lock_status' => intval($request->get('lock')) ]);
             return response()->ok();
         }
 
@@ -113,9 +111,7 @@ class EngineController extends Controller
                   }
               }
 
-              return response()->ok([
-                  'lock_status' => $device->lock_status,
-              ]);
+              return response()->ok([ 'lock_status' => $device->lock_status, ]);
             }
         }
         return response()->error();

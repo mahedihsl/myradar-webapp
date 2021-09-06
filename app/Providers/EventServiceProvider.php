@@ -195,7 +195,7 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ComplainClosed' => [
             'App\Listeners\SendComplainCloseSms',
         ],
-	'App\Events\ExternalDeviceDataReceived' => [
+	    'App\Events\ExternalDeviceDataReceived' => [
             'App\Listeners\SendToExternalServer',
         ],
 
