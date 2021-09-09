@@ -12,6 +12,7 @@ use App\Contract\Repositories\DeviceRepository;
 use App\Entities\ServiceString;
 use App\Entities\Device;
 use App\Service\Log\Log as LogLog;
+use App\Service\Microservice\RMSReceiverMicroservice;
 use Exception;
 use GuzzleHttp\Client;
 
@@ -39,6 +40,8 @@ class ServiceController extends Controller
 						'data' => $request->all(),
 					]);
 					Log::info('rms-string received', $request->all());
+					$rmsService = new RMSReceiverMicroservice();
+					$rmsService->receive($request->all());
 					return '0,1'; // DC1,DC2
 				}
 			} catch (\Exception $e) {

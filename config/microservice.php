@@ -82,4 +82,9 @@ return [
     'url' => 'http://myradar-msgid',
     'port' => 7001,
   ],
+  
+  'rms-receiver' => [
+    'url' => 'http://rms-receiver',
+    'port' => 5000,
+  ],
 ];
