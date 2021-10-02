@@ -37,6 +37,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/enterprise/generator/generator', 'public/js/enterprise/')
    .js('resources/assets/js/enterprise/map.js', 'public/js/enterprise/')
    .js('resources/assets/js/bus/index.js', 'public/js/bus/')
+   .js('resources/assets/js/rms/index.js', 'public/js/rms/')
    .js('resources/assets/js/tracker/tracker.js', 'public/js/customer/')
    .js('resources/assets/js/service/complain/index.js', 'public/js/service/complain/')
    .version();

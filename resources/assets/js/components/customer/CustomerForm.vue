@@ -40,6 +40,7 @@
             <select class="form-control" v-model="info.ctype">
               <option value="1">Private Customer</option>
               <option value="2">Enterprise Customer</option>
+              <option value="4">RMS Owner</option>
             </select>
           </div>
         </div>

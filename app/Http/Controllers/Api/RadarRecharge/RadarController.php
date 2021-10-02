@@ -27,6 +27,19 @@ class RadarController extends Controller
         }
     }
     
+    public function test(Request $request)
+    {
+        try {
+            $headers = ['Authorization' => 'Bearer ' . $request->bearerToken()];
+            // return $headers;
+            return response()->json($this->radarService->test($request->all(), $headers));
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
+    
     public function validateCard(Request $request)
     {
         try {

@@ -84,6 +84,7 @@ Route::get('/trip/history', 'Api\Car\TripController@history');
 Route::post('/trip/test', 'Api\Car\TripController@test');
 
 // For Radar Recharge
+Route::post('/radar/test', 'Api\RadarRecharge\RadarController@test');
 Route::post('/radar/signup', 'Api\RadarRecharge\RadarController@signup');
 Route::post('/radar/validate', 'Api\RadarRecharge\RadarController@validateCard');
 Route::post('/radar/recharge', 'Api\RadarRecharge\RadarController@rechargeCard');

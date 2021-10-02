@@ -76,7 +76,9 @@ export default {
   },
   methods: {
     onMenuClick(tag) {
-      if (tag === 'complains') {
+      if (tag === 'rms_sites') {
+        window.location.href = `/rms-site?user_id=${this.info.id}`
+      } else if (tag === 'complains') {
         window.location.href = `/complains?user_id=${this.info.id}`
       } else if (tag === 'geofence') {
         window.location.href = `/geofence/manage?user_id=${this.info.id}`
@@ -91,6 +93,10 @@ export default {
     onInfoFound(info) {
       this.info = info;
       this.$store.commit('customer', info);
+      const RMS_OWNER_TYPE = 4
+      if (info.type == RMS_OWNER_TYPE) {
+        this.items.push({id: 'rms_sites', name: 'RMS Sites'},)
+      }
       this.attemptAutoNavigate();
     },
 

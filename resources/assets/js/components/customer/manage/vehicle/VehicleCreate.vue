@@ -80,6 +80,8 @@
               <option value="4">Bus</option>
               <option value="5">Generator</option>
               <option value="6">RMS</option>
+              <option value="7">BIWTA Vessel</option>
+              <option value="8">Private Vessel</option>
             </select>
           </div>
         </div>

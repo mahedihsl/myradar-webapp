@@ -195,6 +195,7 @@ Route::group(['middleware' => ['auth', 'role:1']], function() {
     Route::get('/billing/report', 'Admin\BillingController@index');
     Route::get('/billing/export', 'Admin\BillingController@export');
     Route::get('/billing/drilldown', 'Admin\BillingController@drilldown');
+    
     Route::get('/activation/report', 'Admin\ActivationController@index')->name('activation.report');
     Route::post('/activation/export', 'Admin\ActivationController@export');
     Route::post('/activation/batch/disable', 'Admin\ActivationController@batchDisable');

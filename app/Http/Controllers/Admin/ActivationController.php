@@ -24,6 +24,17 @@ class ActivationController extends Controller
         $this->repository = $repository;
     }
 
+    public function test()
+    {
+        // $list = $this->repository->with(['car'])->get()->filter(function($item) {return is_null($item->car);});
+        // $count = 0;
+        // foreach ($list as $item) {
+        //     $item->delete();
+        //     $count++;
+        // }
+        // return $count;
+    }
+
     public function index(Request $request)
     {
         $this->repository->pushCriteria(new LastCreatedCriteria());

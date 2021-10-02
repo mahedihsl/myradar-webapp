@@ -34,7 +34,7 @@ class ServiceController extends Controller
 			$com_id = intval($request->get('ss'));
 
 			try {
-				if (in_array($com_id, [19990, 32289, 18638])) {
+				if (in_array($com_id, [19990, 32289, 18638, 52207, 14646])) {
 					ServiceString::create([
 						'com_id' => intval($com_id),
 						'data' => $request->all(),
