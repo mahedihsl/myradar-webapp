@@ -63,4 +63,16 @@ class RadarController extends Controller
             return response()->json(['message' => $e->getMessage()], 400);
         }
     }
+    
+    public function confirmWrite(Request $request)
+    {
+        try {
+            $headers = ['Authorization' => 'Bearer ' . $request->bearerToken()];
+            return response()->json($this->radarService->confirm($request->all(), $headers));
+        } catch (ServiceException $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatusCode());
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
 }

@@ -88,6 +88,7 @@ Route::post('/radar/test', 'Api\RadarRecharge\RadarController@test');
 Route::post('/radar/signup', 'Api\RadarRecharge\RadarController@signup');
 Route::post('/radar/validate', 'Api\RadarRecharge\RadarController@validateCard');
 Route::post('/radar/recharge', 'Api\RadarRecharge\RadarController@rechargeCard');
+Route::post('/radar/confirm', 'Api\RadarRecharge\RadarController@confirmWrite');
 Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
 
 Route::get('/mileage/list', 'Api\Position\MileageController@list');
