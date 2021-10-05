@@ -36,8 +36,8 @@
                         @endforeach
                     </td>
                     <td>
-                        <button class="btn btn-default">Edit</button>
-                        <button class="btn btn-default">Devices</button>
+                        <a href="/rms/site/edit/{{ $site['id'] }}" class="btn btn-default">Edit</a>
+                        <a href="/rms/site/configure/{{ $site['id'] }}" class="btn btn-primary">Devices</a>
                     </td>
                 </tr>
                 @endforeach
@@ -48,5 +48,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('js/rms/index.js', true) }}" charset="utf-8"></script>
+
 @endsection

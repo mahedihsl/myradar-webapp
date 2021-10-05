@@ -42,4 +42,24 @@ class DeviceMicroservice extends BaseService
   {
     return $this->post('/engine/consume', compact('com_id', 'status'));
   }
+  
+  public function getRmsPinConfig($query)
+  {
+    return $this->get('/rms-config/filter', $query);
+  }
+  
+  public function saveRmsPinConfig($data)
+  {
+    return $this->post('/rms-config/save', $data);
+  }
+  
+  public function updateRmsPinConfig($data)
+  {
+    return $this->post('/rms-config/update', $data);
+  }
+  
+  public function removeRmsPinConfig($data)
+  {
+    return $this->post('/rms-config/remove', $data);
+  }
 }

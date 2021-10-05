@@ -335,9 +335,16 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
 
     Route::get('/rms/site/manage', 'RMS\SiteController@index');
     Route::get('/rms/site/create', 'RMS\SiteController@create');
-    Route::get('/rms/site/save', 'RMS\SiteController@save');
+    Route::post('/rms/site/save', 'RMS\SiteController@save');
     Route::get('/rms/site/edit/{id}', 'RMS\SiteController@edit');
-    Route::get('/rms/site/update', 'RMS\SiteController@update');
+    Route::post('/rms/site/update', 'RMS\SiteController@update');
+    Route::get('/rms/site/configure/{id}', 'RMS\SiteController@configure');
+    
+    Route::get('/rms/site/info', 'RMS\SiteController@siteInfo');
+    Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
+    Route::get('/rms/site/pin/save', 'RMS\SiteController@savePinConfig');
+    Route::get('/rms/site/pin/update', 'RMS\SiteController@updatePinConfig');
+    Route::get('/rms/site/pin/remove', 'RMS\SiteController@removePinConfig');
 });
 
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');
