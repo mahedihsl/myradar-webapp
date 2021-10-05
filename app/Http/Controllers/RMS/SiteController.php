@@ -5,6 +5,8 @@ namespace App\Http\Controllers\RMS;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Entities\User;
+use App\Http\Requests\CreateRmsSite;
+use App\Http\Requests\UpdateRmsSite;
 use App\Service\Microservice\RMSUserMicroservice;
 
 class SiteController extends Controller
@@ -33,21 +35,30 @@ class SiteController extends Controller
 
     public function create(Request $request)
     {
-      return view('rms_site.create');
+      return view('rms_site.create')->with([
+        'user' => User::find($request->user_id),
+      ]);
     }
 
-    public function save(Request $request)
+    public function save(CreateRmsSite $request)
     {
-      
+      $this->rmsUserService->saveSite($request->all());
+      $redirectUrl = '/rms/site/manage?user_id=' . $request->get('user_id');
+      return redirect($redirectUrl);
     }
     
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
-      return view('rms_site.edit');
+      $filteredSites = $this->rmsUserService->filterSites(['id' => $id]);
+      return view('rms_site.edit')->with([
+        'site' => $filteredSites[0],
+      ]);
     }
 
-    public function update(Request $request)
+    public function update(UpdateRmsSite $request)
     {
-      
+      $this->rmsUserService->updateSite($request->all());
+      $redirectUrl = '/rms/site/manage?user_id=' . $request->get('user_id');
+      return redirect($redirectUrl);
     }
 }

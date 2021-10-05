@@ -14,4 +14,14 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->get('/site/fetch', $query);
   }
+
+  public function saveSite($data)
+  {
+    return $this->post('/site/save', $data);
+  }
+
+  public function updateSite($data)
+  {
+    return $this->post('/site/update', $data);
+  }
 }

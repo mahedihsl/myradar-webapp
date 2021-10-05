@@ -336,7 +336,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::get('/rms/site/manage', 'RMS\SiteController@index');
     Route::get('/rms/site/create', 'RMS\SiteController@create');
     Route::get('/rms/site/save', 'RMS\SiteController@save');
-    Route::get('/rms/site/edit', 'RMS\SiteController@edit');
+    Route::get('/rms/site/edit/{id}', 'RMS\SiteController@edit');
     Route::get('/rms/site/update', 'RMS\SiteController@update');
 });
 

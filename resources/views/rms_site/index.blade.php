@@ -9,7 +9,7 @@
 @endsection
 
 @section('action')
-<a href="/rms/site/create" class="btn btn-success">
+<a href="/rms/site/create?user_id={{ $user->id }}" class="btn btn-success">
     <i class="fa fa-plus"></i>
     New Site
 </a>
