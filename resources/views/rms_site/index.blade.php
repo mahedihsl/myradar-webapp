@@ -1,30 +1,50 @@
-@extends('layouts.app')
+@extends('layouts.new')
 
 @section('css')
 
 @endsection
 
-@section('content')
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 class="panel-title">{{ $user->name }}</h3>
-                  <h5 class="panel-subtitle">RMS Site Management</h5>
-              </div>
-              <div class="panel-body">
-                  <div class="row row-eq-height">
-                      <div class="col-md-10 col-md-offset-1">
-                          
-                      </div>
-                  </div>
-              </div>
-              <div class="panel-footer">
+@section('title')
+{{ $user->name }} - <span>RMS Site Management</span>
+@endsection
 
-              </div>
-            </div>
-        </div>
+@section('action')
+<a href="/rms/site/create" class="btn btn-success">
+    <i class="fa fa-plus"></i>
+    New Site
+</a>
+@endsection
+
+@section('content')
+<div class="row">
+    <div class="col-xs-12 table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="col-xs-4">Name</th>
+                    <th class="col-xs-5">Installed Devices</th>
+                    <th class="col-xs-3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($sites as $site)
+                <tr>
+                    <td>{{ $site['name'] }}</td>
+                    <td>
+                        @foreach ($site['com_ids'] as $com_id)
+                        <span class="label label-default">{{ $com_id }}</span>
+                        @endforeach
+                    </td>
+                    <td>
+                        <button class="btn btn-default">Edit</button>
+                        <button class="btn btn-default">Devices</button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
 @endsection
 
 @section('js')

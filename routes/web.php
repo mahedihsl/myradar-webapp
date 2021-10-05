@@ -332,6 +332,12 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
 
     // Route::get('/fuel/seed-groups', 'Service\FuelController@seedGroups');
     Route::get('/fuel/fetch-groups', 'Service\FuelController@fetchGroups');
+
+    Route::get('/rms/site/manage', 'RMS\SiteController@index');
+    Route::get('/rms/site/create', 'RMS\SiteController@create');
+    Route::get('/rms/site/save', 'RMS\SiteController@save');
+    Route::get('/rms/site/edit', 'RMS\SiteController@edit');
+    Route::get('/rms/site/update', 'RMS\SiteController@update');
 });
 
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');

@@ -87,4 +87,8 @@ return [
     'url' => 'http://rms-receiver',
     'port' => 5000,
   ],
+  'rms-user' => [
+    'url' => 'http://rms-user',
+    'port' => 5004,
+  ],
 ];
