@@ -66,13 +66,13 @@
         tw-gap-x-2
       "
     >
-      <button class="btn btn-success btn-sm" v-if="needSaving" @click="save">
+      <button class="btn btn-success btn-sm" @click="save">
         <i class="fa fa-check"></i>
         Save
       </button>
-      <button class="btn btn-default btn-sm" @click="remove">
+      <button class="btn btn-default btn-sm" @click="$emit('close', comId, false)">
         <i class="fa fa-times"></i>
-        Delete
+        Cancel
       </button>
     </div>
   </div>
@@ -81,51 +81,37 @@
 <script>
 export default {
   props: {
-    config: {
-      type: Object,
+    siteId: {
+      type: String,
+      required: true,
+    },
+    comId: {
+      type: Number,
       required: true,
     },
   },
   data: () => ({
     info: {
-      pin_name: '',
-      type: '',
+      pin_name: 'am1',
+      type: 'main_phase',
       factor: 1.0,
       offset: 0.0,
       label: '',
     },
-    needSaving: false,
   }),
-  watch: {
-    info: {
-      handler(val, old) {
-        this.needSaving = true
-      },
-      deep: true,
-    },
-  },
-  mounted() {
-    this.info = { ...this.config }
-    setTimeout(() => {
-      this.needSaving = false
-    }, 300)
-  },
+  mounted() {},
   methods: {
     async save() {
       try {
-        await this.$store.dispatch('updatePinConfig', this.info)
-        this.needSaving = false
+        const data = {
+          ...this.info,
+          site_id: this.siteId,
+          com_id: +this.comId,
+        }
+        await this.$store.dispatch('savePinConfig', data)
+        this.$emit('close', this.comId, true)
       } catch (error) {
         console.log('error saving config', error)
-      }
-    },
-    async remove() {
-      try {
-        if (confirm('Are you sure you want to remove this pin ?')) {
-          await this.$store.dispatch('removePinConfig', this.config.id)
-        }
-      } catch (error) {
-        console.log('error removing config', error)
       }
     },
   },

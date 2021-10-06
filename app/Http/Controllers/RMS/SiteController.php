@@ -67,8 +67,11 @@ class SiteController extends Controller
 
     public function configure(Request $request, $id)
     {
+      $filteredSites = $this->rmsUserService->filterSites(['id' => $id]);
+      $site = $filteredSites[0];
+
       return view('rms_site.configure')->with([
-        'site_id' => $id,
+        'site' => $site,
       ]);
     }
 
