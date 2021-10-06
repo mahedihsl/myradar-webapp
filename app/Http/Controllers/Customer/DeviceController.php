@@ -54,6 +54,7 @@ class DeviceController extends Controller
                                 'id' => $car->id,
                                 'name' => $car->reg_no,
                                 'device' => $car->device->id,
+                                'vehicle_type' => $car->type,
                             ];
                         });
 

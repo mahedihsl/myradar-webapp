@@ -124,6 +124,7 @@ $(function() {
                 }));
                 if (current_device == response.data[i].device) {
                     let c = new Car(response.data[i].device);
+                    c.setVehicleType(response.data[i].vehicle_type)
                     c.setMap(map);
                     cars.push(c);
                 }

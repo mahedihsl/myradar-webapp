@@ -23,3 +23,20 @@ export let iconRed = {
     rotation: 0,
     anchor: new google.maps.Point(10, 25) // orig 10,50 back of car, 10,0 front of car, 10,25 center of car
 };
+
+export const makeVesselIcon = function (isVesselOn = true, scale = 0.75) {
+    const originalWidth = 58
+    const originalHeight = 96
+
+    const scaledWidth = Math.floor(originalWidth * scale)
+    const scaledHeight = Math.floor(originalHeight * scale)
+
+    return {
+        url: 'https://myradar.s3.ap-southeast-1.amazonaws.com/tracking/image/ic_boat.png',
+        // size: new google.maps.Size(64, 64),
+        // scale: 0.5,
+        scaledSize: new google.maps.Size(scaledWidth, scaledHeight),
+        // origin: new google.maps.Point(22, 36),
+        anchor: new google.maps.Point(scaledWidth / 2, scaledHeight / 2),
+    }
+}

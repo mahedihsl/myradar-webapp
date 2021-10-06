@@ -157,6 +157,7 @@ export default {
       this.cars = [];
       for (let i = 0; i < list.length; i++) {
         let c = new Car(list[i].device, true);
+        c.setVehicleType(list[i].vehicle_type)
         c.setMap(this.map);
         this.cars.push(c);
         this.mapBound = this.cars[i].startLiveTracking(this.mapBound, list.length);
@@ -173,6 +174,7 @@ export default {
 
 
       let c = new Car(car.device, true);
+      c.setVehicleType(car.vehicle_type)
       c.setMap(this.map);
       this.cars.push(c);
       this.mapBound = this.cars[0].startLiveTracking(this.mapBound, this.cars.length);

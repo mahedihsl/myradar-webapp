@@ -36,9 +36,10 @@ $(function() {
     });
 
     let userId = $('input[name="user_id"]').val();
-    $.get('/user/device/ids/' + userId, function(response) {
-        for (var i = 0; i < response.length; i++) {
-            let c = new Car(response[i]);
+    $.get('/user/car/names/' + userId, function(response) { // '/user/device/ids/' + userId
+        for (var i = 0; i < response.data.length; i++) {
+            let c = new Car(response.data[i].device);
+            c.setVehicleType(response.data[i].vehicle_type)
             c.setMap(map);
             cars.push(c);
         }

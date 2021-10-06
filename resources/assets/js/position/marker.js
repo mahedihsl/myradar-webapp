@@ -1,8 +1,9 @@
-import {iconBlack, iconRed} from './icon.js';
-
 export class Marker {
-    constructor(point, callBack, callBack2) {
-        this.icon = iconBlack;
+    constructor(point, callBack, callBack2, { iconForIgnitionOn, iconForIgnitionOff }) {
+        this.iconForIgnitionOn = iconForIgnitionOn
+        this.iconForIgnitionOff = iconForIgnitionOff
+
+        this.icon = iconForIgnitionOn;
         this.marker = null;
         this.lastPoint = null; // type: Point
         this.currentPoint = point; // type: Point
@@ -90,7 +91,7 @@ export class Marker {
 
     setAsRed(flag) {
         let angle = this.icon.rotation;
-        this.icon = flag ? iconRed : iconBlack;
+        this.icon = flag ? this.iconForIgnitionOff : this.iconForIgnitionOn;
         this.icon.rotation = angle;
         this.marker.setIcon(this.getIcon());
     }
@@ -107,8 +108,8 @@ export class Marker {
         this.marker = map.addMarker(this, label);
     }
 
-    getMarkerPosition(){
-      var pos = this.currentPoint.getPosition();
-      return pos;
+    getMarkerPosition() {
+        var pos = this.currentPoint.getPosition();
+        return pos;
     }
 }

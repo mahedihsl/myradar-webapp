@@ -1,10 +1,12 @@
+import { iconBlack, iconRed, makeVesselIcon } from './icon.js';
+
 import PositionApi from '../api/tracking/PositionApi';
 import CarApi from '../api/enterprise/CarApi';
 
-import {Marker} from './marker.js';
-import {Util} from './util.js';
-import {Point} from './point.js';
-import {Route} from './route.js';
+import { Marker } from './marker.js';
+import { Util } from './util.js';
+import { Point } from './point.js';
+import { Route } from './route.js';
 
 export class Car {
     constructor(deviceId, enterprise = false) {
@@ -30,6 +32,12 @@ export class Car {
 
         this.thresholdDistance = 10; // distance in meters under which all points will be discarded
         this.moveAttemptInterval = 100; // time in milliseconds after which car will check is data is fetched
+
+        this.vehicleType = 1 // by default: Car
+    }
+
+    setVehicleType(type) {
+        this.vehicleType = type
     }
 
     setSpeedFactor(factor) {
@@ -74,7 +82,7 @@ export class Car {
                 }
 
                 return new Promise((resolve, reject) => {
-                    resolve({data: data, ass: null});
+                    resolve({ data: data, ass: null });
                 });
             })
             .then(result => {
@@ -84,11 +92,11 @@ export class Car {
                 } else {
                     this.marker.stopAnimation();
                     this.marker.moveTo(point.getPosition());
-                    if(this.enterprise == true && numOfCars>1){
-                      mapBound = this.map.fitBoundaryForCars(point, mapBound);
+                    if (this.enterprise == true && numOfCars > 1) {
+                        mapBound = this.map.fitBoundaryForCars(point, mapBound);
                     }
                     else {
-                      this.map.updateCenter(point);
+                        this.map.updateCenter(point);
                     }
 
                 }
@@ -134,14 +142,14 @@ export class Car {
     getPastPositions(index) {
         $('#btn_history')
             .removeClass('fa-search')
-                .addClass('fa-refresh')
-                    .addClass('fa-spin');
+            .addClass('fa-refresh')
+            .addClass('fa-spin');
 
         $.get(this.getApiEndpoint(), res => {
             $('#btn_history')
                 .removeClass('fa-spin')
-                    .removeClass('fa-refresh')
-                        .addClass('fa-search');
+                .removeClass('fa-refresh')
+                .addClass('fa-search');
             if (this.trackIndex != index) {
                 return;
             }
@@ -157,17 +165,17 @@ export class Car {
                 for (var i = 0; i < len; i++) {
                     let point = new Point(response[i]);
                     let valid = !this.points.length ||
-                                this.points.slice(-1).pop()
-                                    .getPosition()
-                                        .distanceFrom(point.getPosition())
-                                            >= this.thresholdDistance;
+                        this.points.slice(-1).pop()
+                            .getPosition()
+                            .distanceFrom(point.getPosition())
+                        >= this.thresholdDistance;
                     if (valid) {
                         this.points.push(point);
-                          this.boundary.minLat = Math.min(this.boundary.minLat, point.getPosition().lat());
-                          this.boundary.minLng = Math.min(this.boundary.minLng, point.getPosition().lng());
-                          this.boundary.maxLat = Math.max(this.boundary.maxLat, point.getPosition().lat());
-                          this.boundary.maxLng = Math.max(this.boundary.maxLng, point.getPosition().lng());
-                          //console.log(boundary.minLat, ' ', boundary.minLng, ' ', boundary.maxLat, ' ', boundary.maxLng, ' ', point.getPosition().lat(), ' ', point.getPosition().lng());
+                        this.boundary.minLat = Math.min(this.boundary.minLat, point.getPosition().lat());
+                        this.boundary.minLng = Math.min(this.boundary.minLng, point.getPosition().lng());
+                        this.boundary.maxLat = Math.max(this.boundary.maxLat, point.getPosition().lat());
+                        this.boundary.maxLng = Math.max(this.boundary.maxLng, point.getPosition().lng());
+                        //console.log(boundary.minLat, ' ', boundary.minLng, ' ', boundary.maxLat, ' ', boundary.maxLng, ' ', point.getPosition().lat(), ' ', point.getPosition().lng());
                     }
                 }
                 //console.log(this.points);
@@ -176,7 +184,7 @@ export class Car {
                     /**
                      * Car animation is about to start
                      */
-                    this.speedFactorChanged =true;
+                    this.speedFactorChanged = true;
                     this.makeMarker(this.points[0]);
                     this.marker.setAsRed(false);
                     this.moveCar();
@@ -190,9 +198,9 @@ export class Car {
                     type: 'red',
                     theme: 'material',
                     buttons: {
-                      cancel: {
-                          text: 'Close'
-                      }
+                        cancel: {
+                            text: 'Close'
+                        }
                     }
                 });
                 this.allDataFetched = true;
@@ -213,9 +221,9 @@ export class Car {
         this.marker.setCurrentPoint(point);
 
 
-        if(this.speedFactorChanged){
-          this.map.adjustZoom(this.speedFactor, point, this.boundary);
-          this.speedFactorChanged = false;
+        if (this.speedFactorChanged) {
+            this.map.adjustZoom(this.speedFactor, point, this.boundary);
+            this.speedFactorChanged = false;
         }
     }
 
@@ -246,11 +254,11 @@ export class Car {
     }
 
     onAnimationOver(point) {
-        if(this.enterprise == true){
-          //dont update the boundary
+        if (this.enterprise == true) {
+            //dont update the boundary
         }
         else {
-          this.map.updateBoundary(point);
+            this.map.updateBoundary(point);
         }
         this.updateTimeStamp(point.getTime());
         if (this.isLiveMode()) {
@@ -268,10 +276,37 @@ export class Car {
         }
     }
 
+    getIconForIgnitionOn() {
+        switch (this.vehicleType) {
+            case 7:
+                return makeVesselIcon()
+            case 8:
+                return makeVesselIcon()
+            default:
+                return iconBlack
+        }
+    }
+
+    getIconForIgnitionOff() {
+        switch (this.vehicleType) {
+            case 7:
+                return makeVesselIcon()
+            case 8:
+                return makeVesselIcon()
+            default:
+                return iconRed
+        }
+    }
+
     makeMarker(point, ass = null, mapBound = null, numOfCars = 1) {
+        const options = {
+            iconForIgnitionOn: this.getIconForIgnitionOn(),
+            iconForIgnitionOff: this.getIconForIgnitionOff()
+        }
         this.marker = new Marker(point,
             this.onAnimationOver.bind(this),
-            this.onEachAnimationStep.bind(this)
+            this.onEachAnimationStep.bind(this),
+            options
         );
         let label = null;
         if (ass != null) {
@@ -295,12 +330,12 @@ export class Car {
         }
 
         this.marker.renderOn(this.map, label);
-        if(this.enterprise ==true && numOfCars>1){
+        if (this.enterprise == true && numOfCars > 1) {
             //console.log("came in makeMarker");
             mapBound = this.map.fitBoundaryForCars(point, mapBound);
         }
-        else{
-          this.map.updateCenter(point);
+        else {
+            this.map.updateCenter(point);
         }
 
         return mapBound;
@@ -317,10 +352,10 @@ export class Car {
 
     getApiEndpoint() {
         return '/car/positions/'
-                + this.deviceId + '/'
-                + this.startTime.unix() + '/'
-                + this.finishTime.unix() + '/'
-                + this.totalFetched;
+            + this.deviceId + '/'
+            + this.startTime.unix() + '/'
+            + this.finishTime.unix() + '/'
+            + this.totalFetched;
     }
 
     setMap(m) {
@@ -332,9 +367,9 @@ export class Car {
         return this.map;
     }
 
-    getCarPosition(){
+    getCarPosition() {
 
-      var pos = this.marker.getMarkerPosition();
-      return pos;
+        var pos = this.marker.getMarkerPosition();
+        return pos;
     }
 }
