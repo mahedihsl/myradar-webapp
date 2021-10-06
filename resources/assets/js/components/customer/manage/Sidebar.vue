@@ -54,6 +54,7 @@ export default {
       { id: 'promotion', name: 'Promotion' },
       { id: 'geofence', name: 'Geofence' },
       { id: 'complains', name: 'Complains' },
+      { id: 'rms_sites', name: 'RMS Sites' }
     ],
   }),
   computed: {
@@ -106,9 +107,9 @@ export default {
       this.info = info
       this.$store.commit('customer', info)
       const RMS_OWNER_TYPE = 4
-      if (info.type == RMS_OWNER_TYPE) {
-        this.items.push({ id: 'rms_sites', name: 'RMS Sites' })
-      }
+      // if (info.type == RMS_OWNER_TYPE) {
+      //   this.items.push({ id: 'rms_sites', name: 'RMS Sites' })
+      // }
       this.attemptAutoNavigate()
     },
 

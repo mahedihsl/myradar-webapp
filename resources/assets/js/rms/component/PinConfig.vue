@@ -1,7 +1,7 @@
 <template>
-  <div class="row" style="margin: 10px 0;">
-    <div class="col-xs-2">
-      <select class="form-control">
+  <div class="tw-w-full tw-flex tw-flex-row gap-x-2">
+    <div class="tw-w-2/12 tw-mx-2">
+      <select class="form-control" v-model="info.pin_name">
         <option value="dm1">DM1</option>
         <option value="dm2">DM2</option>
         <option value="dm3">DM3</option>
@@ -18,8 +18,8 @@
         <option value="am6">AM6</option>
       </select>
     </div>
-    <div class="col-xs-3">
-      <select class="form-control">
+    <div class="tw-w-3/12 tw-mx-2">
+      <select class="form-control" v-model="info.type">
         <option value="main_phase">MAIN PHASE</option>
         <option value="dg_status">DG STATUS</option>
         <option value="dg_fuel">DG FUEL</option>
@@ -31,17 +31,36 @@
         <option value="smoke_detector">SMOKE DETECTOR</option>
       </select>
     </div>
-    <div class="col-xs-1">
-      <input type="text" class="form-control" placeholder="Factor" />
+    <div class="tw-w-1/12 tw-mx-2">
+      <input
+        type="text"
+        v-model="info.factor"
+        class="form-control"
+        placeholder="Factor"
+      />
     </div>
-    <div class="col-xs-1">
-      <input type="text" class="form-control" placeholder="Offset" />
+    <div class="tw-w-1/12 tw-mx-2">
+      <input
+        type="text"
+        v-model="info.offset"
+        class="form-control"
+        placeholder="Offset"
+      />
     </div>
-    <div class="col-xs-3">
-      <input type="text" class="form-control" placeholder="Optional Name" />
+    <div class="tw-w-3/12 tw-mx-2">
+      <input
+        type="text"
+        v-model="info.label"
+        class="form-control"
+        placeholder="Optional Name"
+      />
     </div>
-    <div class="col-xs-2">
-      <button class="btn btn-danger btn-sm">
+    <div
+      class="
+        tw-w-2/12 tw-mx-2 tw-flex tw-flex-row tw-justify-center tw-items-center
+      "
+    >
+      <button class="btn btn-default btn-sm">
         <span><i class="fa fa-times"></i></span>
       </button>
     </div>
@@ -49,11 +68,27 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {
+  props: {
+    config: {
+      type: Object,
+      required: true,
+    },
+  },
+  data: () => ({
+    info: {
+      pin_name: '',
+      type: '',
+      factor: 1.0,
+      offset: 0.0,
+      label: '',
+    },
+  }),
+  mounted() {
+    this.info = { ...this.config }
+  },
+}
 </script>
 
 <style lang="scss" scoped>
-
 </style>

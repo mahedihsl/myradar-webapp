@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="{{ asset('vendors/toastr/toastr.min.css', true) }}">
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.6.1/tailwind.min.css"> --}}
   <link rel="stylesheet" href="{{ asset('css/app.css', true) }}">
+  <link rel="stylesheet" href="{{ asset('css/tailwind.css', true) }}">
   @stack('style')
   <!-- Scripts -->
   <script>

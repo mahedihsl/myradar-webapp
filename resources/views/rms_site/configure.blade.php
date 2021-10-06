@@ -14,11 +14,13 @@
 
 @section('content')
 <input type="hidden" value="{{ $site_id }}" name="site_id" id="site_id" />
-<div class="row" id="app">
-    <div class="col-xs-12" v-if="!!site">
-        <div class="col-xs-12" v-for="(dev, i) in site.com_ids" :key="i" style="border-bottom: 1px solid #e0e0e0;">
+<div class="tw-w-full" id="app">
+    <div class="tw-w-full tw-flex tw-flex-col" v-if="!!site">
+        <div class="tw-w-full tw-border-b tw-border-gray-300" v-for="(dev, i) in site.com_ids" :key="i">
             <h4>Device Com. ID: @{{ dev }}</h4>
-            <pin-config v-for="(conf, j) in pinConfigsOfDevice(dev)" :key="j" />
+            <div class="tw-w-full tw-flex tw-flex-col tw-gap-y-3">
+                <pin-config v-for="(conf, j) in pinConfigsOfDevice(dev)" :key="j" :config="conf" />
+            </div>
         </div>
     </div>
 </div>
