@@ -18,6 +18,8 @@
                     <option value="20">Last 20 Days</option>
                     <option value="25">Last 25 Days</option>
                     <option value="30">Last 30 Days</option>
+                    <option value="60">Last 2 Months</option>
+                    <option value="90">Last 3 Months</option>
                 </select>
             </div>
         </div>
