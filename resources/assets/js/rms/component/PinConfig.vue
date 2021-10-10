@@ -122,7 +122,10 @@ export default {
     async remove() {
       try {
         if (confirm('Are you sure you want to remove this pin ?')) {
-          await this.$store.dispatch('removePinConfig', this.config.id)
+          await this.$store.dispatch('removePinConfig', {
+            config_id: this.config.id,
+            site_id: this.config.site_id,
+          })
         }
       } catch (error) {
         console.log('error removing config', error)

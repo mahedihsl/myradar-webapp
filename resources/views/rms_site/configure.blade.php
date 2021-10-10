@@ -22,7 +22,7 @@
                 <pin-header></pin-header>
                 <pin-config 
                     v-for="(conf, j) in pinConfigsOfDevice(dev)" 
-                    :key="j" 
+                    :key="conf.id" 
                     :config="conf">
                 </pin-config>
                 <div v-if="!pinConfigFormVisibility(+dev)"

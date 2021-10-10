@@ -47,8 +47,8 @@ export default new Vuex.Store({
         async updatePinConfig({ commit }, data) {
             const res = await axios.post(`/rms/site/pin/update`, data)
         },
-        async removePinConfig({ commit }, config_id) {
-            const res = await axios.post(`/rms/site/pin/remove`, { config_id })
+        async removePinConfig({ commit }, { config_id, site_id }) {
+            const res = await axios.post(`/rms/site/pin/remove`, { config_id, site_id })
             commit('REMOVE_PIN_CONFIG', config_id)
         },
 
