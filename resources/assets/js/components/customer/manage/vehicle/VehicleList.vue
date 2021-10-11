@@ -8,9 +8,6 @@
         <button class="btn btn-sm btn-default pull-right" @click="refreshList" style="margin-right: 10px">
             <i class="fa fa-refresh"></i>
         </button>
-        <a :href="`/geofence/manage/${customer.id}`" target="_blank" class="btn btn-sm btn-link pull-right" style="margin-right: 10px">
-            <i class="fa fa-map-marker"></i> Geofence
-        </a>
       </h3>
       <table class="table table-hover table-striped" v-if="!refreshing">
         <thead class="colored-header">

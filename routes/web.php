@@ -333,12 +333,13 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     // Route::get('/fuel/seed-groups', 'Service\FuelController@seedGroups');
     Route::get('/fuel/fetch-groups', 'Service\FuelController@fetchGroups');
 
-    Route::get('/rms/site/manage', 'RMS\SiteController@index');
+    Route::get('/rms/site/list', 'RMS\SiteController@index');
     Route::get('/rms/site/create', 'RMS\SiteController@create');
     Route::post('/rms/site/save', 'RMS\SiteController@save');
     Route::get('/rms/site/edit/{id}', 'RMS\SiteController@edit');
     Route::post('/rms/site/update', 'RMS\SiteController@update');
     Route::get('/rms/site/configure/{id}', 'RMS\SiteController@configure');
+    Route::get('/rms/site/device/bind', 'RMS\SiteController@bind');
     
     Route::get('/rms/site/info', 'RMS\SiteController@siteInfo');
     Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');

@@ -40,6 +40,10 @@ class AccessController extends Controller
                 'status' => $user->isAdmin() || $user->isAgent(),
                 'meta' => null,
             ],
+            'rms-manager' => [
+                'status' => true,
+                'meta' => null,
+            ],
         ]);
     }
 

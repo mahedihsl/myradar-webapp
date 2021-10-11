@@ -49,7 +49,6 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     public static $CUSTOMER_PRIVATE = 1;
     public static $CUSTOMER_ENTERPRISE = 2;
     public static $CUSTOMER_PUBLIC = 3;
-    public static $CUSTOMER_RMS_OWNER = 4;
 
     /**
      * The attributes that are mass assignable.

@@ -20,20 +20,26 @@ class SiteController extends Controller
       $this->rmsUserService = new RMSUserMicroservice();
     }
 
+    // public function index(Request $request)
+    // {
+    //   $user = User::find($request->user_id);
+    //   if (!$user) {
+    //     throw new \Exception('Customer not found');
+    //   }
+
+    //   $query = ['user_id' => $user->id];
+    //   $sites = $this->rmsUserService->filterSites($query);
+
+    //   return view('rms_site.index')->with([
+    //     'user' => $user,
+    //     'sites' => $sites,
+    //   ]);
+    // }
+
     public function index(Request $request)
     {
-      $user = User::find($request->user_id);
-      if (!$user) {
-        throw new \Exception('Customer not found');
-      }
-
-      $query = ['user_id' => $user->id];
-      $sites = $this->rmsUserService->filterSites($query);
-
-      return view('rms_site.index')->with([
-        'user' => $user,
-        'sites' => $sites,
-      ]);
+      $sites = $this->rmsUserService->filterSites($request->all());
+      return response()->json($sites);
     }
 
     public function create(Request $request)
@@ -45,9 +51,10 @@ class SiteController extends Controller
 
     public function save(CreateRmsSite $request)
     {
-      $this->rmsUserService->saveSite($request->all());
-      $redirectUrl = '/rms/site/manage?user_id=' . $request->get('user_id');
-      return redirect($redirectUrl);
+      $res = $this->rmsUserService->saveSite($request->all());
+      // $redirectUrl = '/rms/site/manage?user_id=' . $request->get('user_id');
+      // return redirect($redirectUrl);
+      return response()->json($res);
     }
     
     public function edit(Request $request, $id)
@@ -60,9 +67,16 @@ class SiteController extends Controller
 
     public function update(UpdateRmsSite $request)
     {
-      $this->rmsUserService->updateSite($request->all());
-      $redirectUrl = '/rms/site/manage?user_id=' . $request->get('user_id');
-      return redirect($redirectUrl);
+      $res = $this->rmsUserService->updateSite($request->all());
+      // $redirectUrl = '/rms/site/manage?user_id=' . $request->get('user_id');
+      // return redirect($redirectUrl);
+      return response()->json($res);
+    }
+
+    public function bind(Request $request)
+    {
+      $res = $this->deviceService->bindDevice($request->all());
+      return response()->json($res);
     }
 
     public function configure(Request $request, $id)

@@ -26,7 +26,6 @@ class UpdateRmsSite extends FormRequest
         return [
             'id'      => 'required',
             'name'      => 'required|min:3',
-            'user_id'   => 'required',
         ];
     }
 }
