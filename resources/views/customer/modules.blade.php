@@ -21,7 +21,7 @@
     </a>
     <a href="http://rms.myradar.com.bd/login?token={{ session('token') }}" target="_blank" class="w-1/3 flex flex-col items-center justify-center space-y-6 py-6 bg-white rounded-xl shadow-xl hover:bg-gray-100 duration-300">
       <span class="text-gray-600 font-bold text-xl">RMS Site Management</span>
-      <img src="/images/launch.svg" class="w-1/2 h-auto" alt="">
+      <img src="/images/industry-40_2.png" class="w-1/2 h-auto" alt="">
     </a>
   </div>
 </body>
