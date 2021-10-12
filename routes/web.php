@@ -373,6 +373,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/customers/api', 'User\CustomerApiController@index');
     Route::get('/customer/types/api', 'User\CustomerApiController@types');
     Route::get('/customer/info/{id}', 'Customer\ManageController@info');
+    Route::get('/customer/modules', 'User\CustomerController@modules');
     Route::get('/manage/customer/{id}', 'User\CustomerController@manage')->name('manage.customer');
     Route::get('/service/view', 'Customer\ServiceController@show')->name('service-view');
 

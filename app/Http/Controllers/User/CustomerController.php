@@ -53,6 +53,11 @@ class CustomerController extends Controller
         return abort(404);
     }
 
+    public function modules(Request $request)
+    {
+        return view('customer.modules');
+    }
+
     public function save(CreateCustomer $request)
     {
         $data = collect($request->all());

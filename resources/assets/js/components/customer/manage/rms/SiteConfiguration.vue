@@ -58,7 +58,7 @@
           </div>
           <pin-config-form
             v-if="pinConfigFormVisibility(+dev)"
-            :site-id="site_id"
+            :site-id="site.id"
             :com-id="dev"
             @close="onPinConfigFormClosed"
           >
@@ -106,7 +106,7 @@ export default {
     async onPinConfigFormClosed(comId, isSavingSuccessful) {
       if (isSavingSuccessful) {
         await this.$store.dispatch('rms/fetchPinConfigs', {
-          site_id: this.siteId,
+          site_id: this.site.id,
         })
       }
       const index = this.visibleForms.findIndex(id => id === comId)

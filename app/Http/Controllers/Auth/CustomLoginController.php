@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Device\RestAPIController;
 use App\Entities\User;
+use App\Service\Microservice\UserMicroservice;
 use Carbon\Carbon;
 use Illuminate\Support\MessageBag;
 //use Illuminate\Support\Facades\Session;
@@ -18,11 +19,11 @@ use Illuminate\Support\MessageBag;
 
 class CustomLoginController extends Controller
 {
-
+  private $userService;
 
   public function __construct()
       {
-
+        $this->userService = new UserMicroservice();
         //  $this->middleware('web');
 
         //  $this->API = new RestAPIController();
@@ -53,16 +54,24 @@ class CustomLoginController extends Controller
        if($auth_attempt==true)
        {
            $user = Auth::user();
+           
            if ($user->isEnabled()) {
+            
             if ($user->email == 'enterprise@myradar.com') {
               $url = '/enterprise/demo-modules';
             } else {
-              $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+              if ($user->type == User::$TYPE_CUSTOMER) {
+                $navigation = $this->getNavigationAfterCustomerLogin($user);
+                return redirect($navigation['path'])->with($navigation['data']);
+              } else {
+                $url = '/home';
+              }
             }
 
             return redirect($url);
+
            } else {
-            Auth::logout();
+              Auth::logout();
            }
            
        }
@@ -85,7 +94,13 @@ class CustomLoginController extends Controller
                 if ($user->email == 'enterprise@myradar.com') {
                   $url = '/enterprise/demo-modules';
                 } else {
-                  $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
+                  if ($user->type == User::$TYPE_CUSTOMER) {
+                    $navigation = $this->getNavigationAfterCustomerLogin($user);
+                    return redirect($navigation['path'])->with($navigation['data']);
+                  } else {
+                    $url = '/home';
+                  }
+                  // $url = $user->type == User::$TYPE_CUSTOMER ? '/car/tracking' : '/home';
                 }
 
                 return redirect($url);
@@ -102,6 +117,33 @@ class CustomLoginController extends Controller
 
 
 
+   }
+
+   public function getNavigationAfterCustomerLogin($user) {
+    $userAuthData = $this->userService->token($user->id);
+
+    $token = $userAuthData['token'];
+    $vehicleCount = $userAuthData['deviceCount']['vehicle'];
+    $siteCount = $userAuthData['deviceCount']['site'];
+
+    if ($vehicleCount > 0 && $siteCount > 0) {
+      return [
+        'path' => '/customer/modules',
+        'data' => [
+          'token' => $token,
+        ],
+      ];
+    } else if ($siteCount == 0) {
+      return [
+        'path' => '/car/tracking',
+        'data' => [],
+      ];
+    } else {
+      return [
+        'path' => 'http://rms.myradar.com.bd/login?token=' . $token,
+        'data' => [],
+      ];
+    }
    }
 
    public function getUserName(Request $request)

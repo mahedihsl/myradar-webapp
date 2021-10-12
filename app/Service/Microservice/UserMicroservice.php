@@ -39,6 +39,11 @@ class UserMicroservice extends BaseService
   {
     return $this->post('/auth/login', compact('phone', 'password'));
   }
+  
+  public function token($user_id)
+  {
+    return $this->post('/auth/token', compact('user_id'));
+  }
 
   public function forceLogout($session_id) {
     return $this->post('/session/force-logout', compact('session_id'));
