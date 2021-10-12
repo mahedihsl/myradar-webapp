@@ -20,6 +20,16 @@ class DeviceMicroservice extends BaseService
     return $this->post('/car/unbind', compact('car_id'));
   }
 
+  public function bindWithSite($data)
+  {
+    return $this->post('/device/bind-with-site', $data);
+  }
+
+  public function unbindFromSite($data)
+  {
+    return $this->post('/device/unbind-from-site', $data);
+  }
+
   public function bindHistory($params)
   {
     $reg_no = $params->get('reg_no', '');

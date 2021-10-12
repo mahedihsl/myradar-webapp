@@ -39,6 +39,16 @@ export const rms = {
                 state.pinConfigs.splice(index, 1)
             }
         },
+        ADD_DEVICE_TO_SITE(state, comId) {
+            const temp = state.site
+            temp.com_ids.push(+comId)
+            state.site = temp
+        },
+        REMOVE_DEVICE_FROM_SITE(state, comId) {
+            const temp = state.site
+            temp.com_ids = temp.com_ids.filter(v => v != +comId)
+            state.site = temp
+        },
     },
     actions: {
         async getSiteList({ commit }, query) {
@@ -57,6 +67,11 @@ export const rms = {
         },
         async bindDevice({ commit }, data) {
             const res = await axios.post(`/rms/site/device/bind`, data)
+            commit('ADD_DEVICE_TO_SITE', data.com_id)
+        },
+        async unbindDevice({ commit }, data) {
+            const res = await axios.post(`/rms/site/device/unbind`, data)
+            commit('REMOVE_DEVICE_FROM_SITE', data.com_id)
         },
         async fetchPinConfigs({ commit }, query) {
             const res = await axios.get(`/rms/site/pin/fetch`, { params: query })

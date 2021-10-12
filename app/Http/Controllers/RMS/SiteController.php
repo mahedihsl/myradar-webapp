@@ -75,7 +75,13 @@ class SiteController extends Controller
 
     public function bind(Request $request)
     {
-      $res = $this->deviceService->bindDevice($request->all());
+      $res = $this->deviceService->bindWithSite($request->all());
+      return response()->json($res);
+    }
+    
+    public function unbind(Request $request)
+    {
+      $res = $this->deviceService->unbindFromSite($request->all());
       return response()->json($res);
     }
 

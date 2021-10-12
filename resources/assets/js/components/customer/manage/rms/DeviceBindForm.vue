@@ -55,7 +55,7 @@ export default {
           site_id: this.site.id,
           com_id: this.com_id,
         })
-        this.$emit('binded')
+        this.$emit('binded', +this.com_id)
       } catch (error) {
         console.log('device bind error', error)
       }

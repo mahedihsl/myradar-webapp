@@ -339,7 +339,9 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::get('/rms/site/edit/{id}', 'RMS\SiteController@edit');
     Route::post('/rms/site/update', 'RMS\SiteController@update');
     Route::get('/rms/site/configure/{id}', 'RMS\SiteController@configure');
-    Route::get('/rms/site/device/bind', 'RMS\SiteController@bind');
+    
+    Route::post('/rms/site/device/bind', 'RMS\SiteController@bind');
+    Route::post('/rms/site/device/unbind', 'RMS\SiteController@unbind');
     
     Route::get('/rms/site/info', 'RMS\SiteController@siteInfo');
     Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');

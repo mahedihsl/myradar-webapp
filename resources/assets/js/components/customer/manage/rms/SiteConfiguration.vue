@@ -1,23 +1,39 @@
 <template>
   <div class="tw-w-full">
     <div class="tw-w-full tw-flex tw-flex-row tw-items-center tw-gap-x-4">
-      <button class="btn btn-sm btn-default tw-flex-shrink-0" @click="$emit('close', 'configure')">
+      <button
+        class="btn btn-sm btn-default tw-flex-shrink-0"
+        @click="$emit('close', 'configure')"
+      >
         <i class="fa fa-arrow-left"></i>
       </button>
       <h4 class="tw-flex-grow">{{ site.name }} Configuration</h4>
-      <button class="btn btn-sm btn-primary tw-flex-shrink-0" @click="showBindForm = true">
+      <button
+        class="btn btn-sm btn-primary tw-flex-shrink-0"
+        @click="showBindForm = true"
+      >
         <i class="fa fa-plug"></i>
         Bind Device
       </button>
     </div>
     <div class="tw-w-full tw-flex tw-flex-col tw-gap-y-5 tw-mt-5">
-      <DeviceBindForm v-if="showBindForm" :site="site" @close="showBindForm = false" />
+      <DeviceBindForm
+        v-if="showBindForm"
+        :site="site"
+        @binded="onBindCompleted"
+        @close="showBindForm = false"
+      />
       <div
         class="tw-w-full tw-border-b tw-border-gray-300"
         v-for="(dev, i) in site.com_ids"
         :key="i"
       >
-        <h4>Device Com. ID: {{ dev }}</h4>
+        <div class="tw-w-full tw-flex tw-flex-row tw-items-center">
+          <h4 class="tw-flex-grow">Device Com. ID: {{ dev }}</h4>
+          <button class="btn btn-sm btn-warning" @click="unbind(dev)">
+            Unbind device
+          </button>
+        </div>
         <div class="tw-w-full tw-flex tw-flex-col tw-gap-y-3">
           <pin-header></pin-header>
           <pin-config
@@ -78,6 +94,15 @@ export default {
   },
   mounted() {},
   methods: {
+    async unbind(com_id) {
+      try {
+        if (confirm('Are you sure you want unbind this device ?')) {
+          await this.$store.dispatch('rms/unbindDevice', { site_id: this.site.id, com_id })
+        }
+      } catch (error) {
+        console.log('unbind error', error)
+      }
+    },
     async onPinConfigFormClosed(comId, isSavingSuccessful) {
       if (isSavingSuccessful) {
         await this.$store.dispatch('rms/fetchPinConfigs', {
@@ -96,6 +121,9 @@ export default {
     },
     pinConfigFormVisibility(comId) {
       return this.visibleForms.includes(comId)
+    },
+    onBindCompleted(comId) {
+      this.showBindForm = false
     },
   },
 }
