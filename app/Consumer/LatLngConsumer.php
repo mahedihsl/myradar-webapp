@@ -132,7 +132,14 @@ class LatLngConsumer extends ServiceConsumer
         }
 
         try {
-            $this->service->consume($device->com_id, $lat, $lng);
+            $locationData = [
+                'device_id' => $device->id,
+                'com_id' => $device->com_id,
+                'car_id' => $device->car_id,
+                'lat' => $lat,
+                'lng' => $lng,
+            ];
+            $this->service->consume($locationData);
         } catch (\Exception $e) {
             //throw $e;
         }

@@ -20,8 +20,8 @@ class LocationMicroservice extends BaseService
     return $this->get('/api/latest', compact('com_id'));
   }
 
-  public function consume($com_id, $lat, $lng)
+  public function consume($data)
   {
-    return $this->post('/api/consume', compact('com_id', 'lat', 'lng'));
+    return $this->post('/api/consume', $data);
   }
 }

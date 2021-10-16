@@ -26,7 +26,10 @@ Route::post('/car/dates','Api\Device\RestAPIController@getCarDates');
 Route::post('/mobile/getUserLocation', 'Api\Device\RestAPIController@getUserLocation');
 
 Route::post('/logout', 'Api\Device\RestAPIController@logout');
+
 Route::post('/auth/login', 'Api\Auth\LoginController@login');
+Route::post('/auth/refresh', 'Api\Auth\LoginController@refresh');
+Route::post('/auth/profile', 'Api\Auth\LoginController@profile');
 
 Route::post('/customer/login', 'Api\Auth\AuthController@login');
 Route::get('/app/version', function() {

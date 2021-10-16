@@ -35,14 +35,25 @@ class UserMicroservice extends BaseService
     return $this->post('/session/remove-by-id', compact('session_id'));
   }
 
-  public function login($phone, $password)
+  public function login($data)
   {
-    return $this->post('/auth/login', compact('phone', 'password'));
+    return $this->post('/auth/login', $data);
   }
   
   public function token($user_id)
   {
     return $this->post('/auth/token', compact('user_id'));
+  }
+  
+  public function refresh($refresh_token)
+  {
+    return $this->post('/auth/refresh', compact('refresh_token'));
+  }
+
+  public function profile($token)
+  {
+    $headers = ['authorization' => $token];
+    return $this->post('/auth/profile', [], $headers);
   }
 
   public function forceLogout($session_id) {
