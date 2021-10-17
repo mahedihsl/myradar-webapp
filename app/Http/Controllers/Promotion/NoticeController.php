@@ -93,7 +93,8 @@ class NoticeController extends Controller
             $notice = $this->repository->create([
                 'message' => $message,
                 'via' => $via,
-                'pending' => $unpaid->count(),
+                // 'pending' => $unpaid->count(),
+                'pending' => 1,
                 'sent' => 0,
                 'failed' => 0,
             ]);
@@ -174,7 +175,8 @@ class NoticeController extends Controller
                 $sent = 1;
                 if ($model->via == 'sms') {
                     $s = new SmsService();
-                    $reply = $s->send($model->to, $model->payload);
+                    
+                    $reply = $s->send($model->to, str_replace("\r\n", "\n", $model->payload));
                     $sent = $reply['status'];
                 } else if ($model->via == 'push') {
                     $service = new PushMicroservice();
