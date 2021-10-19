@@ -59,9 +59,9 @@ class PositionRepositoryEloquent extends BaseRepository implements PositionRepos
         if (!$device->car->status) return null;
         
         $device->update([ 'live_track' => Carbon::now() ]);
-        if ( ! is_null($device->meta->get('pos'))) {
-            return $device->meta->get('pos');
-        }
+        // if ( ! is_null($device->meta->get('pos'))) {
+        //     return $device->meta->get('pos');
+        // }
 
         $position = $this->latest($deviceId);
         if ( ! is_null($position)) {
