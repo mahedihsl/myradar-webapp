@@ -36,6 +36,9 @@ class AuthUserTransformer extends TransformerAbstract
                 'api_token' => $model->api_token,
             ],
             'cars' => $model->devices
+                        ->filter(function($device) {
+                            return !is_null($device->car_id);
+                        })
                         ->map(function($device) {
                             if ( ! $device->car->status) {
                                 return null;
