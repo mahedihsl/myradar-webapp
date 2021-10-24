@@ -108,7 +108,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('partial.footer')
+    @include('partial.footer', ['user' => $user])
 
     <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Entities\User;
+use App\Service\Microservice\SupervisorMicroservice;
+use Exception;
 
 class HomeController extends Controller
 {
@@ -71,5 +73,15 @@ class HomeController extends Controller
     public function privacy1(Request $request)
     {
         return view('misc.privacy1');
+    }
+
+    public function runningServer(Request $request)
+    {
+        try {
+            $service = new SupervisorMicroservice();
+            return response()->json($service->runningServer());
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 }

@@ -38,6 +38,7 @@ Route::get('/app/version', function() {
 Route::get('/health-check', function() {
     return response()->json(['status' => true]);
 });
+Route::get('/running-server', 'HomeController@runningServer');
 
 Route::get('/device/find-by-imei', 'Api\Device\LoginController@find');
 

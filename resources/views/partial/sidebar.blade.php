@@ -12,29 +12,23 @@
         <input type="hidden" name="auth_id" value="{{$user->id}}">
       </div>
     </div>
-    <!-- search form -->
-    <form action="#" method="get" class="sidebar-form">
-      <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search...">
-        <span class="input-group-btn">
-          <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-            <i class="fa fa-search"></i>
-          </button>
-        </span>
-      </div>
-    </form>
-    <!-- /.search form -->
+    @if ($user->type != 4)
+    <span class="tw-hidden tw-bg-green-500 tw-bg-red-500"></span>
+    <div class="tw-w-full tw-bg-gray-200 tw-text-white tw-font-bold tw-text-lg" id="server_tag">
+
+    </div>
+    @endif
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MENU</li>
       @if($user->type == 4)
-        @include('partial.menu.customer', ['user' => $user])
+      @include('partial.menu.customer', ['user' => $user])
       @elseif ($user->type == 2)
-        @include('partial.menu.sales')
+      @include('partial.menu.sales')
       @elseif ($user->type == 3)
-        @include('partial.menu.ops')
+      @include('partial.menu.ops')
       @elseif ($user->type == 1)
-        @include('partial.menu.admin')
+      @include('partial.menu.admin')
       @endif
       <li class="header">Misc.</li>
       <li>
@@ -47,14 +41,14 @@
       </li>
       <li>
         {{-- <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> --}}
-        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-          <i class="fa fa-power-off text-red"></i> <span>Logout</span>
-          {{-- <span class="pull-right-container">
-            <small class="label pull-right bg-green">Hot</small>
-          </span> --}}
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-          </form>
-        </a>
+          <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <i class="fa fa-power-off text-red"></i> <span>Logout</span>
+            {{-- <span class="pull-right-container">
+              <small class="label pull-right bg-green">Hot</small>
+            </span> --}}
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            </form>
+          </a>
       </li>
     </ul>
   </section>

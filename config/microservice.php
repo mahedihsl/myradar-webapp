@@ -57,6 +57,10 @@ return [
     'url' => 'http://myradar-supervisor',
     'port' => 6014,
   ],
+  'supervisor-aws' => [
+    'url' => 'http://54.255.200.156',
+    'port' => 6014,
+  ],
   'poi' => [
     'url' => 'http://myradar-poi',
     'port' => 6015,

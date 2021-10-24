@@ -4,14 +4,14 @@ namespace App\Service\Microservice;
 
 class SupervisorMicroservice extends BaseService
 {
-  const SERVICE_NAME = 'supervisor';
+  const SERVICE_NAME = 'supervisor-aws';
 
   public function __construct() {
     parent::__construct(self::SERVICE_NAME);
   }
 
-  public function trimData()
+  public function runningServer()
   {
-    return $this->post('/api/trim-data');
+    return $this->get('/api/running-server');
   }
 }
