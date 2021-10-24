@@ -25,14 +25,4 @@ $(function () {
     });
 
     showToastMessage();
-
-    var hasServerLabel = $('#server_tag').length
-    if (hasServerLabel) {
-        $.get('/api/running-server', function(data) {
-            const label = $('#server_tag').first()
-            const style = data.state === 'normal' ? 'tw-p-4 tw-bg-green-500' : 'tw-p-4 tw-bg-red-500'
-            label.addClass(style).text(data.label)
-        })
-        
-    }
 });

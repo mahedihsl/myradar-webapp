@@ -13,9 +13,11 @@
       </div>
     </div>
     @if ($user->type != 4)
-    <span class="tw-hidden tw-bg-green-500 tw-bg-red-500"></span>
-    <div class="tw-w-full tw-bg-gray-200 tw-text-white tw-font-bold tw-text-lg" id="server_tag">
-
+    <div class="tw-w-full tw-bg-green-500 tw-text-white tw-font-bold tw-text-xl tw-p-4 block">
+      Primary Server
+    </div>
+    <div class="tw-w-full tw-bg-red-500 tw-text-white tw-font-bold tw-text-xl tw-p-4 hidden">
+      Backup Server
     </div>
     @endif
     <!-- sidebar menu: : style can be found in sidebar.less -->
