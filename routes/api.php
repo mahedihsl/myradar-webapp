@@ -95,6 +95,12 @@ Route::post('/radar/recharge', 'Api\RadarRecharge\RadarController@rechargeCard')
 Route::post('/radar/confirm', 'Api\RadarRecharge\RadarController@confirmWrite');
 Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
 
+// For RMS
+Route::get('/rms/site/list', 'RMS\SiteController@index');
+Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
+Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
+Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
+
 Route::get('/mileage/list', 'Api\Position\MileageController@list');
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
 Route::get('/location/history', 'Api\Position\TrackingController@history');

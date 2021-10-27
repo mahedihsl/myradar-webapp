@@ -140,7 +140,7 @@ class CustomLoginController extends Controller
       ];
     } else {
       return [
-        'path' => 'http://rms.myradar.com.bd/login?token=' . $token,
+        'path' => 'http://rms.myradar.com.bd/dashboard?token=' . $token,
         'data' => [],
       ];
     }

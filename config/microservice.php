@@ -91,8 +91,28 @@ return [
     'url' => 'http://rms-receiver',
     'port' => 5000,
   ],
+  'rms-mains' => [
+    'url' => 'http://rms-mains',
+    'port' => 5001,
+  ],
+  'rms-dg' => [
+    'url' => 'http://rms-dg',
+    'port' => 5002,
+  ],
+  'rms-battery' => [
+    'url' => 'http://rms-battery',
+    'port' => 5004,
+  ],
   'rms-user' => [
     'url' => 'http://rms-user',
     'port' => 5004,
+  ],
+  'rms-temperature' => [
+    'url' => 'http://rms-temperature',
+    'port' => 5005,
+  ],
+  'rms-door' => [
+    'url' => 'http://rms-door',
+    'port' => 5006,
   ],
 ];
