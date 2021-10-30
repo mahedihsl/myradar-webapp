@@ -9,4 +9,9 @@ class RMSMainsMicroservice extends BaseService
   public function __construct() {
     parent::__construct(self::SERVICE_NAME);
   }
+
+  public function offhours($query)
+  {
+    return $this->get('/api/offhours', $query);
+  }
 }

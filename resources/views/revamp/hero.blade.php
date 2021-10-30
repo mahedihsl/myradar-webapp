@@ -26,9 +26,12 @@
           <img src="{{ asset('images/btn-playstore.png', true) }}" class="img-fluid" alt="">  
         </a>
       </div>
-      <h2 class="text-center bangla" style="font-weight: 800; color: #424242; font-size: 24px; margin-top: 30px;">
+      <h1 class="text-center bangla" style="font-weight: 800; color: #4154f1; font-size: 30px; margin-top: 30px;">
+        Best vehicle tracking system in Bangladesh
+      </h1>
+      <p class="text-center bangla" style="font-weight: 700; color: #424242; font-size: 20px; margin-top: 10px;">
         @lang('header.banner.title')
-      </h2>
+      </p>
       <p class="text-enter bangla" style="margin-top: 10px; font-size: 16px;">
         @lang('header.banner.caption')
       </p>

@@ -99,7 +99,9 @@ Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
 Route::get('/rms/site/list', 'RMS\SiteController@index');
 Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
+Route::get('/rms/mains/offhours', 'RMS\MainsController@offhours');
 Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
+Route::get('/rms/temperature/history', 'RMS\TemperatureController@history');
 
 Route::get('/mileage/list', 'Api\Position\MileageController@list');
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');

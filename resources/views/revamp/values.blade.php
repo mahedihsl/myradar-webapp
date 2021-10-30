@@ -4,8 +4,8 @@
   <div class="container" data-aos="fade-up">
 
     <header class="section-header">
-      <h2>Our Values</h2>
-      <p class="bangla">@lang('values.title')</p>
+      <h6>Our Values</h6>
+      <h2 class="bangla" style="font-size: 24px;">@lang('values.title')</h2>
     </header>
 
     <div class="row">
