@@ -15,6 +15,16 @@ class MainsController extends Controller
       $this->rmsMainsService = new RMSMainsMicroservice();
     }
 
+    public function recent(Request $request)
+    {
+      try {
+        $response = $this->rmsMainsService->recent($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+
     public function offhours(Request $request)
     {
       try {
