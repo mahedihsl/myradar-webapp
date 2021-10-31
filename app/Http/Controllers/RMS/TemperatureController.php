@@ -15,6 +15,16 @@ class TemperatureController extends Controller
       $this->rmsTemperatureService = new RMSTemperatureMicroservice();
     }
 
+    public function recent(Request $request)
+    {
+      try {
+        $response = $this->rmsTemperatureService->recent($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+
     public function history(Request $request)
     {
       try {
