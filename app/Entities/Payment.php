@@ -93,4 +93,23 @@ class Payment extends Eloquent implements Transformable
         return $types[$this->type - 1];
     }
 
+    public function getPaidAmountForMonth($month, $year)
+    {
+        $month = intval($month) - 1;
+        $year = intval($year);
+
+        $monthlyBill = $this->car->bill;
+        $paidAmount = $this->amount;
+
+        foreach ($this->months as $item) {
+            if (intval($item[0]) == $month && intval($item[1]) == $year) {
+                $paidAmount = max($paidAmount, 0);
+                $paidAmount = min($paidAmount, $monthlyBill);
+                return $paidAmount;
+            }
+            $paidAmount -= $monthlyBill;
+        }
+        return 0;
+    }
+
 }

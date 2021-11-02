@@ -19,7 +19,7 @@ class BillDrilldownExportTransformer extends TransformerAbstract
      */
     public function transform(Payment $model, $type, $date)
     {
-        $amount = $type == 1 ? $model->car->bill : $model->amount;
+        $amount = $type == 1 ? $model->getPaidAmountForMonth($date->month, $date->year) : $model->amount;
         $date = $type == 2 ? $model->paid_on->format('j M Y') : $date->format('M Y');
 
         return [

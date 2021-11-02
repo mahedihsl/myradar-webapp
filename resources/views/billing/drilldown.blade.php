@@ -71,7 +71,8 @@
           @endphp
           @foreach ($items as $key => $item)
             @php
-              $amount = $filter == 1 ? $item->car->bill : $item->amount;
+              // $amount = $filter == 1 ? $item->car->bill : $item->amount;
+              $amount = $filter == 1 ? $item->getPaidAmountForMonth($month, $year) : $item->amount;
               $date = $filter == 2 ? $item->paid_on->format('j M Y') : Carbon\Carbon::createFromDate($year, $month, 1)->format('M Y');
             @endphp
             <tr>
