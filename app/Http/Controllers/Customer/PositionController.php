@@ -21,10 +21,10 @@ class PositionController extends Controller
     {
         $user = $this->getWebUser();
 
-        if ($user->devices()->exists() || !is_null($user->shared_cars)) {
+        if ($user->devices()->whereNotNull('car_id')->exists() || !is_null($user->shared_cars)) {
             $deviceId = $request->get('device_id', '');
             if ( ! $deviceId) {
-                $device = $user->devices()->first();
+                $device = $user->devices()->whereNotNull('car_id')->first();
                 if (is_null($device)) {
 
                     $shared_carIds = $user->shared_cars;
