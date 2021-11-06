@@ -9,4 +9,9 @@ class RMSBatteryMicroservice extends BaseService
   public function __construct() {
     parent::__construct(self::SERVICE_NAME);
   }
+
+  public function recent($query)
+  {
+    return $this->get('/api/recent', $query);
+  }
 }

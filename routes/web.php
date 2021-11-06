@@ -276,7 +276,6 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/save/payment', 'Payment\PaymentController@save');
     Route::get('/get/payments/{userId}','Payment\PaymentController@getPayments');
 
-
     Route::post('/promotion/notification','Promotion\PromotionController@notification');
     Route::get('/promotion/schemelist','Promotion\PromotionController@show');
     Route::get('/promo/code/list','Promotion\PromoCodeController@show');

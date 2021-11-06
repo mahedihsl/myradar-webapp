@@ -101,7 +101,7 @@ return [
   ],
   'rms-battery' => [
     'url' => 'http://rms-battery',
-    'port' => 5004,
+    'port' => 5003,
   ],
   'rms-user' => [
     'url' => 'http://rms-user',
