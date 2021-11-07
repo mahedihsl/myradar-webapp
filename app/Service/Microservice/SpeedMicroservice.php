@@ -24,5 +24,10 @@ class SpeedMicroservice extends BaseService
   {
     return $this->get('/find', compact('car_id'));
   }
+  
+  public function test($query)
+  {
+    return $this->get('/test', $query);
+  }
 
 }

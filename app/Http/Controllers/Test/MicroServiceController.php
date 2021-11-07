@@ -46,7 +46,7 @@ class MicroServiceController extends Controller
 
     public function speed(Request $request)
     {
-        $car_id = '5f63facb36374b3de61bae06';
+        $car_id = $request->get('car_id');
         $speed = $request->get('speed');
 
         $service = new SpeedMicroservice();

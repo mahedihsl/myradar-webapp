@@ -9,9 +9,20 @@ use App\Events\SpeedLimitCrossEvent;
 use App\Listeners\SpeedLimitCrossListener;
 use App\Service\OneSignalService;
 use App\Jobs\PushNotificationJob;
+use App\Service\Microservice\SpeedMicroservice;
 
 class SpeedLimitController extends Controller
 {
+  public function diagnose(Request $request)
+  {
+    $service = new SpeedMicroservice();
+    $data = $service->test([
+      'car_id' => $request->get('car_id'),
+      'speed' => $request->get('speed'),
+    ]);
+    return response()->json($data);
+  }
+
   public function noti(Request $request)
   {
     $res = collect();

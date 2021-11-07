@@ -61,6 +61,7 @@ Route::get('/test/microservice/mileage', 'Test\MicroServiceController@mileage');
 Route::get('/test/microservice/sms', 'Test\MicroServiceController@testSms');
 Route::get('/test/microservice/engine', 'Test\MicroServiceController@testEngineNotification');
 // Route::get('/test/microservice/supervisor', 'Test\MicroServiceController@trimDatabase');
+Route::get('/test/speed/diagnose', 'Test\SpeedLimitController@diagnose');
 Route::get('/test/fuel-events', 'Test\FuelMeterController@test');
 Route::get('/test/mileage-push', 'Test\NotificationController@testMileagePush');
 Route::post('/test/websocket', 'Test\SocketController@send');
