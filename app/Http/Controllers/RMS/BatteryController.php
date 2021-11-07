@@ -24,4 +24,14 @@ class BatteryController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
+
+    public function healthHistory(Request $request)
+    {
+      try {
+        $response = $this->rmsBatteryService->healthHistory($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 }

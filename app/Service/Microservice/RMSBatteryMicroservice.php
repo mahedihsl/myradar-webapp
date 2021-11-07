@@ -14,4 +14,9 @@ class RMSBatteryMicroservice extends BaseService
   {
     return $this->get('/api/recent', $query);
   }
+  
+  public function healthHistory($query)
+  {
+    return $this->get('/api/health-history', $query);
+  }
 }
