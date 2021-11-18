@@ -28,6 +28,7 @@ class CampaignController extends Controller
             'name' => $request->get('name'),
             'phone' => $request->get('phone'),
             'email' => $request->get('email'),
+            'type' => $request->get('type', 'general_lead'),
         ]);
 
         return redirect()->back()->with([
@@ -38,7 +39,7 @@ class CampaignController extends Controller
     public function leads(Request $request)
     {
         return view('promotion.leads')->with([
-            'leads' => Enroll::paginate(),
+            'leads' => Enroll::orderBy('created_at', 'desc')->paginate(),
         ]);
     }
 }

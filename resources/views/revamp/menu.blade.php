@@ -17,7 +17,7 @@
         <li><a class="bangla nav-link scrollto" href="{{ route('login', ['demo' => 'yes']) }}">@lang('header.menu.demo')</a></li>
         <li>
           <a class="nav-link scrollto" href="{{$base}}#contact">
-            <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite"
+            <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__heartBeat animate__infinite"
               alt="" style="width: 24px;" />
             <span class="bangla" style="margin-left: 12px;">@lang('header.menu.phone')</span>
           </a>

@@ -33,6 +33,10 @@ class MessageController extends Controller
     {
         $item = $this->repository->save(collect($request->all()));
 
+        if ( ! $request->ajax()) {
+            return redirect()->back();
+        }
+
         if (is_null($item)) {
             return response()->error('Message Not Sent');
         }

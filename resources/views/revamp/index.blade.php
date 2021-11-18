@@ -52,27 +52,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
-
-  {{-- <!-- Facebook Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '265998565115584');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=265998565115584&ev=PageView&noscript=1" /></noscript>
-  <!-- End Facebook Pixel Code --> --}}
+  <link href="{{ asset('css/tailwind.css', true) }}" rel="stylesheet">
 
   <!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
+  <script>
+    !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -84,9 +68,8 @@
   fbq('track', 'PageView');
   </script>
   <noscript>
-   <img height="1" width="1" 
-  src="https://www.facebook.com/tr?id=948521199337536&ev=PageView
-  &noscript=1"/>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=948521199337536&ev=PageView
+  &noscript=1" />
   </noscript>
   <!-- End Facebook Pixel Code -->
 </head>
@@ -96,8 +79,9 @@
   @include('revamp.menu', ['base' => ''])
 
   <div class="fab-links">
-    <button class="bg-pink" data-bs-toggle="modal" data-bs-target="#phoneNumberModal">
-      <i class="fas fa-phone-alt"></i>
+    <button class="tw-bg-purple-600" id="offer-btn">
+      <img src="{{ asset('images/icon/discount.png') }}" alt=""
+        class="tw-w-7 tw-h-7 animate__animated animate__tada animate__slow animate__infinite">
     </button>
     <a class="bg-blue" href="#contact">
       <i class="fab fa-facebook-messenger"></i>
@@ -105,19 +89,92 @@
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="phoneNumberModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Call Us</h5>
-        </div>
-        <div class="modal-body">
-          <p class="bangla">@lang('header.menu.phone') <br>@lang('header.menu.phone2')</p>
-        </div>
-        {{-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div> --}}
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="tw-fixed tw-z-10 tw-inset-0 tw-overflow-y-auto tw-hidden" id="offer-modal" aria-labelledby="modal-title"
+    role="dialog" aria-modal="true">
+    <div
+      class="tw-flex tw-items-center tw-justify-center tw-min-h-screen tw-pt-4 tw-px-4 tw-pb-20 tw-text-center sm:tw-block sm:tw-p-0">
+      <!--
+      Background overlay, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+      <div class="tw-fixed tw-inset-0 tw-bg-gray-500 tw-bg-opacity-75 tw-transition-opacity" aria-hidden="true"></div>
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span class="tw-hidden sm:tw-inline-block sm:tw-align-middle sm:tw-h-screen" aria-hidden="true">&#8203;</span>
+
+      <!--
+      Modal panel, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+
+      <div
+        class="tw-inline-block tw-align-bottom tw-bg-white tw-rounded-lg tw-text-left tw-overflow-hidden tw-shadow-xl tw-transform tw-transition-all sm:tw-mt-2 sm:tw-align-middle sm:tw-max-w-lg sm:tw-w-full">
+        <form action="/enroll/save" method="post" class=" tw-w-full">
+          {!! csrf_field() !!}
+          <div class="tw-bg-white tw-px-4 tw-pt-5 tw-pb-4 sm:tw-p-6 sm:tw-pb-4">
+            <div class="sm:tw-flex sm:tw-items-start">
+              <div
+                class="tw-mx-auto tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-h-12 tw-w-12 tw-rounded-full tw-bg-red-100 sm:tw-mx-0 sm:tw-h-10 sm:tw-w-10">
+                <img src="{{ asset('images/icon/offer.png') }}" alt="" class="tw-w-6 tw-h-6">
+              </div>
+              <div class="tw-mt-3 tw-text-center sm:tw-mt-0 sm:tw-ml-4 sm:tw-text-left">
+                <h3 class="tw-text-lg tw-leading-6 tw-font-medium tw-text-gray-900" id="modal-title">
+                  Special Offer
+                </h3>
+                <div class="tw-mt-2">
+                  <p class="tw-text-sm tw-text-gray-800">
+                    To Get 2000 Taka Discount register now
+                  </p>
+
+                  <input type="hidden" name="type" value="offer_lead">
+                  <div class="row gy-4">
+
+                    <div class="col-md-6">
+                      <input type="text" name="name" class="form-control" placeholder="Your Name">
+                    </div>
+
+                    <div class="col-md-6 ">
+                      <input type="text" class="form-control" name="phone" placeholder="Your Phone Number" required>
+                      @if ($errors->has('phone'))
+                      <span class="help-block">
+                        <div class="">{{ $errors->first('phone') }}</div>
+                      </span>
+                      @endif
+                    </div>
+
+                    <div class="col-md-12">
+                      <textarea class="form-control" name="message" rows="6" placeholder="Message"></textarea>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tw-bg-gray-50 tw-px-4 tw-py-3 sm:tw-px-6 sm:tw-flex sm:tw-flex-row-reverse">
+            <button type="submit"
+              class="tw-w-full tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-transparent tw-shadow-sm tw-px-4 tw-py-2 tw-bg-green-600 tw-text-base tw-font-medium tw-text-white hover:tw-bg-green-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-red-500 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm">
+              Register
+            </button>
+            <button type="button" id="offer-close"
+              class="tw-mt-3 tw-w-full tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-gray-200 tw-shadow-sm tw-px-4 tw-py-2 tw-bg-white tw-text-base tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500 sm:tw-mt-0 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm">
+              Close
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -380,7 +437,8 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  {{-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script> --}}
+  {{-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script> --}}
   <script src="{{ asset('landing2/assets/vendor/aos/aos.js', true) }}"></script>
   <script src="{{ asset('landing2/assets/vendor/php-email-form/validate.js', true) }}"></script>
   <script src="{{ asset('landing2/assets/vendor/swiper/swiper-bundle.min.js', true) }}"></script>
@@ -392,7 +450,9 @@
   <!-- Template Main JS File -->
   <script src="{{ asset('landing2/assets/js/main.js', true) }}"></script>
 
-  {{-- <script>if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } </script> --}}
+  {{-- <script>
+    if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } 
+  </script> --}}
 </body>
 
 </html>
