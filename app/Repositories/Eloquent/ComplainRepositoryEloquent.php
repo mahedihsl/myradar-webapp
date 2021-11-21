@@ -32,17 +32,18 @@ class ComplainRepositoryEloquent extends BaseRepository implements ComplainRepos
     {
         $car = Car::where('reg_no', $data->get('reg_no'))->first();
         $complain = $this->create([
-                      'title' => $data->get('title'),
-                      'body'  => $data->get('body'),
-                      'emp'   => $data->get('emp'),
-                      'type'  => $data->get('type'),
-                      'reg_no'=> $data->get('reg_no'),
-                      'status'=> $data->get('status'),
-					  'responsible' => $data->get('responsible'),
-                      'car_id'=> $car->id,
-                      'token' => $this->generate(),
-                      'when'  => Carbon::now(),
-                    ]);
+            'title' => $data->get('title'),
+            'body'  => $data->get('body'),
+            'emp'   => $data->get('emp'),
+            'type'  => $data->get('type'),
+            'reg_no'=> $data->get('reg_no'),
+            'status'=> $data->get('status'),
+            'responsible' => $data->get('responsible'),
+            'car_id'=> $car->id,
+            'token' => $this->generate(),
+            'when'  => Carbon::now(),
+            'closed_at'  => null,
+        ]);
         return $complain;
     }
 
@@ -56,14 +57,12 @@ class ComplainRepositoryEloquent extends BaseRepository implements ComplainRepos
         $model = $this->find($data->get('id'));
         $comm = $model->comment;
 
-        $ara['status'] = $newStatus;
         if($data->get('comment') != "") {
             array_push($comm, [
                 'body' => $data->get('comment'),
                 'who' => $data->get('who'),
 				'when' => time(),
             ]);
-            $ara['comment'] = $data->get('comment');
         }
 
         $model->update([
@@ -71,9 +70,9 @@ class ComplainRepositoryEloquent extends BaseRepository implements ComplainRepos
             'status' => $newStatus,
             'comment' => $comm,
 			'responsible' => $responsible,
+            'closed_at' => $newStatus == "closed" ? Carbon::now() : null,
         ]);
 
-        // $complain = $this->update($ara, $data->get('id'));
         if($newStatus == 'closed' && $newStatus != $status){
           event(new ComplainClosed($model));
         }

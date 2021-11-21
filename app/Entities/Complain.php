@@ -16,7 +16,15 @@ class Complain extends Eloquent implements Presentable
 {
     use PresentableTrait;
     protected $guarded = [];
-    protected $dates = ['when'];
+    protected $dates = ['when', 'closed_at'];
+
+    public function getDurationBeforeClosing()
+    {
+        if (is_null($this->closed_at)) {
+            return '--';
+        }
+        return ($this->when->diffInDays($this->closed_at) + 1) . ' days';
+    }
 
 	public function getResponsibleAttribute($value)
 	{

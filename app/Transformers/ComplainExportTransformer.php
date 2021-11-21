@@ -48,6 +48,7 @@ class ComplainExportTransformer extends TransformerAbstract
             'Creator' => $model->emp,
             'Responsible' => $teams[$model->responsible],
             'When' => $model->when->diffForHumans(),
+            'Closed Within' => $model->getDurationBeforeClosing(),
             'Type' => $model->type,
             'Description' => $model->body,
             'Comment #1' => $getComment($model->comment, 0),
