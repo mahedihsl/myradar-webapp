@@ -34,7 +34,17 @@ class ServiceController extends Controller
 			$com_id = intval($request->get('ss'));
 
 			try {
-				if (in_array($com_id, [19990, 32289, 18638, 52207, 14646, 21486, 15037])) {
+				$rmsKeys = collect([
+					'DM1', 'DM2',
+					'DM3', 'DM4',
+					'DM5', 'DM6',
+					'DM7', 'DM8',
+					'AM1', 'AM2',
+					'AM3', 'AM4',
+					'AM5', 'AM6',
+				]);
+				$intersect = collect($request->all())->keys()->intersect($rmsKeys)->values();
+				if ($intersect->count() == $rmsKeys->count()) {
 					ServiceString::create([
 						'com_id' => intval($com_id),
 						'data' => $request->all(),
@@ -45,7 +55,7 @@ class ServiceController extends Controller
 					return '0,1'; // DC1,DC2
 				}
 			} catch (\Exception $e) {
-				
+				Log::info('rms-string identification error', ['message' => $e->getMessage()]);
 			}
 		
 
