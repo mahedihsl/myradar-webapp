@@ -27,6 +27,7 @@
         @else
           <form class="contact100-form validate-form" action="/enroll/save" method="post">
             {!! csrf_field() !!}
+						<input type="hidden" name="type" value="general_lead">
   					<span class="contact100-form-title">
   						To Get 2000 Taka Discount register now
   					</span>

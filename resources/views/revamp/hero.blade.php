@@ -40,8 +40,8 @@
           <span class="@lang('misc.font')">@lang('header.banner.action')</span>
           <i class="bi bi-arrow-right text-white"></i>
         </a>
-        <a href="#" id="offer-btn"
-          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center tw-bg-purple-600 tw-gap-x-4">
+        <a href="#" id="offer-btn" style="background: #3B3B98;"
+          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center tw-gap-x-4">
           <img src="{{ asset('images/icon/giftbox.png') }}" alt=""
             class="tw-w-6 tw-h-6 animate__animated animate__tada animate__slow animate__infinite">
           <span class="@lang('misc.font')">@lang('header.banner.coupon')</span>

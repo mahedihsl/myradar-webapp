@@ -37,6 +37,11 @@ class CampaignController extends Controller
         } catch (\Throwable $th) {
             $status = 0;
         }
+
+        if ($request->ajax()) {
+            return response()->ok('Message Sent');
+        }
+
         return redirect()->back()->with([
             'status' => $status,
         ]);
@@ -44,8 +49,12 @@ class CampaignController extends Controller
 
     public function leads(Request $request)
     {
+        $query = Enroll::orderBy('created_at', 'desc');
+        if ($request->type) {
+            $query = $query->where('type', $request->type);
+        }
         return view('promotion.leads')->with([
-            'leads' => Enroll::orderBy('created_at', 'desc')->paginate(),
+            'leads' => $query->paginate(),
         ]);
     }
 }

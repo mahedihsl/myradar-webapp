@@ -244,8 +244,9 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="{{route('save-message')}}" method="post" class="php-email-form">
+            <form action="/enroll/save" method="post" class="php-email-form">
               {!! csrf_field() !!}
+              <input type="hidden" name="type" value="message_lead">
               <div class="row gy-4">
 
                 <div class="col-md-6">
