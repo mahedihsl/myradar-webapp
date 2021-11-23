@@ -6,4 +6,5 @@ return [
   'currency' => 'Taka',
   'corporate_partner' => 'Corporate Partner',
   'contact_us' => 'Contact Us',
+  'font' => '',
 ];

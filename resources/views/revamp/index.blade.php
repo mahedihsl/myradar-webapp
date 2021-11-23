@@ -54,6 +54,40 @@
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
   <link href="{{ asset('css/tailwind.css', true) }}" rel="stylesheet">
 
+  <style>
+    @keyframes tada {
+      from {
+        transform: scale3d(1, 1, 1);
+      }
+
+      10%,
+      20% {
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      }
+
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: scale3d(1.5, 1.5, 1.5) rotate3d(0, 0, 1, 3deg);
+      }
+
+      40%,
+      60%,
+      80% {
+        transform: scale3d(1.5, 1.5, 1.5) rotate3d(0, 0, 1, -3deg);
+      }
+
+      to {
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    .tada {
+      animation-name: tada;
+    }
+  </style>
+
   <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -91,7 +125,7 @@
       <div class="container" data-aos="fade-up">
         <!-- Feature Icons -->
         <div class="row feature-icons" data-aos="fade-up">
-          <h3 class="bangla">@lang('misc.mobile_app')</h3>
+          <h3 class="@lang('misc.font')">@lang('misc.mobile_app')</h3>
 
           <div class="row">
             <div class="col-xs-12 d-flex flex-column flex-lg-row">
@@ -143,7 +177,7 @@
 
         <header class="section-header">
           <h2></h2>
-          <p class="bangla">@lang('misc.corporate_partner')</p>
+          <p class="@lang('misc.font')">@lang('misc.corporate_partner')</p>
         </header>
 
         <div class="clients-wrapper">

@@ -79,20 +79,20 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="bangla nav-link scrollto active" href="#hero">হোম</a></li>
-          <li><a class="bangla nav-link scrollto" href="#features">ফিচার</a></li>
-          <li><a class="bangla nav-link scrollto" href="#services">সেবাসমূহ</a></li>
-          <li><a class="bangla nav-link scrollto" href="#mobile">মোবাইল অ্যাপ</a></li>
-          <li><a class="bangla nav-link scrollto" href="#pricing">প্যাকেজ</a></li>
-          <li><a class="bangla nav-link scrollto" href="{{ route('login', ['demo' => 'yes']) }}">ফ্রি ডেমো</a></li>
+          <li><a class="@lang('misc.font') nav-link scrollto active" href="#hero">হোম</a></li>
+          <li><a class="@lang('misc.font') nav-link scrollto" href="#features">ফিচার</a></li>
+          <li><a class="@lang('misc.font') nav-link scrollto" href="#services">সেবাসমূহ</a></li>
+          <li><a class="@lang('misc.font') nav-link scrollto" href="#mobile">মোবাইল অ্যাপ</a></li>
+          <li><a class="@lang('misc.font') nav-link scrollto" href="#pricing">প্যাকেজ</a></li>
+          <li><a class="@lang('misc.font') nav-link scrollto" href="{{ route('login', ['demo' => 'yes']) }}">ফ্রি ডেমো</a></li>
           <li>
             <a class="nav-link scrollto" href="#contact">
               <img src="{{ asset('images/phone-call.svg') }}" class="animate__animated animate__tada animate__infinite"
                 alt="" style="width: 24px;" />
-              <span class="bangla" style="margin-left: 12px;">+8801907888839</span>
+              <span class="@lang('misc.font')" style="margin-left: 12px;">+8801907888839</span>
             </a>
           </li>
-          <li><a class="getstarted scrollto bangla" href="{{ route('login') }}">লগ ইন</a></li>
+          <li><a class="getstarted scrollto @lang('misc.font')" href="{{ route('login') }}">লগ ইন</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -136,15 +136,15 @@
           style="width: 100%;" />
         <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt=""
           style="width: 100%;" />
-        <h2 class="text-center bangla" style="font-weight: 800; color: #424242; font-size: 24px;">
+        <h2 class="text-center @lang('misc.font')" style="font-weight: 800; color: #424242; font-size: 24px;">
           মাইরাডার অ্যাপ এর স্মার্ট ফিচারে, গাড়ি থাকুক নিরাপদে
         </h2>
-        <p class="text-enter bangla" style="margin-top: 10px; font-size: 16px;">
+        <p class="text-enter @lang('misc.font')" style="margin-top: 10px; font-size: 16px;">
           আপনার প্রিয় গাড়ির সুরক্ষায়, আস্থা ও বিশ্বাসের আরেক নাম মাইরাডার
         </p>
         <a href="#pricing" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
           class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-          <span class="bangla">প্যাকেজ দেখুন</span>
+          <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
           <i class="bi bi-arrow-right text-white"></i>
         </a>
       </div>
@@ -160,7 +160,7 @@
 
         <header class="section-header">
           <h2>Our Values</h2>
-          <p class="bangla">স্মার্ট জিপিএস ট্র্যাকার</p>
+          <p class="@lang('misc.font')">স্মার্ট জিপিএস ট্র্যাকার</p>
         </header>
 
         <div class="row">
@@ -168,24 +168,24 @@
           <div class="col-lg-4">
             <div class="box" data-aos="fade-up" data-aos-delay="200">
               <img src="{{ asset('landing2/assets/image/live_tracking.png', true) }}" class="img-fluid" alt="">
-              <h3 class="bangla">লাইভ ট্র্যাকিং</h3>
-              <p class="bangla">লাইভ ট্র্যাকিং এর মাধ্যমে জানতে পারবেন গাড়ি এখন কোথায় আছে</p>
+              <h3 class="@lang('misc.font')">লাইভ ট্র্যাকিং</h3>
+              <p class="@lang('misc.font')">লাইভ ট্র্যাকিং এর মাধ্যমে জানতে পারবেন গাড়ি এখন কোথায় আছে</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="400">
               <img src="{{ asset('landing2/assets/image/lock_unlock.png', true) }}" class="img-fluid" alt="">
-              <h3 class="bangla">ডিজিটাল ইঞ্জিন লক</h3>
-              <p class="bangla">অ্যাপ এর মাধ্যমে দূরে থেকেও গাড়ি নিয়ন্ত্রণ করুন অনায়সে</p>
+              <h3 class="@lang('misc.font')">ডিজিটাল ইঞ্জিন লক</h3>
+              <p class="@lang('misc.font')">অ্যাপ এর মাধ্যমে দূরে থেকেও গাড়ি নিয়ন্ত্রণ করুন অনায়সে</p>
             </div>
           </div>
 
           <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="box" data-aos="fade-up" data-aos-delay="600">
               <img src="{{ asset('landing2/assets/image/cng_monitoring.png', true) }}" class="img-fluid" alt="">
-              <h3 class="bangla">ফুয়েল ও সিএনজি মনিটরিং</h3>
-              <p class="bangla">শুধুমাত্র আমরাই দিচ্ছি ফুয়েল এবং সিএনজি মনিটরিং সুবিধা</p>
+              <h3 class="@lang('misc.font')">ফুয়েল ও সিএনজি মনিটরিং</h3>
+              <p class="@lang('misc.font')">শুধুমাত্র আমরাই দিচ্ছি ফুয়েল এবং সিএনজি মনিটরিং সুবিধা</p>
             </div>
           </div>
 
@@ -258,7 +258,7 @@
 
         <header class="section-header">
           <h2>Features</h2>
-          <p class="bangla">আমাদের আকর্ষণীয় ফিচারসমূহ</p>
+          <p class="@lang('misc.font')">আমাদের আকর্ষণীয় ফিচারসমূহ</p>
         </header>
 
         <div class="row">
@@ -273,42 +273,42 @@
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="200">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3 class="bangla">লাইভ ট্র্যাকিং</h3>
+                  <h3 class="@lang('misc.font')">লাইভ ট্র্যাকিং</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3 class="bangla">৩ মাসের ট্রিপ হিস্ট্রি</h3>
+                  <h3 class="@lang('misc.font')">৩ মাসের ট্রিপ হিস্ট্রি</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3 class="bangla">ইঞ্জিন লক/আনলক</h3>
+                  <h3 class="@lang('misc.font')">ইঞ্জিন লক/আনলক</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3 class="bangla">ফুয়েল মনিটরিং সিস্টেম</h3>
+                  <h3 class="@lang('misc.font')">ফুয়েল মনিটরিং সিস্টেম</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3 class="bangla">সি এন জি মনিটরিং সিস্টেম</h3>
+                  <h3 class="@lang('misc.font')">সি এন জি মনিটরিং সিস্টেম</h3>
                 </div>
               </div>
 
               <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
                 <div class="feature-box d-flex align-items-center">
                   <i class="bi bi-check"></i>
-                  <h3 class="bangla">ডেসটিনেশন এলার্ট</h3>
+                  <h3 class="@lang('misc.font')">ডেসটিনেশন এলার্ট</h3>
                 </div>
               </div>
 
@@ -320,7 +320,7 @@
         <!-- Feature Tabs 1 -->
         <div class="row feture-tabs" data-aos="fade-up">
           <div class="col-lg-6">
-            <h3 class="bangla">আপনার প্রিয় গাড়ীটি রেখে দুরে এসেছেন!! ভয় নেই, পাহারায় আছে মাইরাডার</h3>
+            <h3 class="@lang('misc.font')">আপনার প্রিয় গাড়ীটি রেখে দুরে এসেছেন!! ভয় নেই, পাহারায় আছে মাইরাডার</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -338,28 +338,28 @@
                   consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong></strong> কেউ দরজা খুললেই পেয়ে যাবেন "ডোর ওপেন এলার্ট"</span>
+                  <span class="@lang('misc.font')"><strong></strong> কেউ দরজা খুললেই পেয়ে যাবেন "ডোর ওপেন এলার্ট"</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">কত সময় যাবত গাড়ি পারকিং এ আছে তাও জানতে পারবেন।</span>
+                  <span class="@lang('misc.font')">কত সময় যাবত গাড়ি পারকিং এ আছে তাও জানতে পারবেন।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">ইঞ্জিন অন হলেই পেয়ে যাবেন "ইঞ্জিন অন এলার্ট"</span>
+                  <span class="@lang('misc.font')">ইঞ্জিন অন হলেই পেয়ে যাবেন "ইঞ্জিন অন এলার্ট"</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong></strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা যাবে</span>
+                  <span class="@lang('misc.font')"><strong></strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা যাবে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">এক পলকে দেখে নিতে পারবেন গাড়ির ভ্রমন পথ</span>
+                  <span class="@lang('misc.font')">এক পলকে দেখে নিতে পারবেন গাড়ির ভ্রমন পথ</span>
                 </div>
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span class="bangla">প্যাকেজ দেখুন</span>
+                  <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
                   <i class="bi bi-arrow-right text-white"></i>
                 </a>
               </div>
@@ -383,7 +383,7 @@
           </div>
 
           <div class="col-lg-6">
-            <h3 class="bangla">গাড়ি কি আপনার চোখের আড়ালে !! নজরদারি করুন মাইরাডার লাইভ ট্র্যাকিং দিয়ে</h3>
+            <h3 class="@lang('misc.font')">গাড়ি কি আপনার চোখের আড়ালে !! নজরদারি করুন মাইরাডার লাইভ ট্র্যাকিং দিয়ে</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -399,37 +399,37 @@
               <div class="tab-pane fade show active" id="tab1">
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>লাইভ ট্র্যাকিং ২৪ ঘণ্টা - </strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা
+                  <span class="@lang('misc.font')"><strong>লাইভ ট্র্যাকিং ২৪ ঘণ্টা - </strong> গাড়ির গতি, অবস্থান, দিক ইত্যাদি দেখা
                     যাবে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার
+                  <span class="@lang('misc.font')"><strong>হিস্টরি মনিটরিং :</strong>গাড়ি কখন কোথায় আসা/যাওয়ার জন্য কোন রুট ব্যবহার
                     করছে তা এক
                     ক্লিকেই মুঠোফোনে দেখা যাবে। History ট্র্যাকিং রেকর্ড থাকবে ৩ মাস পর্যন্ত</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট
+                  <span class="@lang('misc.font')"><strong>Traffic View: </strong> Google Traffic View (রাস্তায় যানজট) লাইভ আপডেট
                     থাকবে মাইরাডার
                     অ্যাপ এ</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন
+                  <span class="@lang('misc.font')"><strong>ইঞ্জিন এলার্টঃ</strong> ইঞ্জিন অন/অফ নোটিফিকেশনের মাধ্যমে জানতে পারবেন
                     গাড়ি কতবার অন/অফ
                     করা হয়েছে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা
+                  <span class="@lang('misc.font')"><strong>ডিজিটাল ইঞ্জিন লকঃ</strong> মোবাইল অ্যাপ দিয়ে গাড়ির ইঞ্জিন লক/আনলক করা
                     যাবে
                     অনায়াসে</span>
                 </div>
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span class="bangla">প্যাকেজ দেখুন</span>
+                  <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
                   <i class="bi bi-arrow-right text-white"></i>
                 </a>
               </div>
@@ -447,7 +447,7 @@
 
 
           <div class="col-lg-6">
-            <h3 class="bangla">গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা</h3>
+            <h3 class="@lang('misc.font')">গাড়ি চূরি নিয়ে চিন্তিত !! সুরক্ষায় আছি আমরা</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -463,32 +463,32 @@
               <div class="tab-pane fade show active" id="tab1">
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল
+                  <span class="@lang('misc.font')"><strong>লক মোড:</strong> পারকিং করার পরে রাখুন লক মোডে, হবেনা ইঞ্জিন অন, কন্ট্রোল
                     আপনার
                     অ্যাপে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে
+                  <span class="@lang('misc.font')"><strong>ইঞ্জিন লক:</strong> myRadar অ্যাপ এর মাধ্যমে গাড়ি চুরি হওয়ার সাথে সাথে
                     ইঞ্জিন অফ
                     করে দিতে পারবেন</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ
+                  <span class="@lang('misc.font')"><strong>জিইও ফেন্স নোটিফিকেশনঃ</strong> নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ
                     করলে এলার্ট
                     পেয়ে যাবেন সাথে সাথেই ।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে
+                  <span class="@lang('misc.font')"><strong>ইমারজেন্সি বাটনঃ</strong> হাইজ্যাক হলে ড্রাইভার চাপবে বাটন, চলে আসবে
                     ইমারজেঞ্ছি
                     এলার্ট</span>
                 </div>
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span class="bangla">প্যাকেজ দেখুন</span>
+                  <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
                   <i class="bi bi-arrow-right text-white"></i>
                 </a>
               </div>
@@ -512,7 +512,7 @@
           </div>
 
           <div class="col-lg-6">
-            <h3 class="bangla">ফুয়েল, সিএনজি এবং অন্যান্য হিসাব রাখতে হিমসিম খাচ্ছেন!! নো টেনশন</h3>
+            <h3 class="@lang('misc.font')">ফুয়েল, সিএনজি এবং অন্যান্য হিসাব রাখতে হিমসিম খাচ্ছেন!! নো টেনশন</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -530,34 +530,34 @@
                   consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>মাইলেজ রিপোর্টঃ</strong> মাইলেজ রিপোর্ট দেখে সহজেই পরিমাপ করতে
+                  <span class="@lang('misc.font')"><strong>মাইলেজ রিপোর্টঃ</strong> মাইলেজ রিপোর্ট দেখে সহজেই পরিমাপ করতে
                     পারবেন ফুয়েলের হিসাব।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>সি এন জি মনিটরিংঃ</strong> গাড়ির CNG মিটার myRADAR মোবাইল অ্যাপ-এ দেখতে
+                  <span class="@lang('misc.font')"><strong>সি এন জি মনিটরিংঃ</strong> গাড়ির CNG মিটার myRADAR মোবাইল অ্যাপ-এ দেখতে
                     পাবেন এবং গাড়িতে
                     CNG নেওয়ার সাথে সাথেই ফোনে নোটিফিকেশন পাবেন।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ফুয়েল মনিটরিংঃ </strong>গাড়ির ফুয়েল মিটার দেখতে পাবেন মোবাইল App -
+                  <span class="@lang('misc.font')"><strong>ফুয়েল মনিটরিংঃ </strong>গাড়ির ফুয়েল মিটার দেখতে পাবেন মোবাইল App -
                     এ</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">ফুয়েল রিফিল এবং লীকেজ এলার্ট (শিগ্রই আসছে)</span>
+                  <span class="@lang('misc.font')">ফুয়েল রিফিল এবং লীকেজ এলার্ট (শিগ্রই আসছে)</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ডেইলি সামারি:</strong> কতবার ইঞ্জিন অন/অফ করা হয়েছে, কতটুকু সময় চলেছে,
+                  <span class="@lang('misc.font')"><strong>ডেইলি সামারি:</strong> কতবার ইঞ্জিন অন/অফ করা হয়েছে, কতটুকু সময় চলেছে,
                     কত দুরুত্ত
                     অতিক্রম করেছে নোটিফিকেশন এবং SMS-এর মাধ্যমে জানিয়ে দেয়া হবে</span>
                 </div>
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span class="bangla">প্যাকেজ দেখুন</span>
+                  <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
                   <i class="bi bi-arrow-right text-white"></i>
                 </a>
               </div>
@@ -577,7 +577,7 @@
 
 
           <div class="col-lg-6">
-            <h3 class="bangla">নির্দিষ্ট এলাকার বাইরে গাড়ির যাতায়াত মনিটর করতে চান!! সমাধানে মাইরাডার</h3>
+            <h3 class="@lang('misc.font')">নির্দিষ্ট এলাকার বাইরে গাড়ির যাতায়াত মনিটর করতে চান!! সমাধানে মাইরাডার</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -595,22 +595,22 @@
                   consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>ডেসটিনেশন এলার্ট:</strong> নির্ধারিত এলাকার বাহিরে গেলে এলার্ট।</span>
+                  <span class="@lang('misc.font')"><strong>ডেসটিনেশন এলার্ট:</strong> নির্ধারিত এলাকার বাহিরে গেলে এলার্ট।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong>এরাইভাল এলার্ট:</strong> নির্ধারিত এলাকার ভিতরে প্রবেশ করলে
+                  <span class="@lang('misc.font')"><strong>এরাইভাল এলার্ট:</strong> নির্ধারিত এলাকার ভিতরে প্রবেশ করলে
                     এলার্ট।</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">সকল গুরুত্বপূর্ণ শহরে প্রবেশ এবং প্রস্থান এর সময় নোটিফিকেশান পাবেন অটোমেটিক্যালি
+                  <span class="@lang('misc.font')">সকল গুরুত্বপূর্ণ শহরে প্রবেশ এবং প্রস্থান এর সময় নোটিফিকেশান পাবেন অটোমেটিক্যালি
                     ।</span>
                 </div>
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span class="bangla">প্যাকেজ দেখুন</span>
+                  <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
                   <i class="bi bi-arrow-right text-white"></i>
                 </a>
               </div>
@@ -634,7 +634,7 @@
           </div>
 
           <div class="col-lg-6">
-            <h3 class="bangla">আপনজনদের সুরক্ষায় myRadar</h3>
+            <h3 class="@lang('misc.font')">আপনজনদের সুরক্ষায় myRadar</h3>
 
             <!-- Tabs -->
             <ul class="nav nav-pills mb-3">
@@ -652,23 +652,23 @@
                   consequatur minima nihil quae aspernatur quo suscipit voluptatem.</p> --}}
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong></strong> অতিরিক্ত গতিতে গাড়ি চললেই এলার্ট পাবেন সাথে সাথে</span>
+                  <span class="@lang('misc.font')"><strong></strong> অতিরিক্ত গতিতে গাড়ি চললেই এলার্ট পাবেন সাথে সাথে</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla"><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল অ্যাপ - এ
+                  <span class="@lang('misc.font')"><strong></strong> বাচ্চা নির্ধারিত সময়ে স্কুলে পৌঁছেছে কিনা, তা মোবাইল অ্যাপ - এ
                     জানতে
                     পারবেন</span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
                   <i class="bi bi-check2"></i>
-                  <span class="bangla">আপনার সেট করে দেয়া গন্তব্যে আপনজন পৌঁছা মাত্র জানিয়ে দেবে myRadar</span>
+                  <span class="@lang('misc.font')">আপনার সেট করে দেয়া গন্তব্যে আপনজন পৌঁছা মাত্র জানিয়ে দেবে myRadar</span>
                 </div>
 
                 <a href="#pricing"
                   style="background: #4154f1;padding: 8px 20px;margin-left: 30px;border-radius: 4px;color: #fff; margin-top: 30px;"
                   class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                  <span class="bangla">প্যাকেজ দেখুন</span>
+                  <span class="@lang('misc.font')">প্যাকেজ দেখুন</span>
                   <i class="bi bi-arrow-right text-white"></i>
                 </a>
               </div>
@@ -694,7 +694,7 @@
 
         <header class="section-header">
           <h2>Services</h2>
-          <p class="bangla">মাইরাডারের সেবাসমূহ</p>
+          <p class="@lang('misc.font')">মাইরাডারের সেবাসমূহ</p>
         </header>
 
         <div class="row gy-4">
@@ -702,8 +702,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-box blue">
               <i class="ri-discuss-line icon"></i>
-              <h3 class="bangla">লাইভ ট্র্যাকিং</h3>
-              <ul class="bangla" style="text-align: left;">
+              <h3 class="@lang('misc.font')">লাইভ ট্র্যাকিং</h3>
+              <ul class="@lang('misc.font')" style="text-align: left;">
                 <li>LIVE ট্র্যাকিং ২৪ ঘণ্টা - গাড়ির গতি, অবস্থান, দিক</li>
                 <li>History ট্র্যাকিং রেকর্ড ৩ মাস অবধি</li>
                 <li>SPEED ভায়োলেশন এলার্ট</li>
@@ -717,8 +717,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-box orange">
               <i class="ri-discuss-line icon"></i>
-              <h3 class="bangla">মাইলেজ রিপোর্ট</h3>
-              <ul class="bangla" style="text-align: left;">
+              <h3 class="@lang('misc.font')">মাইলেজ রিপোর্ট</h3>
+              <ul class="@lang('misc.font')" style="text-align: left;">
                 <li>প্রতিদিন কত কিলোমিটার ভ্রমণ করেছেন এক পলকেই জানতে পারবেন মাইলেজ রিপোর্ট দেখে</li>
                 <li>বিগত দিনের মাইলেজ রিপোর্ট দেখতে পাবেন খুব সহজে</li>
                 <li>অস্বাভাবিক মাইলেজ নোটিফিকেশন</li>
@@ -729,8 +729,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-box green">
               <i class="ri-discuss-line icon"></i>
-              <h3 class="bangla">Special CNG প্যাকেজ</h3>
-              <ul class="bangla" style="text-align: left;">
+              <h3 class="@lang('misc.font')">Special CNG প্যাকেজ</h3>
+              <ul class="@lang('misc.font')" style="text-align: left;">
                 <li>শুধু আমরা দিচ্ছি আপনার গাড়ির CNG মিটার মনিটর সুবিধা</li>
                 <li>গাড়ির CNG মিটার myRADAR মোবাইল অ্যাপ-এ মনিটর করা</li>
                 <li>গাড়িতে CNG নেওয়ার পরে অ্যাপ-এ Money receipt পাবেন</li>
@@ -742,8 +742,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
             <div class="service-box red">
               <i class="ri-discuss-line icon"></i>
-              <h3 class="bangla">ডেসটিনেশন এলার্ট</h3>
-              <ul class="bangla" style="text-align: left;">
+              <h3 class="@lang('misc.font')">ডেসটিনেশন এলার্ট</h3>
+              <ul class="@lang('misc.font')" style="text-align: left;">
                 <li>গন্তব্যে পৌছার নোটিফিকেশন : School, Home, Office ইত্যাদি</li>
                 <li>নির্ধারিত এলাকার বাহিরে বা ভিতরে প্রবেশ করলে এলার্ট</li>
                 <li>নিজের ইচ্ছেমত এলাকা জিও ফেন্স হিসেবে নির্ধারণ করুন</li>
@@ -755,8 +755,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
             <div class="service-box purple">
               <i class="ri-discuss-line icon"></i>
-              <h3 class="bangla">Corporate গ্রাহকদের জন্য সুবিধা সমূহ</h3>
-              <ul class="bangla" style="text-align: left;">
+              <h3 class="@lang('misc.font')">Corporate গ্রাহকদের জন্য সুবিধা সমূহ</h3>
+              <ul class="@lang('misc.font')" style="text-align: left;">
                 <li>Fleet Management Software মাধ্যমে সব গাড়ি নিয়ন্ত্রণের সুবিধা</li>
                 <li>সকল গাড়ীর ড্রাইভিং সময়কাল রিপোর্ট</li>
                 <li>ড্রাইভারদের ডিউটি সময়কাল রিপোর্ট</li>
@@ -769,8 +769,8 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
             <div class="service-box pink">
               <i class="ri-discuss-line icon"></i>
-              <h3 class="bangla">অন্যান্য সুবিধা সমূহ</h3>
-              <ul class="bangla" style="text-align: left;">
+              <h3 class="@lang('misc.font')">অন্যান্য সুবিধা সমূহ</h3>
+              <ul class="@lang('misc.font')" style="text-align: left;">
                 <li>Android, iPhone এবং ব্রাউজার ব্যবহার করে গাড়ি ট্র্যাকিং সুবিধা</li>
                 <li>এক আইডি থেকে সব গাড়ি নিয়ন্ত্রণের সুবিধা</li>
                 <li>আপনার বাড়ি, অফিস সর্বত্র আমাদের ইঞ্জিনিয়ার দ্বারা FREE Install</li>
@@ -791,7 +791,7 @@
       <div class="container" data-aos="fade-up">
         <!-- Feature Icons -->
         <div class="row feature-icons" data-aos="fade-up">
-          <h3 class="bangla">মোবাইল অ্যাপ</h3>
+          <h3 class="@lang('misc.font')">মোবাইল অ্যাপ</h3>
 
           <div class="row">
             <div class="col-xs-12 d-flex flex-column flex-lg-row">
@@ -840,7 +840,7 @@
 
         <header class="section-header">
           <h2>Pricing</h2>
-          <p class="bangla">আমাদের প্যাকেজ সমূহ</p>
+          <p class="@lang('misc.font')">আমাদের প্যাকেজ সমূহ</p>
         </header>
 
         <div class="row gy-4" data-aos="fade-left">
@@ -849,10 +849,10 @@
             <div class="box">
               <h3 class="price-standard">Standard <div class="arrow"></div>
               </h3>
-              <div class="price bangla"><sup></sup>৬,০০০<span> টাকা</span></div>
-              <div class="price2 bangla"><span>মাসিক চার্জ </span>৪০০<span> টাকা</span></div>
+              <div class="price @lang('misc.font')"><sup></sup>৬,০০০<span> টাকা</span></div>
+              <div class="price2 @lang('misc.font')"><span>মাসিক চার্জ </span>৪০০<span> টাকা</span></div>
               {{-- <img src="{{ asset('landing2/assets/img/pricing-free.png', true) }}" class="img-fluid" alt=""> --}}
-              <ul class="bangla">
+              <ul class="@lang('misc.font')">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
                 <li>ইঞ্জিন লক/আনলক</li>
@@ -881,11 +881,11 @@
               {{-- <span class="featured">Featured</span> --}}
               <h3 class="price-special">Special <div class="arrow"></div>
               </h3>
-              <div class="price bangla"><sup></sup>৮,০০০<span> টাকা</span></div>
-              <div class="price2 bangla"><span>মাসিক চার্জ </span>৫০০<span> টাকা</span></div>
+              <div class="price @lang('misc.font')"><sup></sup>৮,০০০<span> টাকা</span></div>
+              <div class="price2 @lang('misc.font')"><span>মাসিক চার্জ </span>৫০০<span> টাকা</span></div>
               {{-- <img src="{{ asset('landing2/assets/img/pricing-starter.png', true) }}" class="img-fluid" alt="">
               --}}
-              <ul class="bangla">
+              <ul class="@lang('misc.font')">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
                 <li>ইঞ্জিন লক/আনলক</li>
@@ -913,11 +913,11 @@
             <div class="box">
               <h3 class="price-advanced">Advanced <div class="arrow"></div>
               </h3>
-              <div class="price bangla"><sup></sup>১৫,০০০<span> টাকা</span></div>
-              <div class="price2 bangla"><span>মাসিক চার্জ </span>৮০০<span> টাকা</span></div>
+              <div class="price @lang('misc.font')"><sup></sup>১৫,০০০<span> টাকা</span></div>
+              <div class="price2 @lang('misc.font')"><span>মাসিক চার্জ </span>৮০০<span> টাকা</span></div>
               {{-- <img src="{{ asset('landing2/assets/img/pricing-business.png', true) }}" class="img-fluid" alt="">
               --}}
-              <ul class="bangla">
+              <ul class="@lang('misc.font')">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
                 <li>ইঞ্জিন লক/আনলক</li>
@@ -945,11 +945,11 @@
             <div class="box">
               <h3 class="price-business">Business <div class="arrow"></div>
               </h3>
-              <div class="price bangla"><sup></sup>Custom<span></span></div>
-              <div class="price2 bangla">&nbsp;</div>
+              <div class="price @lang('misc.font')"><sup></sup>Custom<span></span></div>
+              <div class="price2 @lang('misc.font')">&nbsp;</div>
               {{-- <img src="{{ asset('landing2/assets/img/pricing-ultimate.png', true) }}" class="img-fluid" alt="">
               --}}
-              <ul class="bangla">
+              <ul class="@lang('misc.font')">
                 <li>লাইভ ট্র্যাকিং</li>
                 <li>ট্রাভেল হিস্টোরি</li>
                 <li>ইঞ্জিন লক/আনলক</li>
@@ -984,13 +984,13 @@
 
         <header class="section-header">
           <h2>F.A.Q</h2>
-          <p class="bangla">মাইরাডার সম্পর্কিত জিজ্ঞাসা</p>
+          <p class="@lang('misc.font')">মাইরাডার সম্পর্কিত জিজ্ঞাসা</p>
         </header>
 
         <div class="row">
           <div class="col-lg-6">
             <!-- F.A.Q List 1-->
-            <div class="accordion accordion-flush bangla" id="faqlist1">
+            <div class="accordion accordion-flush @lang('misc.font')" id="faqlist1">
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button collapsed font-bold" type="button" data-bs-toggle="collapse"
@@ -1103,7 +1103,7 @@
           <div class="col-lg-6">
 
             <!-- F.A.Q List 2-->
-            <div class="accordion accordion-flush bangla" id="faqlist2">
+            <div class="accordion accordion-flush @lang('misc.font')" id="faqlist2">
 
               <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -1211,7 +1211,7 @@
 
         <header class="section-header">
           <h2></h2>
-          <p class="bangla">কর্পোরেট পার্টনার</p>
+          <p class="@lang('misc.font')">কর্পোরেট পার্টনার</p>
         </header>
 
         <div class="clients-wrapper">

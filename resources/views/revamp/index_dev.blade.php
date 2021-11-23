@@ -91,7 +91,7 @@
       <div class="container" data-aos="fade-up">
         <!-- Feature Icons -->
         <div class="row feature-icons" data-aos="fade-up">
-          <h3 class="bangla">@lang('misc.mobile_app')</h3>
+          <h3 class="@lang('misc.font')">@lang('misc.mobile_app')</h3>
 
           <div class="row">
             <div class="col-xs-12 d-flex flex-column flex-lg-row">
@@ -143,7 +143,7 @@
 
         <header class="section-header">
           <h2></h2>
-          <p class="bangla">@lang('misc.corporate_partner')</p>
+          <p class="@lang('misc.font')">@lang('misc.corporate_partner')</p>
         </header>
 
         <div class="clients-wrapper">

@@ -25,26 +25,26 @@
           <img src="{{ asset('images/btn-playstore.png', true) }}" class="img-fluid" alt="">
         </a>
       </div>
-      <h1 class="text-center bangla" style="font-weight: 800; color: #4154f1; font-size: 30px; margin-top: 30px;">
+      <h1 class="text-center @lang('misc.font')" style="font-weight: 800; color: #4154f1; font-size: 30px; margin-top: 30px;">
         Best vehicle tracking system in Bangladesh
       </h1>
-      <p class="text-center bangla" style="font-weight: 700; color: #424242; font-size: 20px; margin-top: 10px;">
+      <p class="text-center @lang('misc.font')" style="font-weight: 700; color: #424242; font-size: 20px; margin-top: 10px;">
         @lang('header.banner.title')
       </p>
-      <p class="text-enter bangla" style="margin-top: 10px; font-size: 16px;">
+      <p class="text-enter @lang('misc.font')" style="margin-top: 10px; font-size: 16px;">
         @lang('header.banner.caption')
       </p>
       <div class="tw-flex tw-flex-col lg:tw-flex-row tw-justify-center tw-items-center tw-gap-8">
         <a href="#pricing" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
           class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-          <span class="bangla">@lang('header.banner.action')</span>
+          <span class="@lang('misc.font')">@lang('header.banner.action')</span>
           <i class="bi bi-arrow-right text-white"></i>
         </a>
         <a href="#" id="offer-btn"
-          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center tw-bg-purple-600 tw-gap-x-2">
+          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center tw-bg-purple-600 tw-gap-x-4">
           <img src="{{ asset('images/icon/giftbox.png') }}" alt=""
             class="tw-w-6 tw-h-6 animate__animated animate__tada animate__slow animate__infinite">
-          <span class="bangla">@lang('header.banner.coupon')</span>
+          <span class="@lang('misc.font')">@lang('header.banner.coupon')</span>
         </a>
       </div>
 
