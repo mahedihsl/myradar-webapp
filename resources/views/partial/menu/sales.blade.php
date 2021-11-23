@@ -47,7 +47,7 @@
     <i class="fa fa-key"></i> <span>Customer Engagement</span>
   </a>
 </li>
-<li>
+{{-- <li>
   <a href="/messages">
     <i class="fa fa-envelope"></i> <span>Messages</span>
     @php
@@ -59,5 +59,5 @@
     </span>
     @endif
   </a>
-</li>
+</li> --}}
 @include('partial.menu.test')

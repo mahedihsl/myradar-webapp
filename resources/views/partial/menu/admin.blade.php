@@ -89,6 +89,14 @@
   </a>
 </li>
 <li>
+  <a href="/leads">
+    <i class="fa fa-bolt"></i> <span>Leads</span>
+    {{-- <span class="pull-right-container">
+      <small class="label pull-right bg-green">Hot</small>
+    </span> --}}
+  </a>
+</li>
+<li>
   <a href="/promotion">
     <i class="fa fa-tags" aria-hidden="true"></i> <span>Promo Schemes</span>
   </a>
