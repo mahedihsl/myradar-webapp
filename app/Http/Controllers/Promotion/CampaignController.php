@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Promotion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Entities\Enroll;
+use App\Service\Microservice\PromotionMicroservice;
 
 class CampaignController extends Controller
 {
+    private $promotionService;
+
+    public function __construct() {
+        $this->promotionService = new PromotionMicroservice();
+    }
+
     public function bikroy(Request $request)
     {
         return view('promotion.bikroy')->with([
@@ -24,15 +31,14 @@ class CampaignController extends Controller
 
     public function enroll(Request $request)
     {
-        Enroll::create([
-            'name' => $request->get('name'),
-            'phone' => $request->get('phone'),
-            'email' => $request->get('email'),
-            'type' => $request->get('type', 'general_lead'),
-        ]);
-
+        $status = 1;
+        try {
+            $this->promotionService->saveLead($request->all());
+        } catch (\Throwable $th) {
+            $status = 0;
+        }
         return redirect()->back()->with([
-            'status' => 1,
+            'status' => $status,
         ]);
     }
 

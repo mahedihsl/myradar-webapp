@@ -77,6 +77,10 @@ return [
     'url' => 'http://myradar-demo',
     'port' => 6018,
   ],
+  'promotion' => [
+    'url' => 'http://myradar-promotion',
+    'port' => 6019,
+  ],
   
   'radar-recharge' => [
     'url' => 'http://radar-api',

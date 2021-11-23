@@ -299,22 +299,19 @@
   document.getElementById('offer-btn').addEventListener('click', toggleModal)
   document.getElementById('offer-close').addEventListener('click', toggleModal)
 
-  setInterval(function () {
-    var offerBtn = $('#offer-btn')
-    // var buttonWidth = offerBtn.css('width')
-    // var nextWidth = buttonWidth > 100 ? 50 : 150
-    // console.log('button width', buttonWidth, nextWidth)
-    if (offerBtn.hasClass('fab-normal')) {
-      console.log('expanding button')
+  // setInterval(function () {
+  //   var offerBtn = $('#offer-btn')
+  //   if (offerBtn.hasClass('fab-normal')) {
+  //     console.log('expanding button')
       
-      offerBtn.removeClass('fab-normal')
-      offerBtn.addClass('fab-expand')
-    } else {
-      console.log('shrinking button')
+  //     offerBtn.removeClass('fab-normal')
+  //     offerBtn.addClass('fab-expand')
+  //   } else {
+  //     console.log('shrinking button')
       
-      offerBtn.addClass('fab-normal')
-      offerBtn.removeClass('fab-expand')
-    }
-  }, 3000)
+  //     offerBtn.addClass('fab-normal')
+  //     offerBtn.removeClass('fab-expand')
+  //   }
+  // }, 3000)
 
 })();

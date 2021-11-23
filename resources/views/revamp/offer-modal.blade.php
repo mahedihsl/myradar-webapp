@@ -45,12 +45,12 @@
                 Lucky Coupon
               </h2>
               <div class="tw-mt-2">
-                <p class="tw-text-base tw-font-noraml">
+                <p class="tw-text-base tw-font-semibold">
                   <span class="tw-text-red-400">Register now to get upto 100% discount</span> <br>
                   <span class="tw-text-sm tw-text-gray-700">Draw in 1 Hour</span>
                 </p>
 
-                <input type="hidden" name="type" value="offer_lead">
+                <input type="hidden" name="type" value="lucky_coupon_lead">
                 <div class="row gy-4">
 
                   <div class="col-md-6">

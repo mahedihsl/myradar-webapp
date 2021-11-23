@@ -229,6 +229,10 @@
   justify-content: space-between !important
 }
 
+.tw-gap-8 {
+  gap: 2rem !important
+}
+
 .tw-gap-2 {
   gap: 0.5rem !important
 }
@@ -326,6 +330,11 @@
 .tw-bg-purple-600 {
   --tw-bg-opacity: 1 !important;
   background-color: rgba(124, 58, 237, var(--tw-bg-opacity)) !important
+}
+
+.tw-bg-red-600 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(220, 38, 38, var(--tw-bg-opacity)) !important
 }
 
 .tw-bg-blue-600 {
@@ -630,5 +639,11 @@
   .sm\:tw-text-sm {
     font-size: 0.875rem !important;
     line-height: 1.25rem !important
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:tw-flex-row {
+    flex-direction: row !important
   }
 }

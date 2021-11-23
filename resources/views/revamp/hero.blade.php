@@ -7,23 +7,22 @@
           style="width: 100%;" />
         <div class="row d-none d-lg-block position-absolute bottom-0 start-50 translate-middle-x">
           <div class="col-xs-12 d-flex flex-row justify-content-center align-items-center">
-            <a target="_blank" href="{{ config('myradar.appstore') }}"
-              title="Download from App Store" class="btn-appstore">App Store</a>
-            <a target="_blank" href="{{ config('myradar.playstore') }}"
-              title="Download from Play Store" class="btn-playstore">Play Store</a>
+            <a target="_blank" href="{{ config('myradar.appstore') }}" title="Download from App Store"
+              class="btn-appstore">App Store</a>
+            <a target="_blank" href="{{ config('myradar.playstore') }}" title="Download from Play Store"
+              class="btn-playstore">Play Store</a>
           </div>
         </div>
       </div>
       <img src="{{ asset('landing2/assets/image/live_tracking3.gif', true) }}" class="img-fluid d-lg-none" alt=""
         style="width: 100%;" />
       <div class="w-100 d-flex flex-row justify-content-center align-items-center d-lg-none" style="gap: 30px;">
-        <a target="_blank" href="{{ config('myradar.appstore') }}"
-            title="Download from App Store" style="width: 35%;">
-          <img src="{{ asset('images/btn-appstore.png', true) }}" class="img-fluid" alt="">  
+        <a target="_blank" href="{{ config('myradar.appstore') }}" title="Download from App Store" style="width: 35%;">
+          <img src="{{ asset('images/btn-appstore.png', true) }}" class="img-fluid" alt="">
         </a>
-        <a target="_blank" href="{{ config('myradar.playstore') }}"
-          title="Download from Play Store" style="width: 35%;">
-          <img src="{{ asset('images/btn-playstore.png', true) }}" class="img-fluid" alt="">  
+        <a target="_blank" href="{{ config('myradar.playstore') }}" title="Download from Play Store"
+          style="width: 35%;">
+          <img src="{{ asset('images/btn-playstore.png', true) }}" class="img-fluid" alt="">
         </a>
       </div>
       <h1 class="text-center bangla" style="font-weight: 800; color: #4154f1; font-size: 30px; margin-top: 30px;">
@@ -35,11 +34,20 @@
       <p class="text-enter bangla" style="margin-top: 10px; font-size: 16px;">
         @lang('header.banner.caption')
       </p>
-      <a href="#pricing" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
-        class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-        <span class="bangla">@lang('header.banner.action')</span>
-        <i class="bi bi-arrow-right text-white"></i>
-      </a>
+      <div class="tw-flex tw-flex-col lg:tw-flex-row tw-justify-center tw-items-center tw-gap-8">
+        <a href="#pricing" style="background: #4154f1;padding: 18px 30px; border-radius: 4px; color: #fff;"
+          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+          <span class="bangla">@lang('header.banner.action')</span>
+          <i class="bi bi-arrow-right text-white"></i>
+        </a>
+        <a href="#" id="offer-btn"
+          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center tw-bg-purple-600 tw-gap-x-2">
+          <img src="{{ asset('images/icon/giftbox.png') }}" alt=""
+            class="tw-w-6 tw-h-6 animate__animated animate__tada animate__slow animate__infinite">
+          <span class="bangla">@lang('header.banner.coupon')</span>
+        </a>
+      </div>
+
     </div>
   </div>
 
