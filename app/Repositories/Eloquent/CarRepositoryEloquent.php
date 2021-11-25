@@ -48,6 +48,7 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
             'meta_data'   => $metaInfo,
             'new_service' => intval($data->get('new_service')),
             'voice_service'  => intval($data->get('voice_service')),
+            'billing_type'  => $data->get('billing_type'),
         ]);
 
         if ( ! is_null($car)) {
@@ -71,6 +72,7 @@ class CarRepositoryEloquent extends BaseRepository implements CarRepository
             'new_service' => intval($data->get('new_service')),
             'voice_service' => intval($data->get('voice_service')),
             'bill'        => $data->get('bill'),
+            'billing_type'  => $data->get('billing_type'),
         ];
 
         if ($data->has('services')) {

@@ -12,6 +12,8 @@ use App\Criteria\UserIdCriteria;
 use App\Criteria\GroupByCriteria;
 use App\Entities\Car;
 use App\Entities\User;
+use Illuminate\Support\Facades\Log;
+use App\Service\Microservice\PaymentMicroservice;
 
 class PaymentController extends Controller
 {
@@ -19,10 +21,13 @@ class PaymentController extends Controller
      * @var PaymentRepository
      */
     private $repository;
+    private $paymentService;
 
     public function __construct(PaymentRepository $repository)
     {
         $this->repository = $repository;
+        $this->paymentService = new PaymentMicroservice();
+
         Carbon::useMonthsOverflow(false);
     }
 
@@ -31,7 +36,12 @@ class PaymentController extends Controller
         $payment = $this->repository->save(collect($request->all()));
 
         if ( ! is_null($payment)) {
-            return response()->ok();
+          try {
+            $this->paymentService->observeBill($payment->id);
+          } catch (\Exception $e) {
+            Log::info('Error during bill observe', ['error' => $e->getMessage()]);
+          }
+          return response()->ok();
         }
 
         return response()->error();

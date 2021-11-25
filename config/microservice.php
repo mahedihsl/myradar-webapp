@@ -81,6 +81,11 @@ return [
     'url' => 'http://myradar-promotion',
     'port' => 6019,
   ],
+  // 6020 is for the WordPress website
+  'payment' => [
+    'url' => 'http://myradar-payment',
+    'port' => 6021,
+  ],
   
   'radar-recharge' => [
     'url' => 'http://radar-api',
