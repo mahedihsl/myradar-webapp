@@ -25,6 +25,7 @@
   <meta name="robots" content="index, follow">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="language" content="English">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -53,6 +54,11 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
   <link href="{{ asset('css/tailwind.css', true) }}" rel="stylesheet">
+  <style>
+    [x-cloak] {
+      display: none;
+    }
+  </style>
 
   <!-- Facebook Pixel Code -->
   <script>
@@ -72,14 +78,46 @@
   &noscript=1" />
   </noscript>
   <!-- End Facebook Pixel Code -->
+
+  <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
-<body>
+<body x-data="{ 
+  showOfferModal: false,
+  offerForm: {
+    phone: '',
+    type: 'lucky_coupon_lead',
+  },
+  response: {
+    available: false,
+    success: false,
+    message: '',
+  },
+  registerToOffer() {
+    fetch('/enroll/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
+      },
+      body: JSON.stringify(this.offerForm)
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.response = {
+        available: true,
+        success: data.status === 1,
+        message: data.data.message,
+      }
+    })
+    .catch(error => console.log(error))
+  }
+}" @keydown.escape="showOfferModal = false">
 
   @include('revamp.menu', ['base' => ''])
 
   @include('revamp.fab-buttons')
-  @include('revamp.offer-modal')
+  @include('revamp.offer-modal2')
   @include('revamp.hero')
 
   <main id="main">
@@ -338,8 +376,8 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> --}}
   {{-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script> --}}
   <script src="{{ asset('landing2/assets/vendor/aos/aos.js', true) }}"></script>
@@ -352,6 +390,21 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('landing2/assets/js/main.js', true) }}"></script>
+  {{-- <script type="text/javascript">
+    $(function() {
+      var toggleModal = () => {
+        var modal = document.getElementById('offer-modal')
+        if (!modal) return
+        if (modal.classList.contains('tw-hidden')) {
+          modal.classList.remove('tw-hidden')
+        } else {
+          modal.classList.add('tw-hidden')
+        }
+      }
+      document.getElementById('offer-btn').addEventListener('click', toggleModal)
+      document.getElementById('offer-close').addEventListener('click', toggleModal)
+    })()
+  </script> --}}
 
   {{-- <script>
     if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } 

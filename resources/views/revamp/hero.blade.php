@@ -35,8 +35,8 @@
         @lang('header.banner.caption')
       </p>
       <div class="tw-flex tw-flex-col lg:tw-flex-row tw-justify-center tw-items-center tw-gap-8">
-        <a href="#" id="offer-btn" style="background: #3B3B98;"
-          class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center tw-gap-x-4">
+        <a href="#" @click="showOfferModal = true" style="background: #3B3B98;"
+          class="btn-get-started d-inline-flex align-items-center justify-content-center align-self-center tw-gap-x-4">
           <img src="{{ asset('images/icon/giftbox.png') }}" alt=""
             class="tw-w-6 tw-h-6 animate__animated animate__tada animate__slow animate__infinite">
           <span class="@lang('misc.font')">@lang('header.banner.coupon')</span>

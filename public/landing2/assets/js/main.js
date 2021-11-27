@@ -287,17 +287,17 @@
   });
 
 
-  var toggleModal = () => {
-    var modal = document.getElementById('offer-modal')
-    if (!modal) return
-    if (modal.classList.contains('tw-hidden')) {
-      modal.classList.remove('tw-hidden')
-    } else {
-      modal.classList.add('tw-hidden')
-    }
-  }
-  document.getElementById('offer-btn').addEventListener('click', toggleModal)
-  document.getElementById('offer-close').addEventListener('click', toggleModal)
+  // var toggleModal = () => {
+  //   var modal = document.getElementById('offer-modal')
+  //   if (!modal) return
+  //   if (modal.classList.contains('tw-hidden')) {
+  //     modal.classList.remove('tw-hidden')
+  //   } else {
+  //     modal.classList.add('tw-hidden')
+  //   }
+  // }
+  // document.getElementById('offer-btn').addEventListener('click', toggleModal)
+  // document.getElementById('offer-close').addEventListener('click', toggleModal)
 
   // setInterval(function () {
   //   var offerBtn = $('#offer-btn')

@@ -25,6 +25,7 @@
   <meta name="robots" content="index, follow">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="language" content="English">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <!-- Mobile Specific Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -53,38 +54,9 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
   <link href="{{ asset('css/tailwind.css', true) }}" rel="stylesheet">
-
   <style>
-    @keyframes tada {
-      from {
-        transform: scale3d(1, 1, 1);
-      }
-
-      10%,
-      20% {
-        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
-      }
-
-      30%,
-      50%,
-      70%,
-      90% {
-        transform: scale3d(1.5, 1.5, 1.5) rotate3d(0, 0, 1, 3deg);
-      }
-
-      40%,
-      60%,
-      80% {
-        transform: scale3d(1.5, 1.5, 1.5) rotate3d(0, 0, 1, -3deg);
-      }
-
-      to {
-        transform: scale3d(1, 1, 1);
-      }
-    }
-
-    .tada {
-      animation-name: tada;
+    [x-cloak] {
+      display: none;
     }
   </style>
 
@@ -106,14 +78,55 @@
   &noscript=1" />
   </noscript>
   <!-- End Facebook Pixel Code -->
+
+  <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
-<body>
+<body x-data="{ 
+  showOfferModal: false,
+  interest: new URLSearchParams(location.search).get('interest'),
+  offerForm: {
+    phone: '',
+    type: 'lucky_coupon_lead',
+  },
+  response: {
+    available: false,
+    success: false,
+    message: '',
+  },
+  init() {
+    console.log('interest', this.interest)
+    if (this.interest === 'offer') {
+      setTimeout(() => {
+        this.showOfferModal = true
+      }, 1000)
+    }
+  },
+  registerToOffer() {
+    fetch('/enroll/save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
+      },
+      body: JSON.stringify(this.offerForm)
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.response = {
+        available: true,
+        success: data.status === 1,
+        message: data.data.message,
+      }
+    })
+    .catch(error => console.log(error))
+  }
+}" @keydown.escape="showOfferModal = false">
 
   @include('revamp.menu', ['base' => ''])
 
   @include('revamp.fab-buttons')
-  @include('revamp.offer-modal')
+  @include('revamp.offer-modal2')
   @include('revamp.hero')
 
   <main id="main">
@@ -244,9 +257,8 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="/enroll/save" method="post" class="php-email-form">
+            <form action="{{route('save-message')}}" method="post" class="php-email-form">
               {!! csrf_field() !!}
-              <input type="hidden" name="type" value="message_lead">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -285,6 +297,22 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
+
+    {{-- <div class="footer-newsletter">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-12 text-center">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+          </div>
+          <div class="col-lg-6">
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div> --}}
 
     <div class="footer-top">
       <div class="container">
@@ -357,8 +385,8 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> --}}
   {{-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script> --}}
   <script src="{{ asset('landing2/assets/vendor/aos/aos.js', true) }}"></script>
@@ -371,6 +399,21 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('landing2/assets/js/main.js', true) }}"></script>
+  {{-- <script type="text/javascript">
+    $(function() {
+      var toggleModal = () => {
+        var modal = document.getElementById('offer-modal')
+        if (!modal) return
+        if (modal.classList.contains('tw-hidden')) {
+          modal.classList.remove('tw-hidden')
+        } else {
+          modal.classList.add('tw-hidden')
+        }
+      }
+      document.getElementById('offer-btn').addEventListener('click', toggleModal)
+      document.getElementById('offer-close').addEventListener('click', toggleModal)
+    })()
+  </script> --}}
 
   {{-- <script>
     if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } 

@@ -31,20 +31,12 @@ class CampaignController extends Controller
 
     public function enroll(Request $request)
     {
-        $status = 1;
         try {
             $this->promotionService->saveLead($request->all());
-        } catch (\Throwable $th) {
-            $status = 0;
+            return response()->ok('আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে, আপনাকে একটি ডিসকাউন্ট কোড সহ শীঘ্রই এসএমএস করে জানানো হবে');
+        } catch (\Exception $th) {
+            return response()->error($th->getMessage());
         }
-
-        if ($request->ajax()) {
-            return response()->ok('Message Sent');
-        }
-
-        return redirect()->back()->with([
-            'status' => $status,
-        ]);
     }
 
     public function leads(Request $request)
