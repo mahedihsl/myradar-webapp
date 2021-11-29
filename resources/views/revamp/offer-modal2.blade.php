@@ -39,7 +39,7 @@
           <span class="tw-text-gray-700 tw-text-opacity-50 tw-text-xl"><i class="fas fa-times-circle"></i></span>
         </div>
         <div
-          class="tw-absolute tw-bottom-0 tw-pb-8 tw-w-full tw-h-40 tw-flex tw-flex-col tw-justify-center tw-items-center">
+          class="tw-absolute tw-bottom-0 tw-w-full tw-h-32 md:tw-h-40 tw-flex tw-flex-col tw-justify-center tw-items-center">
           <div class="tw-shadow-lg tw-w-3/4 tw-flex tw-flex-row tw-justify-center tw-items-center"
           :class="{'tw-hidden': response.available}">
             <input type="text"
