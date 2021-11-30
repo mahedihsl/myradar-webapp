@@ -85,6 +85,9 @@ class FuelController extends Controller
         if (!$device->car->status) {
             return response()->ok(['items' => []]);
         }
+        if ($device->car->name == 'Demo') {
+            return response()->ok([ 'items' => $this->getDemoRefuelHistory($day) ]);
+        }
 
         $this->dailyRepo->pushCriteria(new DeviceIdCriteria($id));
         $this->dailyRepo->pushCriteria(new BeforeWhenCriteria(Carbon::today()));
@@ -165,6 +168,21 @@ class FuelController extends Controller
         return $items->take($day)->map(function($item) {
             return is_array($item) ? $item : $item->presenter()['data'];
         });
+    }
+
+    public function getDemoRefuelHistory($days)
+    {
+        $result = [];
+        $fromDate = Carbon::today();
+        for ($i=1; $i <= $days; $i++) { 
+            $date = $fromDate->copy()->subDays($i);
+            $result[] = [
+                'id' => '--',
+                'value' => rand(25, 90),
+                'when' => $date->format('j M'),
+            ];
+        }
+        return $result;
     }
 
     public function fetchGroups(Request $request)
