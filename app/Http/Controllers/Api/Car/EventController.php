@@ -13,6 +13,7 @@ use App\Transformers\EventTransformer;
 use App\Entities\Car;
 use App\Entities\Event;
 use App\Entities\GasRefuelInput;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -84,8 +85,32 @@ class EventController extends Controller
             });
             return $ret;
         });
+
+        if ($carModel->name == 'Demo') {
+            $events = $events->concat($this->getDemoGasRefuelEvents());
+        }
+
         return response()->ok([
             'items' => $events,
         ]);
+    }
+
+    public function getDemoGasRefuelEvents()
+    {
+        $result = [];
+        $start = Carbon::now();
+        for ($i=1; $i <= 10; $i++) { 
+            $time = $start->copy()->subDays($i)->subHours(rand(1, 24));
+            $result[] = [
+                'id'    => '--',
+                'title' => 'Alert for car: 88-8888',
+                'body'  => 'Your car has taken gas of ' . rand(500, 1200) . ' Taka at ' . $time->format('g:i A'),
+                'type'  => Event::TYPE_REFUEL,
+                'meta'  => [], // only used in WebApp, Mobile App doesn't use this field
+                'time'  => $time->format('j M Y'),
+                'input' => true,
+            ];
+        }
+        return $result;
     }
 }

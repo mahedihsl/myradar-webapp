@@ -26,9 +26,8 @@ class EventTransformer extends TransformerAbstract
             'title' => $model->title,
             'body'  => $model->body,
             'type'  => $model->type,
-            'meta'  => $model->meta,
+            'meta'  => $model->meta, // only used in WebApp, Mobile App doesn't use this field
             'time'  => $model->created_at->format('j M Y'), //, g:i A
-            // 'input' => $model->gas_refuel_input()->exists(),
         ];
     }
 }
