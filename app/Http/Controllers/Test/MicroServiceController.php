@@ -19,7 +19,7 @@ class MicroServiceController extends Controller
     public function mileage(Request $request)
     {
         $service = new MileageMicroservice();
-        return response()->json($service->test($request->all()));
+        return response()->json($service->recalculate($request->all()));
     }
 
     public function testFuel(Request $request)

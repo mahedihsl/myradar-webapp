@@ -20,8 +20,8 @@ class MileageMicroservice extends BaseService
     return $this->post('/api/consume', $data);
   }
   
-  public function test($query)
+  public function recalculate($data)
   {
-    return $this->get('/api/test', $query);
+    return $this->post('/api/recalculate', $data);
   }
 }
