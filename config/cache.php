@@ -87,5 +87,7 @@ return [
     */
 
     'prefix' => 'laravel',
+    
+    'version' => '0.0.1',
 
 ];

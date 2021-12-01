@@ -53,7 +53,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <!-- Template Main CSS File -->
   <link href="{{ asset('landing2/assets/css/style.css', true) }}" rel="stylesheet">
-  <link href="{{ asset('css/tailwind.css', true) }}" rel="stylesheet">
+  <link href="{{ asset('css/tailwind.css?v='.config('cache.version'), true) }}" rel="stylesheet">
   <style>
     [x-cloak] {
       display: none;
