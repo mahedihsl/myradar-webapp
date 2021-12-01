@@ -34,12 +34,12 @@
       class="tw-inline-block tw-align-bottom tw-bg-white tw-rounded-lg tw-overflow-hidden tw-text-left tw-overflow-hidden tw-shadow-xl tw-transform tw-transition-all sm:tw-mt-2 sm:tw-align-middle sm:tw-max-w-lg sm:tw-w-full">
       <form action="/enroll/save" method="post" class="tw-w-full tw-relative" @submit.prevent="registerToOffer">
         <input type="hidden" name="type" value="lucky_coupon_lead">
-        <img src="{{ asset('images/promo/lucky_coupon_banner_hdpi.png') }}" alt="" class="tw-w-full tw-object-cover">
+        <img src="{{ asset('images/promo/lucky_coupon_banner_v2.png') }}" alt="" class="tw-w-full tw-max-h-screen tw-object-cover">
         <div class="tw-absolute tw-top-2 tw-right-2 tw-cursor-pointer" @click="showOfferModal = false">
           <span class="tw-text-gray-700 tw-text-opacity-50 tw-text-xl"><i class="fas fa-times-circle"></i></span>
         </div>
         <div
-          class="tw-absolute tw-bottom-0 tw-w-full tw-h-32 md:tw-h-40 tw-flex tw-flex-col tw-justify-center tw-items-center">
+          class="tw-absolute tw-bottom-0 tw-w-full tw-h-32 md:tw-h-40 tw-flex tw-flex-col tw-justify-end tw-items-center tw-pb-12 sm:tw-pb-20">
           <div class="tw-shadow-lg tw-w-3/4 tw-flex tw-flex-row tw-justify-center tw-items-center"
           :class="{'tw-hidden': response.available}">
             <input type="text"
