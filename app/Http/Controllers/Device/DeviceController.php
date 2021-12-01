@@ -173,6 +173,7 @@ class DeviceController extends Controller
     {
         $data = $this->service->bindHistory(collect($request->all()));
         $data = new LengthAwarePaginator($data['items'], $data['total'], $data['limit'], $data['page']);
+        $data->withPath('/device/bind/history');
         return view('device.bind_history')->with([
             'logs' => $data,
             'query' => collect($request->all()),
