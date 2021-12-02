@@ -86,7 +86,7 @@ class FuelController extends Controller
             return response()->ok(['items' => []]);
         }
         if ($device->car->name == 'Demo') {
-            return response()->ok([ 'items' => $this->getDemoRefuelHistory($day) ]);
+            return response()->ok([ 'items' => $this->getDemoFuelHistory(7) ]);
         }
 
         $this->dailyRepo->pushCriteria(new DeviceIdCriteria($id));
@@ -170,15 +170,16 @@ class FuelController extends Controller
         });
     }
 
-    public function getDemoRefuelHistory($days)
+    public function getDemoFuelHistory($days)
     {
+        $values = [80, 95, 28, 45, 58, 72, 81];
         $result = [];
         $fromDate = Carbon::today();
-        for ($i=1; $i <= $days; $i++) { 
+        for ($i=0; $i < $days; $i++) { 
             $date = $fromDate->copy()->subDays($i);
             $result[] = [
                 'id' => '--',
-                'value' => rand(25, 90),
+                'value' => $values[$i],
                 'when' => $date->format('j M'),
             ];
         }
