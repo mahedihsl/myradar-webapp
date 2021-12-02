@@ -99,7 +99,7 @@
     if (this.interest === 'offer') {
       setTimeout(() => {
         this.showOfferModal = true
-      }, 1000)
+      }, 2500)
     }
   },
   registerToOffer() {

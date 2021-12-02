@@ -141,6 +141,10 @@
   height: 8rem !important
 }
 
+.tw-h-auto {
+  height: auto !important
+}
+
 .tw-max-h-screen {
   max-height: 100vh !important
 }
@@ -173,10 +177,6 @@
   width: 3rem !important
 }
 
-.tw-w-auto {
-  width: auto !important
-}
-
 .tw-w-3\/4 {
   width: 75% !important
 }
@@ -203,6 +203,14 @@
 
 .tw-w-4\/12 {
   width: 33.333333% !important
+}
+
+.tw-w-auto {
+  width: auto !important
+}
+
+.tw-w-10\/12 {
+  width: 83.333333% !important
 }
 
 .tw-min-w-\[50px\] {
@@ -447,6 +455,10 @@
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity)) !important
 }
 
+.tw-bg-transparent {
+  background-color: transparent !important
+}
+
 .tw-bg-opacity-75 {
   --tw-bg-opacity: 0.75 !important
 }
@@ -521,16 +533,32 @@
   padding-bottom: 1rem !important
 }
 
-.tw-pb-12 {
-  padding-bottom: 3rem !important
+.tw-pb-\[50px\] {
+  padding-bottom: 50px !important
 }
 
-.tw-pb-16 {
-  padding-bottom: 4rem !important
+.tw-pb-\[0px\] {
+  padding-bottom: 0px !important
 }
 
-.tw-pb-14 {
-  padding-bottom: 3.5rem !important
+.tw-pb-\[100px\] {
+  padding-bottom: 100px !important
+}
+
+.tw-pb-\[85px\] {
+  padding-bottom: 85px !important
+}
+
+.tw-pb-\[70px\] {
+  padding-bottom: 70px !important
+}
+
+.tw-pb-\[12\%\] {
+  padding-bottom: 12% !important
+}
+
+.tw-pb-\[15\%\] {
+  padding-bottom: 15% !important
 }
 
 .tw-text-left {
@@ -777,10 +805,6 @@
     padding-bottom: 1rem !important
   }
 
-  .sm\:tw-pb-20 {
-    padding-bottom: 5rem !important
-  }
-
   .sm\:tw-align-middle {
     vertical-align: middle !important
   }
@@ -796,16 +820,20 @@
     height: 10rem !important
   }
 
-  .md\:tw-pb-16 {
-    padding-bottom: 4rem !important
+  .md\:tw-h-auto {
+    height: auto !important
   }
 
-  .md\:tw-pb-20 {
-    padding-bottom: 5rem !important
+  .md\:tw-h-\[75vh\] {
+    height: 75vh !important
   }
 
-  .md\:tw-pb-24 {
-    padding-bottom: 6rem !important
+  .md\:tw-h-\[85vh\] {
+    height: 85vh !important
+  }
+
+  .md\:tw-w-auto {
+    width: auto !important
   }
 }
 
