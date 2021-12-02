@@ -38,6 +38,16 @@ class CampaignController extends Controller
             return response()->error($th->getMessage());
         }
     }
+    
+    public function demoLead(Request $request)
+    {
+        try {
+            $result = $this->promotionService->saveDemoLead($request->all());
+            return response()->json($result);
+        } catch (\Exception $th) {
+            return response()->json(['message' => $th->getMessage()], 400);
+        }
+    }
 
     public function leads(Request $request)
     {

@@ -31,6 +31,8 @@ Route::post('/auth/login', 'Api\Auth\LoginController@login');
 Route::post('/auth/refresh', 'Api\Auth\LoginController@refresh');
 Route::post('/auth/profile', 'Api\Auth\LoginController@profile');
 
+Route::post('/demo-account/enroll', 'Promotion\CampaignController@demoLead');
+
 Route::post('/customer/login', 'Api\Auth\AuthController@login');
 Route::get('/app/version', function() {
     return response()->ok(config('app.version'));
