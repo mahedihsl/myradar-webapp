@@ -12,6 +12,11 @@ class PromotionMicroservice extends BaseService
 
   public function saveLead($data)
   {
-    return $this->post('/lead/save', $data);
+    return $this->post('/lead/lucky-coupon', $data);
+  }
+  
+  public function saveDemoLead($data)
+  {
+    return $this->post('/lead/demo-user', $data);
   }
 }

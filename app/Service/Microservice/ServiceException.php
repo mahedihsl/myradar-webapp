@@ -19,6 +19,6 @@ class ServiceException extends \Exception {
   }
 
   public static function fromServerException($e) {
-    return new ServiceException('Unknown microservice error', $e->getResponse()->getStatusCode());
+    return new ServiceException('Unknown error !!!', $e->getResponse()->getStatusCode());
   }
 }
