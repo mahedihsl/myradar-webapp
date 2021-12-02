@@ -25,11 +25,16 @@
     @if ($lead->type == 'lucky_coupon_lead')
     <span class="tw-text-gray-700 tw-text-xl tw-font-semibold">
       <i class="fa fa-gift"></i>
-      {{ $lead->meta['code'] }}
-      ({{ $lead->meta['discount'] }} %)
+      Code - {{ $lead->meta['code'] }}
+      ({{ $lead->meta['discount'] }}% Discount)
       @if ($lead->meta['notified'])
       <span class="tw-text-green-500"><i class="fa fa-check"></i> SMS SENT</span>
       @endif
+    </span>
+    @elseif($lead->type == 'demo_user_lead')
+    <span class="tw-text-gray-700 tw-text-xl tw-font-semibold">
+      <i class="fa fa-key"></i>
+      OTP: {{ $lead->meta['otp'] }}
     </span>
     @endif
   </div>
