@@ -13,4 +13,19 @@ class Enroll extends Eloquent
 {
     protected $guarded = [];
 
+    public function getTypeLabel()
+    {
+        if (!$this->type) return '--';
+
+        $typeLabels = [
+            'demo_user_lead' => 'Android demo user lead',
+            'lucky_coupon_lead' => 'Lucky coupon lead',
+            'message_lead' => 'Web message lead',
+        ];
+        if (array_key_exists($this->type, $typeLabels)) {
+            return $typeLabels[$this->type];
+        }
+
+        return '--'
+;    }
 }

@@ -65,11 +65,24 @@ class ComplainRepositoryEloquent extends BaseRepository implements ComplainRepos
             ]);
         }
 
+        $statusLog = $model->status_log;
+        if (!$statusLog) {
+            $statusLog = [];
+        }
+
+        if ($newStatus != $status) {
+            $statusLog[] = [
+                'status' => $newStatus,
+                'time' => Carbon::now(),
+            ];
+        }
+
         $model->update([
             'type' => $type,
             'status' => $newStatus,
             'comment' => $comm,
 			'responsible' => $responsible,
+            'status_log' => $statusLog,
             'closed_at' => $newStatus == "closed" ? Carbon::now() : null,
         ]);
 
