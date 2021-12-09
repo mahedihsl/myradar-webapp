@@ -102,16 +102,8 @@
   </a>
 </li>
 <li>
-  <a href="/messages">
-    <i class="fa fa-envelope"></i> <span>Messages</span>
-    @php
-      $n = \App\Entities\Message::where('created_at', '>', \Carbon\Carbon::today())->count()
-    @endphp
-    @if ($n)
-      <span class="pull-right-container">
-        <small class="label pull-right bg-green">{{$n}}</small>
-      </span>
-    @endif
+  <a href="http://biwta.myradar.com.bd/demo?token=demo-preview" target="_blank">
+    <i class="fa fa-ship"></i> <span>BIWTA Demo</span>
   </a>
 </li>
 @include('partial.menu.test')
