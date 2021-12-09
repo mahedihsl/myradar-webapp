@@ -51,12 +51,15 @@ class CampaignController extends Controller
 
     public function leads(Request $request)
     {
+        $type = '';
         $query = Enroll::orderBy('created_at', 'desc');
         if ($request->type) {
             $query = $query->where('type', $request->type);
+            $type = $request->type;
         }
         return view('promotion.leads')->with([
             'leads' => $query->paginate(),
+            'type' => $type,
         ]);
     }
 }

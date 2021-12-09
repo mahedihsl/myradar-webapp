@@ -9,9 +9,9 @@ Campaign Leads
   <form action="/leads" method="get" class="tw-w-full tw-flex tw-flex-row tw-items-center tw-gap-x-4">
     <select name="type" class="tw-w-1/4 form-control">
       <option value="">Select Type</option>
-      <option value="demo_user_lead">Android demo user lead</option>
-      <option value="lucky_coupon_lead">Lucky coupon lead</option>
-      <option value="message_lead">Web message lead</option>
+      <option value="demo_user_lead" {{ $type == 'demo_user_lead' ? 'selected' : '' }}>Android demo user lead</option>
+      <option value="lucky_coupon_lead" {{ $type == 'lucky_coupon_lead' ? 'selected' : '' }}>Lucky coupon lead</option>
+      <option value="message_lead" {{ $type == 'message_lead' ? 'selected' : '' }}>Web message lead</option>
       {{-- <option value="general_lead">General Lead</option> --}}
     </select>
     <button type="submit" class="btn btn-primary">
