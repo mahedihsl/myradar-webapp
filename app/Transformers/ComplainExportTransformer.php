@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Entities\Complain;
+use Carbon\Carbon;
 
 /**
  * Class ComplainExportTransformer.
@@ -12,6 +13,12 @@ use App\Entities\Complain;
  */
 class ComplainExportTransformer extends TransformerAbstract
 {
+    private $statusTransitions;
+
+    public function __construct($transitions) {
+        $this->statusTransitions = $transitions;
+    }
+
     /**
      * Transform the Complain entity.
      *
@@ -40,7 +47,7 @@ class ComplainExportTransformer extends TransformerAbstract
             $complainer = $model->car->user->name;
         }
 
-        return [
+        $dataColumns = [
             'Status' => $model->status,
 			'Token'  => $model->token,
 			'Car'    => $model->reg_no,
@@ -55,5 +62,33 @@ class ComplainExportTransformer extends TransformerAbstract
             'Comment #2' => $getComment($model->comment, 1),
             'Comment #3' => $getComment($model->comment, 2),
         ];
+
+        $transitionColumns = $this->getTransitionColumns($model);
+
+        return array_merge($dataColumns, $transitionColumns);
+    }
+
+    public function getTransitionColumns($complain)
+    {
+        $columns = $this->statusTransitions->mapWithKeys(function($item) {
+            return [$item . ' (Hrs)' => ''];
+        });
+
+        if ($complain->status_log) {
+            $logs = $complain->status_log;
+            $len = count($logs);
+            for ($i=0; $i < $len - 1; $i++) { 
+                $prevState = $logs[$i]['status'];
+                $nextState = $logs[$i + 1]['status'];
+
+                $prevTime = new Carbon($logs[$i]['time']['date'], $logs[$i]['time']['timezone']);
+                $nextTime = new Carbon($logs[$i + 1]['time']['date'], $logs[$i + 1]['time']['timezone']);
+
+                $key = $prevState . '-' . $nextState . ' (Hrs)';
+                $columns->put($key, $nextTime->diffInHours($prevTime) + 1);
+            }
+        }
+
+        return $columns->toArray();
     }
 }
