@@ -100,6 +100,12 @@ class RestAPIController extends Controller
 
             $from = Carbon::createFromFormat('m/d/Y h:i A', $from_t);
             $to = Carbon::createFromFormat('m/d/Y h:i A', $to_t);
+            if ($device_id == '5f63fbca32ebd87dc663002a') {
+                /**
+                 * If this is Demo User's device, then return only 2 hours recording
+                 */
+                $to = $from->copy()->addHours(2);
+            }
 
             $st_time = new \MongoDB\BSON\UTCDateTime($from->timestamp * 1000);
             $en_time = new \MongoDB\BSON\UTCDateTime($to->timestamp * 1000);
