@@ -68,6 +68,34 @@
   bottom: 0px !important
 }
 
+.tw-left-0 {
+  left: 0px !important
+}
+
+.tw-left-full {
+  left: 100% !important
+}
+
+.tw-top-10 {
+  top: 2.5rem !important
+}
+
+.tw-right-full {
+  right: 100% !important
+}
+
+.tw-left-\[\] {
+  left:  !important
+}
+
+.tw-left-\[90\%\] {
+  left: 90% !important
+}
+
+.tw-right-64 {
+  right: 16rem !important
+}
+
 .tw-z-\[999\] {
   z-index: 999 !important
 }
@@ -101,16 +129,16 @@
   margin-top: 0.5rem !important
 }
 
+.tw-mr-2 {
+  margin-right: 0.5rem !important
+}
+
 .tw-mt-3 {
   margin-top: 0.75rem !important
 }
 
 .tw-mt-5 {
   margin-top: 1.25rem !important
-}
-
-.tw-mr-2 {
-  margin-right: 0.5rem !important
 }
 
 .tw-inline-block {
@@ -157,6 +185,14 @@
   width: 100% !important
 }
 
+.tw-w-8\/12 {
+  width: 66.666667% !important
+}
+
+.tw-w-4\/12 {
+  width: 33.333333% !important
+}
+
 .tw-w-1\/4 {
   width: 25% !important
 }
@@ -189,6 +225,10 @@
   width: 75% !important
 }
 
+.tw-w-\[70\%\] {
+  width: 70% !important
+}
+
 .tw-w-2\/12 {
   width: 16.666667% !important
 }
@@ -209,16 +249,8 @@
   width: 41.666667% !important
 }
 
-.tw-w-4\/12 {
-  width: 33.333333% !important
-}
-
-.tw-w-8 {
-  width: 2rem !important
-}
-
-.tw-w-8\/12 {
-  width: 66.666667% !important
+.tw-w-\[80\%\] {
+  width: 80% !important
 }
 
 .tw-min-w-\[50px\] {
@@ -239,6 +271,11 @@
 
 .tw--translate-y-1\/2 {
   --tw-translate-y: -50% !important;
+  transform: var(--tw-transform) !important
+}
+
+.tw-translate-x-full {
+  --tw-translate-x: 100% !important;
   transform: var(--tw-transform) !important
 }
 
@@ -377,6 +414,11 @@
   border-bottom-left-radius: 0px !important
 }
 
+.tw-rounded-r {
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important
+}
+
 .tw-border-0 {
   border-width: 0px !important
 }
@@ -510,14 +552,19 @@
   padding-right: 1.25rem !important
 }
 
-.tw-py-8 {
-  padding-top: 2rem !important;
-  padding-bottom: 2rem !important
-}
-
 .tw-px-3 {
   padding-left: 0.75rem !important;
   padding-right: 0.75rem !important
+}
+
+.tw-py-2\.5 {
+  padding-top: 0.625rem !important;
+  padding-bottom: 0.625rem !important
+}
+
+.tw-py-8 {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important
 }
 
 .tw-py-1 {
@@ -626,6 +673,11 @@
   color: rgba(75, 85, 99, var(--tw-text-opacity)) !important
 }
 
+.tw-text-gray-500 {
+  --tw-text-opacity: 1 !important;
+  color: rgba(107, 114, 128, var(--tw-text-opacity)) !important
+}
+
 .tw-text-green-500 {
   --tw-text-opacity: 1 !important;
   color: rgba(16, 185, 129, var(--tw-text-opacity)) !important
@@ -639,11 +691,6 @@
 .tw-text-red-400 {
   --tw-text-opacity: 1 !important;
   color: rgba(248, 113, 113, var(--tw-text-opacity)) !important
-}
-
-.tw-text-gray-500 {
-  --tw-text-opacity: 1 !important;
-  color: rgba(107, 114, 128, var(--tw-text-opacity)) !important
 }
 
 .tw-text-opacity-50 {
@@ -680,6 +727,11 @@
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
 }
 
+.tw-shadow {
+  --tw-shadow: 0 0 20px rgb(0 0 0 / 12%) !important;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
+}
+
 .tw-transition-all {
   transition-property: all !important;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -692,8 +744,26 @@
   transition-duration: 150ms !important
 }
 
+.tw-transition-transform {
+  transition-property: transform !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important
+}
+
 .tw-duration-300 {
   transition-duration: 300ms !important
+}
+
+.tw-duration-500 {
+  transition-duration: 500ms !important
+}
+
+.tw-ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1) !important
+}
+
+.tw-ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1) !important
 }
 
 .hover\:tw-bg-green-700:hover {
@@ -820,9 +890,17 @@
   .md\:tw-w-auto {
     width: auto !important
   }
+
+  .md\:tw-w-\[40\%\] {
+    width: 40% !important
+  }
 }
 
 @media (min-width: 1024px) {
+  .lg\:tw-w-\[25\%\] {
+    width: 25% !important
+  }
+
   .lg\:tw-flex-row {
     flex-direction: row !important
   }

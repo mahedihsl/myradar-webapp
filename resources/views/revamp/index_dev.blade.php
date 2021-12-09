@@ -84,6 +84,7 @@
 
 <body x-data="{ 
   showOfferModal: false,
+  interest: new URLSearchParams(location.search).get('interest'),
   offerForm: {
     phone: '',
     type: 'lucky_coupon_lead',
@@ -92,6 +93,14 @@
     available: false,
     success: false,
     message: '',
+  },
+  init() {
+    console.log('interest', this.interest)
+    if (this.interest === 'offer') {
+      setTimeout(() => {
+        this.showOfferModal = true
+      }, 2500)
+    }
   },
   registerToOffer() {
     fetch('/enroll/save', {
@@ -117,7 +126,7 @@
   @include('revamp.menu', ['base' => ''])
 
   @include('revamp.fab-buttons')
-  @include('revamp.offer-modal2')
+  @include('revamp.offer-modal3')
   @include('revamp.hero')
 
   <main id="main">
