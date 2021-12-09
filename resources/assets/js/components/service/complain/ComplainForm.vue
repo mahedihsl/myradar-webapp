@@ -68,8 +68,7 @@ export default {
     vSelect,
   },
   data: () => ({
-    // employees: ['Wahida', 'Mitu', 'Airin', 'Hasib', 'Borhan', 'Masud', 'Agent 1', 'Agent 2', 'Jasim', 'Sumit'],
-    employees: ['Wahida', 'Hasib', 'Masud', 'Agent 1', 'Agent 2', 'Rubel', 'Ahnaf'],
+    employees: ['Wahida', 'Hasib', 'Masud', 'Agent 1', 'Agent 2', 'Rubel', 'Ahnaf', 'Shahadat'],
     types: ['Less Lat-Lng', 'Frequent Reset', 'Frequent Hang', 'Device Stopped', 'ES Missing', 'Notification', 'Gas Refill', 'Gas Meter', 'Lock-unlock', 'other'],
     selectedType: '',
     selectedEmp: '',
