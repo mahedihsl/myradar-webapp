@@ -40,6 +40,23 @@
   left: 0px !important
 }
 
+.tw--inset-0 {
+  top: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  left: 0px !important
+}
+
+.tw-inset-y-0 {
+  top: 0px !important;
+  bottom: 0px !important
+}
+
+.tw-inset-x-0 {
+  left: 0px !important;
+  right: 0px !important
+}
+
 .tw-right-\[10px\] {
   right: 10px !important
 }
@@ -68,8 +85,8 @@
   bottom: 0px !important
 }
 
-.tw-left-0 {
-  left: 0px !important
+.tw-right-full {
+  right: 100% !important
 }
 
 .tw-left-full {
@@ -80,24 +97,40 @@
   top: 2.5rem !important
 }
 
-.tw-right-full {
-  right: 100% !important
+.tw-top-full {
+  top: 100% !important
 }
 
-.tw-left-\[\] {
-  left:  !important
+.tw-left-10 {
+  left: 2.5rem !important
 }
 
-.tw-left-\[90\%\] {
-  left: 90% !important
+.tw-bottom-full {
+  bottom: 100% !important
 }
 
-.tw-right-64 {
-  right: 16rem !important
+.tw-left-1\/2 {
+  left: 50% !important
+}
+
+.tw-top-0 {
+  top: 0px !important
+}
+
+.tw-right-0 {
+  right: 0px !important
+}
+
+.tw-right-1\/2 {
+  right: 50% !important
 }
 
 .tw-z-\[999\] {
   z-index: 999 !important
+}
+
+.tw-z-\[998\] {
+  z-index: 998 !important
 }
 
 .tw-mx-auto {
@@ -108,6 +141,11 @@
 .tw-my-0 {
   margin-top: 0px !important;
   margin-bottom: 0px !important
+}
+
+.tw-mx-3 {
+  margin-left: 0.75rem !important;
+  margin-right: 0.75rem !important
 }
 
 .tw-my-4 {
@@ -125,6 +163,31 @@
   margin-bottom: 2.5rem !important
 }
 
+.tw-my-8 {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important
+}
+
+.tw-my-3 {
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important
+}
+
+.tw-mx-10 {
+  margin-left: 2.5rem !important;
+  margin-right: 2.5rem !important
+}
+
+.tw-my-2 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important
+}
+
+.tw-mx-6 {
+  margin-left: 1.5rem !important;
+  margin-right: 1.5rem !important
+}
+
 .tw-mt-2 {
   margin-top: 0.5rem !important
 }
@@ -139,6 +202,23 @@
 
 .tw-mt-5 {
   margin-top: 1.25rem !important
+}
+
+.tw-mt-8 {
+  margin-top: 2rem !important
+}
+
+.tw--mt-2 {
+  margin-top: -0.5rem !important;
+  margin-top: -0.5rem !important
+}
+
+.tw--mb-2 {
+  margin-bottom: -0.5rem !important
+}
+
+.tw-mb-12 {
+  margin-bottom: 3rem !important
 }
 
 .tw-inline-block {
@@ -175,6 +255,34 @@
 
 .tw-h-32 {
   height: 8rem !important
+}
+
+.tw-h-\[100px\] {
+  height: 100px !important
+}
+
+.tw-h-full {
+  height: 100% !important
+}
+
+.tw-h-\[750px\] {
+  height: 750px !important
+}
+
+.tw-h-\[75px\] {
+  height: 75px !important
+}
+
+.tw-h-screen {
+  height: 100vh !important
+}
+
+.tw-h-20 {
+  height: 5rem !important
+}
+
+.tw-h-\[70px\] {
+  height: 70px !important
 }
 
 .tw-min-h-screen {
@@ -225,8 +333,8 @@
   width: 75% !important
 }
 
-.tw-w-\[70\%\] {
-  width: 70% !important
+.tw-w-\[80\%\] {
+  width: 80% !important
 }
 
 .tw-w-2\/12 {
@@ -249,8 +357,12 @@
   width: 41.666667% !important
 }
 
-.tw-w-\[80\%\] {
-  width: 80% !important
+.tw-w-screen {
+  width: 100vw !important
+}
+
+.tw-w-20 {
+  width: 5rem !important
 }
 
 .tw-min-w-\[50px\] {
@@ -276,6 +388,26 @@
 
 .tw-translate-x-full {
   --tw-translate-x: 100% !important;
+  transform: var(--tw-transform) !important
+}
+
+.tw--translate-x-1\/2 {
+  --tw-translate-x: -50% !important;
+  transform: var(--tw-transform) !important
+}
+
+.tw-translate-y-full {
+  --tw-translate-y: 100% !important;
+  transform: var(--tw-transform) !important
+}
+
+.tw--translate-y-full {
+  --tw-translate-y: -100% !important;
+  transform: var(--tw-transform) !important
+}
+
+.tw-translate-y-1\/2 {
+  --tw-translate-y: 50% !important;
   transform: var(--tw-transform) !important
 }
 
@@ -305,6 +437,10 @@
 
 .tw-items-center {
   align-items: center !important
+}
+
+.tw-items-stretch {
+  align-items: stretch !important
 }
 
 .tw-justify-start {
@@ -414,9 +550,14 @@
   border-bottom-left-radius: 0px !important
 }
 
-.tw-rounded-r {
-  border-top-right-radius: 0.25rem !important;
-  border-bottom-right-radius: 0.25rem !important
+.tw-rounded-r-md {
+  border-top-right-radius: 0.375rem !important;
+  border-bottom-right-radius: 0.375rem !important
+}
+
+.tw-rounded-t-md {
+  border-top-left-radius: 0.375rem !important;
+  border-top-right-radius: 0.375rem !important
 }
 
 .tw-border-0 {
@@ -499,6 +640,11 @@
   background-color: transparent !important
 }
 
+.tw-bg-\[\#fed330\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(254, 211, 48, var(--tw-bg-opacity)) !important
+}
+
 .tw-bg-blue-400 {
   --tw-bg-opacity: 1 !important;
   background-color: rgba(96, 165, 250, var(--tw-bg-opacity)) !important
@@ -507,6 +653,48 @@
 .tw-bg-gray-200 {
   --tw-bg-opacity: 1 !important;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity)) !important
+}
+
+.tw-bg-\[\#ffd32a\] {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(255, 211, 42, var(--tw-bg-opacity)) !important
+}
+
+.tw-bg-gray-800 {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important
+}
+
+.tw-bg-gray-800\/20 {
+  background-color: rgba(31, 41, 55, 0.2) !important
+}
+
+.tw-bg-gray-800\/30 {
+  background-color: rgba(31, 41, 55, 0.3) !important
+}
+
+.tw-bg-white\/20 {
+  background-color: rgba(255, 255, 255, 0.2) !important
+}
+
+.tw-bg-white\/30 {
+  background-color: rgba(255, 255, 255, 0.3) !important
+}
+
+.tw-bg-white\/60 {
+  background-color: rgba(255, 255, 255, 0.6) !important
+}
+
+.tw-bg-gray-700\/60 {
+  background-color: rgba(55, 65, 81, 0.6) !important
+}
+
+.tw-bg-gray-800\/60 {
+  background-color: rgba(31, 41, 55, 0.6) !important
+}
+
+.tw-bg-gray-800\/50 {
+  background-color: rgba(31, 41, 55, 0.5) !important
 }
 
 .tw-bg-opacity-75 {
@@ -552,11 +740,6 @@
   padding-right: 1.25rem !important
 }
 
-.tw-px-3 {
-  padding-left: 0.75rem !important;
-  padding-right: 0.75rem !important
-}
-
 .tw-py-2\.5 {
   padding-top: 0.625rem !important;
   padding-bottom: 0.625rem !important
@@ -567,9 +750,39 @@
   padding-bottom: 2rem !important
 }
 
+.tw-px-3 {
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important
+}
+
 .tw-py-1 {
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important
+}
+
+.tw-py-6 {
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important
+}
+
+.tw-px-1\.5 {
+  padding-left: 0.375rem !important;
+  padding-right: 0.375rem !important
+}
+
+.tw-px-1 {
+  padding-left: 0.25rem !important;
+  padding-right: 0.25rem !important
+}
+
+.tw-px-10 {
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important
+}
+
+.tw-py-1\.5 {
+  padding-top: 0.375rem !important;
+  padding-bottom: 0.375rem !important
 }
 
 .tw-pt-4 {
@@ -712,6 +925,14 @@
   color: rgba(75, 85, 99, var(--tw-placeholder-opacity)) !important
 }
 
+.tw-opacity-0 {
+  opacity: 0 !important
+}
+
+.tw-opacity-100 {
+  opacity: 1 !important
+}
+
 .tw-shadow-xl {
   --tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
@@ -744,8 +965,10 @@
   transition-duration: 150ms !important
 }
 
-.tw-transition-transform {
-  transition-property: transform !important;
+.tw-transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
   transition-duration: 150ms !important
 }
@@ -756,10 +979,6 @@
 
 .tw-duration-500 {
   transition-duration: 500ms !important
-}
-
-.tw-ease-in {
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1) !important
 }
 
 .tw-ease-out {
@@ -774,6 +993,36 @@
 .hover\:tw-bg-gray-50:hover {
   --tw-bg-opacity: 1 !important;
   background-color: rgba(249, 250, 251, var(--tw-bg-opacity)) !important
+}
+
+.hover\:tw-bg-\[\#f7b731\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(247, 183, 49, var(--tw-bg-opacity)) !important
+}
+
+.hover\:tw-bg-\[\#ffd32a\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(255, 211, 42, var(--tw-bg-opacity)) !important
+}
+
+.hover\:tw-bg-\[\#f9ca24\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(249, 202, 36, var(--tw-bg-opacity)) !important
+}
+
+.hover\:tw-bg-\[\#e8b90e\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(232, 185, 14, var(--tw-bg-opacity)) !important
+}
+
+.hover\:tw-bg-\[\#fcc80a\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(252, 200, 10, var(--tw-bg-opacity)) !important
+}
+
+.hover\:tw-bg-\[\#ffc800\]:hover {
+  --tw-bg-opacity: 1 !important;
+  background-color: rgba(255, 200, 0, var(--tw-bg-opacity)) !important
 }
 
 .focus\:tw-outline-none:focus {
@@ -879,6 +1128,77 @@
 }
 
 @media (min-width: 768px) {
+  .md\:tw-inset-y-0 {
+    top: 0px !important;
+    bottom: 0px !important
+  }
+
+  .md\:tw-left-full {
+    left: 100% !important
+  }
+
+  .md\:tw-top-10 {
+    top: 2.5rem !important
+  }
+
+  .md\:tw-top-auto {
+    top: auto !important
+  }
+
+  .md\:tw-left-auto {
+    left: auto !important
+  }
+
+  .md\:tw-bottom-auto {
+    bottom: auto !important
+  }
+
+  .md\:tw-top-1\/2 {
+    top: 50% !important
+  }
+
+  .md\:tw-right-full {
+    right: 100% !important
+  }
+
+  .md\:tw-mx-3 {
+    margin-left: 0.75rem !important;
+    margin-right: 0.75rem !important
+  }
+
+  .md\:tw-my-0 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important
+  }
+
+  .md\:tw-mx-0 {
+    margin-left: 0px !important;
+    margin-right: 0px !important
+  }
+
+  .md\:tw-my-10 {
+    margin-top: 2.5rem !important;
+    margin-bottom: 2.5rem !important
+  }
+
+  .md\:tw-mx-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important
+  }
+
+  .md\:tw-my-6 {
+    margin-top: 1.5rem !important;
+    margin-bottom: 1.5rem !important
+  }
+
+  .md\:tw--mb-2 {
+    margin-bottom: -0.5rem !important
+  }
+
+  .md\:tw-mb-0 {
+    margin-bottom: 0px !important
+  }
+
   .md\:tw-h-\[85vh\] {
     height: 85vh !important
   }
@@ -887,12 +1207,114 @@
     height: 10rem !important
   }
 
+  .md\:tw-h-auto {
+    height: auto !important
+  }
+
   .md\:tw-w-auto {
     width: auto !important
   }
 
   .md\:tw-w-\[40\%\] {
     width: 40% !important
+  }
+
+  .md\:tw-w-\[100px\] {
+    width: 100px !important
+  }
+
+  .md\:tw-w-full {
+    width: 100% !important
+  }
+
+  .md\:tw--translate-y-1\/2 {
+    --tw-translate-y: -50% !important;
+    transform: var(--tw-transform) !important
+  }
+
+  .md\:tw--translate-x-0 {
+    --tw-translate-x: 0px !important;
+    transform: var(--tw-transform) !important
+  }
+
+  .md\:tw-translate-x-0 {
+    --tw-translate-x: 0px !important;
+    transform: var(--tw-transform) !important
+  }
+
+  .md\:tw-translate-x-full {
+    --tw-translate-x: 100% !important;
+    transform: var(--tw-transform) !important
+  }
+
+  @media (min-width: 768px) {
+    .md\:md\:tw-translate-x-full {
+      --tw-translate-x: 100% !important;
+      transform: var(--tw-transform) !important
+    }
+  }
+
+  .md\:tw-translate-y-0 {
+    --tw-translate-y: 0px !important;
+    transform: var(--tw-transform) !important
+  }
+
+  .md\:tw-flex-col {
+    flex-direction: column !important
+  }
+
+  .md\:tw-rounded {
+    border-radius: 0.25rem !important
+  }
+
+  .md\:tw-rounded-r-md {
+    border-top-right-radius: 0.375rem !important;
+    border-bottom-right-radius: 0.375rem !important
+  }
+
+  .md\:tw-rounded-l-none {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important
+  }
+
+  .md\:tw-px-6 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important
+  }
+
+  .md\:tw-py-3 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important
+  }
+
+  .md\:tw-px-5 {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important
+  }
+
+  .md\:tw-py-1\.5 {
+    padding-top: 0.375rem !important;
+    padding-bottom: 0.375rem !important
+  }
+
+  .md\:tw-py-1 {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important
+  }
+
+  .md\:tw-px-3 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important
+  }
+
+  .md\:tw-py-10 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important
+  }
+
+  .md\:tw-py-5 {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important
   }
 }
 

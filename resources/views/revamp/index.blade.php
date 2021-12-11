@@ -126,7 +126,7 @@
   @include('revamp.menu', ['base' => ''])
 
   @include('revamp.fab-buttons')
-  @include('revamp.offer-modal2')
+  @include('revamp.offer-modal4')
   @include('revamp.hero')
 
   <main id="main">
