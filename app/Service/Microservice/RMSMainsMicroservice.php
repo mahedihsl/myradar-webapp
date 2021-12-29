@@ -19,4 +19,9 @@ class RMSMainsMicroservice extends BaseService
   {
     return $this->get('/api/offhours', $query);
   }
+  
+  public function exportData($query)
+  {
+    return $this->get('/api/export-data', $query);
+  }
 }

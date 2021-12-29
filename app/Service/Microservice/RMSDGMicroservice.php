@@ -14,4 +14,9 @@ class RMSDGMicroservice extends BaseService
   {
     return $this->get('/api/runhours', $query);
   }
+
+  public function exportData($query)
+  {
+    return $this->get('/api/export-data', $query);
+  }
 }

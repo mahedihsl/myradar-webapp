@@ -19,4 +19,9 @@ class RMSTemperatureMicroservice extends BaseService
   {
     return $this->get('/api/history', $query);
   }
+  
+  public function exportData($query)
+  {
+    return $this->get('/api/export-data', $query);
+  }
 }
