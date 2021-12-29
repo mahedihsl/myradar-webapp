@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::get('/privacy-policy', 'HomeController@privacy');
-Route::get('/privacy-policy1', 'HomeController@privacy1');
+Route::get('/terms-of-service', 'HomeController@privacy');
 
 Route::post('/emergency/restore', 'Test\DatabaseTestController@restore');
 Route::post('/emergency/restore2', 'Test\DatabaseTestController@restore2');
