@@ -24,4 +24,9 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->post('/site/update', $data);
   }
+  
+  public function statusCounts($query)
+  {
+    return $this->get('/site/status-counts', $query);
+  }
 }
