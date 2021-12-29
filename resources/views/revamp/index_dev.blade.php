@@ -96,10 +96,11 @@
   },
   init() {
     console.log('interest', this.interest)
+    setTimeout(() => {
+      this.showOfferModal = true
+    }, 2500)
     if (this.interest === 'offer') {
-      setTimeout(() => {
-        this.showOfferModal = true
-      }, 2500)
+      
     }
   },
   registerToOffer() {
@@ -126,7 +127,7 @@
   @include('revamp.menu', ['base' => ''])
 
   @include('revamp.fab-buttons')
-  @include('revamp.offer-modal4')
+  @include('revamp.offer-modal')
   @include('revamp.hero')
 
   <main id="main">
@@ -199,7 +200,6 @@
           <img src="{{ asset('images/partners/jural.png', true) }}" alt="">
         </div>
 
-      </div>
       </div>
 
     </section>
@@ -381,7 +381,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center tw-z-[997]"><i
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->

@@ -1,91 +1,56 @@
-<!-- Modal -->
-<!-- This example requires Tailwind CSS v2.0+ -->
-<div class="tw-fixed tw-z-[999] tw-inset-0 tw-overflow-y-auto tw-hidden" id="offer-modal" aria-labelledby="modal-title"
-  role="dialog" aria-modal="true">
-  <div
-    class="tw-flex tw-items-center tw-justify-center tw-min-h-screen tw-pt-4 tw-px-4 tw-pb-20 tw-text-center sm:tw-block sm:tw-p-0">
-    <!--
-      Background overlay, show/hide based on modal state.
+<div
+  class="tw-w-screen tw-h-screen tw-bg-gray-800/50 tw-fixed tw-top-full md:tw-top-auto md:tw-right-full tw-opacity-0 tw-transform tw-transition-all tw-duration-500 tw-ease-out tw-z-[998]"
+  :class="{'tw--translate-y-full md:tw-translate-y-0 md:tw-translate-x-full tw-opacity-100': showOfferModal}"></div>
+<div
+  class="tw-w-[90%] md:tw-w-[40%] lg:tw-w-[25%] tw-h-auto tw-fixed tw-top-full tw-left-1/2 md:tw-left-auto md:tw-top-1/2 md:tw-right-full tw-transform tw--translate-x-1/2 md:tw--translate-x-0 md:tw--translate-y-1/2 tw-z-[999] tw-transition-all tw-duration-500 tw-ease-out"
+  :class="{'tw--translate-y-full md:tw-translate-x-full': showOfferModal}">
+  <div @click="showOfferModal = !showOfferModal"
+    class="tw-flex tw-flex-row md:tw-flex-col tw-justify-center tw-items-center tw-px-5 tw-py-3 md:tw-px-3 md:tw-py-5 tw-absolute tw-transform tw-bottom-full tw-left-1/2 tw--translate-x-1/2 md:tw-bottom-auto md:tw-left-full md:tw-top-1/2 md:tw-translate-x-0 md:tw--translate-y-1/2 tw-h-[70px] tw-w-full md:tw-w-[100px] md:tw-h-auto tw-py-2.5 tw-rounded-t-md md:tw-rounded-l-none md:tw-rounded-r-md tw-shadow tw-z-[999] tw-bg-[#ffd32a] hover:tw-bg-[#ffc800] tw-transition tw-duration-300 tw-cursor-pointer tw-transition-all tw-duration-500 tw-ease-out"
+    :class="{'tw-opacity-0': showOfferModal}">
+    <span class="tw-text-xl tw-gray-700 tw-font-bold bangla tw-text-center tw-my-0 tw-mx-2 md:tw-mx-0">বিজয়</span>
 
-      Entering: "ease-out duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
-    <div class="tw-fixed tw-inset-0 tw-bg-gray-500 tw-bg-opacity-75 tw-transition-opacity" aria-hidden="true"></div>
+    <img src="{{ asset('images/promo/victory.png') }}" alt=""
+      class="tw-h-full tw-h-auto md:tw-w-full md:tw-h-auto tw-my-3 md:tw-my-0 md:tw-mx-3">
 
-    <!-- This element is to trick the browser into centering the modal contents. -->
-    <span class="tw-hidden sm:tw-inline-block sm:tw-align-middle sm:tw-h-screen" aria-hidden="true">&#8203;</span>
+    <img src="{{ asset('images/promo/offer4.png') }}" alt=""
+      class="tw-h-1/2 tw-h-auto md:tw-w-3/4 md:tw-h-auto tw-mx-3 md:tw-mx-0 md:tw-my-3 animate__animated animate__tada animate__slow animate__infinite">
 
-    <!--
-      Modal panel, show/hide based on modal state.
-
-      Entering: "ease-out duration-300"
-        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        To: "opacity-100 translate-y-0 sm:scale-100"
-      Leaving: "ease-in duration-200"
-        From: "opacity-100 translate-y-0 sm:scale-100"
-        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-    -->
-
-    <div
-      class="tw-inline-block tw-align-bottom tw-bg-white tw-rounded-lg tw-text-left tw-overflow-hidden tw-shadow-xl tw-transform tw-transition-all sm:tw-mt-2 sm:tw-align-middle sm:tw-max-w-lg sm:tw-w-full">
-      <form action="/enroll/save" method="post" class=" tw-w-full">
-        {!! csrf_field() !!}
-        <div class="tw-bg-white tw-px-4 tw-pt-5 tw-pb-4 sm:tw-p-6 sm:tw-pb-4">
-          <div class="tw-flex tw-flex-col tw-items-center">
-            <div
-              class="tw-mx-auto tw-flex-shrink-0 tw-flex tw-items-center tw-justify-center tw-h-12 tw-w-12 tw-rounded-full tw-bg-purple-600 sm:tw-mx-0">
-              <img src="{{ asset('images/icon/giftbox.png') }}" alt="" class="tw-w-6 tw-h-6">
-            </div>
-            <div class="tw-mt-3 tw-text-center tw-mt-3 tw-text-center">
-              <h2 class="tw-text-red-500 tw-font-bold tw-text-lg tw-leading-6" id="modal-title">
-                Lucky Coupon
-              </h2>
-              <div class="tw-mt-2">
-                <p class="tw-text-base tw-font-semibold">
-                  <span class="tw-text-red-400">Register now to get upto 100% discount</span> <br>
-                  <span class="tw-text-sm tw-text-gray-700">Draw in 1 Hour</span>
-                </p>
-
-                <input type="hidden" name="type" value="lucky_coupon_lead">
-                <div class="row gy-4">
-
-                  <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name">
-                  </div>
-
-                  <div class="col-md-6 ">
-                    <input type="text" class="form-control" name="phone" placeholder="Your Phone Number" required>
-                    @if ($errors->has('phone'))
-                    <span class="help-block">
-                      <div class="">{{ $errors->first('phone') }}</div>
-                    </span>
-                    @endif
-                  </div>
-
-                  <div class="col-md-12">
-                    <textarea class="form-control" name="message" rows="3" placeholder="Message"></textarea>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tw-bg-gray-50 tw-px-4 tw-py-3 sm:tw-px-6 sm:tw-flex sm:tw-flex-row-reverse">
-          <button type="submit"
-            class="tw-w-full tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-transparent tw-shadow-sm tw-px-4 tw-py-2 tw-bg-green-600 tw-text-base tw-font-medium tw-text-white hover:tw-bg-green-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-red-500 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm">
-            Register
-          </button>
-          <button type="button" id="offer-close"
-            class="tw-mt-3 tw-w-full tw-inline-flex tw-justify-center tw-rounded-md tw-border tw-border-gray-200 tw-shadow-sm tw-px-4 tw-py-2 tw-bg-white tw-text-base tw-font-medium tw-text-gray-700 hover:tw-bg-gray-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500 sm:tw-mt-0 sm:tw-ml-3 sm:tw-w-auto sm:tw-text-sm">
-            Close
-          </button>
-        </div>
-      </form>
-    </div>
+    <img src="{{ asset('images/icon/tracker1.png') }}" alt=""
+      class="tw-h-2/3 tw-h-auto md:tw-w-3/4 md:tw-h-auto tw-mx-3 md:tw-mx-0 md:tw-my-3">
+    <span class="tw-text-xl tw-gray-700 tw-font-bold bangla tw-text-center tw-my-0 tw-mx-2 md:tw-mx-0">ফ্রি
+      ট্র্যাকার</span>
   </div>
+  <form action="/enroll/save" method="post" class="" @submit.prevent="registerToOffer">
+    <input type="hidden" name="type" value="lucky_coupon_lead">
+    <img src="{{ asset('images/promo/lucky_coupon_banner_v2.png') }}" alt=""
+      class="tw-w-full tw-h-auto tw-rounded tw-shadow-lg">
+    <div class="tw-absolute tw-top-2 tw-right-2 tw-cursor-pointer" @click="showOfferModal = false">
+      <span class="tw-text-gray-700 tw-text-opacity-50 tw-text-xl"><i class="fas fa-times-circle"></i></span>
+    </div>
+    <div
+      class="tw-absolute tw-bottom-0 tw-w-full tw-h-32 md:tw-h-40 tw-flex tw-flex-col tw-justify-end tw-items-center tw-pb-[15%]">
+      <div class="tw-shadow-lg tw-w-10/12 tw-flex tw-flex-row tw-justify-center tw-items-center"
+        :class="{'tw-hidden': response.available}">
+        <input type="text"
+          class="form-control tw-border-0 tw-rounded-l-lg tw-rounded-r-none tw-h-12 tw-px-4 tw-flex-grow tw-text-sm tw-placeholder-gray-600 bangla"
+          placeholder="মোবাইল নাম্বার" x-model="offerForm.phone">
+        <button type="submit"
+          class="btn btn-success tw-rounded-r-lg tw-rounded-l-none tw-h-12 tw-flex-shrink-0 tw-text-sm tw-px-5 bangla">
+          <i class="fa fa-paper-plane"></i> রেজিস্টার
+        </button>
+      </div>
+
+      <div class="tw-relative tw-shadow-lg tw-rounded-lg  tw-bg-white tw-w-3/4 tw-px-5 tw-py-3"
+        x-show="response.available">
+        <div class="tw-absolute tw-top-2 tw-right-2 tw-cursor-pointer"
+          @click="response.available = false; offerForm.phone = ''">
+          <span class="tw-text-gray-600 tw-text-opacity-50 tw-text-base"><i class="fas fa-times-circle"></i></span>
+        </div>
+        <p class="tw-text-sm tw-font-semibold tw-my-0 bangla"
+          :class="{'tw-text-gray-700': response.success, 'tw-text-red-400': !response.success}"
+          x-text="response.message">
+        </p>
+      </div>
+    </div>
+  </form>
 </div>

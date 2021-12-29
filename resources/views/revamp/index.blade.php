@@ -13,7 +13,8 @@
   </script>
 
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport"
+    content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
 
   <title>Best Vehicle Tracking System in Bangladesh-myRADAR.com.bd</title>
 
@@ -63,19 +64,20 @@
   <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-   fbq('init', '948521199337536'); 
-  fbq('track', 'PageView');
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3090022934604360');
+    fbq('track', 'PageView');
   </script>
   <noscript>
-    <img height="1" width="1" src="https://www.facebook.com/tr?id=948521199337536&ev=PageView
-  &noscript=1" />
+    <img height="1" width="1"
+         src="https://www.facebook.com/tr?id=3090022934604360&ev=PageView
+&noscript=1"/>
   </noscript>
   <!-- End Facebook Pixel Code -->
 
@@ -96,10 +98,11 @@
   },
   init() {
     console.log('interest', this.interest)
+    setTimeout(() => {
+      this.showOfferModal = true
+    }, 2500)
     if (this.interest === 'offer') {
-      setTimeout(() => {
-        this.showOfferModal = true
-      }, 2500)
+      
     }
   },
   registerToOffer() {
@@ -126,7 +129,7 @@
   @include('revamp.menu', ['base' => ''])
 
   @include('revamp.fab-buttons')
-  @include('revamp.offer-modal4')
+  @include('revamp.offer-modal')
   @include('revamp.hero')
 
   <main id="main">
@@ -200,8 +203,6 @@
         </div>
 
       </div>
-      </div>
-
     </section>
     <!-- End Clients Section -->
 
@@ -357,7 +358,7 @@
           <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
             <h4>Contact Us</h4>
             <p>
-              House - 744, Road -10, avenue -04, 2nd floor<br>Mirpur DOHS, Dhaka 1216.
+              House - 744, Road -10, avenue -04, 2nd floor<br>Mirpur DOHS, Dhaka 1216. <br>
               <strong>Phone:</strong> +880 1907888839<br>
               <strong>Email:</strong> <a href="href:hs@hypersystems.com.bd"
                 class="__cf_email__">hs@hypersystems.com.bd</a><br>
@@ -381,7 +382,7 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center tw-z-[997]"><i
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -416,7 +417,7 @@
   </script> --}}
 
   {{-- <script>
-    if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); } 
+    if( window.self == window.top ) { (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55234356-4', 'auto'); ga('send', 'pageview'); }
   </script> --}}
 </body>
 
