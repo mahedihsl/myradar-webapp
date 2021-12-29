@@ -9,19 +9,30 @@ use Exception;
 
 class DGController extends Controller
 {
-    private $rmsDgService;
+  private $rmsDgService;
 
-    public function __construct() {
-      $this->rmsDgService = new RMSDGMicroservice();
-    }
+  public function __construct()
+  {
+    $this->rmsDgService = new RMSDGMicroservice();
+  }
 
-    public function runhours(Request $request)
-    {
-      try {
-        $response = $this->rmsDgService->runhours($request->all());
-        return response()->json($response);
-      } catch (Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 400);
-      }
+  public function runhours(Request $request)
+  {
+    try {
+      $response = $this->rmsDgService->runhours($request->all());
+      return response()->json($response);
+    } catch (Exception $e) {
+      return response()->json(['error' => $e->getMessage()], 400);
     }
+  }
+  
+  public function exportData(Request $request)
+  {
+    try {
+      $response = $this->rmsDgService->exportData($request->all());
+      return response()->json($response);
+    } catch (Exception $e) {
+      return response()->json(['error' => $e->getMessage()], 400);
+    }
+  }
 }
