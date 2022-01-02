@@ -19,15 +19,23 @@ Due Bill SMS/Push Notice
   <div class="col-xs-12">
     @foreach ($counts as $via => $count)
     <div class="alert alert-default" role="alert">
-      <p style="margin-bottom: 30px;">
-        Pending <strong>{{ strtoupper($via) }}</strong> Notifications: <strong id="{{ $via }}-count">{{ $count }}</strong>
-        <a href="/export/due/notice/{{ $via }}" class="btn btn-info pull-right export-button" data-via="{{ $via }}">
+      <div class="tw-mb-16 tw-flex">
+        <span class="tw-flex-grow">Pending <strong>{{ strtoupper($via) }}</strong> Notifications: <strong id="{{ $via }}-count">{{ $count }}</strong></span>
+        <a href="/export/due/notice/{{ $via }}" class="btn btn-info pull-right export-button tw-flex-shrink-0" data-via="{{ $via }}">
           <i class="fa fa-file-o"></i> Export
         </a>
-        <button class="btn btn-success pull-right send-button" style="margin: 0 20px;" data-via="{{ $via }}">
+        <button class="btn btn-success pull-right send-button tw-flex-shrink-0" style="margin: 0 20px;" data-via="{{ $via }}">
           <i class="fa fa-paper-plane"></i> Start Sending
         </button>
-      </p>
+        <form action="/clear/due/notice" method="post" class="tw-flex-shrink-0">
+          {!! csrf_field() !!}
+          <input type="hidden" name="via" value="{{ $via }}">
+          <button class="btn btn-default confirm" type="button">
+            <i class="fa fa-times"></i>
+            Clear All
+          </button>
+        </form>
+      </div>
       <div class="progress">
         <div class="progress-bar progress-bar-success" id="progress-{{ $via }}" role="progressbar" aria-valuenow="0"
           aria-valuemin="0" aria-valuemax="100" style="width: 0%;" data-total="{{ $count }}">

@@ -23,6 +23,17 @@ $(function () {
     $('#nv-profile').click(function () {
         $(this).parent().toggleClass('open');
     });
+    
+    $('button.confirm').click(function() {
+        var message = 'Are you sure you want to proceed ?'
+        if (confirm(message)) {
+            var parent = $(this).parent('form');
+            console.log('checking parent of confirm button', parent)
+            if (parent.is('form')) {
+                parent.submit();
+            }
+        }
+    })
 
     showToastMessage();
 });

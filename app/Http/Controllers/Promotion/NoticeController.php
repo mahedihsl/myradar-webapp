@@ -237,4 +237,12 @@ class NoticeController extends Controller
             'counts' => $counts,
         ]);
     }
+
+    public function clear(Request $request)
+    {
+        $tag = $request->get('via');
+        PendingNotice::where('via', $tag)->delete();
+
+        return redirect('/due/notice');
+    }
 }

@@ -226,8 +226,10 @@ Route::group(['middleware' => ['auth', 'role:1']], function() {
 
 
     Route::get('/due/notice', 'Promotion\NoticeController@dueNotice')->name('due-notice');
+    Route::post('/clear/due/notice', 'Promotion\NoticeController@clear');
     Route::post('/send/single/notice', 'Promotion\NoticeController@sendSingleNotice');
     Route::post('/send/due/notice', 'Promotion\NoticeController@sendDueNotice');
+
     Route::get('/export/due/notice/{via}', 'Promotion\NoticeController@exportDueNotice');
 });
 

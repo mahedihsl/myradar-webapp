@@ -134,7 +134,7 @@
   <script src="{{asset('vendors/toastr/toastr.min.js', true)}}" charset="utf-8"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('js/demo.js', true)}}"></script>
-  <script src="{{asset('js/common.js', true)}}" charset="utf-8"></script>
+  <script src="{{asset('js/common.js?v='.config('cache.version'), true)}}" charset="utf-8"></script>
   <script>
     $(document).ready(function () {
     $('.sidebar-menu').tree()
