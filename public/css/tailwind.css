@@ -116,12 +116,12 @@
   margin-right: 0.5rem !important
 }
 
-.tw-mt-5 {
-  margin-top: 1.25rem !important
-}
-
 .tw-mb-16 {
   margin-bottom: 4rem !important
+}
+
+.tw-mt-5 {
+  margin-top: 1.25rem !important
 }
 
 .tw-flex {
@@ -708,6 +708,10 @@
 
   .md\:tw-left-full {
     left: 100% !important
+  }
+
+  .md\:tw-right-1\/2 {
+    right: 50% !important
   }
 
   .md\:tw-mx-0 {
