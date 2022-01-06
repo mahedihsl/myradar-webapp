@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contact;
 
+use App\Service\Microservice\PromotionMicroservice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateMessage;
@@ -15,10 +16,12 @@ class MessageController extends Controller
      * @var MessageRepository
      */
     private $repository;
+    private $promotionService;
 
     public function __construct(MessageRepository $repository)
     {
         $this->repository = $repository;
+        $this->promotionService = new PromotionMicroservice();
     }
 
     public function index(Request $request)
@@ -31,13 +34,12 @@ class MessageController extends Controller
 
     public function store(CreateMessage $request)
     {
-        $item = $this->repository->save(collect($request->all()));
-
-        if (is_null($item)) {
-            return response()->error('Message Not Sent');
+        try {
+            $this->promotionService->saveContactMessage($request->all());
+            return response()->ok('Message Sent');
+        } catch (\Exception $th) {
+            return response()->error($th->getMessage());
         }
-
-        return response()->ok('Message Sent');
     }
 
     public function destroy(Request $request)

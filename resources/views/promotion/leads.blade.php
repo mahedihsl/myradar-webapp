@@ -12,7 +12,7 @@ Campaign Leads
       <option value="demo_user_lead" {{ $type == 'demo_user_lead' ? 'selected' : '' }}>Android demo user lead</option>
       <option value="lucky_coupon_lead" {{ $type == 'lucky_coupon_lead' ? 'selected' : '' }}>Lucky coupon lead</option>
       <option value="message_lead" {{ $type == 'message_lead' ? 'selected' : '' }}>Web message lead</option>
-      {{-- <option value="general_lead">General Lead</option> --}}
+      <option value="hsl_message" {{ $type == 'hsl_message' ? 'selected' : '' }}>HSL website message</option>
     </select>
     <button type="submit" class="btn btn-primary">
       <i class="fa fa-search"></i> Filter

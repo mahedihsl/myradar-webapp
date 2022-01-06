@@ -32,7 +32,7 @@ class CampaignController extends Controller
     public function enroll(Request $request)
     {
         try {
-            $this->promotionService->saveLead($request->all());
+            $this->promotionService->saveCouponLead($request->all());
             return response()->ok('আপনার রেজিস্ট্রেশন সম্পন্ন হয়েছে, আপনাকে একটি ডিসকাউন্ট কোড সহ শীঘ্রই এসএমএস করে জানানো হবে');
         } catch (\Exception $th) {
             return response()->error($th->getMessage());
