@@ -22,6 +22,7 @@ class VerifyCsrfToken extends BaseVerifier
         'CheckDeviceAlive',
         '/login',
         '/logout',
+        '/message/save',
         'customers/sendCredential/api',
         'service/api/get_service_diagnosis',
         'send/single/notice',

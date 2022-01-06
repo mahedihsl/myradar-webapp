@@ -267,7 +267,6 @@ Route::group(['middleware' => ['auth', 'role:3']], function() {
     Route::get('/vehicles/export', 'Car\CarController@export');
 
     Route::get('unhealthy/device', 'Device\PerformanceController@unhealthy');
-
 });
 
 // customer care
@@ -353,7 +352,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/rms/site/pin/remove', 'RMS\SiteController@removePinConfig');
 });
 
-Route::post('/message/save', 'Contact\MessageController@store')->name('save-message');
+Route::post('/message/save', 'Contact\MessageController@store')->name('save-message')->middleware('cors');
 
 Route::get('/fuel/latest/{id}', 'Service\FuelController@latest');
 Route::get('/fuel/latestv2', 'Service\FuelController@latestv2');

@@ -50,48 +50,42 @@ class RestAPIController extends Controller
         $this->smsService = new SmsMicroservice();
         //$this->CarStatusLog = new CarStatusLog();
     }
+
     public function getUserLocation(Request $request)
     {
         $device_id = $request->get('device_id');
         // $device = Device::find($request->get('device_id'));
         $date = $request->get('date');
-        $auth_key =$request->get('login_token');
+        $auth_key = $request->get('login_token');
 
         $device = Device::with(['car'])->find($device_id);
 
-		// TODO: Special exception for Customer Shakil Ahmed
-		if (!$device->car->status || $device_id == '5d00b7776237460eb949530d') {
-			return response()->json([
-		     'status'=> 1,
-		     'message'=>'Success',
-		     'data'=> collect([]),
-		   ]);
-		}
+        // TODO: Special exception for Customer Shakil Ahmed
+        if (!$device->car->status || $device_id == '5d00b7776237460eb949530d') {
+            return response()->json([
+                'status' => 1,
+                'message' => 'Success',
+                'data' => collect([]),
+            ]);
+        }
 
         if (is_null($device_id)) {
             return response()->json([
-           'status'=>0,
-           'message' =>'Please Provide Device'
-         ]);
+                'status' => 0,
+                'message' => 'Please Provide Device'
+            ]);
         } elseif (is_null($request->get('from_hr')) || is_null($request->get('from_mn')) || is_null($request->get('from_am'))
-               || is_null($request->get('to_hr')) || is_null($request->get('to_mn')) || is_null($request->get('to_am'))) {
+            || is_null($request->get('to_hr')) || is_null($request->get('to_mn')) || is_null($request->get('to_am'))) {
             return response()->json([
-           'status'=>0,
-           'message' =>'Please Provide required params'
-         ]);
-        } elseif (strlen($request->get('from_mn')) <=1 || strlen($request->get('to_mn')) <=1) {
+                'status' => 0,
+                'message' => 'Please Provide required params'
+            ]);
+        } elseif (strlen($request->get('from_mn')) <= 1 || strlen($request->get('to_mn')) <= 1) {
             return response()->json([
-            'status'=>0,
-            'message' =>'Please Provide Double Digit Minutes'
-          ]);
-        }
-        // elseif (is_null($device)) {
-        //     return response()->json([
-        //     'status'=>0,
-        //     'message' =>'No device Found'
-        //   ]);
-        // }
-        else {
+                'status' => 0,
+                'message' => 'Please Provide Double Digit Minutes'
+            ]);
+        } else {
             $from_t = $request->get('from_hr') . ':' . $request->get('from_mn') . ' ' . $request->get('from_am');
             $to_t = $request->get('to_hr') . ':' . $request->get('to_mn') . ' ' . $request->get('to_am');
 
@@ -100,7 +94,9 @@ class RestAPIController extends Controller
 
             $from = Carbon::createFromFormat('m/d/Y h:i A', $from_t);
             $to = Carbon::createFromFormat('m/d/Y h:i A', $to_t);
-            if ($device_id == '5f63fbca32ebd87dc663002a') {
+
+            $demoDeviceId = '5f63fbca32ebd87dc663002a';
+            if ($device_id == $demoDeviceId) {
                 /**
                  * If this is Demo User's device, then return only 2 hours recording
                  */
@@ -112,40 +108,55 @@ class RestAPIController extends Controller
 
             $query = [
                 '$and' => [
-                  ['device_id' => ['$eq' => $device_id]],
-                  ['when' => ['$gt' => $st_time]],
-                  ['when' => ['$lt' => $en_time]],
+                    ['device_id' => ['$eq' => $device_id]],
+                    ['when' => ['$gt' => $st_time]],
+                    ['when' => ['$lt' => $en_time]],
                 ]
-              ];
-              $options = [
+            ];
+            $options = [
                 'sort' => ['when' => 1],
                 'projection' => [
-                  'when' => true,
-                  'lat' => true,
-                  'lng' => true,
-                  'deleted_at' => true,
+                    'when' => true,
+                    'lat' => true,
+                    'lng' => true,
+                    'speed' => true,
+                    'deleted_at' => true,
                 ]
-              ];
+            ];
 
-              $items = Position::raw(function($collection) use ($query, $options) {
+            $items = Position::raw(function ($collection) use ($query, $options) {
                 return $collection->find($query, $options);
-              });
-              $items = $items->filter(function($v) {
-                  return is_null($v->deleted_at);
-              })->values();
-              $pos = $items->map(function($item) {
-                       $item->lat = strval($item->lat);
-                       $item->lng = strval($item->lng);
-                       return $item;
-                    });
+            });
 
-            $data = collect([]);
+            $pos = $items->filter(function ($v) {
+                return is_null($v->deleted_at);
+            })
+                ->values()
+                ->map(function ($item) {
+                    $item->lat = strval($item->lat);
+                    $item->lng = strval($item->lng);
+                    $item->speed = floor($item->speed);
+                    return $item;
+                });
+
+//            if ($device_id == '60d45fca95cbdc13e1d2a6c0') {
+                $len = $pos->count();
+                if ($len > 1) {
+                    for ($i = 0; $i < $len - 1; $i++) {
+                        if (!$pos[$i]->speed) {
+                            $temp = floor($pos[$i]->findSpeed($pos[$i + 1]));
+                            $pos[$i]->speed = $temp < 200 ? $temp : 0;
+                        }
+                    }
+                    $pos[$len - 1]->speed = 0;
+                }
+//            }
 
             return response()->json([
-		     'status'=> 1,
-		     'message'=>'Success',
-		     'data'=> $pos
-		   ]);
+                'status' => 1,
+                'message' => 'Success',
+                'data' => $pos
+            ]);
         }
     }
 
@@ -180,21 +191,23 @@ class RestAPIController extends Controller
             return 0;
         };
     }
+
     public function getState($user_id)
     {
         $Device = User::findorFail($user_id)->devices()->first();
 
-        $data =   ['lock_status'=>$Device->lock_status,
-                    'engine_status'=>$Device->engine_status];
+        $data = ['lock_status' => $Device->lock_status,
+            'engine_status' => $Device->engine_status];
         return $data;
     }
+
     public function getLocknEngineState(Request $request)
     {
         // 0 means unlocked 1->locked
         // 0 means engine off 1 means on
         try {
             $device_id = $request->get('device_id');
-            $car_id   = $request->get('car_id');
+            $car_id = $request->get('car_id');
 
             $Device = null;
             $status = true;
@@ -208,18 +221,18 @@ class RestAPIController extends Controller
             }
             if (!is_null($Device) && $status) {
                 return response()->json([
-                'status'=>1,
-                'data'=>[
-                    'lock_status'=> $Device->lock_status,
-                    'engine_status'=> $Device->engine_status]
+                    'status' => 1,
+                    'data' => [
+                        'lock_status' => $Device->lock_status,
+                        'engine_status' => $Device->engine_status]
                 ]);
             }
         } catch (\Exception $th) {
             //throw $th;
         }
         return response()->json([
-            'status'=>0,
-            'message'=>'Device Not Found'
+            'status' => 0,
+            'message' => 'Device Not Found'
         ]);
     }
 
@@ -228,18 +241,18 @@ class RestAPIController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required',
             // 'device_token'=>'required',
-            'password'=>'required',
+            'password' => 'required',
             // 'device_type'=>'required'
         ]);
         if ($validator->fails()) {
-            return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
+            return response()->json(['status' => 2, 'message' => $validator->errors()], 401);
         }
 
-        if (Auth::attempt(['email' => request('username'), 'password' => request('password')])||
+        if (Auth::attempt(['email' => request('username'), 'password' => request('password')]) ||
 
-         Auth::attempt(['phone' => request('username'), 'password' => request('password')])
+            Auth::attempt(['phone' => request('username'), 'password' => request('password')])
 
-     ) {
+        ) {
             // $device_token = $request->get('device_token');
             // $device_type = intval($request->get('device_type'));//0 =Android 1=ios ..
             // $input['device_token'] = $device_token;
@@ -251,60 +264,60 @@ class RestAPIController extends Controller
             $user_info = Auth::user();
             $car_info = $this->AppHelper->getUserCarInfo($user_info->id);
 
-             // $LoginHistory = UserLoginHistory::where('user_id',$user_info->id)->first();
+            // $LoginHistory = UserLoginHistory::where('user_id',$user_info->id)->first();
 
-             // $this->AppHelper->login_history_update($LoginHistory,$user_info->id,$device_type,$login=true,$request='login');
+            // $this->AppHelper->login_history_update($LoginHistory,$user_info->id,$device_type,$login=true,$request='login');
 
-            if ($user_info->type!=4 && $user_info->customer_type!=1) {
+            if ($user_info->type != 4 && $user_info->customer_type != 1) {
                 return response()->json(
-                 [
-               'status'=>0,
-               'message'=>'Only Private Users are allowed to Use'],
-               401
-               );
+                    [
+                        'status' => 0,
+                        'message' => 'Only Private Users are allowed to Use'],
+                    401
+                );
             }
             // $UserLogins =  UserLogin::create($input);
             return response()->json([
-                'status'=>1,
-                'message'=>'User Login Token Generated',
-                'data'=>[
-                   'login_token'=>'', //$UserLogins->auth_key
-                   'user'=>$user_info,
-                   'max_fence' => config('car.fence.limit'),
-                   'fence_count'=>0, //$user_info->fences()->count()
-                   'api_token' => $user_info->api_token,
-                   'device' =>$user_info->devices()->first(['id']),
-                   'car_color'=>'',
-                   'car'=>$car_info
-                 ]
-                ], 200);
+                'status' => 1,
+                'message' => 'User Login Token Generated',
+                'data' => [
+                    'login_token' => '', //$UserLogins->auth_key
+                    'user' => $user_info,
+                    'max_fence' => config('car.fence.limit'),
+                    'fence_count' => 0, //$user_info->fences()->count()
+                    'api_token' => $user_info->api_token,
+                    'device' => $user_info->devices()->first(['id']),
+                    'car_color' => '',
+                    'car' => $car_info
+                ]
+            ], 200);
         } else {
-            return response()->json(['status'=>0,'message'=>'Login Failed,UserName or Password is incorrect'], 401);
+            return response()->json(['status' => 0, 'message' => 'Login Failed,UserName or Password is incorrect'], 401);
         }
     }
 
     public function logout(Request $request)
     {
-      $device_token = $request->get('device_token');
-      $user_id = $request->get('user_id');
-      $device_type = $request->get('device_type');
-      $validator = Validator::make($request->all(), [
-      'user_id' => 'required',
-      'device_token'=>'required',
-      'device_type'=>'required|between:0,1'
-      ]);
+        $device_token = $request->get('device_token');
+        $user_id = $request->get('user_id');
+        $device_type = $request->get('device_type');
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'device_token' => 'required',
+            'device_type' => 'required|between:0,1'
+        ]);
 
-      if ($validator->fails()) {
-          return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
-      }
-      $existLogin = UserLogin::where('device_token', $request->get('device_token'))
-                    ->get()->each(function($item) use($user_id){
-                         $item->delete();
-                     });
+        if ($validator->fails()) {
+            return response()->json(['status' => 2, 'message' => $validator->errors()], 401);
+        }
+        $existLogin = UserLogin::where('device_token', $request->get('device_token'))
+            ->get()->each(function ($item) use ($user_id) {
+                $item->delete();
+            });
 
-      $LoginHistory = UserLoginHistory::where('user_id',$user_id)->first();
-      $this->AppHelper->login_history_update($LoginHistory,$user_id,$device_type,$login=false,$request="logout");
-      return response()->json(['status'=>1,'message'=>'Logout Successfull'], 200);
+        $LoginHistory = UserLoginHistory::where('user_id', $user_id)->first();
+        $this->AppHelper->login_history_update($LoginHistory, $user_id, $device_type, $login = false, $request = "logout");
+        return response()->json(['status' => 1, 'message' => 'Logout Successfull'], 200);
     }
 
 
@@ -324,16 +337,16 @@ class RestAPIController extends Controller
             $is_phone = 1;
             $is_email = 0;
         } else {
-            return response()->json(['status'=>0,'message'=>'Invalid Username'], 401);
+            return response()->json(['status' => 0, 'message' => 'Invalid Username'], 401);
         }
 
         if (is_null($User)) {
-            return response()->json(['status'=>0,'message'=>'User not Exist'], 200);
+            return response()->json(['status' => 0, 'message' => 'User not Exist'], 200);
         }
 
-        if ($is_email==1 || $is_phone==1) {
+        if ($is_email == 1 || $is_phone == 1) {
 
-     //now generate verification code and sent it to user's number
+            //now generate verification code and sent it to user's number
 
             $User->verification_code = $this->user->generateVerificationCode();
             $User->verification_code_expires = Carbon::now()->addHours(24);
@@ -342,30 +355,30 @@ class RestAPIController extends Controller
 
             // $msg =  '<button href="'.$url.'" type="button" class="btn btn-success">Left</button>';
 
-            if ($User->save() && $is_phone==true) {
+            if ($User->save() && $is_phone == true) {
                 //send sms
                 //  $url = 'www.facebook.com';
-                $content = "Your Password Reset Code is ".$User->verification_code.'. Click the link to set new password '.$url;
+                $content = "Your Password Reset Code is " . $User->verification_code . '. Click the link to set new password ' . $url;
                 try {
                     // $sms_sent = $this->SMS->sendSMS($User->phone, $content);
                     $this->smsService->send($User->phone, $content);
-                    return response()->json(['status'=>1,'message'=>'Password Reset Code sent to your Phone'], 200);
+                    return response()->json(['status' => 1, 'message' => 'Password Reset Code sent to your Phone'], 200);
                 } catch (\Exception $e) {
-                    return response()->json(['status'=>0,'message'=>'SMS sending failed'], 200);
+                    return response()->json(['status' => 0, 'message' => 'SMS sending failed'], 200);
                 }
-            } elseif ($User->save() && $is_email==true) {
+            } elseif ($User->save() && $is_email == true) {
                 //send Email
                 $content = [];
-                $content['text'] = "Your Password Reset Code is ".$User->verification_code;
-                $content['link'] = $url ;
+                $content['text'] = "Your Password Reset Code is " . $User->verification_code;
+                $content['link'] = $url;
 
                 Mail::to($User->email)
-            //->cc($moreUsers)
-            //->bcc($evenMoreUsers)
+                    //->cc($moreUsers)
+                    //->bcc($evenMoreUsers)
 
-            ->send(new setNewPasswordMail($content));
+                    ->send(new setNewPasswordMail($content));
                 // ->queue(new setNewPasswordMail($content));
-                return response()->json(['status'=>1,'message'=>'Password Reset Code sent to your E-mail'], 200);
+                return response()->json(['status' => 1, 'message' => 'Password Reset Code sent to your E-mail'], 200);
             }
         }
     }
@@ -377,11 +390,11 @@ class RestAPIController extends Controller
         $username = $request->get('username');
 
         $validator = Validator::make($request->all(), [
-          'code' => 'required',
-          'username'=>'required'
-      ]);
+            'code' => 'required',
+            'username' => 'required'
+        ]);
         if ($validator->fails()) {
-            return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
+            return response()->json(['status' => 2, 'message' => $validator->errors()], 401);
         }
 
         $User = User::where('verification_code', $code)->first();
@@ -389,23 +402,23 @@ class RestAPIController extends Controller
         if (!is_null($User)) {
             return $this->isValidCode($User);
         }
-        return response()->json(['status'=>0,'message'=>"Wrong Verfication Code"], 200);
+        return response()->json(['status' => 0, 'message' => "Wrong Verfication Code"], 200);
     }
 
 
     public function changePassword(Request $request)
     {
         $username = $request->get('username');
-        $code  = $request->get('code');
+        $code = $request->get('code');
         $password = $request->get('password');
 
         $validator = Validator::make($request->all(), [
-         'code' => 'required',
-         'username'=>'required',
-         'password'=>'required'
-     ]);
+            'code' => 'required',
+            'username' => 'required',
+            'password' => 'required'
+        ]);
         if ($validator->fails()) {
-            return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
+            return response()->json(['status' => 2, 'message' => $validator->errors()], 401);
         }
 
         $User = User::where('verification_code', $code)->first();
@@ -413,31 +426,31 @@ class RestAPIController extends Controller
         if (!is_null($User)) {
             return $this->isValidCode($User, $password);
         }
-        return response()->json(['status'=>0,'message'=>"Wrong Verfication Code"], 200);
+        return response()->json(['status' => 0, 'message' => "Wrong Verfication Code"], 200);
     }
 
 
-    public function isValidCode($User, $password=null)
+    public function isValidCode($User, $password = null)
     {
         if (is_null($User)) {
-            return response()->json(['status'=> 0,'message'=>'Invalid Code/User Not found'], 200);
+            return response()->json(['status' => 0, 'message' => 'Invalid Code/User Not found'], 200);
         }
-        if ($User->verification_code_expires->gt(Carbon::now()) && $User->is_verification_code_valid==true) {
+        if ($User->verification_code_expires->gt(Carbon::now()) && $User->is_verification_code_valid == true) {
             if (isset($password)) { //change password
                 $User->password = bcrypt($password);
                 $User->is_verification_code_valid = false;
                 if ($User->save()) {
-                    return response()->json(['status'=> 1,'message'=>'Password Updated'], 200);
+                    return response()->json(['status' => 1, 'message' => 'Password Updated'], 200);
                 }
-                return response()->json(['status'=> 0,'message'=>'Changing password failed'], 200);
+                return response()->json(['status' => 0, 'message' => 'Changing password failed'], 200);
             }
 
-            return response()->json(['status'=> 1,'message'=>'Verification Code is valid.Please Proceed'], 200);
+            return response()->json(['status' => 1, 'message' => 'Verification Code is valid.Please Proceed'], 200);
         } else {
-            if ($User->is_verification_code_valid==false) {
-                return response()->json(['status'=> 0,'message'=>'Verification Code Already Used Once .Please Request for another one'], 200);
+            if ($User->is_verification_code_valid == false) {
+                return response()->json(['status' => 0, 'message' => 'Verification Code Already Used Once .Please Request for another one'], 200);
             }
-            return response()->json(['status'=> 0,'message'=>'Verification Code Expired .Please Request for another one'], 200);
+            return response()->json(['status' => 0, 'message' => 'Verification Code Expired .Please Request for another one'], 200);
         }
     }
 
@@ -451,16 +464,16 @@ class RestAPIController extends Controller
         $User = User::find($user_id);
 
         if (is_null($User)) {
-            return response()->json(['status'=> 0,'message'=>'User Not Found!'], 200);
+            return response()->json(['status' => 0, 'message' => 'User Not Found!'], 200);
         }
 
         $validator = Validator::make($request->all(), [
-          'user_id'=>'required',
-          'new_password'=>'required',
-          'old_password'=>'required'
-      ]);
+            'user_id' => 'required',
+            'new_password' => 'required',
+            'old_password' => 'required'
+        ]);
         if ($validator->fails()) {
-            return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
+            return response()->json(['status' => 2, 'message' => $validator->errors()], 401);
         }
 
         if (Hash::check($old_pass, $User->password)) {
@@ -470,10 +483,10 @@ class RestAPIController extends Controller
 
             $userService = new UserMicroservice();
             $userService->logPasswordChange($User->id);
-            
-            return response()->json(['status'=> 1,'message'=>'Password updated.Please Login'], 200);
+
+            return response()->json(['status' => 1, 'message' => 'Password updated.Please Login'], 200);
         }
-        return response()->json(['status'=> 0,'message'=>'Old password did not match! please provide correct one'], 200);
+        return response()->json(['status' => 0, 'message' => 'Old password did not match! please provide correct one'], 200);
     }
 
     public function updateCarDates(Request $request)
@@ -481,41 +494,41 @@ class RestAPIController extends Controller
         $user_id = $request->get('user_id');
         $User = User::find($user_id);
 
-        $reg_date=$request->get('reg_date');
-        $tax_date=$request->get('tax_date');
-        $insurance_date=$request->get('insurance_date');
-        $fitness_date=$request->get('fitness_date');
+        $reg_date = $request->get('reg_date');
+        $tax_date = $request->get('tax_date');
+        $insurance_date = $request->get('insurance_date');
+        $fitness_date = $request->get('fitness_date');
 
-        $all_dates = ['reg_date'=>$reg_date,'tax_date'=>$tax_date,'insurance_date'=>$insurance_date,'fitness_date'=>$fitness_date];
+        $all_dates = ['reg_date' => $reg_date, 'tax_date' => $tax_date, 'insurance_date' => $insurance_date, 'fitness_date' => $fitness_date];
 
-        $all_dates_save_array = ['reg_date'=>null,'tax_date'=>null,'insurance_date'=>null,'fitness_date'=>null];
+        $all_dates_save_array = ['reg_date' => null, 'tax_date' => null, 'insurance_date' => null, 'fitness_date' => null];
 
 
         if (is_null($reg_date) && is_null($tax_date) && is_null($insurance_date) && is_null($fitness_date)) {
-            return response()->json(['status'=> 0,'message'=>"Please Provide at least one date"], 200);
+            return response()->json(['status' => 0, 'message' => "Please Provide at least one date"], 200);
         }
 
         if (!is_null($User)) {
-            $car_info =  $User->cars()->first();
+            $car_info = $User->cars()->first();
             if (is_null($car_info)) {
-                return response()->json(['status'=> 0,'message'=>"car not found for this user"], 200);
+                return response()->json(['status' => 0, 'message' => "car not found for this user"], 200);
             }
         } else {
-            return response()->json(['status'=> 0,'message'=>"user not found"], 200);
+            return response()->json(['status' => 0, 'message' => "user not found"], 200);
         }
-        $err=0;
-        foreach ($all_dates as $name=>$value):
-         if (!is_null($value)) {
-             try {
-                 $all_dates_save_array[$name]= Carbon::createFromFormat('d/m/Y', $value)->toDateString();
-             } catch (\Exception $ex) {
-                 $err = 1;
-                 return response()->json(['status'=> 0,'message'=>$ex->getMessage()], 200);
-             }
-         }
+        $err = 0;
+        foreach ($all_dates as $name => $value):
+            if (!is_null($value)) {
+                try {
+                    $all_dates_save_array[$name] = Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+                } catch (\Exception $ex) {
+                    $err = 1;
+                    return response()->json(['status' => 0, 'message' => $ex->getMessage()], 200);
+                }
+            }
         endforeach;
-        if ($err!=1) {
-            foreach ($all_dates_save_array as $name=>$date) {
+        if ($err != 1) {
+            foreach ($all_dates_save_array as $name => $date) {
                 if (!is_null($date)) {
                     $car_info->$name = $date;
                     $car_info->save();
@@ -524,33 +537,33 @@ class RestAPIController extends Controller
         }
 
         return response()
-           ->json(['status'=> 1,
-        'message'=>'Updated',
-        'data'=>[
-        'reg_date'=>$car_info->reg_date ? $car_info->reg_date->timestamp : null,
-        'tax_date'=>$car_info->tax_date ? $car_info->tax_date->timestamp:null,
-        'insurance_date'=>$car_info->insurance_date ? $car_info->insurance_date->timestamp:null,
-        'fitness_date'=>$car_info->fitness_date ?$car_info->fitness_date->timestamp:null
+            ->json(['status' => 1,
+                'message' => 'Updated',
+                'data' => [
+                    'reg_date' => $car_info->reg_date ? $car_info->reg_date->timestamp : null,
+                    'tax_date' => $car_info->tax_date ? $car_info->tax_date->timestamp : null,
+                    'insurance_date' => $car_info->insurance_date ? $car_info->insurance_date->timestamp : null,
+                    'fitness_date' => $car_info->fitness_date ? $car_info->fitness_date->timestamp : null
 
-      ]
-    ], 200);
+                ]
+            ], 200);
     }
 
-  public function getCarDates(Request $request)
+    public function getCarDates(Request $request)
     {
         $user_id = $request->get('user_id');
         $User = User::find($user_id);
         return response()
-         ->json(['status'=> 1,
-      'message'=>'Car Dates',
-      'data'=>[
-      'reg_date'=>$User->cars()->first()->reg_date ? $User->cars()->first()->reg_date->timestamp : null,
-      'tax_date'=>$User->cars()->first()->tax_date ? $User->cars()->first()->tax_date->timestamp : null,
-      'fitness_date'=>$User->cars()->first()->fitness_date ? $User->cars()->first()->fitness_date->timestamp : null,
-      'insurance_date'=>$User->cars()->first()->insurance_date ? $User->cars()->first()->insurance_date->timestamp : null,
+            ->json(['status' => 1,
+                'message' => 'Car Dates',
+                'data' => [
+                    'reg_date' => $User->cars()->first()->reg_date ? $User->cars()->first()->reg_date->timestamp : null,
+                    'tax_date' => $User->cars()->first()->tax_date ? $User->cars()->first()->tax_date->timestamp : null,
+                    'fitness_date' => $User->cars()->first()->fitness_date ? $User->cars()->first()->fitness_date->timestamp : null,
+                    'insurance_date' => $User->cars()->first()->insurance_date ? $User->cars()->first()->insurance_date->timestamp : null,
 
-    ]
-  ], 200);
+                ]
+            ], 200);
     }
 
     public function updateUserInfo(Request $request)
@@ -564,29 +577,29 @@ class RestAPIController extends Controller
 
 
         if (is_null($User)) {
-            return response()->json(['status'=> 0,'message'=>"user not found"], 200);
+            return response()->json(['status' => 0, 'message' => "user not found"], 200);
         }
 
         $validator = Validator::make($request->all(), [
-         'user_id' => 'required',
-         'nid' => 'numeric',
-         'phone' => 'bd_phone'
+            'user_id' => 'required',
+            'nid' => 'numeric',
+            'phone' => 'bd_phone'
 
-     ]);
+        ]);
 
         if ($validator->fails()) {
-            return response()->json(['status'=>2,'message'=>$validator->errors()], 401);
+            return response()->json(['status' => 2, 'message' => $validator->errors()], 401);
         }
-        $fields = ['phone'=>$phone,'nid'=>$nid,'name'=>$name,'note'=>$note];
+        $fields = ['phone' => $phone, 'nid' => $nid, 'name' => $name, 'note' => $note];
 
-        foreach ($fields as $field=>$value):
-         if (!is_null($value)):
-          $User->$field = $value;
-        endif;
+        foreach ($fields as $field => $value):
+            if (!is_null($value)):
+                $User->$field = $value;
+            endif;
         endforeach;
 
         if ($User->save()) {
-            return response()->json(['status'=> 1,'message'=>"Success",'data'=>$User], 200);
+            return response()->json(['status' => 1, 'message' => "Success", 'data' => $User], 200);
         }
     }
 
