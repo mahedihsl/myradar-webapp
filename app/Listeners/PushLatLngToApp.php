@@ -43,6 +43,7 @@ class PushLatLngToApp
                 'message' => [
                     'lat' => strval($event->position->lat),
                     'lng' => strval($event->position->lng),
+                    'speed' => floor($event->position->speed),
                     'time' => $event->position->when->timestamp,
                     'device_id' => $event->device->id,
                 ]

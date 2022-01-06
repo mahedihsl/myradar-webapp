@@ -77,14 +77,15 @@ class LatLngConsumer extends ServiceConsumer
             return null;
 	    }
 
-        //$lastPos = $this->getLastPos();
+        $lastPos = $this->getLastPos();
         // $lastMilPos = $this->getLastMilPos();
         $position = $this->repository->save($this->getDevice(), $lat, $lng, $when);
+        if (!is_null ($lastPos)) {
+            $position->speed = $position->findSpeed($lastPos);
+            $position->save();
+        }
 
         $device = $this->getDevice();
-        // $versionNumber = intval(str_replace('.', '', $device->version));
-        $mileageTestDevices = [75256];
-        $isTestDevice = in_array($device->com_id, $mileageTestDevices);
 
         if ($device->car_id) {
             try {
@@ -95,18 +96,16 @@ class LatLngConsumer extends ServiceConsumer
             }
 
             try {
-                // if ($isTestDevice) {
-                    $service = new MileageMicroservice();
-                    $service->consume([
-                        'device_id' => $device->id,
-                        'car_id' => $device->car_id,
-                        'location' => [
-                            'lat' => $lat,
-                            'lng' => $lng,
-                            'time' => $position->when->timestamp * 1000,
-                        ]
-                    ]);
-                // }
+                $service = new MileageMicroservice();
+                $service->consume([
+                    'device_id' => $device->id,
+                    'car_id' => $device->car_id,
+                    'location' => [
+                        'lat' => $lat,
+                        'lng' => $lng,
+                        'time' => $position->when->timestamp * 1000,
+                    ]
+                ]);
             } catch (ServiceException $e) {
                 Log::info('mileage observe error: ' . $e->getMessage());
             }
@@ -115,20 +114,7 @@ class LatLngConsumer extends ServiceConsumer
         if ( ! is_null($position)) {
             event(new LatLngReceived($this->getDevice(), $position));
 
-            // if ( ! $isTestDevice && ! is_null($lastMilPos)) {
-            //     $speed = $lastMilPos->speed($position);
-            //     $threshold = config('car.mileage.position.diff');
-            //     if ($speed < 200) {
-            //         $dist = $lastMilPos->distance($position);
-            //         if($dist > $threshold){
-            //           $consumer = new DistanceConsumer($dist);
-            //           $consumer->consume($this->getDevice());
-            //         }
-            //     }
-            // }
-
             $this->setLastPos($position);
-            // $this->setLastMilPos($position);
         }
 
         try {
@@ -249,7 +235,7 @@ class LatLngConsumer extends ServiceConsumer
     {
       $lastMilPos = $this->getLastMilPos();
       if(!is_null($lastMilPos)){
-        $speed = $lastMilPos->speed($pos);
+        $speed = $lastMilPos->findSpeed($pos);
         $thresold = config('car.mileage.position.diff');
         if ($speed < 200) {
             $dist = $lastMilPos->distance($pos);

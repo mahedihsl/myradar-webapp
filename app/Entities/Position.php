@@ -25,7 +25,13 @@ class Position extends Eloquent implements Presentable
         $service = new DirectionService();
         return $service->distance($this->lat, $this->lng, $pos->lat, $pos->lng);
     }
-    public function speed(Position $pos)
+
+    public function getSpeedAttribute($value)
+    {
+        return is_null($value) ? 0 : $value;
+    }
+
+    public function findSpeed(Position $pos)
     {
         try {
             $km = $this->distance($pos) / 1000;
@@ -34,7 +40,5 @@ class Position extends Eloquent implements Presentable
         } catch (\Exception $e) {
             return 10000;
         }
-
     }
-
 }
