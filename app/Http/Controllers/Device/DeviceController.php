@@ -10,7 +10,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 use App\Entities\Device;
 use App\Criteria\UserIdCriteria;
-use App\Criteria\LastUpdatedCriteria;
 use App\Service\Microservice\DeviceMicroservice;
 use Excel;
 use App\Transformers\DeviceExportTransformer;
@@ -171,12 +170,28 @@ class DeviceController extends Controller
 
     public function bindHistory(Request $request)
     {
-        $data = $this->service->bindHistory(collect($request->all()));
+        $data = $this->service->bindHistory($request->all());
         $data = new LengthAwarePaginator($data['items'], $data['total'], $data['limit'], $data['page']);
         $data->withPath('/device/bind/history');
         return view('device.bind_history')->with([
             'logs' => $data,
             'query' => collect($request->all()),
         ]);
+    }
+
+    public function bindExport(Request $request)
+    {
+        $data = $this->service->allBindRecords();
+        Excel::create('Bind History', function ($excel) use ($data) {
+            $excel->sheet('data', function ($sheet) use ($data) {
+                $collection = collect($data)->map(function($item) {
+                    unset($item['id']);
+                    return $item;
+                });
+                $sheet->fromArray($collection->toArray(), null, 'A1', false, true);
+            });
+        })->download('xls');
+
+        return redirect()->back();
     }
 }

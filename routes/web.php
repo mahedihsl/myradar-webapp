@@ -204,7 +204,10 @@ Route::group(['middleware' => ['auth', 'role:1']], function() {
 
     Route::get('/devices', 'Device\DeviceController@index')->name('devices');
     Route::get('/device/newid', 'Device\DeviceController@generateId');
+
     Route::get('/device/bind/history', 'Device\DeviceController@bindHistory')->name('bind.history');
+    Route::get('/device/bind/export', 'Device\DeviceController@bindExport');
+
     Route::post('/device/create', 'Device\DeviceController@save');
     Route::get('/devices/recent/{skip}', 'Device\DeviceController@recent');
     Route::get('/devices/print/recent', 'Device\DeviceController@print');
