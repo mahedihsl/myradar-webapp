@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
-  purge: ['**/*.blade.php', '**/*.vue'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['**/*.blade.php', '**/*.vue'],
+  darkMode: 'media', // or 'class'
   corePlugins: {
     preflight: false,
   },
