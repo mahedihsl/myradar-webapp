@@ -34,6 +34,7 @@ Route::get('/eheater', 'Promotion\CampaignController@eheater');
 Route::post('/enroll/save', 'Promotion\CampaignController@enroll');
 
 Route::post('/login', 'Auth\CustomLoginController@login');
+Route::get('/logout', 'Auth\CustomLoginController@logout');
 Route::get('/forgetPassword', 'Auth\CustomLoginController@getUserName');
 Route::get('/password/setNewPassword', 'Auth\CustomLoginController@setNewPassword')->name('setNewPassword');
 Route::post('/password/newPassword', 'Auth\CustomLoginController@newPassword');
@@ -71,6 +72,12 @@ Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/bill-notice', 'Promotion\NoticeController@test');
 // Route::get('/test/sms', 'Test\NotificationController@sms');
 // Route::get('/test/last-pos', 'Test\DatabaseTestController@lastPost');
+
+Route::get('/online-payment/checkout', 'Payment\GatewayController@show');
+Route::post('/online-payment/success', 'Payment\GatewayController@success');
+Route::post('/online-payment/fail', 'Payment\GatewayController@fail');
+Route::post('/online-payment/cancel', 'Payment\GatewayController@cancel');
+
 Route::get('/test/geofence/read-cache', 'Test\GeofenceController@testCacheRead');
 Route::get('/test/geofence/write-cache', 'Test\GeofenceController@testCacheWrite');
 Route::get('/test/bill', 'Test\BillInsertController@test');
