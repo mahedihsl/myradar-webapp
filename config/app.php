@@ -128,7 +128,7 @@ return [
 
 
     'version' => [
-        'android' => '181',
+        'android' => '184',
         'ios' => '35',
     ],
 
