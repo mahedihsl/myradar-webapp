@@ -27,6 +27,7 @@ class LatLngConsumer extends ServiceConsumer
     private $service;
 
     private $device;
+    private $speed = 0.0;
 
     private $lastPos = null;
     private $lastMilPos = null;
@@ -46,6 +47,11 @@ class LatLngConsumer extends ServiceConsumer
                 return floatval($d);
             });
         });
+    }
+
+    public function setSpeed($speed)
+    {
+        $this->speed = floatval($speed);
     }
 
     public function consume(Device $device)
@@ -81,7 +87,8 @@ class LatLngConsumer extends ServiceConsumer
         // $lastMilPos = $this->getLastMilPos();
         $position = $this->repository->save($this->getDevice(), $lat, $lng, $when);
         if (!is_null ($lastPos)) {
-            $position->speed = $position->findSpeed($lastPos);
+//            $position->speed = $position->findSpeed($lastPos);
+            $position->speed = $this->speed;
             $position->save();
         }
 

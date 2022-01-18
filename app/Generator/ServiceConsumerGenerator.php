@@ -112,6 +112,9 @@ class ServiceConsumerGenerator
                         if ($key == self::KEY_VELOCITY) {
                             $consumer->setPositions($this->positions);
                         }
+                        if ($consumer instanceof LatLngConsumer) {
+                            $consumer->setSpeed($this->data->get('vl', ''));
+                        }
                         $ret = $consumer->consume($this->device);
                         if ($key == self::KEY_LATLNG) {
                             $this->positions = $ret;
