@@ -34,6 +34,10 @@ class ServiceController extends Controller
         $com_id = intval($request->get('ss'));
 
         try {
+            ServiceString::create([
+                'com_id' => intval($com_id),
+                'data' => $request->all(),
+            ]);
             $rmsKeys = collect([
                 'DM1', 'DM2',
                 'DM3', 'DM4',
@@ -50,10 +54,6 @@ class ServiceController extends Controller
                 $rmsService->receive($request->all());
                 return '0,1'; // DC1,DC2
             }
-            ServiceString::create([
-                'com_id' => intval($com_id),
-                'data' => $request->all(),
-            ]);
         } catch (\Exception $e) {
             Log::info('rms-string identification error', ['message' => $e->getMessage()]);
         }
