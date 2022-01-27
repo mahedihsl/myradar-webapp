@@ -29,11 +29,7 @@ class VehicleExportTransformer extends TransformerAbstract
         if ( ! is_null($device)) {
             $phone = $device->phone;
             $com_id = $device->com_id;
-            try {
-                $last_pulse = $device->last_pulse_label;
-            } catch (\Exception $e) {
-                //throw $th;
-            }
+            $last_pulse = $device->last_pulse_label;
         }
 
         return [
