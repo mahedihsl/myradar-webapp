@@ -71,7 +71,7 @@ class ComplainExportTransformer extends TransformerAbstract
     public function getTransitionColumns($complain)
     {
         $columns = $this->statusTransitions->mapWithKeys(function($item) {
-            return [$item . ' (Hrs)' => ''];
+            return [$item . ' (Days)' => ''];
         });
 
         if ($complain->status_log) {
@@ -84,8 +84,9 @@ class ComplainExportTransformer extends TransformerAbstract
                 $prevTime = new Carbon($logs[$i]['time']['date'], $logs[$i]['time']['timezone']);
                 $nextTime = new Carbon($logs[$i + 1]['time']['date'], $logs[$i + 1]['time']['timezone']);
 
-                $key = $prevState . '-' . $nextState . ' (Hrs)';
-                $columns->put($key, $nextTime->diffInHours($prevTime) + 1);
+                $key = $prevState . '-' . $nextState . ' (Days)';
+                $days = ceil(($nextTime->diffInHours($prevTime) + 1) / 24);
+                $columns->put($key, $days);
             }
         }
 
