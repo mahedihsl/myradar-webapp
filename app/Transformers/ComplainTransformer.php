@@ -36,6 +36,7 @@ class ComplainTransformer extends TransformerAbstract
             'reg_no'     => $model->reg_no,
             'status'     => $model->status,
             'type'       => $model->type,
+            'review'     => $model->review ? $model->review : '',
             'comment'    => $this->getComments($model),
             'date'       => $model->when->format('h:i a,  d M y'),
             'created_at' => $model->created_at,

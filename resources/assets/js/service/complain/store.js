@@ -93,6 +93,7 @@ export default new Vuex.Store({
       let info = {
         ...state.selectedComplain,
         type: data.type,
+        review: data.review,
         comment:data.comment,
         new_status:data.status,
 		    responsible: data.responsible,
