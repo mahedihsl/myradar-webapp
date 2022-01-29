@@ -31,12 +31,7 @@
           </div>
           <div class="col-md-2">
             <div class="back-btn">
-              <button
-                @click="onBackClick"
-                class="btn btn-default"
-                type="button"
-                name="button"
-              >
+              <button @click="onBackClick" class="btn btn-default" type="button" name="button">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
               </button>
             </div>
@@ -67,6 +62,20 @@
             </p>
           </div>
         </div>
+
+        <div v-if="status === 'closed'" class="tw-w-full tw-flex tw-flex-col tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-px-10 tw-py-4 tw-mt-6">
+          <span class="tw-text-gray-700 tw-text-2xl tw-font-medium">Select Customer Review/Feedback</span>
+          <div class="tw-w-full tw-mt-3 tw-flex tw-flex-row tw-flex-wrap tw-space-x-4">
+            <label v-for="(rv, i) in reviews" :key="i">
+              <input type="radio" name="review" v-model="review" :value="rv.tag" class="tw-peer tw-sr-only" />
+              <span
+                class="tw-px-4 tw-py-2 tw-rounded tw-border tw-border-solid tw-border-gray-200 tw-text-gray-700 tw-text-xl tw-font-normal tw-bg-white hover:tw-bg-gray-100 peer-checked:tw-bg-green-500 peer-checked:tw-text-white peer-checked:tw-border-green-700 tw-transition tw-duration-300 tw-cursor-pointer"
+              >
+                {{ rv.label }}
+              </span>
+            </label>
+          </div>
+        </div>
       </div>
       <div class="box-body no-padding">
         <div class="complain complain-title">
@@ -84,19 +93,9 @@
           <h4>Comment</h4>
         </div>
         <div class="form-group comment-box">
-          <textarea
-            v-model="comment"
-            placeholder="please add some comment"
-            class="form-control"
-            style="height: 100px"
-          >
+          <textarea v-model="comment" placeholder="please add some comment" class="form-control" style="height: 100px">
           </textarea>
-          <button
-            @click="onCommentClick"
-            class="btn btn-default pull-right"
-            type="button"
-            name="button"
-          >
+          <button @click="onCommentClick" class="btn btn-default pull-right" type="button" name="button">
             Save
           </button>
         </div>
@@ -121,15 +120,14 @@ export default {
   components: {},
   data: () => ({
     comment: '',
-    statusList: [
-      'open',
-      'investigating',
-      'resolved',
-      'replace',
-      'closed',
-      'reopen',
-    ],
+    statusList: ['open', 'investigating', 'resolved', 'replace', 'closed', 'reopen'],
     status: '',
+    reviews: [
+      { tag: 'best', label: 'Excellent' },
+      { tag: 'good', label: 'Good' },
+      { tag: 'bad', label: 'Not Satisfactory' },
+    ],
+    review: '',
     responsible: '1',
 
     types: [
@@ -152,18 +150,14 @@ export default {
       pagination: 'pagination',
     }),
     car_url() {
-      return (
-        '/manage/customer/' +
-        this.complain.ids.user +
-        '?tab=vehicles&target=' +
-        this.complain.ids.car
-      )
+      return '/manage/customer/' + this.complain.ids.user + '?tab=vehicles&target=' + this.complain.ids.car
     },
   },
   mounted() {
     EventBus.$on('comment-add-finish', this.onCommentAddFinish.bind(this))
     this.type = this.complain.type
     this.status = this.complain.status
+    this.review = this.complain.review
     this.responsible = this.complain.responsible
   },
   methods: {
@@ -175,6 +169,7 @@ export default {
         comment: this.comment,
         type: this.type,
         status: this.status,
+        review: this.review,
         responsible: this.responsible,
       })
     },
