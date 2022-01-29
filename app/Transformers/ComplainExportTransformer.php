@@ -61,6 +61,7 @@ class ComplainExportTransformer extends TransformerAbstract
             'Comment #1' => $getComment($model->comment, 0),
             'Comment #2' => $getComment($model->comment, 1),
             'Comment #3' => $getComment($model->comment, 2),
+            'Customer Review' => $model->review ? $model->review : '',
         ];
 
         $transitionColumns = $this->getTransitionColumns($model);
