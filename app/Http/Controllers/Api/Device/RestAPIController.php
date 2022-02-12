@@ -467,6 +467,10 @@ class RestAPIController extends Controller
             return response()->json(['status' => 0, 'message' => 'User Not Found!'], 200);
         }
 
+        if ($User->email == 'demo@myradar.com') {
+            return response()->json(['status' => 0, 'message' => 'You can not change password of this account!'], 200);
+        }
+
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'new_password' => 'required',

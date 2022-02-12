@@ -55,6 +55,7 @@ Route::post('/emergency/patch', 'Test\DatabaseTestController@patch');
 Route::get('/emergency/demo-patch', 'Test\DatabaseTestController@demoPatch');
 Route::get('/test/demo-user', 'Test\DatabaseTestController@demoUser');
 Route::get('/test/demo/vessel', 'Test\DemoController@vessel');
+Route::get('/test/demo/password-reset', 'Test\DemoController@resetPassword');
 Route::get('/test/microservice/geofence', 'Test\MicroServiceController@testGeofence');
 Route::get('/test/microservice/session', 'Test\MicroServiceController@session');
 Route::get('/test/microservice/device', 'Test\MicroServiceController@deviceConfig');

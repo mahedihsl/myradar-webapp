@@ -105,8 +105,8 @@ Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
 Route::get('/rms/dg/export-data', 'RMS\DGController@exportData');
 
-Route::get('/rms/battery/recent', 'RMS\BatteryController@recent');
-Route::get('/rms/battery/health-history', 'RMS\BatteryController@healthHistory');
+Route::get('/rms/battery/voltage/history', 'RMS\BatteryController@voltageHistory');
+Route::get('/rms/battery/health/history', 'RMS\BatteryController@healthHistory');
 
 Route::get('/rms/mains/recent', 'RMS\MainsController@recent');
 Route::get('/rms/mains/offhours', 'RMS\MainsController@offhours');
