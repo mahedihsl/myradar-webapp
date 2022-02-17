@@ -36,5 +36,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/emergency/patch',
         '/test/fuel-avarage',
         '/online-payment/*',
+        '/enroll/save',
     ];
 }
