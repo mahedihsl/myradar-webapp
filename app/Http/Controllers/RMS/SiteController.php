@@ -112,6 +112,12 @@ class SiteController extends Controller
         return response()->json($res);
     }
 
+    public function cacheSiteStatus(Request $request)
+    {
+        $res = $this->rmsUserService->cacheSiteStatus($request->all());
+        return response()->json($res);
+    }
+
     public function statusCounts(Request $request)
     {
         $user_id = $request->get('user_id');
