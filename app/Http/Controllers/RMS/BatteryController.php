@@ -15,10 +15,20 @@ class BatteryController extends Controller
       $this->rmsBatteryService = new RMSBatteryMicroservice();
     }
 
-    public function recent(Request $request)
+    public function voltageHistory(Request $request)
     {
       try {
-        $response = $this->rmsBatteryService->recent($request->all());
+        $response = $this->rmsBatteryService->voltageHistory($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+
+    public function voltageProfile(Request $request)
+    {
+      try {
+        $response = $this->rmsBatteryService->voltageProfile($request->all());
         return response()->json($response);
       } catch (Exception $e) {
         return response()->json(['error' => $e->getMessage()], 400);

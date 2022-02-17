@@ -10,13 +10,18 @@ class RMSBatteryMicroservice extends BaseService
     parent::__construct(self::SERVICE_NAME);
   }
 
-  public function recent($query)
+  public function voltageHistory($query)
   {
-    return $this->get('/api/recent', $query);
+    return $this->get('/voltage/history', $query);
+  }
+
+  public function voltageProfile($query)
+  {
+    return $this->get('/voltage/profile', $query);
   }
   
   public function healthHistory($query)
   {
-    return $this->get('/api/health-history', $query);
+    return $this->get('/health/history', $query);
   }
 }

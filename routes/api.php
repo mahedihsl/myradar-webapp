@@ -99,24 +99,30 @@ Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
 
 // For RMS
 Route::get('/rms/site/list', 'RMS\SiteController@index');
+Route::post('/rms/site/cache-status', 'RMS\SiteController@cacheSiteStatus');
 Route::get('/rms/site/status-counts', 'RMS\SiteController@statusCounts');
 Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
 
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
 Route::get('/rms/dg/export-data', 'RMS\DGController@exportData');
+Route::get('/rms/dg/critical-sites', 'RMS\DGController@criticalSites');
 
 Route::get('/rms/battery/voltage/history', 'RMS\BatteryController@voltageHistory');
+Route::get('/rms/battery/voltage/profile', 'RMS\BatteryController@voltageProfile');
 Route::get('/rms/battery/health/history', 'RMS\BatteryController@healthHistory');
+Route::get('/rms/battery/critical-sites', 'RMS\BatteryController@criticalSites');
 
 Route::get('/rms/mains/recent', 'RMS\MainsController@recent');
 Route::get('/rms/mains/offhours', 'RMS\MainsController@offhours');
 Route::get('/rms/mains/export-data', 'RMS\MainsController@exportData');
+Route::get('/rms/mains/critical-sites', 'RMS\MainsController@criticalSites');
 
 Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
 
 Route::get('/rms/temperature/recent', 'RMS\TemperatureController@recent');
 Route::get('/rms/temperature/history', 'RMS\TemperatureController@history');
 Route::get('/rms/temperature/export-data', 'RMS\TemperatureController@exportData');
+Route::get('/rms/temperature/critical-sites', 'RMS\TemperatureController@criticalSites');
 
 Route::get('/mileage/list', 'Api\Position\MileageController@list');
 Route::get('/poi/nearest', 'Api\Poi\PoiController@nearest');
