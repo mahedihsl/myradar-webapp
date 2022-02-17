@@ -24,4 +24,9 @@ class RMSTemperatureMicroservice extends BaseService
   {
     return $this->get('/api/export-data', $query);
   }
+  
+  public function getCriticalSites($query)
+  {
+    return $this->get('/analytics/critical-sites', $query);
+  }
 }
