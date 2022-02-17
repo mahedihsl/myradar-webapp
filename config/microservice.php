@@ -125,4 +125,8 @@ return [
         'url' => 'http://rms-door',
         'port' => 5006,
     ],
+    'rms-mlkit' => [
+        'url' => 'http://rms-mlkit',
+        'port' => 5007,
+    ],
 ];
