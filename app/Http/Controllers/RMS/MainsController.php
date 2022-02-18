@@ -44,4 +44,14 @@ class MainsController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
+
+    public function criticalSites(Request $request)
+    {
+      try {
+        $response = $this->rmsMainsService->criticalSites($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 }
