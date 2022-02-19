@@ -24,9 +24,9 @@
           </div>
           <div class="bar col-md-2">
             <p>
-              <a :href="car_url"
-                >Reg no: <b>{{ complain.reg_no }}</b></a
-              >
+              <a :href="car_url">
+                Reg no: <b>{{ complain.reg_no }}</b>
+              </a>
             </p>
           </div>
           <div class="col-md-2">
@@ -63,7 +63,10 @@
           </div>
         </div>
 
-        <div v-if="status === 'closed'" class="tw-w-full tw-flex tw-flex-col tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-px-10 tw-py-4 tw-mt-6">
+        <div
+          v-if="status === 'closed'"
+          class="tw-w-full tw-flex tw-flex-col tw-border tw-border-solid tw-border-gray-300 tw-rounded-lg tw-px-10 tw-py-4 tw-mt-6"
+        >
           <span class="tw-text-gray-700 tw-text-2xl tw-font-medium">Select Customer Review/Feedback</span>
           <div class="tw-w-full tw-mt-3 tw-flex tw-flex-row tw-flex-wrap tw-space-x-4">
             <label v-for="(rv, i) in reviews" :key="i">
@@ -165,6 +168,10 @@ export default {
       this.$store.commit('changeContent', 0)
     },
     onCommentClick() {
+      if (this.status === 'closed' && !this.review) {
+        alert('Please select a customer review')
+        return
+      }
       this.$store.dispatch('addComment', {
         comment: this.comment,
         type: this.type,
