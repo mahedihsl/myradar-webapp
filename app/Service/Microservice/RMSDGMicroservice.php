@@ -19,4 +19,9 @@ class RMSDGMicroservice extends BaseService
   {
     return $this->get('/api/export-data', $query);
   }
+
+  public function criticalSites($query)
+  {
+    return $this->get('/analytics/critical-sites', $query);
+  }
 }
