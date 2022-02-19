@@ -24,4 +24,9 @@ class RMSBatteryMicroservice extends BaseService
   {
     return $this->get('/health/history', $query);
   }
+
+  public function criticalSites($query)
+  {
+    return $this->get('/analytics/critical-sites', $query);
+  }
 }
