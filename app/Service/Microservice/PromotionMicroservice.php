@@ -25,4 +25,19 @@ class PromotionMicroservice extends BaseService
     {
         return $this->post('/lead/contact-message', $data);
     }
+
+    public function saveAssignment($data)
+    {
+        return $this->post('/assignment/save', $data);
+    }
+
+    public function removeAssignment($data)
+    {
+        return $this->post('/assignment/remove', $data);
+    }
+
+    public function filterAssignments($query)
+    {
+        return $this->get('/assignment/filter', $query);
+    }
 }

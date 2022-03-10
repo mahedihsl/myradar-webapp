@@ -1,6 +1,5 @@
-<div
-  class="tw-rounded-lg tw-w-full tw-flex tw-flex-row tw-justify-start tw-items-start tw-px-8 tw-py-5 tw-bg-gray-100">
-  <div class="tw-flex tw-flex-col tw-gap-y-2 tw-w-8/12">
+<div class="tw-rounded-lg tw-w-full tw-flex tw-flex-row tw-justify-start tw-items-start tw-px-8 tw-py-5 tw-bg-gray-100">
+  <div class="tw-flex tw-flex-col tw-gap-y-2 tw-w-6/12">
     <span class="tw-text-gray-700 tw-font-semibold tw-text-2xl">{{ $lead->name }}</span>
     <div class="tw-flex tw-flex-row tw-gap-x-8">
       <span class="tw-text-gray-700 tw-text-2xl tw-font-medium">
@@ -12,14 +11,14 @@
     </div>
     <p class="tw-text-2xl tw-text-gray-600 tw-font-normal tw-mt-2">
       @if (!$lead->message)
-          <span class="tw-italic tw-text-gray-500">No message</span>
+      <span class="tw-italic tw-text-gray-500">No message</span>
       @else
-          {{ $lead->message }}
+      {{ $lead->message }}
       @endif
     </p>
   </div>
 
-  <div class="tw-flex tw-flex-col tw-gap-y-2 tw-w-4/12">
+  <div class="tw-flex tw-flex-col tw-gap-y-2 tw-w-3/12">
     <span class="tw-text-gray-700 tw-text-xl tw-font-medium">
       <i class="fa fa-calendar tw-mr-2"></i> {{ $lead->created_at->toDayDateTimeString() }}
     </span>
@@ -41,5 +40,20 @@
       OTP: {{ $lead->meta['otp'] }}
     </span>
     @endif
+  </div>
+
+  <div class="tw-w-3/12">
+    @php
+    $agent = isset($lead->meta['agent']) ? $lead->meta['agent'] : null;
+    @endphp
+    <span>
+      Agent:
+      @if ($agent)
+      <strong>{{ $agent['name'] }} ({{ $agent['phone'] }})</strong>
+      @else
+      <strong>N/A</strong>
+      @endif
+
+    </span>
   </div>
 </div>

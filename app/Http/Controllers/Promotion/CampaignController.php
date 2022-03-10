@@ -11,7 +11,8 @@ class CampaignController extends Controller
 {
     private $promotionService;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->promotionService = new PromotionMicroservice();
     }
 
@@ -38,7 +39,7 @@ class CampaignController extends Controller
             return response()->error($th->getMessage());
         }
     }
-    
+
     public function demoLead(Request $request)
     {
         try {
@@ -52,14 +53,54 @@ class CampaignController extends Controller
     public function leads(Request $request)
     {
         $type = '';
+        $agent = '';
         $query = Enroll::orderBy('created_at', 'desc');
         if ($request->type) {
             $query = $query->where('type', $request->type);
             $type = $request->type;
         }
+        if ($request->agent) {
+            $query = $query->where('meta.agent.name', $request->agent);
+            $agent = $request->agent;
+        }
         return view('promotion.leads')->with([
             'leads' => $query->paginate(),
             'type' => $type,
+            'agent' => $agent,
         ]);
+    }
+
+    public function leadAssignment(Request $request)
+    {
+        try {
+            $couponAgents = $this->promotionService->filterAssignments(['type' => 'lucky_coupon_lead']);
+            $demoAgents = $this->promotionService->filterAssignments(['type' => 'demo_user_lead']);
+            return view('promotion.lead-assignment')->with([
+                'couponAgents' => $couponAgents,
+                'demoAgents' => $demoAgents,
+            ]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function saveAssignment(Request $request)
+    {
+        try {
+            $this->promotionService->saveAssignment($request->all());
+            return redirect('/lead/assignment');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function removeAssignment(Request $request)
+    {
+        try {
+            $this->promotionService->removeAssignment($request->all());
+            return redirect('/lead/assignment');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }

@@ -330,6 +330,9 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/share/revoke/access', 'Enterprise\ShareController@revoke');
 
     Route::get('/leads', 'Promotion\CampaignController@leads');
+    Route::get('/lead/assignment', 'Promotion\CampaignController@leadAssignment');
+    Route::post('/lead/assignment/save', 'Promotion\CampaignController@saveAssignment');
+    Route::post('/lead/assignment/remove', 'Promotion\CampaignController@removeAssignment');
 
     Route::get('/activity/login/stats/{id}', 'Admin\EngagementController@login');
     Route::get('/activity/request/stats/{id}', 'Admin\EngagementController@request');
