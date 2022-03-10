@@ -92,6 +92,21 @@ class UserMicroservice extends BaseService
         return $this->get('/test/mileage-push', compact('user_id'));
     }
 
+    public function createAccount($data)
+    {
+        return $this->post('/account/create', $data);
+    }
+
+    public function onAccountCreated($data)
+    {
+        return $this->post('/account/on-create', $data);
+    }
+
+    public function filterAccounts($query)
+    {
+        return $this->get('/account/filter', $query);
+    }
+
     public function test()
     {
         return $this->get('/test', ['user' => 'palatok']);

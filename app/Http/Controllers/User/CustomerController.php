@@ -65,6 +65,10 @@ class CustomerController extends Controller
 
         if ( ! is_null($user)) {
             event(new CustomerCreated($user, $data));
+            try {
+                $service = new UserMicroservice();
+                $service->onAccountCreated(['user_id' => $user->id]);
+            } catch (ServiceException $e) {}
             return response()->ok([
                 'redirect' => route('manage.customer', ['id' => $user->id])
             ]);
