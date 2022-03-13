@@ -124,4 +124,16 @@ class SiteController extends Controller
         $res = $this->rmsUserService->statusCounts(compact('user_id'));
         return response()->json($res);
     }
+
+    public function getDigitalControl(Request $request)
+    {
+        $res = $this->rmsUserService->getSiteDigitalControl($request->all());
+        return response()->json($res);
+    }
+
+    public function setDigitalControl(Request $request)
+    {
+        $res = $this->rmsUserService->setSiteDigitalControl($request->all());
+        return response()->json($res);
+    }
 }

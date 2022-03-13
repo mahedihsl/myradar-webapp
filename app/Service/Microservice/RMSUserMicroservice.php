@@ -34,4 +34,14 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->get('/site/status-counts', $query);
   }
+
+  public function getSiteDigitalControl($query)
+  {
+    return $this->get('/site/digital-control', $query);
+  }
+
+  public function setSiteDigitalControl($data)
+  {
+    return $this->post('/site/digital-control', $data);
+  }
 }

@@ -102,6 +102,8 @@ Route::get('/rms/site/list', 'RMS\SiteController@index');
 Route::post('/rms/site/cache-status', 'RMS\SiteController@cacheSiteStatus');
 Route::get('/rms/site/status-counts', 'RMS\SiteController@statusCounts');
 Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
+Route::get('/rms/site/digital-control', 'RMS\SiteController@getDigitalControl');
+Route::post('/rms/site/digital-control', 'RMS\SiteController@setDigitalControl');
 
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
 Route::get('/rms/dg/export-data', 'RMS\DGController@exportData');
