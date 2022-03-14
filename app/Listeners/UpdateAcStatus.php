@@ -27,6 +27,8 @@ class UpdateAcStatus
      */
     public function handle(EngineStatusChanged $event)
     {
+        if (is_null($event->device->car)) return;
+        
         if ($event->device->car->new_service === 1) {
             if ($event->status == 0 && $event->device->ns_state == 1) {
                 $event->device->update([ 'ns_state' => 0 ]);

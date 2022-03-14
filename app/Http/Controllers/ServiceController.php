@@ -51,11 +51,15 @@ class ServiceController extends Controller
             if ($intersect->count() == $rmsKeys->count()) {
                 Log::info('rms-string received', $request->all());
                 $rmsService = new RMSReceiverMicroservice();
-                $rmsService->receive($request->all());
-                return '0,1'; // DC1,DC2
+                $res = $rmsService->receive($request->all());
+                $reply = $res['controls']['dc1'] . ',' . $res['controls']['dc2'];
+                Log::info('rms-string reply', [ 'com_id' => $request->get('ss'), 'reply' => $reply, 'type' => gettype(($res)) ]);
+                // return '0,1'; // DC1,DC2
+                return $reply; // DC1,DC2
             }
         } catch (\Exception $e) {
             Log::info('rms-string identification error', ['message' => $e->getMessage()]);
+            // return '0,0'; // DC1,DC2
         }
 
 
