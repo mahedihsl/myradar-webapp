@@ -34,7 +34,7 @@ class ServiceController extends Controller
         $com_id = intval($request->get('ss'));
 
         try {
-            ServiceString::create([
+            $serviceString = ServiceString::create([
                 'com_id' => intval($com_id),
                 'data' => $request->all(),
             ]);
@@ -54,6 +54,7 @@ class ServiceController extends Controller
                 $res = $rmsService->receive($request->all());
                 $reply = $res['controls']['dc1'] . ',' . $res['controls']['dc2'];
                 Log::info('rms-string reply', [ 'com_id' => $request->get('ss'), 'reply' => $reply, 'type' => gettype(($res)) ]);
+                $serviceString->update(['data' => array_merge($request->all(), $res['controls'])]);
                 // return '0,1'; // DC1,DC2
                 return $reply; // DC1,DC2
             }
