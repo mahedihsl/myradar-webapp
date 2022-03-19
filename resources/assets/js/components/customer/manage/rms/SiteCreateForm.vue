@@ -31,6 +31,10 @@ export default {
       type: String,
       required: true,
     },
+    userUid: {
+      type: Number,
+      required: true,
+    }
   },
   data: () => ({
     name: '',
@@ -40,6 +44,7 @@ export default {
       try {
         await this.$store.dispatch('rms/saveSite', {
           user_id: this.userId,
+          user_uid: this.userUid,
           name: this.name,
         })
         this.$emit('saved')

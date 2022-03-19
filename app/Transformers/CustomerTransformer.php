@@ -22,6 +22,7 @@ class CustomerTransformer extends TransformerAbstract
     {
         return [
             'id'        => $model->id,
+            'uid'       => $model->uid,
             'name'      => $model->name,
             'image'     => $model->image_url,
             'phone'     => $model->phone,
