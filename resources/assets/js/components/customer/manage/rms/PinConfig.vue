@@ -24,7 +24,8 @@
         <option value="dg_status">DG STATUS</option>
         <option value="dg_fuel">DG FUEL</option>
         <option value="temperature">TEMPERATURE</option>
-        <option value="door_status">DOOR STATUS</option>
+        <option value="access_control">ACCESS CONTROL</option>
+        <!-- <option value="door_status">DOOR STATUS</option> -->
         <option value="battery_cell">BATTERY CELL</option>
         <option value="battery_terminal">BATTERY TERMINAL</option>
         <option value="battery_offset">BATTERY OFFSET</option>
