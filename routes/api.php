@@ -104,6 +104,7 @@ Route::get('/rms/site/status-counts', 'RMS\SiteController@statusCounts');
 Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
 Route::get('/rms/site/digital-control', 'RMS\SiteController@getDigitalControl');
 Route::post('/rms/site/digital-control', 'RMS\SiteController@setDigitalControl');
+Route::get('/rms/site/availability', 'RMS\SiteController@availability');
 
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
 Route::get('/rms/dg/export-data', 'RMS\DGController@exportData');
@@ -118,6 +119,7 @@ Route::get('/rms/mains/recent', 'RMS\MainsController@recent');
 Route::get('/rms/mains/offhours', 'RMS\MainsController@offhours');
 Route::get('/rms/mains/export-data', 'RMS\MainsController@exportData');
 Route::get('/rms/mains/critical-sites', 'RMS\MainsController@criticalSites');
+Route::get('/rms/mains/availability', 'RMS\MainsController@availability');
 
 Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
 

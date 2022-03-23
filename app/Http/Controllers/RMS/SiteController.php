@@ -136,4 +136,14 @@ class SiteController extends Controller
         $res = $this->rmsUserService->setSiteDigitalControl($request->all());
         return response()->json($res);
     }
+
+    public function availability(Request $request)
+    {
+      try {
+        $response = $this->rmsUserService->siteAvailability($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 }

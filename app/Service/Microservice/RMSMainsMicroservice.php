@@ -29,4 +29,9 @@ class RMSMainsMicroservice extends BaseService
   {
     return $this->get('/analytics/critical-sites', $query);
   }
+
+  public function availability($query)
+  {
+    return $this->get('/analytics/availability', $query);
+  }
 }

@@ -44,4 +44,9 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->post('/site/digital-control', $data);
   }
+
+  public function siteAvailability($query)
+  {
+    return $this->get('/site/availability', $query);
+  }
 }
