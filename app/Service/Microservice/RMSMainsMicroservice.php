@@ -14,6 +14,11 @@ class RMSMainsMicroservice extends BaseService
   {
     return $this->get('/api/recent', $query);
   }
+ 
+  public function events($query)
+  {
+    return $this->get('/api/events', $query);
+  }
 
   public function offhours($query)
   {
