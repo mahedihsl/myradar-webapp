@@ -24,16 +24,6 @@ class TemperatureController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
-
-    public function history(Request $request)
-    {
-      try {
-        $response = $this->rmsTemperatureService->history($request->all());
-        return response()->json($response);
-      } catch (Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 400);
-      }
-    }
     
     public function aggregate(Request $request)
     {
