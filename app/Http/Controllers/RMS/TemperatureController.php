@@ -35,10 +35,10 @@ class TemperatureController extends Controller
       }
     }
     
-    public function exportData(Request $request)
+    public function aggregate(Request $request)
     {
       try {
-        $response = $this->rmsTemperatureService->exportData($request->all());
+        $response = $this->rmsTemperatureService->aggregate($request->all());
         return response()->json($response);
       } catch (Exception $e) {
         return response()->json(['error' => $e->getMessage()], 400);

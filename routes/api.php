@@ -125,7 +125,7 @@ Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
 
 Route::get('/rms/temperature/recent', 'RMS\TemperatureController@recent');
 Route::get('/rms/temperature/history', 'RMS\TemperatureController@history');
-Route::get('/rms/temperature/export-data', 'RMS\TemperatureController@exportData');
+Route::get('/rms/temperature/aggregate', 'RMS\TemperatureController@aggregate');
 Route::get('/rms/temperature/critical-sites', 'RMS\TemperatureController@criticalSites');
 
 Route::get('/mileage/list', 'Api\Position\MileageController@list');
