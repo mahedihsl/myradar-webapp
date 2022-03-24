@@ -116,6 +116,7 @@ Route::get('/rms/battery/health/history', 'RMS\BatteryController@healthHistory')
 Route::get('/rms/battery/critical-sites', 'RMS\BatteryController@criticalSites');
 
 Route::get('/rms/mains/recent', 'RMS\MainsController@recent');
+Route::get('/rms/mains/events', 'RMS\MainsController@events');
 Route::get('/rms/mains/offhours', 'RMS\MainsController@offhours');
 Route::get('/rms/mains/export-data', 'RMS\MainsController@exportData');
 Route::get('/rms/mains/critical-sites', 'RMS\MainsController@criticalSites');
@@ -125,6 +126,7 @@ Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
 
 Route::get('/rms/temperature/recent', 'RMS\TemperatureController@recent');
 Route::get('/rms/temperature/aggregate', 'RMS\TemperatureController@aggregate');
+Route::get('/rms/temperature/events', 'RMS\TemperatureController@events');
 Route::get('/rms/temperature/critical-sites', 'RMS\TemperatureController@criticalSites');
 
 Route::get('/mileage/list', 'Api\Position\MileageController@list');

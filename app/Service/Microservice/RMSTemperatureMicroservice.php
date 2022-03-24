@@ -24,4 +24,9 @@ class RMSTemperatureMicroservice extends BaseService
   {
     return $this->get('/analytics/critical-sites', $query);
   }
+  
+  public function getEvents($query)
+  {
+    return $this->get('/api/events', $query);
+  }
 }

@@ -35,6 +35,16 @@ class TemperatureController extends Controller
       }
     }
     
+    public function events(Request $request)
+    {
+      try {
+        $response = $this->rmsTemperatureService->getEvents($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+    
     public function criticalSites(Request $request)
     {
       try {
