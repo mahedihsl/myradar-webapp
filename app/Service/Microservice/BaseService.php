@@ -51,10 +51,10 @@ class BaseService {
     }
   }
 
-  public function get($path, $params = [])
+  public function get($path, $params = [], $headers = [])
   {
     try {
-      $res = $this->client->get($path, [ 'query' => $params ]);
+      $res = $this->client->get($path, [ 'query' => $params, 'headers' => $headers ]);
       return json_decode($res->getBody()->getContents(), true);
     } catch (ClientException $e) {
       throw ServiceException::fromClientException($e);

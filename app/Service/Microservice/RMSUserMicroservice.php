@@ -49,4 +49,34 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->get('/site/availability', $query);
   }
+
+  public function siteEvents($query)
+  {
+    return $this->get('/site/events', $query);
+  }
+
+  public function networkEvents($query)
+  {
+    return $this->get('/network/events', $query);
+  }
+
+  public function loginUser($data)
+  {
+    return $this->post('/auth/login', $data);
+  }
+  
+  public function refreshToken($data)
+  {
+    return $this->post('/auth/refresh', $data);
+  }
+  
+  public function getUser($headers)
+  {
+    return $this->get('/auth/user', [], $headers);
+  }
+
+  public function logoutUser($data)
+  {
+    return $this->post('/auth/logout', $data);
+  }
 }

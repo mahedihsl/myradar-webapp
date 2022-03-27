@@ -105,6 +105,13 @@ Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
 Route::get('/rms/site/digital-control', 'RMS\SiteController@getDigitalControl');
 Route::post('/rms/site/digital-control', 'RMS\SiteController@setDigitalControl');
 Route::get('/rms/site/availability', 'RMS\SiteController@availability');
+Route::get('/rms/site/site-events', 'RMS\SiteController@siteEvents');
+Route::get('/rms/site/network-events', 'RMS\SiteController@networkEvents');
+
+Route::post('/rms/auth/login', 'RMS\AuthController@login');
+Route::post('/rms/auth/refresh', 'RMS\AuthController@refresh');
+Route::get('/rms/auth/user', 'RMS\AuthController@user');
+Route::post('/rms/auth/logout', 'RMS\AuthController@logout');
 
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
 Route::get('/rms/dg/export-data', 'RMS\DGController@exportData');
