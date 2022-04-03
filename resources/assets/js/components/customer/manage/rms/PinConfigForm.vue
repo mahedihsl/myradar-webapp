@@ -22,6 +22,7 @@
       <select class="form-control" v-model="info.type">
         <option value="main_phase">MAIN PHASE</option>
         <option value="dg_status">DG STATUS</option>
+        <option value="pg_status">DG STATUS</option>
         <option value="dg_fuel">DG FUEL</option>
         <option value="temperature">TEMPERATURE</option>
         <option value="access_control">ACCESS CONTROL</option>
