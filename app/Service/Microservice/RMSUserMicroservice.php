@@ -79,4 +79,9 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->post('/auth/logout', $data);
   }
+  
+  public function startSession($data)
+  {
+    return $this->post('/session/start', $data);
+  }
 }

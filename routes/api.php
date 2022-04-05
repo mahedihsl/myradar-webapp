@@ -99,6 +99,7 @@ Route::get('/radarpay/msgid', 'Test\MicroServiceController@messageId');
 
 // For RMS
 Route::get('/rms/site/list', 'RMS\SiteController@index');
+Route::post('/rms/site/session-start', 'RMS\SiteController@sessionStart');
 Route::post('/rms/site/cache-status', 'RMS\SiteController@cacheSiteStatus');
 Route::get('/rms/site/status-counts', 'RMS\SiteController@statusCounts');
 Route::get('/rms/site/pin/fetch', 'RMS\SiteController@fetchPinConfig');
@@ -113,6 +114,7 @@ Route::post('/rms/auth/refresh', 'RMS\AuthController@refresh');
 Route::get('/rms/auth/user', 'RMS\AuthController@user');
 Route::post('/rms/auth/logout', 'RMS\AuthController@logout');
 
+Route::get('/rms/dg/events', 'RMS\DGController@events');
 Route::get('/rms/dg/runhours', 'RMS\DGController@runhours');
 Route::get('/rms/dg/export-data', 'RMS\DGController@exportData');
 Route::get('/rms/dg/critical-sites', 'RMS\DGController@criticalSites');
@@ -121,6 +123,8 @@ Route::get('/rms/battery/voltage/history', 'RMS\BatteryController@voltageHistory
 Route::get('/rms/battery/voltage/profile', 'RMS\BatteryController@voltageProfile');
 Route::get('/rms/battery/health/history', 'RMS\BatteryController@healthHistory');
 Route::get('/rms/battery/critical-sites', 'RMS\BatteryController@criticalSites');
+Route::get('/rms/battery/events', 'RMS\BatteryController@events');
+Route::get('/rms/battery/energy-consumption', 'RMS\BatteryController@energyConsumption');
 
 Route::get('/rms/mains/recent', 'RMS\MainsController@recent');
 Route::get('/rms/mains/events', 'RMS\MainsController@events');
@@ -130,6 +134,7 @@ Route::get('/rms/mains/critical-sites', 'RMS\MainsController@criticalSites');
 Route::get('/rms/mains/availability', 'RMS\MainsController@availability');
 
 Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
+Route::get('/rms/door/events', 'RMS\DoorController@events');
 
 Route::get('/rms/temperature/recent', 'RMS\TemperatureController@recent');
 Route::get('/rms/temperature/aggregate', 'RMS\TemperatureController@aggregate');

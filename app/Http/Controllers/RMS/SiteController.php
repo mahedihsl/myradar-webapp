@@ -139,31 +139,41 @@ class SiteController extends Controller
 
     public function availability(Request $request)
     {
-      try {
-        $response = $this->rmsUserService->siteAvailability($request->all());
-        return response()->json($response);
-      } catch (Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 400);
-      }
+        try {
+            $response = $this->rmsUserService->siteAvailability($request->all());
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 
     public function siteEvents(Request $request)
     {
-      try {
-        $response = $this->rmsUserService->siteEvents($request->all());
-        return response()->json($response);
-      } catch (Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 400);
-      }
+        try {
+            $response = $this->rmsUserService->siteEvents($request->all());
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 
     public function networkEvents(Request $request)
     {
-      try {
-        $response = $this->rmsUserService->networkEvents($request->all());
-        return response()->json($response);
-      } catch (Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 400);
-      }
+        try {
+            $response = $this->rmsUserService->networkEvents($request->all());
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
+
+    public function sessionStart(Request $request)
+    {
+        try {
+            $response = $this->rmsUserService->startSession($request->all());
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
     }
 }
