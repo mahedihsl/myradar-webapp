@@ -20,7 +20,7 @@ class AuthController extends Controller
     try {
       $response = $this->rmsUserService->loginUser($request->all());
       return response()->json($response);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json(['error' => $e->getMessage()], 400);
     }
   }
@@ -30,7 +30,7 @@ class AuthController extends Controller
     try {
       $response = $this->rmsUserService->refreshToken($request->all());
       return response()->json($response);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json(['error' => $e->getMessage()], 400);
     }
   }
@@ -49,7 +49,7 @@ class AuthController extends Controller
       // })->toArray();
       $response = $this->rmsUserService->getUser($headers);
       return response()->json($response);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json(['error' => $e->getMessage()], 400);
     }
   }
@@ -59,7 +59,7 @@ class AuthController extends Controller
     try {
       $response = $this->rmsUserService->logoutUser($request->all());
       return response()->json($response);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json(['error' => $e->getMessage()], 400);
     }
   }
