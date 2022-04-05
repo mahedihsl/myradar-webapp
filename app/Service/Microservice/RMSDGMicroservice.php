@@ -12,7 +12,7 @@ class RMSDGMicroservice extends BaseService
 
   public function runhours($query)
   {
-    return $this->get('/api/runhours', $query);
+    return $this->get('/api/run-hours', $query);
   }
 
   public function exportData($query)
@@ -23,5 +23,10 @@ class RMSDGMicroservice extends BaseService
   public function criticalSites($query)
   {
     return $this->get('/analytics/critical-sites', $query);
+  }
+  
+  public function events($query)
+  {
+    return $this->get('/api/events', $query);
   }
 }

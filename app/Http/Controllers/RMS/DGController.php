@@ -45,4 +45,14 @@ class DGController extends Controller
       return response()->json(['error' => $e->getMessage()], 400);
     }
   }
+  
+  public function events(Request $request)
+  {
+    try {
+      $response = $this->rmsDgService->events($request->all());
+      return response()->json($response);
+    } catch (Exception $e) {
+      return response()->json(['error' => $e->getMessage()], 400);
+    }
+  }
 }
