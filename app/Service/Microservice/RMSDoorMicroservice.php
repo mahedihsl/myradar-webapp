@@ -12,6 +12,11 @@ class RMSDoorMicroservice extends BaseService
 
   public function openhours($query)
   {
-    return $this->get('/api/openhours', $query);
+    return $this->get('/api/open-hours', $query);
+  }
+
+  public function getEvents($query)
+  {
+    return $this->get('/api/events', $query);
   }
 }
