@@ -6,7 +6,8 @@ class RMSBatteryMicroservice extends BaseService
 {
   const SERVICE_NAME = 'rms-battery';
 
-  public function __construct() {
+  public function __construct()
+  {
     parent::__construct(self::SERVICE_NAME);
   }
 
@@ -19,7 +20,7 @@ class RMSBatteryMicroservice extends BaseService
   {
     return $this->get('/voltage/profile', $query);
   }
-  
+
   public function healthHistory($query)
   {
     return $this->get('/health/history', $query);
@@ -28,5 +29,15 @@ class RMSBatteryMicroservice extends BaseService
   public function criticalSites($query)
   {
     return $this->get('/analytics/critical-sites', $query);
+  }
+
+  public function getEvents($query)
+  {
+    return $this->get('/event/fetch', $query);
+  }
+  
+  public function getEnergyConsumption($query)
+  {
+    return $this->get('/energy/consumption', $query);
   }
 }

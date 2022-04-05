@@ -54,4 +54,24 @@ class BatteryController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
+    
+    public function events(Request $request)
+    {
+      try {
+        $response = $this->rmsBatteryService->getEvents($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+    
+    public function energyConsumption(Request $request)
+    {
+      try {
+        $response = $this->rmsBatteryService->getEnergyConsumption($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 }
