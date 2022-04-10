@@ -35,4 +35,54 @@ class DoorController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
+
+    public function getAccessRecords(Request $request)
+    {
+      try {
+        $response = $this->rmsDoorService->getAccessRecords($request->all());
+        return response()->json($response);
+      } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+    
+    public function saveAccessRecord(Request $request)
+    {
+      try {
+        $response = $this->rmsDoorService->saveAccessRecord($request->all());
+        return response()->json($response);
+      } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+    
+    public function getAccessCards(Request $request)
+    {
+      try {
+        $response = $this->rmsDoorService->getAccessCards($request->all());
+        return response()->json($response);
+      } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+    
+    public function addAccessCard(Request $request)
+    {
+      try {
+        $response = $this->rmsDoorService->addAccessCard($request->all());
+        return response()->json($response);
+      } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
+    
+    public function deleteAccessCard(Request $request)
+    {
+      try {
+        $response = $this->rmsDoorService->deleteAccessCard($request->all());
+        return response()->json($response);
+      } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 }

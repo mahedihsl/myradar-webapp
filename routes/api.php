@@ -135,6 +135,11 @@ Route::get('/rms/mains/availability', 'RMS\MainsController@availability');
 
 Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
 Route::get('/rms/door/events', 'RMS\DoorController@events');
+Route::get('/rms/door/access/fetch-records', 'RMS\DoorController@getAccessRecords');
+Route::post('/rms/door/access/save-record', 'RMS\DoorController@saveAccessRecord');
+Route::get('/rms/door/access/fetch-cards', 'RMS\DoorController@getAccessCards');
+Route::post('/rms/door/access/add-card', 'RMS\DoorController@addAccessCard');
+Route::post('/rms/door/access/delete-card', 'RMS\DoorController@deleteAccessCard');
 
 Route::get('/rms/temperature/recent', 'RMS\TemperatureController@recent');
 Route::get('/rms/temperature/aggregate', 'RMS\TemperatureController@aggregate');

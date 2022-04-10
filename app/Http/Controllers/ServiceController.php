@@ -14,6 +14,7 @@ use App\Entities\Device;
 use App\Service\Log\Log as LogLog;
 use App\Service\Microservice\RMSReceiverMicroservice;
 use Exception;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 
 class ServiceController extends Controller
@@ -52,10 +53,25 @@ class ServiceController extends Controller
                 Log::info('rms-string received', $request->all());
                 $rmsService = new RMSReceiverMicroservice();
                 $res = $rmsService->receive($request->all());
-                $reply = $res['controls']['dc1'] . ',' . $res['controls']['dc2'];
-                Log::info('rms-string reply', [ 'com_id' => $request->get('ss'), 'reply' => $reply, 'type' => gettype(($res)) ]);
-                $serviceString->update(['data' => array_merge($request->all(), $res['controls'])]);
-                // return '0,1'; // DC1,DC2
+
+                $controls = $res['controls'];
+                $reply = '0,0';
+
+                if ($com_id === 28592) {
+                    $controls['add_card'] = '_'; // 0001597687, 0003618931
+                    $controls['del_card'] = '_'; // 0001597687
+                    $controls['cur_time'] = '_'; // Carbon::now()->format('i-H-d-m-y'), 15-20-09-04-22
+                    $controls['clr_cards'] = '0';
+
+                    $replyPieces = array($controls['dc1'], $controls['dc2'], $controls['add_card'], $controls['del_card'], $controls['cur_time'], $controls['clr_cards']);
+                    $reply = implode(",", $replyPieces);
+                } else {
+                    $reply = implode(",", array($controls['dc1'], $controls['dc2']));
+                }
+
+                Log::info('rms-string reply', ['com_id' => $request->get('ss'), 'reply' => $reply, 'type' => gettype(($res))]);
+                $serviceString->update(['data' => array_merge($request->all(), $controls)]);
+                
                 return $reply; // DC1,DC2
             }
         } catch (\Exception $e) {
@@ -77,7 +93,6 @@ class ServiceController extends Controller
                 $count = $generator->apply();
                 event(new ServiceStringReceived($device, $count));
             } catch (\Exception $e) {
-
             }
 
             try {
@@ -92,7 +107,6 @@ class ServiceController extends Controller
                         } else {
                             // Log::info('Jatri car disabled: ' . $device->com_id);
                         }
-
                     }
                 }
             } catch (\Exception $e) {
