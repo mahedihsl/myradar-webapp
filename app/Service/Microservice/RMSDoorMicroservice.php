@@ -45,4 +45,9 @@ class RMSDoorMicroservice extends BaseService
   {
     return $this->post('/access/delete-card', $data);
   }
+ 
+  public function clearAccessCardList($data)
+  {
+    return $this->post('/access/clear-cards', $data);
+  }
 }

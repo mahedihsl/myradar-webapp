@@ -85,4 +85,14 @@ class DoorController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
+   
+    public function clearAccessCardList(Request $request)
+    {
+      try {
+        $response = $this->rmsDoorService->clearAccessCardList($request->all());
+        return response()->json($response);
+      } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 }

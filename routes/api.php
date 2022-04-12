@@ -140,6 +140,7 @@ Route::post('/rms/door/access/save-record', 'RMS\DoorController@saveAccessRecord
 Route::get('/rms/door/access/fetch-cards', 'RMS\DoorController@getAccessCards');
 Route::post('/rms/door/access/add-card', 'RMS\DoorController@addAccessCard');
 Route::post('/rms/door/access/delete-card', 'RMS\DoorController@deleteAccessCard');
+Route::post('/rms/door/access/clear-cards', 'RMS\DoorController@clearAccessCardList');
 
 Route::get('/rms/temperature/recent', 'RMS\TemperatureController@recent');
 Route::get('/rms/temperature/aggregate', 'RMS\TemperatureController@aggregate');

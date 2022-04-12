@@ -177,7 +177,7 @@ class ServiceMonitorController extends Controller
            $headings = array('Date Time', 'Gas Value');
         }
 
-        if($sid == 23) {
+        if($sid == 23) { // Service String
           {
             $query = [
               '$and' => [
