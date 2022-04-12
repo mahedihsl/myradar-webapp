@@ -54,29 +54,13 @@ class ServiceController extends Controller
                 $rmsService = new RMSReceiverMicroservice();
                 $res = $rmsService->receive($request->all());
 
-                $controls = $res['controls'];
-                $reply = '0,0';
-
-                if ($com_id === 28592) {
-                    $controls['add_card'] = '_'; // 0001597687, 0003618931
-                    $controls['del_card'] = '_'; // 0001597687
-                    $controls['cur_time'] = '_'; // Carbon::now()->format('i-H-d-m-y'), 15-20-09-04-22
-                    $controls['clr_cards'] = '0';
-
-                    $replyPieces = array($controls['dc1'], $controls['dc2'], $controls['add_card'], $controls['del_card'], $controls['cur_time'], $controls['clr_cards']);
-                    $reply = implode(",", $replyPieces);
-                } else {
-                    $reply = implode(",", array($controls['dc1'], $controls['dc2']));
-                }
-
-                Log::info('rms-string reply', ['com_id' => $request->get('ss'), 'reply' => $reply, 'type' => gettype(($res))]);
-                $serviceString->update(['data' => array_merge($request->all(), $controls)]);
+                $serviceString->update(['data' => array_merge($request->all(), $res['pieces'], ['response' => $res['reply']])]);
                 
-                return $reply; // DC1,DC2
+                return $res['reply']; // DC1,DC2,ADD_CARD,DELETE_CARD,TIME_UPDATE,CLEAR_CARDS
             }
         } catch (\Exception $e) {
             Log::info('rms-string identification error', ['message' => $e->getMessage()]);
-            // return '0,0'; // DC1,DC2
+            return '0,0'; // DC1,DC2
         }
 
 
