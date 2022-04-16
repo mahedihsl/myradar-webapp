@@ -323,9 +323,24 @@ class ServiceMonitorController extends Controller
                       }
                     }
 
+                    else if ($sid == 23) { // service string
+                      $data = ServiceString::where('com_id',$Device->com_id)
+                             ->where('created_at','<',$to_date)
+                             ->where('created_at','>',$from_date)
+                             ->select('data','created_at')
+                             ->orderBy('created_at','asc')->get();
+
+                      foreach ($data as $data) {
+                        $exportResult[] = [
+                          $data->created_at->format('d M Y g:i:s A'),
+                          $data->data
+                        ];
+                      }
+                    }
+
                     else if($sid==16){
 
-                      $data=  FuelHistory::where('device_id',$Device->id)
+                      $data = FuelHistory::where('device_id',$Device->id)
                              ->where('when','<',$to_date)
                              ->where('when','>',$from_date)
                              ->select('when','value')
@@ -336,15 +351,15 @@ class ServiceMonitorController extends Controller
                           $data->when->format('d M Y g:i:s A'),
                           $data->value
                         ];
-
-                        }
+                      }
                     }
                     else if($sid==17){
                       $data=  GasHistory::where('device_id',$Device->id)
                              ->where('when','<',$to_date)
                              ->where('when','>',$from_date)
                              ->select('when','value')
-                             ->orderBy('when','asc')->get();
+                             ->orderBy('when','asc')
+                             ->get();
 
                       foreach ($data as $data) {
                         $exportResult[] = [
@@ -384,10 +399,10 @@ class ServiceMonitorController extends Controller
                         }
                     }
 
-                   $result = $exportResult;
-                   $excel->sheet('First sheet', function($sheet) use($result,$headings) {
-                   $sheet->fromArray($result, null, 'A1', false, false);
-                       $sheet->prependRow(1, $headings);
+                    $result = $exportResult;
+                    $excel->sheet('First sheet', function($sheet) use($result,$headings) {
+                    $sheet->fromArray($result, null, 'A1', false, false);
+                    $sheet->prependRow(1, $headings);
                  });
 
              })->export('xls');

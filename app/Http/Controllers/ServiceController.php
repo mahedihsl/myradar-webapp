@@ -56,6 +56,8 @@ class ServiceController extends Controller
 
                 $serviceString->update(['data' => array_merge($request->all(), $res['pieces'], ['response' => $res['reply']])]);
                 
+                // if ($com_id === 28592) return '0,0,_,_,00-16-12-04-22,0';
+
                 return $res['reply']; // DC1,DC2,ADD_CARD,DELETE_CARD,TIME_UPDATE,CLEAR_CARDS
             }
         } catch (\Exception $e) {
