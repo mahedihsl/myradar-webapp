@@ -84,4 +84,9 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->post('/session/start', $data);
   }
+
+  public function saveSettings($data)
+  {
+    return $this->post('/settings/save', $data);
+  }
 }

@@ -54,11 +54,14 @@ class ServiceController extends Controller
                 $rmsService = new RMSReceiverMicroservice();
                 $res = $rmsService->receive($request->all());
 
-                $serviceString->update(['data' => array_merge($request->all(), $res['pieces'], ['response' => $res['reply']])]);
+                $reply = $res['reply'];
+                if ($com_id === 33549) {
+                    // $reply = '0,0,_,_,_,0,0';
+                }
                 
-                // if ($com_id === 28592) return '0,0,_,_,00-16-12-04-22,0';
-
-                return $res['reply']; // DC1,DC2,ADD_CARD,DELETE_CARD,TIME_UPDATE,CLEAR_CARDS
+                $serviceString->update(['data' => array_merge($request->all(), $res['pieces'], ['response' => $reply])]);
+                
+                return $reply; // DC1,DC2,ADD_CARD,DELETE_CARD,TIME_UPDATE,CLEAR_CARDS,ERASE_LOG
             }
         } catch (\Exception $e) {
             Log::info('rms-string identification error', ['message' => $e->getMessage()]);
