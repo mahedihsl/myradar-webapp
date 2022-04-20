@@ -108,7 +108,8 @@ Route::post('/rms/site/digital-control', 'RMS\SiteController@setDigitalControl')
 Route::get('/rms/site/availability', 'RMS\SiteController@availability');
 Route::get('/rms/site/site-events', 'RMS\SiteController@siteEvents');
 Route::get('/rms/site/network-events', 'RMS\SiteController@networkEvents');
-Route::get('/rms/site/save-settings', 'RMS\SiteController@saveSettings');
+Route::post('/rms/site/save-settings', 'RMS\SiteController@saveSettings');
+Route::post('/rms/site/clear-security-breach', 'RMS\SiteController@clearSecurityBreach');
 
 Route::post('/rms/auth/login', 'RMS\AuthController@login');
 Route::post('/rms/auth/refresh', 'RMS\AuthController@refresh');

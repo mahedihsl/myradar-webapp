@@ -55,11 +55,15 @@ class ServiceController extends Controller
                 $res = $rmsService->receive($request->all());
 
                 $reply = $res['reply'];
-                if ($com_id === 33549) {
-                    // $reply = '0,0,_,_,_,0,0';
-                }
-                
-                $serviceString->update(['data' => array_merge($request->all(), $res['pieces'], ['response' => $reply])]);
+                $serviceString->update([
+                    'data' => array_merge(
+                        $request->all(), 
+                        $res['pieces'], 
+                        ['response' => $reply]
+                    )
+                ]);
+
+                // if ($com_id == 28592) return '0,0,_,_,15-17-19-04-22,0';
                 
                 return $reply; // DC1,DC2,ADD_CARD,DELETE_CARD,TIME_UPDATE,CLEAR_CARDS,ERASE_LOG
             }

@@ -89,4 +89,9 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->post('/settings/save', $data);
   }
+
+  public function clearSecurityBreach($data)
+  {
+    return $this->post('/site/clear-security-breach', $data);
+  }
 }
