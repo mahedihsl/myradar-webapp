@@ -10,9 +10,9 @@ class SpeedMicroservice extends BaseService
     parent::__construct(self::SERVICE_NAME);
   }
 
-  public function observe($car_id, $speed)
+  public function observe($car_id, $com_id, $speed)
   {
-    return $this->post('/observe', compact('car_id', 'speed'));
+    return $this->post('/observe', compact('car_id', 'com_id', 'speed'));
   }
 
   public function update($car_id, $soft_value, $soft_active, $hard_value, $hard_active)

@@ -47,10 +47,11 @@ class MicroServiceController extends Controller
     public function speed(Request $request)
     {
         $car_id = $request->get('car_id');
+        $com_id = $request->get('com_id');
         $speed = $request->get('speed');
 
         $service = new SpeedMicroservice();
-        $data = $service->observe($car_id, $speed);
+        $data = $service->observe($car_id, $com_id, $speed);
         return response()->json($data);
     }
 

@@ -34,23 +34,25 @@ class VelocityConsumer extends ServiceConsumer
 
         $this->positions->each(function($pos) use ($speed, $device) {
             $pos->update(['speed' => $speed]);
-            if ($device->version) {
-                $versionNumber = intval(str_replace('.', '', $device->version));
-                if ($versionNumber >= 484) {
-                    $this->storeInCache($device, $speed);
-                }
-            }
+            // if ($device->version) {
+            //     $versionNumber = intval(str_replace('.', '', $device->version));
+            //     if ($versionNumber >= 484) {
+            //         $this->storeInCache($device, $speed);
+            //     }
+            // }
         });
 
-        $this->checkSpeedViolation($device);
+        // $this->checkSpeedViolation($device);
+        $service = new SpeedMicroservice();
+        $service->observe($device->car_id, $device->com_id, $speed);
     }
 
-    public function storeInCache($device, $speed)
-    {
-        $key = 'speed:' . $device->com_id;
-        Redis::command('LPUSH', [$key, $speed]);
-        Redis::command('LTRIM', [$key, 0, 2]);
-    }
+    // public function storeInCache($device, $speed)
+    // {
+    //     $key = 'speed:' . $device->com_id;
+    //     Redis::command('LPUSH', [$key, $speed]);
+    //     Redis::command('LTRIM', [$key, 0, 2]);
+    // }
 
     /**
      * This method is for v4.8.4 device, because from those devices 
@@ -58,13 +60,13 @@ class VelocityConsumer extends ServiceConsumer
      */
     public function checkSpeedViolation($device)
     {
-        if (!$device->version) return;
+        // if (!$device->version) return;
         
-        $versionNumber = intval(str_replace('.', '', $device->version));
-        if ($versionNumber < 484) return;
+        // $versionNumber = intval(str_replace('.', '', $device->version));
+        // if ($versionNumber < 484) return;
 
         $service = new SpeedMicroservice();
-        $service->observe($device->car_id, $this->getData());
+        $service->observe($device->car_id, $device->com_id, $this->getData());
 
         // $key = 'speed:' . $device->com_id;
         // $speedRecords = Redis::command('LRANGE', [$key, 0, -1]);
