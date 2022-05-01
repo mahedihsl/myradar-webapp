@@ -59,6 +59,11 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->get('/network/events', $query);
   }
+ 
+  public function networkHealths($query)
+  {
+    return $this->get('/network/healths', $query);
+  }
 
   public function loginUser($data)
   {
