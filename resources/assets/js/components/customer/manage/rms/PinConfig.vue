@@ -38,28 +38,13 @@
       </select>
     </div>
     <div class="tw-w-1/12 tw-mx-2">
-      <input
-        type="text"
-        v-model="info.factor"
-        class="form-control"
-        placeholder="Factor"
-      />
+      <input type="text" v-model="info.factor" class="form-control" placeholder="Factor" />
     </div>
     <div class="tw-w-1/12 tw-mx-2">
-      <input
-        type="text"
-        v-model="info.offset"
-        class="form-control"
-        placeholder="Offset"
-      />
+      <input type="text" v-model="info.offset" class="form-control" placeholder="Offset" />
     </div>
     <div class="tw-w-3/12 tw-mx-2">
-      <input
-        type="text"
-        v-model="info.label"
-        class="form-control"
-        placeholder="Optional Name"
-      />
+      <input type="text" v-model="info.label" class="form-control" placeholder="Optional Name" />
     </div>
     <div
       class="
@@ -141,5 +126,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
