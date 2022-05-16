@@ -24,6 +24,7 @@ class DeviceExportTransformer extends TransformerAbstract
         return [
             'Commercial_id' => $model->com_id,
             'Phone'   => $model->phone,
+            'IMEI'   => $model->imei,
             'Created_at' => $model->created_at->toDayDateTimeString(),
         ];
     }
