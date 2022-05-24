@@ -28,6 +28,7 @@
         <option value="access_control">ACCESS CONTROL</option>
         <!-- <option value="door_status">DOOR STATUS</option> -->
         <!-- <option value="battery_cell">BATTERY CELL</option> -->
+        <option value="vibration_sensor">VIBRATION SENSOR</option>
         <option value="battery_terminal">DC VOLTAGE</option>
         <option value="battery_current">DC CURRENT</option>
         <option value="battery_low">DC LOW VOLTAGE</option>
