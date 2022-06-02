@@ -10,10 +10,10 @@ use App\Entities\Notice;
 use App\Entities\Payment;
 use App\Jobs\PushNotificationJob;
 use App\Service\NotificationService;
-use App\Service\SmsService;
 use Carbon\Carbon;
 use App\Entities\PendingNotice;
 use App\Service\Microservice\PushMicroservice;
+use App\Service\Microservice\SmsMicroservice;
 use App\Service\OneSignalService;
 use App\Transformers\PendingNoticeTransformer;
 use Illuminate\Support\Facades\Log;
@@ -29,27 +29,30 @@ class NoticeController extends Controller
         $this->repository = $repository;
     }
 
-    private function unpaidUsersOfMonth($mm, $yy) {
+    private function unpaidUsersOfMonth($mm, $yy)
+    {
         $date = Carbon::createFromDate($yy, $mm, 1);
         $date->setTime(0, 0);
 
         $mm--;
 
         $users = Payment::where('months', 'all', [[$mm, $yy]])
-                    ->orWhere('months', 'all', [[$mm, strval($yy)]])
-                    ->get(['user_id'])
-                    ->map(function($v) {return $v->user_id;})
-                    ->toArray();
+            ->orWhere('months', 'all', [[$mm, strval($yy)]])
+            ->get(['user_id'])
+            ->map(function ($v) {
+                return $v->user_id;
+            })
+            ->toArray();
 
         $unpaid = User::where('type', User::$TYPE_CUSTOMER)
-                    ->where('created_at', '<', $date)
-                    ->whereNotIn('_id', $users)
-                    ->where(function($query) {
-                        $query->where('status', 'exists', false)
-                            ->orWhere('status', 1)
-                            ->orWhere('status', "1");
-                    })                    
-                    ->get(['phone']);
+            ->where('created_at', '<', $date)
+            ->whereNotIn('_id', $users)
+            ->where(function ($query) {
+                $query->where('status', 'exists', false)
+                    ->orWhere('status', 1)
+                    ->orWhere('status', "1");
+            })
+            ->get(['phone']);
 
         return $unpaid;
     }
@@ -58,7 +61,7 @@ class NoticeController extends Controller
     private function getUnpaidUsers($mm, $yy)
     {
         $phoneNumbers = collect();
-        for ($i=0; $i < 36; $i++) { 
+        for ($i = 0; $i < 36; $i++) {
             $phoneNumbers = $phoneNumbers->concat($this->unpaidUsersOfMonth($mm, $yy));
             $mm--;
             if ($mm == 0) {
@@ -99,7 +102,7 @@ class NoticeController extends Controller
                 'failed' => 0,
             ]);
 
-            $unpaid->each(function($user) use ($message, $via, $notice) {
+            $unpaid->each(function ($user) use ($message, $via, $notice) {
                 if ($via == 'sms') {
                     PendingNotice::create([
                         'via' => $via,
@@ -138,8 +141,10 @@ class NoticeController extends Controller
     public function exportDueNotice(Request $request, $via)
     {
         $notices = PendingNotice::where('via', $via)->get();
-        $targets = $notices->map(function($v) {return $v->to;});
-        
+        $targets = $notices->map(function ($v) {
+            return $v->to;
+        });
+
         $foreignField = $via == 'sms' ? 'phone' : '_id';
         $users = User::whereIn($foreignField, $targets)->get();
 
@@ -147,7 +152,7 @@ class NoticeController extends Controller
         Excel::create($fileName, function ($excel) use ($notices, $users) {
             $excel->sheet('data', function ($sheet) use ($notices, $users) {
                 $notices->transform(function ($notice) use ($users) {
-                    $user = $users->first(function($user) use ($notice) {
+                    $user = $users->first(function ($user) use ($notice) {
                         if ($notice->via == 'sms') {
                             return $user->phone == $notice->to;
                         }
@@ -167,21 +172,20 @@ class NoticeController extends Controller
         $via = $request->get('via', 'none');
         // $notice_id = $request->get('notice_id');
         $model = PendingNotice::where('via', $via)
-                    ->where('attempt', 0)
-                    ->first();
-        if ( ! is_null($model)) {
+            ->where('attempt', 0)
+            ->first();
+        if (!is_null($model)) {
             try {
                 $notice = $this->repository->find($model->notice_id);
                 $sent = 1;
                 if ($model->via == 'sms') {
-                    $s = new SmsService();
-                    
-                    $reply = $s->send($model->to, str_replace("\r\n", "\n", $model->payload));
+                    $s = new SmsMicroservice();
+                    $reply = $s->send(strval($model->to), str_replace("\r\n", "\n", $model->payload));
                     $sent = $reply['status'];
                 } else if ($model->via == 'push') {
                     $service = new PushMicroservice();
                     $res = $service->send($model->to, collect($model->payload));
-                    
+
                     $socketRecipients = $res['recipients']['socket'];
                     $oneSignalRecipients = $res['recipients']['onesignal'];
                     $sent = $socketRecipients + $oneSignalRecipients;
@@ -205,10 +209,10 @@ class NoticeController extends Controller
                     'message' => $error->getMessage(),
                     'model' => $model->toArray(),
                 ]);
-                return response()->json([ 'message' => $error->getMessage() ], 400);
+                return response()->json(['message' => $error->getMessage(), 'model' => $model], 400);
             }
         }
-        return response()->json([ 'message' => 'Could not send notice' ], 400);
+        return response()->json(['message' => 'Could not send notice'], 400);
     }
 
     public function dueNotice(Request $request)
@@ -219,7 +223,7 @@ class NoticeController extends Controller
             ];
         });
 
-        $months = collect(range(0, 11))->map(function($i) {
+        $months = collect(range(0, 11))->map(function ($i) {
             $temp = Carbon::today()->subMonths($i);
             return [
                 'value' => $temp->format('n,Y'),
@@ -227,13 +231,13 @@ class NoticeController extends Controller
             ];
         });
         $history = Notice::orderBy('_id', 'desc')
-                    ->limit(10)
-                    ->paginate();
+            ->limit(10)
+            ->paginate();
 
         return view('promotion.notice')->with([
             'months' => $months,
             'history' => $history,
-            
+
             'counts' => $counts,
         ]);
     }
