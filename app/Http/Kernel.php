@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'logcat' => \App\Http\Middleware\LogCat::class,
         'cors' => \App\Http\Middleware\CORS::class,
         // 'querylog' => \App\Http\Middleware\QueryLog::class,
+        'checkout_iframe_jwt' => \App\Http\Middleware\CheckoutIFrameToken::class,
     ];
 }

@@ -71,6 +71,7 @@ Route::post('/test/websocket', 'Test\SocketController@send');
 Route::get('/test/redis', 'Test\DatabaseTestController@redis');
 Route::get('/test/noti', 'Test\NotificationController@noti');
 Route::get('/test/bill-notice', 'Promotion\NoticeController@test');
+Route::get('/test/activation-cleanup', 'Admin\ActivationController@cleanup');
 // Route::get('/test/sms', 'Test\NotificationController@sms');
 // Route::get('/test/last-pos', 'Test\DatabaseTestController@lastPost');
 
@@ -93,6 +94,10 @@ Route::get('/test/jt808/lock', 'Test\JT808Controller@lock');
 Route::get('/test/jt808/unlock', 'Test\JT808Controller@unlock');
 Route::get('/test/jt808/status', 'Test\JT808Controller@status');
 
+Route::get('/test/bkash', 'Test\BkashController@test');
+Route::post('/test/bkash', 'Test\BkashController@test');
+
+Route::post('/test/gp33/lock', 'Test\GP33Controller@test');
 Route::post('/test/concox/lock', 'Test\ConcoxController@lock');
 Route::post('/test/concox/unlock', 'Test\ConcoxController@unlock');
 Route::get('/test/concox/status', 'Test\ConcoxController@status');
@@ -234,7 +239,6 @@ Route::group(['middleware' => ['auth', 'role:1']], function() {
     Route::get('/promotion','Promotion\PromotionController@index');
     Route::post('/save/scheme','Promotion\PromotionController@save');
     Route::get('/customer/ids','User\CustomerController@getIds');
-
 
     Route::get('/due/notice', 'Promotion\NoticeController@dueNotice')->name('due-notice');
     Route::post('/clear/due/notice', 'Promotion\NoticeController@clear');
@@ -476,3 +480,18 @@ Route::get('/report/positions/fetch', 'Report\PositionController@latest');
 
 Route::get('/tracking/history/{id}', 'Customer\PositionHistoryController@show');
 Route::get('/tracking/records/fetch', 'Customer\PositionHistoryController@history');
+
+
+
+Route::get('/checkout-iframe/success', 'Payment\CheckoutIFrameController@success');
+Route::get('/checkout-iframe/fail', 'Payment\CheckoutIFrameController@fail');
+
+Route::get('/checkout-iframe/amount', 'Payment\CheckoutIFrameController@amount');
+Route::get('/checkout-iframe/grant', 'Payment\CheckoutIFrameController@grant');
+Route::get('/checkout-iframe/refresh', 'Payment\CheckoutIFrameController@refresh');
+Route::post('/checkout-iframe/pay', 'Payment\CheckoutIFrameController@pay');
+Route::post('/checkout-iframe/create', 'Payment\CheckoutIFrameController@create')->middleware(['checkout_iframe_jwt']);
+Route::post('/checkout-iframe/execute', 'Payment\CheckoutIFrameController@execute')->middleware(['checkout_iframe_jwt']);
+Route::get('/checkout-iframe/query', 'Payment\CheckoutIFrameController@query')->middleware(['checkout_iframe_jwt']);
+Route::get('/checkout-iframe/search', 'Payment\CheckoutIFrameController@search')->middleware(['checkout_iframe_jwt']);
+Route::get('/checkout-iframe/refund', 'Payment\CheckoutIFrameController@refund')->middleware(['checkout_iframe_jwt']);
