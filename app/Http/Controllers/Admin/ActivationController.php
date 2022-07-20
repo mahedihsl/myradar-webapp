@@ -24,15 +24,20 @@ class ActivationController extends Controller
         $this->repository = $repository;
     }
 
-    public function test()
+    public function cleanup()
     {
-        // $list = $this->repository->with(['car'])->get()->filter(function($item) {return is_null($item->car);});
-        // $count = 0;
-        // foreach ($list as $item) {
-        //     $item->delete();
-        //     $count++;
-        // }
-        // return $count;
+        $list = $this->repository
+            ->with(['car'])
+            ->get()
+            ->filter(function($item) {
+                return is_null($item->car);
+            });
+        $count = 0;
+        foreach ($list as $item) {
+            // $item->delete();
+            $count++;
+        }
+        return $count;
     }
 
     public function index(Request $request)
@@ -40,7 +45,7 @@ class ActivationController extends Controller
         $this->repository->pushCriteria(new LastCreatedCriteria());
 
         return view('activation.index')->with([
-            'items' => $this->repository->paginate(50),
+            'items' => $this->repository->with(['car'])->paginate(50),
             'disable_count' => $request->get('disable', 0),
         ]);
     }
@@ -89,9 +94,9 @@ class ActivationController extends Controller
                 return !is_null($name);
             });
         $service = new UserMicroservice();
-        $carNames->each(function($name) use ($service) {
+        foreach ($carNames as $name) {
             $service->disableByCar($name);
-        });
+        }
         return redirect()->route('activation.report', [
             'disable' => $carNames->count(),
         ]);
