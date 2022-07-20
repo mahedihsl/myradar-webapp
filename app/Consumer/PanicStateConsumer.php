@@ -29,9 +29,9 @@ class PanicStateConsumer extends ServiceConsumer
                 'panic_state' => intval( ! $this->getData()),
             ]);
 
-            if ($this->getData() == 0) {
-                event(new PanicStateTriggered($device, $this->getData()));
-            }
+            // if ($this->getData() == 0) {
+            //     event(new PanicStateTriggered($device, $this->getData()));
+            // }
         }
     }
 }
