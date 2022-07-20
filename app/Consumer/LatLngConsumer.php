@@ -84,10 +84,8 @@ class LatLngConsumer extends ServiceConsumer
 	    }
 
         $lastPos = $this->getLastPos();
-        // $lastMilPos = $this->getLastMilPos();
         $position = $this->repository->save($this->getDevice(), $lat, $lng, $when);
         if (!is_null ($lastPos)) {
-//            $position->speed = $position->findSpeed($lastPos);
             $position->speed = $this->speed;
             $position->save();
         }
@@ -98,7 +96,7 @@ class LatLngConsumer extends ServiceConsumer
             try {
                 $service = new GeofenceMicroservice();
                 $service->observe($device->car_id, $lat, $lng);
-            } catch (ServiceException $e) {
+            } catch (\Exception $e) {
                 Log::info('geofence observe error: ' . $e->getMessage());
             }
 
@@ -113,7 +111,7 @@ class LatLngConsumer extends ServiceConsumer
                         'time' => $position->when->timestamp * 1000,
                     ]
                 ]);
-            } catch (ServiceException $e) {
+            } catch (\Exception $e) {
                 Log::info('mileage observe error: ' . $e->getMessage());
             }
         }
@@ -134,7 +132,7 @@ class LatLngConsumer extends ServiceConsumer
             ];
             $this->service->consume($locationData);
         } catch (\Exception $e) {
-            //throw $e;
+            Log::info('location observe error: ' . $e->getMessage());
         }
  
         return $position;

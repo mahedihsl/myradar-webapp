@@ -52,10 +52,6 @@ class ServiceConsumerGenerator
             'service' => PackageService::GAS,
             'consumer' => GasConsumer::class,
         ],
-        // self::KEY_FENCE => [
-        //     'service' => PackageService::GEOFENCE,
-        //     'consumer' => GeoFenceConsumer::class,
-        // ],
         self::KEY_SPEED => [
             'service' => PackageService::SPEED,
             'consumer' => SpeedConsumer::class,

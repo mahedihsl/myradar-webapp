@@ -103,6 +103,8 @@ class NoticeController extends Controller
             ]);
 
             $unpaid->each(function ($user) use ($message, $via, $notice) {
+                // if($user->phone != '01627892968') return;
+
                 if ($via == 'sms') {
                     PendingNotice::create([
                         'via' => $via,
@@ -180,7 +182,7 @@ class NoticeController extends Controller
                 $sent = 1;
                 if ($model->via == 'sms') {
                     $s = new SmsMicroservice();
-                    $reply = $s->send(strval($model->to), str_replace("\r\n", "\n", $model->payload));
+                    $reply = $s->send(strval($model->to), str_replace("\r\n", "\n", $model->payload), 'due_bill');
                     $sent = $reply['status'];
                 } else if ($model->via == 'push') {
                     $service = new PushMicroservice();

@@ -11,7 +11,7 @@ module.exports = {
     extend: {
       boxShadow: {
         DEFAULT: '0 0 20px rgb(0 0 0 / 12%)',
-    },
+      },
     },
   },
   variants: {
