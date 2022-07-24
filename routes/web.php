@@ -116,6 +116,19 @@ Route::group(['middleware' => ['auth', 'role:4', 'customer:1']], function() {
     Route::get('/refuel/log', 'Calibration\RefuelFeedController@customer')->name('refuel-feed');
     Route::post('/refuel/feed/save', 'Calibration\RefuelFeedController@store');
 
+    Route::get('/checkout-iframe/success', 'Payment\CheckoutIFrameController@success');
+    Route::get('/checkout-iframe/fail', 'Payment\CheckoutIFrameController@fail');
+
+    Route::get('/checkout-iframe/amount', 'Payment\CheckoutIFrameController@amount');
+    Route::get('/checkout-iframe/grant', 'Payment\CheckoutIFrameController@grant');
+    Route::get('/checkout-iframe/refresh', 'Payment\CheckoutIFrameController@refresh');
+    Route::post('/checkout-iframe/pay', 'Payment\CheckoutIFrameController@pay');
+    Route::post('/checkout-iframe/create', 'Payment\CheckoutIFrameController@create')->middleware(['checkout_iframe_jwt']);
+    Route::post('/checkout-iframe/execute', 'Payment\CheckoutIFrameController@execute')->middleware(['checkout_iframe_jwt']);
+    Route::get('/checkout-iframe/query', 'Payment\CheckoutIFrameController@query')->middleware(['checkout_iframe_jwt']);
+    Route::get('/checkout-iframe/search', 'Payment\CheckoutIFrameController@search')->middleware(['checkout_iframe_jwt']);
+    Route::get('/checkout-iframe/refund', 'Payment\CheckoutIFrameController@refund')->middleware(['checkout_iframe_jwt']);
+
 });
 
 Route::get('/concox/lock/test', 'Device\ConcoxController@test');
@@ -480,18 +493,3 @@ Route::get('/report/positions/fetch', 'Report\PositionController@latest');
 
 Route::get('/tracking/history/{id}', 'Customer\PositionHistoryController@show');
 Route::get('/tracking/records/fetch', 'Customer\PositionHistoryController@history');
-
-
-
-Route::get('/checkout-iframe/success', 'Payment\CheckoutIFrameController@success');
-Route::get('/checkout-iframe/fail', 'Payment\CheckoutIFrameController@fail');
-
-Route::get('/checkout-iframe/amount', 'Payment\CheckoutIFrameController@amount');
-Route::get('/checkout-iframe/grant', 'Payment\CheckoutIFrameController@grant');
-Route::get('/checkout-iframe/refresh', 'Payment\CheckoutIFrameController@refresh');
-Route::post('/checkout-iframe/pay', 'Payment\CheckoutIFrameController@pay');
-Route::post('/checkout-iframe/create', 'Payment\CheckoutIFrameController@create')->middleware(['checkout_iframe_jwt']);
-Route::post('/checkout-iframe/execute', 'Payment\CheckoutIFrameController@execute')->middleware(['checkout_iframe_jwt']);
-Route::get('/checkout-iframe/query', 'Payment\CheckoutIFrameController@query')->middleware(['checkout_iframe_jwt']);
-Route::get('/checkout-iframe/search', 'Payment\CheckoutIFrameController@search')->middleware(['checkout_iframe_jwt']);
-Route::get('/checkout-iframe/refund', 'Payment\CheckoutIFrameController@refund')->middleware(['checkout_iframe_jwt']);

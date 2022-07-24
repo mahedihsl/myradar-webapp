@@ -37,6 +37,10 @@ return [
         'url' => 'http://jt808',
         'port' => 5053,
     ],
+    'gp33' => [
+        'url' => 'http://gp33',
+        'port' => 27020,
+    ],
     'speed' => [
         'url' => 'http://myradar-speed',
         'port' => 6010,
@@ -87,6 +91,7 @@ return [
         'port' => 6021,
     ],
     // 6022 is for the myradar-demo service
+    // 6023 is for the myradar-bkash service
 
     'radar-recharge' => [
         'url' => 'http://radar-api',

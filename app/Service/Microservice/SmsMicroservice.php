@@ -11,9 +11,9 @@ class SmsMicroservice extends BaseService
     parent::__construct(self::SERVICE_NAME);
   }
 
-  public function send($phone, $content, $type = 'unknown')
+  public function send($phone, $content, $type = 'unknown', $lang = 'en')
   {
-    return $this->post('/send', compact('phone', 'content', 'type'));
+    return $this->post('/send', compact('phone', 'content', 'type', 'lang'));
   }
 
   public function sendRaw($phone, $type = 'unknown', $payload)

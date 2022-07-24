@@ -19,6 +19,13 @@
         'appKey' => '5nej5keguopj928ekcj3dne8p',
         'appSecret' => '1honf6u1c56mqcivtc9ffl960slp4v2756jle5925nbooa46ch62',
       ],
+      'production' => [
+        'baseUrl' => 'https://checkout.pay.bka.sh/v1.2.0-beta',
+        'username' => '01907888909',
+        'password' => 'y$*A[4*N1ne',
+        'appKey' => 'EXXlnOmp0fJ0HFyyFOwb6pltch',
+        'appSecret' => '19oGSvSkHd2OmYOCu46913NLFIutiB5F31byt2PusYQTN4t4p3p6',
+      ],
     ],
     'tokenized' => [
       'sandbox1' => [

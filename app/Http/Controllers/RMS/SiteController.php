@@ -156,6 +156,16 @@ class SiteController extends Controller
             return response()->json(['error' => $e->getMessage()], 400);
         }
     }
+    
+    public function siteAlarms(Request $request)
+    {
+        try {
+            $response = $this->rmsUserService->siteAlarms($request->all());
+            return response()->json($response);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400);
+        }
+    }
 
     public function networkEvents(Request $request)
     {

@@ -54,6 +54,11 @@ class RMSUserMicroservice extends BaseService
   {
     return $this->get('/site/events', $query);
   }
+  
+  public function siteAlarms($query)
+  {
+    return $this->get('/site/alarms', $query);
+  }
 
   public function networkEvents($query)
   {

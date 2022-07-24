@@ -56,7 +56,7 @@ class DatabaseTestController extends Controller
     public function redis(Request $request)
     {
         return [
-            'value' => Redis::command('hmget', ['test', 'address', 'sex'])
+            'value' => Redis::command('get', ['bkash:checkout_iframe:refresh_token'])
         ];
     }
 

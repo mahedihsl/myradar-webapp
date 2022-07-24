@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Test;
 
+use App\Entities\PendingNotice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Microservice\GeofenceMicroservice;
@@ -90,7 +91,7 @@ class MicroServiceController extends Controller
     public function testSms(Request $request)
     {
         $service = new SmsMicroservice();
-        $res = $service->send('01627892968', 'Sms Microservice working', 'test');
+        $res = $service->send('01627892968', 'Sms Microservice working', 'test', 'en');
         // $client = new \GuzzleHttp\Client(['base_uri' => 'http://myradar-sms:6002/']);
         // $res = $client->post('send', [
         //     'form_params' => [

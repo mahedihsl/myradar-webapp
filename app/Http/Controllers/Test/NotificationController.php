@@ -14,7 +14,6 @@ use App\Entities\Car;
 use App\Entities\User;
 use App\Service\Microservice\PushMicroservice;
 use App\Service\Microservice\ServiceException;
-use App\Service\Microservice\SmsMicroservice;
 use App\Service\Microservice\UserMicroservice;
 use Carbon\Carbon;
 

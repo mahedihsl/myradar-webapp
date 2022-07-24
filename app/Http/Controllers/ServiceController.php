@@ -88,25 +88,25 @@ class ServiceController extends Controller
             } catch (\Exception $e) {
             }
 
-            try {
-                $client_id = '5f63f8599dbb7723d01f7224'; // Jatri App
-                if ($device->user_id == $client_id) {
-                    // Log::info('Jatri data received');
-                    if ($device->user->isEnabled()) {
-                        $enabled = $device->car ? boolval($device->car->status) : false;
-                        if ($enabled) {
-                            // Log::info('Jatri data forwarded: ' . $device->com_id);
-                            event(new ExternalDeviceDataReceived($device, $request->all()));
-                        } else {
-                            // Log::info('Jatri car disabled: ' . $device->com_id);
-                        }
-                    }
-                }
-            } catch (\Exception $e) {
-                Log::info('Jatri data exception', [
-                    'msg' => $e->getMessage(),
-                ]);
-            }
+            // try {
+            //     $client_id = '5f63f8599dbb7723d01f7224'; // Jatri App
+            //     if ($device->user_id == $client_id) {
+            //         // Log::info('Jatri data received');
+            //         if ($device->user->isEnabled()) {
+            //             $enabled = $device->car ? boolval($device->car->status) : false;
+            //             if ($enabled) {
+            //                 // Log::info('Jatri data forwarded: ' . $device->com_id);
+            //                 event(new ExternalDeviceDataReceived($device, $request->all()));
+            //             } else {
+            //                 // Log::info('Jatri car disabled: ' . $device->com_id);
+            //             }
+            //         }
+            //     }
+            // } catch (\Exception $e) {
+            //     Log::info('Jatri data exception', [
+            //         'msg' => $e->getMessage(),
+            //     ]);
+            // }
             // return '0';
             return strval($device->lock_status);
         }

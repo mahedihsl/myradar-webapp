@@ -16,7 +16,7 @@ class CheckoutIFrameController extends Controller
     public function __construct()
     {
         $this->checkoutService = new CheckoutService();
-        $this->credential = new BkashCredential(config('bkash.checkout.sandbox2'));
+        $this->credential = new BkashCredential(config('bkash.checkout.production'));
     }
 
     public function grant(Request $request)
@@ -27,8 +27,10 @@ class CheckoutIFrameController extends Controller
     public function pay(Request $request)
     {
         $amount = $request->get('amount');
+        $reg_no = $request->get('reg_no');
         return view('bkash.checkout-iframe.pay')->with([
-            'amount' => $amount
+            'amount' => $amount,
+            'reg_no' => $reg_no,
         ]);
     }
 

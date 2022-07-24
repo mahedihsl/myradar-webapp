@@ -1,7 +1,7 @@
 @extends('layouts.bkash')
 
 @push('js')
-<script src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
+<script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
 @endpush
 
 @push('css')
@@ -57,11 +57,23 @@
 
 @section('content')
 <div class="tw-min-w-screen tw-min-h-screen tw-flex tw-flex-row tw-justify-center tw-items-center">
-  <button id="bKash_button"
-    class="tw-hidden tw-px-4 tw-py-2 tw-rounded tw-shadow tw-border-none tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-transition tw-duration-300 tw-uppercase tw-text-white tw-text-sm tw-cursor-pointer">
-    Pay Now
+  <button id="bKash_button" class="tw-hidden tw-cursor-pointer">
   </button>
-  <div class="loader">Loading...</div>
+
+  <div class="tw-flex tw-flex-col tw-items-center tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3">
+    <div
+      class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 tw-border-b tw-border-gray-300">
+      <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Car Number</span>
+      <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $reg_no }}</span>
+    </div>
+    <div class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 ">
+      <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Amount</span>
+      <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $amount }}</span>
+    </div>
+    <img src="/images/bkash.jpg" alt="" class="tw-cursor-pointer tw-w-2/3" id="bkash_logo">
+  </div>
+
+  {{-- <div class="loader">Loading...</div> --}}
 </div>
 
 <script type="text/javascript">
@@ -72,10 +84,9 @@
       }
     });
 
-    setTimeout(function() {
-      // bkash.reconfigure({})
+    $('#bkash_logo').click(function() {
       $('#bKash_button').trigger('click')
-    }, 3000);
+    });
 
     var paymentID = '';
     bKash.init({
@@ -92,9 +103,7 @@
         $.ajax({
           url: '/checkout-iframe/create',
           type: 'POST',
-          data: JSON.stringify({
-            amount: '{{ $amount }}',
-          }),
+          data: JSON.stringify(request),
           contentType: 'application/json',
           success: function(data) {
             console.log('create payment data', JSON.stringify(data))
@@ -123,6 +132,7 @@
           success: function(data) {
             // data = JSON.parse(data);
             if (data && data.paymentID != null) {
+              // bKash.execute().onError();
               window.location.href = "/checkout-iframe/success"; //Merchant’s success page 
             } else {
               bKash.execute().onError();
@@ -134,6 +144,10 @@
             bKash.execute().onError();
           }
         });
+      },
+
+      onClose: function () {
+        console.log('User has clicked the close button');
       }
     });
   })

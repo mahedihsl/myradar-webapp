@@ -37,6 +37,8 @@ class CheckoutService extends BkashService
       $res = $this->httpClient()->post($url, [
         'json' => $body,
         'headers' => $headers,
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
@@ -59,6 +61,8 @@ class CheckoutService extends BkashService
           'refresh_token' => $refreshToken,
         ],
         'headers' => $credential->getAuthHeaders(),
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       return json_decode($res->getBody()->getContents(), true);
@@ -81,6 +85,8 @@ class CheckoutService extends BkashService
       $res = $this->httpClient()->post($url, [
         'json' => $body,
         'headers' => $headers,
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
@@ -102,6 +108,8 @@ class CheckoutService extends BkashService
       $res = $this->httpClient()->post($url, [
         'json' => [],
         'headers' => $headers,
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
@@ -128,6 +136,8 @@ class CheckoutService extends BkashService
       $body = [];
       $res = $this->httpClient()->get($url, [
         'headers' => $headers,
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
@@ -148,6 +158,8 @@ class CheckoutService extends BkashService
       $body = [];
       $res = $this->httpClient()->get($url, [
         'headers' => $headers,
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
@@ -171,6 +183,8 @@ class CheckoutService extends BkashService
           'reason' => 'Product quality issue'
         ],
         'headers' => $credential->getAccessHeaders($this->getAccessToken()),
+        'connect_timeout' => 10,
+        'read_timeout' => 30,
       ]);
 
       return json_decode($res->getBody()->getContents(), true);

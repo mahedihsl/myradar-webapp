@@ -16,7 +16,7 @@ class CheckoutIFrameToken
     public function __construct()
     {
         $this->checkoutService = new CheckoutService();
-        $this->credential = new BkashCredential(config('bkash.checkout.sandbox1'));
+        $this->credential = new BkashCredential(config('bkash.checkout.production'));
     }
 
     /**

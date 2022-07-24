@@ -139,3 +139,11 @@
   </li>
 
 @endif
+
+@if($user->phone == '01760418718')
+<li>
+  <a href="/checkout-iframe/amount">
+    <i class="fa fa-money"></i> <span>Pay Due Bill</span>
+  </a>
+</li>
+@endif
