@@ -128,6 +128,13 @@ Route::group(['middleware' => ['auth', 'role:4', 'customer:1']], function() {
     Route::get('/checkout-iframe/query', 'Payment\CheckoutIFrameController@query')->middleware(['checkout_iframe_jwt']);
     Route::get('/checkout-iframe/search', 'Payment\CheckoutIFrameController@search')->middleware(['checkout_iframe_jwt']);
     Route::get('/checkout-iframe/refund', 'Payment\CheckoutIFrameController@refund')->middleware(['checkout_iframe_jwt']);
+   
+    //Bkash Checkout URL
+
+    Route::get('/bkash/pay','Payment\BkashCheckoutURLController@payment')->name('url-pay');
+    Route::post('/bkash/create','Payment\BkashCheckoutURLController@createPayment')->name('url-create')->middleware(['checkout_url_jwt']);
+    Route::get('/bkash/callback','Payment\BkashCheckoutURLController@callback')->name('url-callback')->middleware(['checkout_url_jwt']);
+
 
 });
 
