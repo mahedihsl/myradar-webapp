@@ -12,7 +12,7 @@
         align-items: center;
         height: 200px;
       }
-      
+
       #bKash_button {
         background-color: blue;
         border: none;
@@ -35,7 +35,7 @@
     <br>
     <br>
       <label for="amount"><b>Car Number : </b></label>
-      <input type="text" id="amount" name="amount" placeholder="Enter your car number"><br><br>
+      <input type="text" id="amount" name="car_no" placeholder="Enter your car number"><br><br>
       <label for="amount"><b>Amount : </b></label>
       <input type="text" id="amount" name="amount" placeholder="Enter amount"><br><br>
       <button type="submit" id="bKash_button">Pay With BKash</button>

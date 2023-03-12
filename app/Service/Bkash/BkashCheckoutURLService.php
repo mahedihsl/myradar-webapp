@@ -10,9 +10,11 @@ use Exception;
 
 class BkashCheckoutURLService extends BkashService
 {
+    private $website_base_url;
   public function __construct()
   {
     parent::__construct('checkout_url');
+    $this->website_base_url = URL::to("/");
   }
 
   private function storeLog($apiName, $url, $headers, $body, $response)
@@ -77,13 +79,12 @@ class BkashCheckoutURLService extends BkashService
   {
     try {
       $url = $credential->getURL('/tokenized/checkout/create');
-      $headers = $credential->getAccessHeaders($this->getAccessToken());
-      $website_url = URL::to("/");
+      $headers = $credential->getAccessHeaders($this->getAccessToken());   
       $total_due_bill = 400;
       $body = [
         'mode' => '0011',
         'payerReference' => ' ',
-        'callbackURL' => $website_url.'/bkash/callback',
+        'callbackURL' => $this->website_base_url.'/bkash/callback',
         'amount' => $amount ? $amount : $total_due_bill,
         'currency' => 'BDT',
         'intent' => 'sale',
@@ -126,16 +127,10 @@ class BkashCheckoutURLService extends BkashService
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
-     
-      if(array_key_exists("statusCode",$response) && $response['statusCode'] == '0000'){
-        // database insert to payment table
-
-      }
-      // database insert to bkash_transaction table;
 
       $this->storeLog('execute_payment', $url, $headers, $body, $response);
 
-      return $response;
+      return $response; 
     } catch (Exception $e) {
       throw $e;
     }
