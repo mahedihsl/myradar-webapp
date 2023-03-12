@@ -63,11 +63,13 @@ class BkashCheckoutURLController extends Controller
                     
                 ];
 
-                $this->bkashPaymentService->save($save_data);
-                
-                return view('bkash.chcekout-url.success')->with([
-                    'response' => $response['trxID'],
-                ]);
+                $service_res = $this->bkashPaymentService->save($save_data);
+
+                if($service_res['Error_msg'] == 'Success' && $service_res['Error_code'] == '200'){
+                    return view('bkash.chcekout-url.success')->with([
+                        'response' => $response['trxID'],
+                    ]);
+                }
                 
             }else{
                 return view('bkash.chcekout-url.fail')->with([

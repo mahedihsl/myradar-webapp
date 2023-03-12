@@ -40,18 +40,19 @@ class BkashPaymentService
         is_null($trxId) ||is_null($userName) ||
         is_null($paytime) ) {
 
-        return response()->json([
+        return [
             "Error_code" => "402",
             "Error_msg" => "Mandatory Field missing",
             "total_amount" => $billAmount,
             "trxId" => null
-        ]);
+        ];
       }
 
       $user       = User::where('ref_no', $refNo)->first();
 
       if(is_null($user)){
-        return response()->json([ "Error_code" => "403", "Error_msg" => "Data Mismatch", "total_amount" => $billAmount, "trxId" => null ]);
+
+        return [ "Error_code" => "403", "Error_msg" => "Data Mismatch", "total_amount" => $billAmount, "trxId" => null ];
       }
 
       $cars       = $user->cars;
@@ -92,7 +93,7 @@ class BkashPaymentService
       $amount       += $prevExtraMoney;
 
       if($amount < $minCar->bill){
-        return response()->json([ "Error_code" => "407", "Error_msg" => "Minimum amount not paid", "total_amount" => $amount, "trxId" => null]);
+        return [ "Error_code" => "407", "Error_msg" => "Minimum amount not paid", "total_amount" => $amount, "trxId" => null];
       }
 
       $monthCount  = intval($amount / $minCar->bill);
@@ -113,7 +114,7 @@ class BkashPaymentService
 
       //event(new PaymentReceived($payment));
 
-      return response()->json([ "Error_code" => "200", "Error_msg" => "Success", "total_amount" => $amount - $prevExtraMoney, "trxId" => null]);
+      return [ "Error_code" => "200", "Error_msg" => "Success", "total_amount" => $amount - $prevExtraMoney, "trxId" => null];
     }
 
     public function getPayableMonths($minMonth, $monthCount)
@@ -159,12 +160,12 @@ class BkashPaymentService
 
         $user = User::where('ref_no', $refNo)->first();
         if (is_null($user)) {
-            return response()->json([
+            return [
                 'code' => '403',
                 'msg' => 'Data Mismatch',
                 'name' => null,
                 'amount' => null,
-            ]);
+            ];
         }
 
         $due = 0;
@@ -175,12 +176,12 @@ class BkashPaymentService
             }
         }
 
-        return response()->json([
+        return [
             'code' => '200',
             'msg' => 'Success',
             'name' => $user->name,
             'amount' => max(0, $due),
-        ]);
+        ];
 
 
     }
