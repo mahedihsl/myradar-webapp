@@ -5,28 +5,61 @@ namespace App\Http\Controllers\Payment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Util\BkashCredential;
+use App\Contract\Repositories\PaymentRepository;
 use App\Service\Bkash\BkashCheckoutURLService;
 use App\Service\Bkash\BkashPaymentService;
 use Illuminate\Support\Facades\Redis;
 use URL;
 use Illuminate\Support\Str;
+use Auth;
 
 class BkashCheckoutURLController extends Controller
-{
+{  /**
+    * @var PaymentRepository
+    */
+    private $repository;
     private $credential;
     private $bkashCheckoutURLService;
     private $bkashPaymentService;
 
-    public function __construct()
+    public function __construct(PaymentRepository $repository)
     {
+        $this->paymentRepository = $repository;
         $this->bkashCheckoutURLService = new BkashCheckoutURLService();
         $this->bkashPaymentService = new BkashPaymentService();
         $this->credential = new BkashCredential(config('bkash.tokenized.sandbox2'));
     }
 
+    public function amount(Request $request)
+    {   
+        $user = Auth::user();
+        $service_res = $this->bkashPaymentService->totalDue($user->id, $this->paymentRepository);
+        Redis::command('SET', ['due_bill', $service_res['total']]);
+        $cars_list = $this->bkashPaymentService->getCarsListForUserID($user->id, $this->paymentRepository);
+
+        return view('bkash.chcekout-url.amount')->with([
+            'due_bill' => $service_res['total'],
+            'cars_list' => $cars_list
+        ]);
+    }
+    
     public function payment(Request $request)
     {
-        return view('bkash.chcekout-url.pay');
+        $amount = $request->get('amount');
+        $car_no = $request->get('car_no');
+        $selectedCars = $request->input('cars');
+
+        if(!$selectedCars){
+            return redirect()->back()->withErrors(['error' => 'Please Selecet a car']);
+        }
+
+        $user = Auth::user();
+        $cars_list = $this->bkashPaymentService->getCarsListForUserID($user->id, $this->paymentRepository);
+
+        return view('bkash.chcekout-url.pay')->with([
+            'amount' => $amount,
+            'car_no' => $car_no,
+        ]);
     }
 
     public function createPayment(Request $request){
@@ -34,6 +67,7 @@ class BkashCheckoutURLController extends Controller
         $amount = $request->get('amount');
         $car_no = $request->get('car_no');
         Redis::command('SET', ['car_no', $car_no]);
+      
         return $this->bkashCheckoutURLService->createPayment($amount, $this->credential);
     }
 
@@ -53,27 +87,33 @@ class BkashCheckoutURLController extends Controller
 
             if(array_key_exists("statusCode",$response) && $response['statusCode'] == '0000'){
 
-                $save_data = [
-                    'username' => 'tipu',
-                    'password' => '1234',
-                    'ref_no'  => Redis::command('GET', ['car_no']),
-                    'bill_amount' => $response['amount'],
-                    'bKash_trxid' => $response['trxID'],
-                    'paytime' => $response['paymentExecuteTime']
+                $data = collect([
+                    'amount' => $response['amount'],
+                    'months' => json_encode([1, 2]),
+                    'year' => 2023,
+                    'car_id'  => Redis::command('GET', ['car_no']),
+                    'user_id' => $this->user->id,
+                    'date' => $response['paymentExecuteTime'],
+                    'extra' => '', // advance
+                    'waive' => '', // discount
+                    'note'=> ' ',
+                    'type' => '11'
                     
-                ];
+                ]);
 
-                $service_res = $this->bkashPaymentService->save($save_data);
+                $service_res = $this->bkashPaymentService->save($data, $this->paymentRepository);
 
                 if($service_res['Error_msg'] == 'Success' && $service_res['Error_code'] == '200'){
-                    return view('bkash.chcekout-url.success')->with([
-                        'response' => $response['trxID'],
+                    return view('bkash.chcekout-url.success');
+                }else{
+                    return view('bkash.chcekout-url.fail')->with([
+                        'message' => $service_res['Error_msg'],
                     ]);
                 }
                 
             }else{
                 return view('bkash.chcekout-url.fail')->with([
-                    'response' => $response['statusMessage'],
+                    'message' => $response['statusMessage'],
                 ]);
 
             
@@ -81,7 +121,7 @@ class BkashCheckoutURLController extends Controller
 
         }else{
             return view('bkash.chcekout-url.fail')->with([
-                'response' => 'Payment Failed !!'
+                'message' => $allRequest['status'],
             ]);       
         }
 

@@ -83,7 +83,8 @@ class Payment extends Eloquent implements Transformable
             'Visa',
             'MasterCard',
             'bKash (907)',
-            'bKash (909)'
+            'bKash (909)',
+            'bKash PGW'
         ];
 
         if ( ! $this->type) {

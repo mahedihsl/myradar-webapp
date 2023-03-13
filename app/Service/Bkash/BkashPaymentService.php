@@ -3,188 +3,263 @@
 namespace App\Service\Bkash;
 
 use Illuminate\Http\Request;
-use App\Service\SmsService;
-use Illuminate\Support\Collection;
-use App\Contract\Repositories\PaymentRepository;
+use Carbon\Carbon;
 use App\Criteria\WithinDatesCriteria;
 use App\Criteria\UserIdCriteria;
 use App\Criteria\GroupByCriteria;
-use App\Entities\User;
 use App\Entities\Car;
-use App\Entities\Payment;
-use Carbon\Carbon;
+use App\Entities\User;
+use Illuminate\Support\Facades\Log;
+use App\Service\Microservice\PaymentMicroservice;
+use App\Service\Microservice\SmsMicroservice;
 
 class BkashPaymentService
 {
-    /**
-     * @var PaymentRepository
-     */
-    private $repository;
+  /**
+   * @var PaymentRepository
+   */
+  private $repository;
+  private $smsService;
+  private $paymentService;
 
-    public function __construct()
-    {
+  public function __construct()
+  {
+    $this->smsService = new SmsMicroservice();
+    $this->paymentService = new PaymentMicroservice();
 
+    Carbon::useMonthsOverflow(false);
+  }
+
+  public function save($data , $paymentRepository)
+  {
+    $payment = $paymentRepository->save($data);
+
+    if (!is_null($payment)) {
+      try {
+        $this->paymentService->observeBill($payment->id);
+      } catch (\Exception $e) {
+        Log::info('Error during bill observe', ['error' => $e->getMessage()]);
+      }
+      return [ "Error_code" => "200", "Error_msg" => "Success"];
     }
 
-    public function save($save_data)
-    {
-      $userName   = $save_data['username'];
-      $password   = $save_data['password'];
-      $refNo      = $save_data['ref_no'];
-      $billAmount = $save_data['bill_amount'];
-      $trxId      = $save_data['bKash_trxid'];
-      $paytime    = $save_data['paytime'];
+    return [ "Error_code" => "404", "Error_msg" => "Not Found"];;
+  }
 
-      if(is_null($userName) || is_null($password) ||
-        is_null($refNo) ||is_null($billAmount) ||
-        is_null($trxId) ||is_null($userName) ||
-        is_null($paytime) ) {
+  public function index(Request $request, $userId)
+  {
+    $criteria = new WithinDatesCriteria(Carbon::today()->subYears(2), Carbon::tomorrow(), 'paid_on');
+    $paymentlist = $this->repository
+      ->pushCriteria(new UserIdCriteria($userId))
+      ->pushCriteria($criteria)
+      ->with(['user', 'car'])
+      ->all();
+    return response()->ok($paymentlist);
+  }
 
-        return [
-            "Error_code" => "402",
-            "Error_msg" => "Mandatory Field missing",
-            "total_amount" => $billAmount,
-            "trxId" => null
-        ];
+  public function getRefNo(Request $request, $userId)
+  {
+    $ref = User::find($userId)->ref_no;
+    return response()->ok($ref);
+  }
+
+  public function sendAll(Request $request)
+  {
+    $users = User::all();
+    foreach ($users as $key => $user) {
+      try {
+        $this->send($user->id);
+      } catch (\Exception $e) {
       }
+    }
+    return response()->ok();
+  }
 
-      $user       = User::where('ref_no', $refNo)->first();
+  public function send(Request $request)
+  {
+    $userId = $request->get('id');
+    $content = $request->get('content');
+    $type = $request->get('type');
+    $this->smsService->send(User::find($userId)->phone, $content, $type);
+    return response()->ok();
+  }
 
-      if(is_null($user)){
+  public function getMsgContent($userId)
+  {
+    $months = $this->getDue($userId);
 
-        return [ "Error_code" => "403", "Error_msg" => "Data Mismatch", "total_amount" => $billAmount, "trxId" => null ];
-      }
+    if (sizeof($months) == 0) return response()->ok('All paid');
+    $content = $this->smsService->buildContent('payment_2', $months);
+    // $content = $this->getContent($months);
+    return response()->ok($content);
+  }
 
-      $cars       = $user->cars;
+  public function getContent($data)
+  {
+    $content = "Dear myRADAR Customer,\nyour due bill:\n";
+    foreach ($data as $key => $val) {
 
-
-      $minInfo    = $this->getMinInfo($cars);
-      $minMonth   = $minInfo['minMonth'];
-      $minCar     = $minInfo['minCar'];
-
-      return $this->payBill($billAmount, $minMonth, $minCar, $trxId);
+      $content .= "For car: " . $val['reg_no'] . "\nAmount: " . $val['bill'] . " tk for month ";
+      $monStr = $this->getMonthStr($val['mon']);
+      $content .= $monStr;
+      $content .= "\n\n";
     }
 
-    public function getMinInfo(Collection $carList)
-    {
+    $content .= "Call:01907888899";
+    return $content;
+  }
 
-      $minMonth = array(12,2500);
-      $minCar = new Car;
-      foreach ($carList as $key => $car) {
-        $ret=$this->getMaxPaidMonth($car);
+  public function getMonthStr($mon)
+  {
+    $ret = Carbon::createFromDate($mon[0][1], $mon[0][0], 1)->format("M'y");
 
-        if($ret['month'][1] < $minMonth[1]   || $ret['month'][1] == $minMonth[1]  && $ret['month'][0] < $minMonth[0]){
-          $minMonth = $ret['month'];
-          $minCar   = $ret['car'];
+    if (sizeof($mon) == 2) {
+      $ret .= " and ";
+      $ret .= Carbon::createFromDate($mon[1][1], $mon[1][0], 1)->format("M'y");
+    } else if (sizeof($mon) > 2) {
+      $len = sizeof($mon);
+      $ret .= " to ";
+      $ret .= Carbon::createFromDate($mon[$len - 1][1], $mon[$len - 1][0], 1)->format("M'y");
+    }
+
+    return $ret;
+  }
+
+  public function totalDue($userId)
+  {
+    return ['total' => $this->getDue($userId)->sum('bill')];
+  }
+
+  public function getDue($userId)
+  {
+    $cars = User::find($userId)->cars;
+    $months = collect();
+    $bill = 0;
+
+    foreach ($cars as $key => $car) {
+      $billDate = $this->getBillDate($car);
+      $mon = collect();
+      $presentDate = $this->getPresentDate($car);
+      $mon = $this->getAllMonths($billDate, $presentDate);
+
+
+      foreach ($car->payments as $key => $payment) {
+        foreach ($payment->months as $key => $month) {
+          $mon = $mon->reject(function ($value, $key) use ($month) {
+            return ($month[0] + 1 == $value[0] && $month[1] == $value[1]);
+          });
         }
       }
 
-      return ['minMonth' => $minMonth, 'minCar' => $minCar];
+      $mon = $mon->values();
+      if ($car->bill == '' || sizeof($mon) == 0) continue;
+      $bill = $car->bill * sizeof($mon) - $this->getExtraPayment($car);
 
-    }
-
-    public function payBill($amount, $minMonth, $minCar, $trxId)
-    {
-      $latestPayment  = $minCar->getLatestPayment();
-      $prevExtraMoney = 0;
-      if(!is_null($latestPayment)){
-        $prevExtraMoney = $latestPayment->extra;
-      }
-      $amount       += $prevExtraMoney;
-
-      if($amount < $minCar->bill){
-        return [ "Error_code" => "407", "Error_msg" => "Minimum amount not paid", "total_amount" => $amount, "trxId" => null];
-      }
-
-      $monthCount  = intval($amount / $minCar->bill);
-      $extraMoney  = intval($amount % $minCar->bill);
-      $payableMonths = $this->getPayableMonths($minMonth, $monthCount);
-
-      $payment = Payment::create([
-          'amount'  => $amount - $prevExtraMoney,
-          'months'  => $payableMonths,
-          'car_id'  => $minCar->id,
-          'user_id' => $minCar->user->id,
-          'paid_on' => Carbon::now(),
-          'extra'   => $extraMoney,
-          'waive'   => 0,
-          'bkash'   => 1,
-          'trx_id'  => $trxId,
+      $months->push([
+        'car_id' => $car->id,
+        'reg_no' => $car->reg_no,
+        'bill' => $bill,
+        'mon' => $mon,
       ]);
+    }
+    return $months;
+  }
 
-      //event(new PaymentReceived($payment));
-
-      return [ "Error_code" => "200", "Error_msg" => "Success", "total_amount" => $amount - $prevExtraMoney, "trxId" => null];
+  public function getCarsListForUserID($userId){
+    $cars = User::find($userId)->cars;
+    $cars_list = array();
+    for($i = 0; $i < count($cars); $i++){
+      array_push($cars_list, $cars[$i]['reg_no']);
     }
 
-    public function getPayableMonths($minMonth, $monthCount)
-    {
-      $payable = [];
-      while($monthCount--){
-        if($minMonth[0] == 11){
-          $minMonth[0] = -1;
-          $minMonth[1]++;
-        }
+    return $cars_list;
+  }
 
-        $ar=[++$minMonth[0], $minMonth[1]];
-        array_push($payable, $ar);
+  public function getExtraPayment($car) //check if the user has given some extra money on his last payment
+  {
+    $lastPayment = $car->getLatestPayment();
+    if (!is_null($lastPayment) && !is_null($lastPayment->extra)) {
+      return $lastPayment->extra;
+    }
+
+    return 0;
+  }
+
+  public function getBillDate($car)
+  {
+    $billDate = $car->created_at->addMonth();
+    $billDate->day = 1;
+    return $billDate;
+  }
+
+  public function getPresentDate($car)
+  {
+    $presentDate = Carbon::today();
+    $presentDate->day = 2;
+    return $presentDate;
+  }
+
+  public function getAllMonths($billDate, $presentDate)
+  {
+    $mon = collect();
+    for ($i = $billDate->copy(); $i->lte($presentDate); $i->addMonth()) {
+      $mon->push([$i->month, $i->year]);
+    }
+    return $mon;
+  }
+
+  public function sendMethodAll(Request $request)
+  {
+    $users = User::all();
+    foreach ($users as $key => $user) {
+      $this->sendMethod($user->id);
+    }
+
+    return response()->ok();
+  }
+
+  public function sendMethod($userId)
+  {
+    try {
+      $user = User::find($userId);
+      $refNo = $user->ref_no;
+      if ($refNo == "") return response()->ok("add ref no!");
+      $content = $this->smsService->buildContent('payment_1', ['ref_no' => $refNo]);
+      // $content = $this->methodContent($refNo);
+      return response()->ok($content);
+    } catch (\Throwable $th) {
+      response()->ok($th->getMessage());
+    }
+  }
+
+  public function methodContent($refNo)
+  {
+
+    $ret = "Dear myRADAR Customer,\nPlease pay your bill:\nMerchant bKash: " . config('myradar.bkash.marchent') . "\nReference: " . $refNo . "\nCounter No: 1";
+    return $ret;
+  }
+
+  public function getPayments(Request $request, $userId)
+  {
+    $cars = User::find($userId)->cars;
+    $data = collect();
+    foreach ($cars as $key => $car) {
+      $mon = collect();
+      foreach ($car->payments as $key => $payment) {
+        foreach ($payment->months as $key => $month) {
+          $mon->push($month);
+        }
       }
-
-      return $payable;
+      $data->push([
+        'reg_no' => $car->reg_no,
+        'bill'   => $car->bill,
+        'date'   => $car->created_at->toFormattedDateString(),
+        'mon'    => $mon,
+        'last_payment'  => $car->getLatestPayment()
+      ]);
     }
 
-    public function getMaxPaidMonth(Car $car)
-    {
-      $max = [0,0];
-      $maxCar = new Car;
-      if($car->payments->isEmpty()){
-        $max[0] = $car->created_at->format('n')-1; //month is 1 indexed
-        $max[1] = $car->created_at->format('Y');
-
-        return ['month' => $max, 'car' => $car];
-      }
-
-      foreach ($car->payments as $k => $payment) {
-        $temp = $payment->months[sizeof($payment->months)-1];
-        if($temp[1] > $max[1] || $temp[1] == $max[1] && $temp[0] > $max[0]){
-          $max = $temp;
-          $maxCar = $car;
-        }
-      }
-      return ['month' => $max, 'car' => $car];
-    }
-
-    public function query(Request $request)
-    {
-        $refNo = $request->get('ref_no');
-
-        $user = User::where('ref_no', $refNo)->first();
-        if (is_null($user)) {
-            return [
-                'code' => '403',
-                'msg' => 'Data Mismatch',
-                'name' => null,
-                'amount' => null,
-            ];
-        }
-
-        $due = 0;
-        foreach ($user->cars as $key => $car) {
-            $act = $car->activation;
-            if ( ! is_null($act)) {
-                $due += $act->totalBill() - $act->totalPaid() - $act->totalWaive();
-            }
-        }
-
-        return [
-            'code' => '200',
-            'msg' => 'Success',
-            'name' => $user->name,
-            'amount' => max(0, $due),
-        ];
-
-
-    }
-
-
+    return response()->ok($data);
+  }
 }
+

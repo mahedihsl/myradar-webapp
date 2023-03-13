@@ -105,10 +105,6 @@ Route::get('/test/concox/status', 'Test\ConcoxController@status');
 Route::post('/test/excel-import', 'Test\ExcelController@testImport');
 Route::any('/concox/test', 'Test\ConcoxController@receive');
 
-Route::get('/bkash/pay','Payment\BkashCheckoutURLController@payment')->name('url-pay');
-Route::post('/bkash/create','Payment\BkashCheckoutURLController@createPayment')->name('url-create')->middleware(['checkout_url_jwt']);
-Route::get('/bkash/callback','Payment\BkashCheckoutURLController@callback')->name('url-callback')->middleware(['checkout_url_jwt']);
-
 
 // Private Customer
 Route::group(['middleware' => ['auth', 'role:4', 'customer:1']], function() {
@@ -135,6 +131,10 @@ Route::group(['middleware' => ['auth', 'role:4', 'customer:1']], function() {
     Route::get('/checkout-iframe/refund', 'Payment\CheckoutIFrameController@refund')->middleware(['checkout_iframe_jwt']);
    
     //Bkash Checkout URL
+    Route::get('/bkash/amount', 'Payment\BkashCheckoutURLController@amount')->name('url-amount');
+    Route::post('/bkash/pay','Payment\BkashCheckoutURLController@payment')->name('url-pay');
+    Route::post('/bkash/create','Payment\BkashCheckoutURLController@createPayment')->name('url-create')->middleware(['checkout_url_jwt']);
+    Route::get('/bkash/callback','Payment\BkashCheckoutURLController@callback')->name('url-callback')->middleware(['checkout_url_jwt']);
 
 });
 

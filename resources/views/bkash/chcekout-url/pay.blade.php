@@ -1,47 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bkash Payment</title>
-    <style>
-      .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-      }
+@extends('layouts.bkash')
 
-      #bKash_button {
-        background-color: blue;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
-    </style>
-</head>
-<body>
-  
-  <div class="center">
-    <form action="{{ route('url-create') }}" method="POST">
-    {!! csrf_field() !!}
-    <br>
-    <br>
-      <label for="amount"><b>Car Number : </b></label>
-      <input type="text" id="amount" name="car_no" placeholder="Enter your car number"><br><br>
-      <label for="amount"><b>Amount : </b></label>
-      <input type="text" id="amount" name="amount" placeholder="Enter amount"><br><br>
-      <button type="submit" id="bKash_button">Pay With BKash</button>
+@push('css')
+<style type="text/css">
+.loader,
+.loader:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+}
+
+.loader {
+    margin: 60px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid rgba(0, 168, 255, 0.2);
+    border-right: 1.1em solid rgba(0, 168, 255, 0.2);
+    border-bottom: 1.1em solid rgba(0, 168, 255, 0.2);
+    border-left: 1.1em solid #00a8ff;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+}
+
+@-webkit-keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+</style>
+@endpush
+
+@section('content')
+<div class="tw-min-w-screen tw-min-h-screen tw-flex tw-flex-row tw-justify-center tw-items-center">
+    <form action="/bkash/create" method="POST">
+        {!! csrf_field() !!}
+        <input type="hidden" id="amount" name="amount" value='{{ $amount }}'>
+        <input type="hidden" id="car_no" name ="car_no" value='{{ $car_no }}' >
+        <button id="bKash_button" class="tw-hidden tw-cursor-pointer">
     </form>
-  </div>
+    </button>
 
+    <div class="tw-flex tw-flex-col tw-items-center tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3">
+        <div
+            class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 tw-border-b tw-border-gray-300">
+            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Car Number</span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $car_no }}</span>
+        </div>
+        <div class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 ">
+            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Amount</span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $amount }}</span>
+        </div>
+        <img src="/images/bkash.jpg" alt="" class="tw-cursor-pointer tw-w-2/3" id="bkash_logo">
+    </div>
 
-</body>
-</html>
+    {{-- <div class="loader">Loading...</div> --}}
+</div>
+
+<script type="text/javascript">
+$(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#bkash_logo').click(function() {
+        $('#bKash_button').trigger('click')
+    });
+})
+</script>
+@endsection
