@@ -56,7 +56,6 @@
     <form action="/bkash/create" method="POST">
         {!! csrf_field() !!}
         <input type="hidden" id="amount" name="amount" value='{{ $amount }}'>
-        <input type="hidden" id="car_no" name ="car_no" value='{{ $car_no }}' >
         <button id="bKash_button" class="tw-hidden tw-cursor-pointer">
     </form>
     </button>
@@ -64,12 +63,12 @@
     <div class="tw-flex tw-flex-col tw-items-center tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3">
         <div
             class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 tw-border-b tw-border-gray-300">
-            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Car Number</span>
-            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $car_no }}</span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Selected Car No</span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $selected_cars }}</span>
         </div>
         <div class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 ">
-            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Amount</span>
-            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $amount }}</span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Pay Amount</span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ number_format($amount) }}</span>
         </div>
         <img src="/images/bkash.jpg" alt="" class="tw-cursor-pointer tw-w-2/3" id="bkash_logo">
     </div>

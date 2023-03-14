@@ -125,9 +125,25 @@ class BkashPaymentService
     return $ret;
   }
 
+  public function selectedCarList($selectedCars)
+  {
+    $selected_cars_str = "";
+    foreach ($selectedCars as $selectedCar) {
+      $selected_cars_str .= $selectedCar . ", ";
+    }
+
+    return substr($selected_cars_str, 0, -2);
+
+  }
+
   public function totalDue($userId)
   {
     return ['total' => $this->getDue($userId)->sum('bill')];
+  }
+
+  public function carDueBillCheck($userId)
+  {
+    return ['cars_bill_details' => $this->getDue($userId)];
   }
 
   public function getDue($userId)

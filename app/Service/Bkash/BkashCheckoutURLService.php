@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Redis;
 use URL;
 use Illuminate\Support\Str;
 use Exception;
+use App\Entities\BkashPGWTransaction;
+use Auth;
 
 class BkashCheckoutURLService extends BkashService
 {
@@ -80,12 +82,11 @@ class BkashCheckoutURLService extends BkashService
     try {
       $url = $credential->getURL('/tokenized/checkout/create');
       $headers = $credential->getAccessHeaders($this->getAccessToken());   
-      $total_due_bill = 400;
       $body = [
         'mode' => '0011',
         'payerReference' => ' ',
         'callbackURL' => $this->website_base_url.'/bkash/callback',
-        'amount' => $amount ? $amount : $total_due_bill,
+        'amount' => $amount,
         'currency' => 'BDT',
         'intent' => 'sale',
         'merchantInvoiceNumber' => "Inv".Str::random(8) 
@@ -101,7 +102,23 @@ class BkashCheckoutURLService extends BkashService
 
       $this->storeLog('create_payment', $url, $headers, $body, $response);
 
-      // database insert to bkash_transaction table;
+      //db insert to bkash_transactions table
+
+      $user = Auth::user();
+      
+      BkashPGWTransaction::create([
+        'user_id' => $user->id,
+        'user_name' => $user->name,
+        'phone_no' => $user->phone,
+        'wallet_no' => null,
+        'car_wise_bill' =>  Redis::command('GET', ['car_wise_bill']),
+        'payment_id' => $response['paymentID'],
+        'amount' => $response['amount'],
+        'invoice_no' => $response['merchantInvoiceNumber'],
+        'create_response' => $response,
+        'execute_response' => null,
+        'is_successful' => false
+    ]);
 
       return redirect($response['bkashURL']);
 
@@ -126,9 +143,24 @@ class BkashCheckoutURLService extends BkashService
         'read_timeout' => 30,
       ]);
 
-      $response = json_decode($res->getBody()->getContents(), true);
+      $response = null;
 
-      $this->storeLog('execute_payment', $url, $headers, $body, $response);
+      $check_transaction = BkashPGWTransaction::where('payment_id', $paymentID)->first();
+
+      if($check_transaction){
+
+        $response = json_decode($res->getBody()->getContents(), true);
+
+        $check_transaction->update([
+          'wallet_no' => $response['customerMsisdn'],
+          'execute_response' => $response,
+          'is_successful' => true
+
+        ]);
+
+        $this->storeLog('execute_payment', $url, $headers, $body, $response);
+
+      }
 
       return $response; 
     } catch (Exception $e) {
