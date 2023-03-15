@@ -12,7 +12,8 @@ use Auth;
 
 class BkashCheckoutURLService extends BkashService
 {
-    private $website_base_url;
+  private $website_base_url;
+
   public function __construct()
   {
     parent::__construct('checkout_url');
@@ -117,6 +118,7 @@ class BkashCheckoutURLService extends BkashService
         'invoice_no' => $response['merchantInvoiceNumber'],
         'create_response' => $response,
         'execute_response' => null,
+        'trx_id' => null,
         'is_successful' => false
     ]);
 
@@ -151,12 +153,23 @@ class BkashCheckoutURLService extends BkashService
 
         $response = json_decode($res->getBody()->getContents(), true);
 
-        $check_transaction->update([
-          'wallet_no' => $response['customerMsisdn'],
-          'execute_response' => $response,
-          'is_successful' => true
-
-        ]);
+        if(array_key_exists("statusCode",$response) && $response['statusCode'] == '0000'){
+          $check_transaction->update([
+            'wallet_no' => $response['customerMsisdn'],
+            'execute_response' => $response,
+            'trx_id' => $response['trxID'],
+            'is_successful' => true
+  
+          ]);
+        }else{
+          $check_transaction->update([
+            'wallet_no' => $response['customerMsisdn'],
+            'execute_response' => $response,
+            'trx_id' => null,
+            'is_successful' => false
+  
+          ]);
+        }
 
         $this->storeLog('execute_payment', $url, $headers, $body, $response);
 
@@ -221,6 +234,65 @@ class BkashCheckoutURLService extends BkashService
       $this->storeLog('search_transaction', $url, $headers, $body, $response);
 
       return $response;
+    } catch (Exception $e) {
+      throw $e;
+    }
+  }
+
+  public function allBkashBill()
+  {
+    try {
+
+      $successful_transactions = BkashPGWTransaction::where('is_successful', true)->get();
+      
+      $all_successful_data = [];
+
+      if($successful_transactions){
+
+        foreach ($successful_transactions as $transaction) {
+
+          $car_no_and_bill = json_decode($transaction->car_wise_bill, true);
+          $no_of_cars = count($car_no_and_bill);
+
+          if($no_of_cars > 1){
+            for ($i = 0; $i < $no_of_cars; $i++) {
+
+              $successful_data =  [
+                'user_id' => $transaction->id,
+                'user_name' => $transaction->user_name,
+                'phone_no' => $transaction->phone_no,
+                'wallet_no' => $transaction->wallet_no,
+                'payment_id' => $transaction->payment_id,
+                'trx_id' => $transaction->trx_id,
+                'invoice_no' => $transaction->invoice_no,
+                'car_no' => $car_no_and_bill[$i]['car_no'],
+                'amount' => $car_no_and_bill[$i]['bill']
+              ];
+              
+              array_push($all_successful_data,$successful_data);
+            }
+
+          }else{
+            $successful_data =  [
+              'user_id' => $transaction->id,
+              'user_name' => $transaction->user_name,
+              'phone_no' => $transaction->phone_no,
+              'wallet_no' => $transaction->wallet_no,
+              'payment_id' => $transaction->payment_id,
+              'trx_id' => $transaction->trx_id,
+              'invoice_no' => $transaction->invoice_no,
+              'car_no' => $car_no_and_bill[0]['car_no'],
+              'amount' => $car_no_and_bill[0]['bill']
+            ];
+            
+            array_push($all_successful_data,$successful_data);
+
+          }
+      }
+       return $all_successful_data;
+      }
+
+      return $successful_transactions; 
     } catch (Exception $e) {
       throw $e;
     }

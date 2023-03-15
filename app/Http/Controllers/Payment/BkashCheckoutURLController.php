@@ -100,37 +100,11 @@ class BkashCheckoutURLController extends Controller
             }
 
             if(array_key_exists("statusCode",$response) && $response['statusCode'] == '0000'){
-
-                // $data = collect([
-                //     'amount' => $response['amount'],
-                //     'months' => json_encode([1, 2]),
-                //     'year' => 2023,
-                //     'car_id'  => Redis::command('GET', ['car_no']),
-                //     'user_id' => $this->user->id,
-                //     'date' => $response['paymentExecuteTime'],
-                //     'extra' => '', // advance
-                //     'waive' => '', // discount
-                //     'note'=> ' ',
-                //     'type' => '11'
-                    
-                // ]);
-
-                // $service_res = $this->bkashPaymentService->save($data, $this->paymentRepository);
-
-                //if($service_res['Error_msg'] == 'Success' && $service_res['Error_code'] == '200'){
-                    return view('bkash.chcekout-url.success');
-                //}else{
-                    //return view('bkash.chcekout-url.fail')->with([
-                      //  'message' => $service_res['Error_msg'],
-                    //]);
-                //}
-                
+                return view('bkash.chcekout-url.success');
             }else{
                 return view('bkash.chcekout-url.fail')->with([
                     'message' => $response['statusMessage'],
                 ]);
-
-            
             }  
 
         }else{
@@ -159,4 +133,12 @@ class BkashCheckoutURLController extends Controller
         ]);
     }        
     
+    public function allBkashBill(Request $request){
+        
+        $all_successful_data = $this->bkashCheckoutURLService->allBkashBill();
+
+        return view('bkash.chcekout-url.allBill')->with([
+            'all_successful_data' => $all_successful_data,
+        ]);   
+    }
 }
