@@ -82,7 +82,7 @@ class BkashCheckoutURLService extends BkashService
   {
     try {
       $url = $credential->getURL('/tokenized/checkout/create');
-      $headers = $credential->getAccessHeaders($this->getAccessToken());   
+      $headers = $credential->getAccessHeaders($this->getAccessToken());
       $body = [
         'mode' => '0011',
         'payerReference' => ' ',
@@ -90,7 +90,7 @@ class BkashCheckoutURLService extends BkashService
         'amount' => $amount,
         'currency' => 'BDT',
         'intent' => 'sale',
-        'merchantInvoiceNumber' => "Inv".Str::random(8) 
+        'merchantInvoiceNumber' => "Inv".Str::random(8)
       ];
       $res = $this->httpClient()->post($url, [
         'json' => $body,
@@ -106,7 +106,7 @@ class BkashCheckoutURLService extends BkashService
       //db insert to bkash_transactions table
 
       $user = Auth::user();
-      
+
       BkashPGWTransaction::create([
         'user_id' => $user->id,
         'user_name' => $user->name,
@@ -159,7 +159,7 @@ class BkashCheckoutURLService extends BkashService
             'execute_response' => $response,
             'trx_id' => $response['trxID'],
             'is_successful' => true
-  
+
           ]);
         }else{
           $check_transaction->update([
@@ -167,7 +167,7 @@ class BkashCheckoutURLService extends BkashService
             'execute_response' => $response,
             'trx_id' => null,
             'is_successful' => false
-  
+
           ]);
         }
 
@@ -175,7 +175,7 @@ class BkashCheckoutURLService extends BkashService
 
       }
 
-      return $response; 
+      return $response;
     } catch (Exception $e) {
       throw $e;
     }
@@ -229,7 +229,7 @@ class BkashCheckoutURLService extends BkashService
 
       $response = json_decode($res->getBody()->getContents(), true);
 
-      // database insert to bkash_transaction table; 
+      // database insert to bkash_transaction table;
 
       $this->storeLog('search_transaction', $url, $headers, $body, $response);
 
@@ -239,63 +239,28 @@ class BkashCheckoutURLService extends BkashService
     }
   }
 
-  public function allBkashBill()
+  public function allBkashBill(array $params)
   {
     try {
 
-      $successful_transactions = BkashPGWTransaction::where('is_successful', true)->get();
-      
-      $all_successful_data = [];
+      $query = BkashPGWTransaction::where('is_successful', true);
 
-      if($successful_transactions){
+      $searchCarNo = null;
 
-        foreach ($successful_transactions as $transaction) {
+        if(array_key_exists('name', $params) && strlen($params['name'])) {
+          $query->where('user_name', $params['name']);
+        }
+        if(array_key_exists('phone', $params) && strlen($params['phone'])){
+          $query->where('phone_no', $params['phone']);
+        }
+        if(array_key_exists('wallet', $params) && strlen($params['wallet'])) {
+          $query->where('wallet_no', $params['wallet']);
+        }
+        if(array_key_exists('car', $params) && strlen($params['car'])){
+          $query->where('car_wise_bill.car_no', $params['car']);
+        }
 
-          $car_no_and_bill = json_decode($transaction->car_wise_bill,true);
-
-          $no_of_cars = count($car_no_and_bill);
-
-          if($no_of_cars > 1){
-            for ($i = 0; $i < $no_of_cars; $i++) {
-
-              $successful_data =  [
-                'user_id' => $transaction->id,
-                'user_name' => $transaction->user_name,
-                'phone_no' => $transaction->phone_no,
-                'wallet_no' => $transaction->wallet_no,
-                'payment_id' => $transaction->payment_id,
-                'trx_id' => $transaction->trx_id,
-                'invoice_no' => $transaction->invoice_no,
-                'car_no' => $car_no_and_bill[$i]['car_no'],
-                'amount' => $car_no_and_bill[$i]['bill'],
-                'updated_at' => $transaction->updated_at
-              ];
-              
-              array_push($all_successful_data,$successful_data);
-            }
-
-          }else{
-            $successful_data =  [
-              'user_id' => $transaction->id,
-              'user_name' => $transaction->user_name,
-              'phone_no' => $transaction->phone_no,
-              'wallet_no' => $transaction->wallet_no,
-              'payment_id' => $transaction->payment_id,
-              'trx_id' => $transaction->trx_id,
-              'invoice_no' => $transaction->invoice_no,
-              'car_no' => $car_no_and_bill[0]['car_no'],
-              'amount' => $car_no_and_bill[0]['bill'],
-              'updated_at' => $transaction->updated_at
-            ];
-            
-            array_push($all_successful_data,$successful_data);
-
-          }
-      }
-       return $all_successful_data;
-      }
-
-      return $successful_transactions; 
+      return $query->orderBy('updated_at', 'DESC')->paginate(30);
     } catch (Exception $e) {
       throw $e;
     }
@@ -318,7 +283,7 @@ class BkashCheckoutURLService extends BkashService
       ]);
 
       $response = json_decode($res->getBody()->getContents(), true);
-       // database insert to bkash_refund table; 
+       // database insert to bkash_refund table;
 
        $this->storeLog('refund_transaction', $url, $headers, $body, $response);
 

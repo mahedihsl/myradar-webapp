@@ -135,7 +135,6 @@ Route::group(['middleware' => ['auth', 'role:4', 'customer:1']], function() {
     Route::post('/bkash/pay','Payment\BkashCheckoutURLController@payment')->name('url-pay');
     Route::post('/bkash/create','Payment\BkashCheckoutURLController@createPayment')->name('url-create')->middleware(['checkout_url_jwt']);
     Route::get('/bkash/callback','Payment\BkashCheckoutURLController@callback')->name('url-callback')->middleware(['checkout_url_jwt']);
-    Route::get('/bkash/allbill', 'Payment\BkashCheckoutURLController@allBkashBill')->name('bkash-pgw-bill');
 });
 
 Route::get('/concox/lock/test', 'Device\ConcoxController@test');
@@ -321,7 +320,7 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/save/promo','Promotion\PromoCodeController@save');
 
     Route::get('/billing', 'Account\BillingController@index')->name('billing');
-    //Route::get('/bkash/allbill', 'Payment\BkashCheckoutURLController@allBill')->name('bkash-pgw-bill');
+
     Route::get('/bill/entry', 'Finance\BillingController@entry');
     Route::post('/importExcel', 'Account\BillingController@importExcel');
 
@@ -390,6 +389,8 @@ Route::group(['middleware' => ['auth', 'role:2']], function() {
     Route::post('/rms/site/pin/update', 'RMS\SiteController@updatePinConfig');
     Route::post('/rms/site/pin/remove', 'RMS\SiteController@removePinConfig');
 });
+
+Route::get('/bkash/allbill', 'Payment\BkashCheckoutURLController@allBkashBill')->name('bkash-pgw-bill');
 
 Route::post('/message/save', 'Contact\MessageController@store')->name('save-message')->middleware('cors');
 

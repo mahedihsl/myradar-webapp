@@ -10,6 +10,7 @@ use App\Service\Bkash\BkashCheckoutURLService;
 use App\Service\Bkash\BkashPaymentService;
 use Illuminate\Support\Facades\Redis;
 use URL;
+use Excel;
 use Illuminate\Support\Str;
 use Auth;
 
@@ -80,7 +81,7 @@ class BkashCheckoutURLController extends Controller
         $amount = $request->get('amount');
         $car_wise_bill = $request->get('car_wise_bill');
       
-        return $this->bkashCheckoutURLService->createPayment($amount, $car_wise_bill, $this->credential);
+        return $this->bkashCheckoutURLService->createPayment($amount, json_decode($car_wise_bill,true), $this->credential);
     }
 
     public function callback(Request $request)
@@ -132,14 +133,14 @@ class BkashCheckoutURLController extends Controller
     }        
     
     public function allBkashBill(Request $request){
-        
-        $all_successful_data = $this->bkashCheckoutURLService->allBkashBill();
 
-        return view('bkash.chcekout-url.allBill')->with([
-            'all_successful_data' => $all_successful_data,
-        ]);   
+        $params = $request->all();
+        $transactions = $this->bkashCheckoutURLService->allBkashBill($params);
+
+        return view('bkash.chcekout-url.allBill')
+            ->with(compact('transactions', 'params'));
     }
-    
+
     private function export($data)
     {
         Excel::create('BillingRecords', function ($excel) use ($data) {

@@ -71,6 +71,11 @@
       <i class="fa fa-tachometer"></i> <span>Fixing Fuel Meter</span>
     </a>
   </li>
+  <li>
+  <a href="/bkash/amount">
+    <i class="fa fa-money"></i> <span>Pay Due Bill</span>
+  </a>
+</li>
 @elseif ($user->customer_type == 2)
   <li>
     <a href="{{route('map-search')}}">
@@ -137,13 +142,10 @@
       <i class="fa fa-cog"></i> <span>Settings</span>
     </a>
   </li>
-
-@endif
-
-@if($user->phone == '01760418718')
-<li>
-  <a href="/checkout-iframe/amount">
+  <li>
+  <a href="/bkash/amount">
     <i class="fa fa-money"></i> <span>Pay Due Bill</span>
   </a>
 </li>
+
 @endif

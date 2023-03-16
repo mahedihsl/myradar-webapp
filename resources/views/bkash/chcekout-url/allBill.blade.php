@@ -45,6 +45,12 @@
 @section('content')
 
 <div class="row">
+    <div class="col-md-12">
+      @include('bkash.chcekout-url.bkash_fillter', ['data' => $params])
+    </div>
+  </div>
+
+<div class="row">
   <div class="col-md-12 table-responsive">
     <table class="table table-hover table-striped">
       <thead>
@@ -58,20 +64,24 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($all_successful_data as $successful_data)
-        <tr>
-          <td>{{ $successful_data['user_name'] }}</td>
-          <td>{{ $successful_data['phone_no'] }}</td>
-          <td>{{ $successful_data['wallet_no'] }}</td>
-          <td>{{ $successful_data['car_no'] }}</td>
-          <td>{{ $successful_data['amount'] }}</td>
-          <td>{{ date_format($successful_data['updated_at'], 'j M Y g:i A') }}</td>
-        </tr>
+        
+        @foreach ($transactions as $item)
+          @foreach ($item->car_wise_bill as $payable)
+          <tr>
+            <td>{{ $item->user_name }}</td>
+            <td>{{ $item->phone_no }}</td>
+            <td>{{ $item->wallet_no }}</td>
+            <td>{{ $payable['car_no'] }}</td>
+            <td>{{ $payable['bill'] }}</td>
+            <td>{{ $item->updated_at->format('j M Y g:i A') }}</td>
+          </tr>
+          @endforeach
         @endforeach
       </tbody>
     </table>
+    {!! $transactions->links() !!}
   </div>
 </div>
-    <a class="btn btn-sm btn-default"href={{ asset('Files/import_file.xlsx') }}><i class="fa fa-download 2x"></i> Download Excel File</a>
+
 @endsection
 
