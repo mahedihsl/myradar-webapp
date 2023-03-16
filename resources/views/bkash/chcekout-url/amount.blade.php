@@ -8,19 +8,23 @@
         {!! csrf_field() !!}
 
         <div class="tw-w-full tw-flex tw-flex-col tw-items-center tw-space-y-4">
-            <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700 tw-mt-4">Total Due Bill {{ number_format($total_due_bill) }} </span>
+            <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700 tw-mt-4">Total Due Bill :  {{ number_format($total_due_bill) }} TK</span>
         </div>
-
-        <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700">Car No</span>
-        <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700">Pay Bill</span>
+        <br>
+        
+        <div>
+        <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700">Car No Wise Due Bill</span>
+       </div>
+       <br>
         @foreach ($cars_bill_details as $car_bill_details)
         <div>
             <input type="checkbox" name="cars[]" value="{{ $car_bill_details['reg_no'] }}" checked>
             <label>{{ $car_bill_details['reg_no'] }}</label>
             <input type="number" name="{{$car_bill_details['reg_no']}}" value="{{ $car_bill_details['bill'] }}">
         </div>
+        <br>
         @endforeach
-
+        <br>
         <div class="tw-w-full tw-flex tw-flex-col tw-items-center tw-space-y-4">
             <button type="submit"
                 class="tw-w-full tw-px-4 tw-py-2 tw-rounded tw-shadow tw-border-none tw-bg-indigo-500 hover:tw-bg-indigo-600 tw-transition tw-duration-300 tw-uppercase tw-text-white tw-text-sm tw-cursor-pointer">

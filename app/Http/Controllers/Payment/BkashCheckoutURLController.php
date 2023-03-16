@@ -50,8 +50,6 @@ class BkashCheckoutURLController extends Controller
         if(!$selectedCars){
             return redirect()->back()->withErrors(['error' => 'Please Selecet a car']);
         }
-    
-        Redis::command('SET', ['selected_cars_no', json_encode($selectedCars)]);
 
         $selected_cars_str = $this->bkashPaymentService->selectedCarList($selectedCars, $this->paymentRepository);
 
@@ -70,9 +68,8 @@ class BkashCheckoutURLController extends Controller
 
           } 
 
-        Redis::command('SET', ['car_wise_bill', json_encode($car_wise_bill)]);
-
         return view('bkash.chcekout-url.pay')->with([
+            'car_wise_bill' => json_encode($car_wise_bill),
             'selected_cars' => $selected_cars_str,
             'amount' => $total_pay_bill,
         ]);
@@ -81,8 +78,9 @@ class BkashCheckoutURLController extends Controller
     public function createPayment(Request $request){
 
         $amount = $request->get('amount');
+        $car_wise_bill = $request->get('car_wise_bill');
       
-        return $this->bkashCheckoutURLService->createPayment($amount, $this->credential);
+        return $this->bkashCheckoutURLService->createPayment($amount, $car_wise_bill, $this->credential);
     }
 
     public function callback(Request $request)
@@ -140,5 +138,23 @@ class BkashCheckoutURLController extends Controller
         return view('bkash.chcekout-url.allBill')->with([
             'all_successful_data' => $all_successful_data,
         ]);   
+    }
+    
+    private function export($data)
+    {
+        Excel::create('BillingRecords', function ($excel) use ($data) {
+            $excel->sheet('data', function ($sheet) use ($data) {
+                $data->transform(function ($car) {
+                    $transformer = new CarExportTransformer();
+                    return $transformer->transform($car);
+                });
+
+                $sheet->fromArray($data->toArray(), null, 'A1', false, true);
+
+                $sheet->row(1, function ($row) {
+                    $row->BalancesetFontWeight('bold');
+                });
+            });
+        })->download('xlsx');
     }
 }

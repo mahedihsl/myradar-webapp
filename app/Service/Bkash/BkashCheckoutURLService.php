@@ -78,7 +78,7 @@ class BkashCheckoutURLService extends BkashService
     }
   }
 
-  public function createPayment($amount, BkashCredential $credential)
+  public function createPayment($amount, $car_wise_bill, BkashCredential $credential)
   {
     try {
       $url = $credential->getURL('/tokenized/checkout/create');
@@ -112,7 +112,7 @@ class BkashCheckoutURLService extends BkashService
         'user_name' => $user->name,
         'phone_no' => $user->phone,
         'wallet_no' => null,
-        'car_wise_bill' =>  Redis::command('GET', ['car_wise_bill']),
+        'car_wise_bill' =>  $car_wise_bill,
         'payment_id' => $response['paymentID'],
         'amount' => $response['amount'],
         'invoice_no' => $response['merchantInvoiceNumber'],
@@ -251,7 +251,8 @@ class BkashCheckoutURLService extends BkashService
 
         foreach ($successful_transactions as $transaction) {
 
-          $car_no_and_bill = json_decode($transaction->car_wise_bill, true);
+          $car_no_and_bill = json_decode($transaction->car_wise_bill,true);
+
           $no_of_cars = count($car_no_and_bill);
 
           if($no_of_cars > 1){
@@ -266,7 +267,8 @@ class BkashCheckoutURLService extends BkashService
                 'trx_id' => $transaction->trx_id,
                 'invoice_no' => $transaction->invoice_no,
                 'car_no' => $car_no_and_bill[$i]['car_no'],
-                'amount' => $car_no_and_bill[$i]['bill']
+                'amount' => $car_no_and_bill[$i]['bill'],
+                'updated_at' => $transaction->updated_at
               ];
               
               array_push($all_successful_data,$successful_data);
@@ -282,7 +284,8 @@ class BkashCheckoutURLService extends BkashService
               'trx_id' => $transaction->trx_id,
               'invoice_no' => $transaction->invoice_no,
               'car_no' => $car_no_and_bill[0]['car_no'],
-              'amount' => $car_no_and_bill[0]['bill']
+              'amount' => $car_no_and_bill[0]['bill'],
+              'updated_at' => $transaction->updated_at
             ];
             
             array_push($all_successful_data,$successful_data);

@@ -56,6 +56,7 @@
     <form action="/bkash/create" method="POST">
         {!! csrf_field() !!}
         <input type="hidden" id="amount" name="amount" value='{{ $amount }}'>
+        <input type="hidden" id="car_wise_bill" name="car_wise_bill" value='{{ $car_wise_bill }}'>
         <button id="bKash_button" class="tw-hidden tw-cursor-pointer">
     </form>
     </button>
