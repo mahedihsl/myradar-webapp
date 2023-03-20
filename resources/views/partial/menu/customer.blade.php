@@ -72,7 +72,7 @@
     </a>
   </li>
   <li>
-  <a href="/bkash/amount">
+  <a href="{{ route('url-amount', ['uId' => $user->uid])}}">
     <i class="fa fa-money"></i> <span>Pay Due Bill</span>
   </a>
 </li>
@@ -143,7 +143,7 @@
     </a>
   </li>
   <li>
-  <a href="/bkash/amount">
+  <a href="{{ route('url-amount', ['uId' => $user->uid])}}">
     <i class="fa fa-money"></i> <span>Pay Due Bill</span>
   </a>
 </li>

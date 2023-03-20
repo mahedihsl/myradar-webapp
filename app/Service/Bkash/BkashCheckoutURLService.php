@@ -78,7 +78,7 @@ class BkashCheckoutURLService extends BkashService
     }
   }
 
-  public function createPayment($amount, $car_wise_bill, BkashCredential $credential)
+  public function createPayment($user, $amount, $car_wise_bill, BkashCredential $credential)
   {
     try {
       $url = $credential->getURL('/tokenized/checkout/create');
@@ -103,14 +103,14 @@ class BkashCheckoutURLService extends BkashService
 
       $this->storeLog('create_payment', $url, $headers, $body, $response);
 
+      $user_arr = json_decode($user, true);
+
       //db insert to bkash_transactions table
 
-      $user = Auth::user();
-
       BkashPGWTransaction::create([
-        'user_id' => $user->id,
-        'user_name' => $user->name,
-        'phone_no' => $user->phone,
+        'user_id' => $user_arr['_id'],
+        'user_name' => $user_arr['name'],
+        'phone_no' => $user_arr['phone'],
         'wallet_no' => null,
         'car_wise_bill' =>  $car_wise_bill,
         'payment_id' => $response['paymentID'],
@@ -163,7 +163,7 @@ class BkashCheckoutURLService extends BkashService
           ]);
         }else{
           $check_transaction->update([
-            'wallet_no' => $response['customerMsisdn'],
+            'wallet_no' => null,
             'execute_response' => $response,
             'trx_id' => null,
             'is_successful' => false

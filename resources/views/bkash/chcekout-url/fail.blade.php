@@ -7,9 +7,6 @@
     <span class="tw-text-5xl tw-text-red-500 tw-font-bold">
       Payment Failed
     </span>
-    <span class="tw-text-xl tw-text-gray-800 tw-font-medium">
-      {{ $message }}
-    </span>
   </div>
 </div>
 @endsection

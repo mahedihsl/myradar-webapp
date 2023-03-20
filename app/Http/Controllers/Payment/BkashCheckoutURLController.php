@@ -13,6 +13,7 @@ use URL;
 use Excel;
 use Illuminate\Support\Str;
 use Auth;
+use App\Entities\User;
 
 class BkashCheckoutURLController extends Controller
 {  /**
@@ -31,22 +32,25 @@ class BkashCheckoutURLController extends Controller
         $this->credential = new BkashCredential(config('bkash.tokenized.sandbox2'));
     }
 
-    public function amount(Request $request)
+    public function amount(Request $request, $uId)
     {   
-        $user = Auth::user();
+        $user = User::where('uid', intval($uId))->first();
         $service_res = $this->bkashPaymentService->totalDue($user->id, $this->paymentRepository);
         $total_due_bill = $this->bkashPaymentService->totalDue($user->id, $this->paymentRepository);
         $cars_bill_details = $this->bkashPaymentService->carDueBillCheck($user->id, $this->paymentRepository)['cars_bill_details'];
-
+        //var_dump($cars_bill_details);
         return view('bkash.chcekout-url.amount')->with([
             'cars_bill_details' => $cars_bill_details,
-            'total_due_bill' => $total_due_bill['total']
+            'total_due_bill' => $total_due_bill['total'],
+            'user' => $user
         ]);
     }
     
     public function payment(Request $request)
     {
         $selectedCars = $request->input('cars');
+
+        $user = $request->user;
 
         if(!$selectedCars){
             return redirect()->back()->withErrors(['error' => 'Please Selecet a car']);
@@ -56,16 +60,18 @@ class BkashCheckoutURLController extends Controller
 
         $total_pay_bill = 0;
         $car_wise_bill = [];
+        $selectedCarNo = 1;
         
         foreach ($selectedCars as $selectedCar) {
 
-            if($request->input($selectedCar) < 1){
-                return redirect()->back()->withErrors(['error' => 'Minimum amount 1 tk']);
+            if($request->input($selectedCarNo) < 1){
+                return redirect()->back()->withErrors(['error' => 'Minimum payable amount 1 TK']);
             } 
             
-            array_push($car_wise_bill, ['car_no' => $selectedCar, 'bill' => $request->input($selectedCar)]);
+            array_push($car_wise_bill, ['car_no' => $selectedCar, 'bill' => $request->input($selectedCarNo)]);
 
-            $total_pay_bill +=  $request->input($selectedCar);
+            $total_pay_bill +=  $request->input($selectedCarNo);
+            $selectedCarNo++;
 
           } 
 
@@ -73,15 +79,17 @@ class BkashCheckoutURLController extends Controller
             'car_wise_bill' => json_encode($car_wise_bill),
             'selected_cars' => $selected_cars_str,
             'amount' => $total_pay_bill,
+            'user' => $user
         ]);
     }
 
-    public function createPayment(Request $request){
-
+    public function createPayment(Request $request)
+    {
+        $user = $request->user;
         $amount = $request->get('amount');
         $car_wise_bill = $request->get('car_wise_bill');
       
-        return $this->bkashCheckoutURLService->createPayment($amount, json_decode($car_wise_bill,true), $this->credential);
+        return $this->bkashCheckoutURLService->createPayment($user, $amount, json_decode($car_wise_bill,true), $this->credential);
     }
 
     public function callback(Request $request)

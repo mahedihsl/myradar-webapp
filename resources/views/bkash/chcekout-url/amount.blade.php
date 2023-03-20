@@ -6,23 +6,27 @@
     <span class="tw-text-xl tw-text-slate-700 tw-font-semibold">myRADAR Bill Payment</span>
     <form action="/bkash/pay" method="POST" class="tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3" id="bkashForm">
         {!! csrf_field() !!}
-
+        <input type="hidden" id="user" name="user" value='{{ $user }}'>
         <div class="tw-w-full tw-flex tw-flex-col tw-items-center tw-space-y-4">
-            <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700 tw-mt-4">Total Due Bill :  {{ number_format($total_due_bill) }} TK</span>
+            <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700 tw-mt-4">Total Due Bill :
+                {{ number_format($total_due_bill) }} TK</span>
+        </div>
+        <br>
+
+        <div>
+            <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700">Car No Wise Due Bill</span>
         </div>
         <br>
         
-        <div>
-        <span class="tw-w-full tw-font-semibold tw-text-sm tw-text-gray-700">Car No Wise Due Bill</span>
-       </div>
-       <br>
+        <?php $i=1; ?>
         @foreach ($cars_bill_details as $car_bill_details)
         <div>
             <input type="checkbox" name="cars[]" value="{{ $car_bill_details['reg_no'] }}" checked>
             <label>{{ $car_bill_details['reg_no'] }}</label>
-            <input type="number" name="{{$car_bill_details['reg_no']}}" value="{{ $car_bill_details['bill'] }}">
+            <input type="number" name="{{ $i }}" value="{{ $car_bill_details['bill'] }}">
         </div>
         <br>
+        <?php $i++; ?>
         @endforeach
         <br>
         <div class="tw-w-full tw-flex tw-flex-col tw-items-center tw-space-y-4">
