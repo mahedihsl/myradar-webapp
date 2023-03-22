@@ -89,10 +89,12 @@ class PaymentController extends Controller
 
   public function getMsgContent($userId)
   {
+    $user = User::find($userId);
     $months = $this->getDue($userId);
 
     if (sizeof($months) == 0) return response()->ok('All paid');
-    $content = $this->smsService->buildContent('payment_2', $months);
+    $content = $this->smsService->buildContent('payment_2', ['months' => $months, 'user_uid' => $user->uid]);
+    //$content = $this->smsService->buildContent('payment_2', $months);
     // $content = $this->getContent($months);
     return response()->ok($content);
   }
