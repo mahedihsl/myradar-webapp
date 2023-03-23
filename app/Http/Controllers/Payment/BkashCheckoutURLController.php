@@ -53,7 +53,7 @@ class BkashCheckoutURLController extends Controller
         $user = $request->user;
 
         if(!$selectedCars){
-            return redirect()->back()->withErrors(['error' => 'Please Selecet a car']);
+            return redirect()->back()->withErrors(['error' => 'Please Select a car']);
         }
 
         $selected_cars_str = $this->bkashPaymentService->selectedCarList($selectedCars, $this->paymentRepository);

@@ -52,31 +52,31 @@
 @endpush
 
 @section('content')
-<div class="tw-min-w-screen tw-min-h-screen tw-flex tw-flex-row tw-justify-center tw-items-center">
-    <form action="/bkash/create" method="POST">
+<div class="tw-min-h-screen tw-flex tw-flex-col tw-justify-center tw-items-center">
+    <form action="/bkash/create" method="POST" class="tw-w-full tw-max-w-md tw-px-6">
         {!! csrf_field() !!}
         <input type="hidden" id="amount" name="amount" value='{{ $amount }}'>
         <input type="hidden" id="user" name="user" value='{{ $user }}'>
         <input type="hidden" id="car_wise_bill" name="car_wise_bill" value='{{ $car_wise_bill }}'>
-        <button id="bKash_button" class="tw-hidden tw-cursor-pointer">
+        <button id="bKash_button" class="tw-hidden tw-cursor-pointer"></button>
     </form>
-    </button>
 
-    <div class="tw-flex tw-flex-col tw-items-center tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3">
-        <div
-            class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 tw-border-b tw-border-gray-300">
-            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Selected Car No</span>
-            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ $selected_cars }}</span>
+    <div class="tw-flex tw-flex-col tw-items-center tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3 tw-mt-6">
+        <div class="tw-w-full tw-py-3 tw-border-b tw-border-gray-300">
+            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Selected Car :</span>
+            <span class="card-text">{{ $selected_cars }}</span>
         </div>
-        <div class="tw-flex tw-w-full tw-flex-row tw-justify-between tw-items-center tw-py-3 ">
-            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Pay Amount</span>
-            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold">{{ number_format($amount) }}</span>
+        <div class="tw-w-full tw-py-3">
+            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Amount : </span>
+            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold tw-float-right">{{ number_format($amount) }}
+                TK</span>
         </div>
-        <img src="/images/bkash.jpg" alt="" class="tw-cursor-pointer tw-w-2/3" id="bkash_logo">
+        <img src="/images/bkash.jpg" alt="" class="tw-cursor-pointer tw-w-2/3 tw-mt-6" id="bkash_logo">
     </div>
 
     {{-- <div class="loader">Loading...</div> --}}
 </div>
+
 
 <script type="text/javascript">
 $(function() {
