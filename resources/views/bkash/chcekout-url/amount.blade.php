@@ -3,9 +3,10 @@
 @section('content')
 <div class="container">
     <br>
-    <div style="display: flex; justify-content: flex-end; align-items: center;">
-        <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3" alt=/images/myradar-logo-blue.png">
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3" alt="myradar-logo-blue">
     </div>
+
 
     <div class="row justify-content-center align-items-center">
         <div class="col-12 col-md-8 col-lg-6">
@@ -15,7 +16,7 @@
                 <input type="hidden" id="user" name="user" value='{{ $user }}'>
                 <div class="card mb-3">
                     <div class="card-body">
-                        <p class="card-text">Mr. {{ $user->name }} Sir, Your total due bill
+                        <p class="card-text">Dear Mr. {{ $user->name }} Sir, Your total due bill
                             {{ number_format($total_due_bill) }} TK.</p>
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <div>
-                            <h4 class="card-title">Car Wise Due Bill</h4>
+                            <h6 class="card-title">Car Wise Due Bill</h6>
                         </div>
 
                         <?php $i=1; ?>
