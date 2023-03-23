@@ -125,17 +125,6 @@ class BkashPaymentService
     return $ret;
   }
 
-  public function selectedCarList($selectedCars)
-  {
-    $selected_cars_str = "";
-    foreach ($selectedCars as $selectedCar) {
-      $selected_cars_str .= $selectedCar . ", ";
-    }
-
-    return substr($selected_cars_str, 0, -2);
-
-  }
-
   public function totalDue($userId)
   {
     return ['total' => $this->getDue($userId)->sum('bill')];
@@ -157,7 +146,6 @@ class BkashPaymentService
       $mon = collect();
       $presentDate = $this->getPresentDate($car);
       $mon = $this->getAllMonths($billDate, $presentDate);
-
 
       foreach ($car->payments as $key => $payment) {
         foreach ($payment->months as $key => $month) {

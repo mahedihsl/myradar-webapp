@@ -81,11 +81,12 @@ class BkashCheckoutURLService extends BkashService
   public function createPayment($user, $amount, $car_wise_bill, BkashCredential $credential)
   {
     try {
+      $user_arr = json_decode($user, true);
       $url = $credential->getURL('/tokenized/checkout/create');
       $headers = $credential->getAccessHeaders($this->getAccessToken());
       $body = [
         'mode' => '0011',
-        'payerReference' => ' ',
+        'payerReference' => $user_arr['phone'],
         'callbackURL' => $this->website_base_url.'/bkash/callback',
         'amount' => $amount,
         'currency' => 'BDT',
@@ -102,8 +103,6 @@ class BkashCheckoutURLService extends BkashService
       $response = json_decode($res->getBody()->getContents(), true);
 
       $this->storeLog('create_payment', $url, $headers, $body, $response);
-
-      $user_arr = json_decode($user, true);
 
       //db insert to bkash_transactions table
 

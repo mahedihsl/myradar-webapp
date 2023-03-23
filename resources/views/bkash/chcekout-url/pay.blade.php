@@ -52,26 +52,31 @@
 @endpush
 
 @section('content')
-<div class="tw-min-h-screen tw-flex tw-flex-col tw-justify-center tw-items-center">
-    <form action="/bkash/create" method="POST" class="tw-w-full tw-max-w-md tw-px-6">
+<div class="min-h-[50vh] md:min-h-screen flex flex-col justify-center items-center">
+    <form action="/bkash/create" method="POST" class="w-full max-w-md px-6">
         {!! csrf_field() !!}
         <input type="hidden" id="amount" name="amount" value='{{ $amount }}'>
         <input type="hidden" id="user" name="user" value='{{ $user }}'>
         <input type="hidden" id="car_wise_bill" name="car_wise_bill" value='{{ $car_wise_bill }}'>
-        <button id="bKash_button" class="tw-hidden tw-cursor-pointer"></button>
+        <button id="bKash_button" class="hidden cursor-pointer"></button>
     </form>
 
-    <div class="tw-flex tw-flex-col tw-items-center tw-w-10/12 md:tw-w-1/2 lg:tw-w-1/3 tw-mt-6">
-        <div class="tw-w-full tw-py-3 tw-border-b tw-border-gray-300">
-            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Selected Car :</span>
-            <span class="card-text">{{ $selected_cars }}</span>
+    <div class="flex flex-col items-center w-10/12 md:w-1/2 lg:w-1/3 mt-6">
+        <div class="flex items-center gap-2 w-full py-3 border-b border-gray-300">
+            <div class='flex items-center'> <span class="text-xl text-gray-700 font-medium">Selected Car :</span>
+            </div>
+            <div class='flex flex-col items-start justify-center pl-2'>
+            @foreach ($selected_cars as $car)
+                <span class="card-text">{{ $car }}</span>
+            @endforeach
+            </div>
         </div>
-        <div class="tw-w-full tw-py-3">
-            <span class="tw-text-xl tw-text-gray-700 tw-font-medium">Total Amount : </span>
-            <span class="tw-text-xl tw-text-gray-700 tw-font-semibold tw-float-right">{{ number_format($amount) }}
+        <div class="w-full py-3">
+            <span class="text-xl text-gray-700 font-medium">Total Amount : </span>
+            <span class="text-xl text-gray-700 font-semibold float-right">{{ number_format($amount) }}
                 TK</span>
         </div>
-        <img src="/images/bkash.jpg" alt="" class="tw-cursor-pointer tw-w-2/3 tw-mt-6" id="bkash_logo">
+        <img src="/images/bkash.jpg" alt="" class="cursor-pointer w-2/3 mt-6" id="bkash_logo">
     </div>
 
     {{-- <div class="loader">Loading...</div> --}}
