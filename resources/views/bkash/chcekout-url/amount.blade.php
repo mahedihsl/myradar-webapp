@@ -59,12 +59,12 @@
                         $formatted_date = date("M'y", $timestamp); 
                             ?> @else <?php 
 
-                        $lengtgh = count($car_bill_details['mon'])-1;
+                        $length = count($car_bill_details['mon'])-1;
                         $date_str1 = $car_bill_details['mon'][0][0].'-' .$car_bill_details['mon'][0][1];
                         $timestamp1 = strtotime('1-'.$date_str1); 
                         $formatted_date1 = date("M'y", $timestamp1); 
 
-                        $date_str2 = $car_bill_details['mon'][$lengtgh][0].'-' .$car_bill_details['mon'][$lengtgh][1];
+                        $date_str2 = $car_bill_details['mon'][$length][0].'-' .$car_bill_details['mon'][$length][1];
                         $timestamp2 = strtotime('1-'.$date_str2); 
                         $formatted_date2 = date("M'y", $timestamp2);
 
