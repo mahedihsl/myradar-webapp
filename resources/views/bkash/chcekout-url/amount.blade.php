@@ -16,8 +16,10 @@
                 {!! csrf_field() !!}
                 <input type="hidden" id="user" name="user" value='{{ $user }}'>
 
-                @if($total_due_bill > 0)
                 <div class='flex flex-col items-center justify-center gap-2'>
+
+                @if($total_due_bill > 0)
+               
                     <div class="card-body">
                         <div class="card-text"><span class="text-sm font-normal">Dear Mr. {{ $user->name }} Sir, Your
                                 total due bill
@@ -26,7 +28,7 @@
 
                     @else
                     <div class="card-body">
-                        <div class="card-text"> <span class="text-sm font-normal">DDear {{ $user->name }} Sir, thank you
+                        <div class="card-text"> <span class="text-sm font-medium">Dear {{ $user->name }} Sir, thank you
                                 !! You don't have any due bill.</div>
                         </span>
                     </div>
