@@ -47,7 +47,7 @@ class BkashCheckoutURLController extends Controller
     
     public function payment(Request $request)
     {
-        $Cars = $request->input('cars');
+        $cars = $request->input('cars');
         $selectedCarIndexs = $request->input('car_index');
 
         $user = $request->user;
@@ -58,6 +58,7 @@ class BkashCheckoutURLController extends Controller
 
         $total_pay_bill = 0;
         $car_wise_bill = [];
+        $selectedCars = [];
         
         foreach ($selectedCarIndexs as $selectedCarIndex) {
 
@@ -65,15 +66,16 @@ class BkashCheckoutURLController extends Controller
                 return redirect()->back()->withErrors(['error' => 'Minimum amount 1 TK']);
             } 
             
-            array_push($car_wise_bill, ['car_no' => $Cars[$selectedCarIndex], 'bill' => $request->input($selectedCarIndex)]);
+            array_push($selectedCars, $cars[$selectedCarIndex]);
+            array_push($car_wise_bill, ['car_no' => $cars[$selectedCarIndex], 'bill' => $request->input($selectedCarIndex)]);
 
             $total_pay_bill +=  $request->input($selectedCarIndex);
 
           } 
-
+          
         return view('bkash.chcekout-url.pay')->with([
             'car_wise_bill' => json_encode($car_wise_bill),
-            'selected_cars' => $Cars,
+            'selected_cars' => $selectedCars,
             'amount' => $total_pay_bill,
             'user' => $user
         ]);

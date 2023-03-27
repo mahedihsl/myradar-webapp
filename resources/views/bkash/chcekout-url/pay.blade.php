@@ -62,18 +62,18 @@
     </form>
 
     <div class="flex flex-col items-center w-10/12 md:w-1/2 lg:w-1/3 mt-6">
-        <div class="flex items-center gap-2 w-full py-3 border-b border-gray-300">
-            <div class='flex items-center'> <span class="text-xl text-gray-700 font-medium">Selected Car :</span>
+        <div class="gap-2 w-full py-3 border-b border-gray-300 grid grid-cols-12">
+            <div class='flex items-center col-span-6 md:col-span-8'> <span class="text-xl text-gray-700 font-medium">Selected Car :</span>
             </div>
-            <div class='flex flex-col items-start justify-center pl-2'>
-            @foreach ($selected_cars as $car)
-                <span class="card-text">{{ $car }}</span>
-            @endforeach
+            <div class='flex flex-col items-start justify-center col-span-6 md:col-span-4'>
+                @foreach ($selected_cars as $car)
+                <span class="text-xl text-gray-700 font-medium ">{{ $car }}</span>
+                @endforeach
             </div>
         </div>
-        <div class="w-full py-3">
-            <span class="text-xl text-gray-700 font-medium">Total Amount : </span>
-            <span class="text-xl text-gray-700 font-semibold float-right">{{ number_format($amount) }}
+        <div class="gap-2 w-full py-3 grid grid-cols-12">
+            <span class="text-xl text-gray-700 font-medium col-span-6 md:col-span-8">Total Amount : </span>
+            <span class="text-xl text-gray-700 font-medium float-right col-span-6 md:col-span-4">{{ number_format($amount) }}
                 TK</span>
         </div>
         <img src="/images/bkash.jpg" alt="" class="cursor-pointer w-2/3 mt-6" id="bkash_logo">
