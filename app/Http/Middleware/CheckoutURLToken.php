@@ -16,7 +16,7 @@ class CheckoutURLToken
     public function __construct()
     {
         $this->BkashCheckoutURLService = new BkashCheckoutURLService();
-        $this->credential = new BkashCredential(config('bkash.tokenized.sandbox2'));
+        $this->credential = new BkashCredential(config('bkash.tokenized.production'));
     }
 
     /**
@@ -30,7 +30,6 @@ class CheckoutURLToken
     {
         $accessTokenExpireTime = 50 * 60; // 50 minutes
         $refreshTokenExpireTime = 60 * 60 * 24 * 26; // 26 days
-
         $accessToken = Redis::command('GET', ['bkash:checkout_url:access_token']);
         if (!$accessToken) {
             $refreshToken = Redis::command('GET', ['bkash:checkout_url:refresh_token']);

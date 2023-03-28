@@ -42,6 +42,13 @@
         'appKey' => '4f6o0cjiki2rfm34kfdadl1eqq',
         'appSecret' => '2is7hdktrekvrbljjh44ll3d9l1dtjo4pasmjvs5vl5qr3fug4b',
       ],
+       'production' => [
+        'baseUrl' => 'https://tokenized.pay.bka.sh/v1.2.0-beta',
+        'username' => '01907888909',
+        'password' => '-sNOg_4+L(m',
+        'appKey' => 'pIwi4BGP0Eem169ajNdyvHpatc',
+        'appSecret' => '2arsaoVqobouYQsH6Hgvk7zb9ueDfPjcsNzKe02yEnJUFJqV731M',
+      ],
     ],
   ];
 ?>

@@ -29,7 +29,7 @@ class BkashCheckoutURLController extends Controller
         $this->paymentRepository = $repository;
         $this->bkashCheckoutURLService = new BkashCheckoutURLService();
         $this->bkashPaymentService = new BkashPaymentService();
-        $this->credential = new BkashCredential(config('bkash.tokenized.sandbox2'));
+        $this->credential = new BkashCredential(config('bkash.tokenized.production'));
     }
 
     public function amount(Request $request, $uId)
