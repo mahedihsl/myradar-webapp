@@ -109,6 +109,7 @@ class BkashCheckoutURLController extends Controller
             }else{
                 return view('bkash.chcekout-url.fail')->with([
                     'message' => $response['statusMessage'],
+                    'uid' => $uid,
                 ]);
             }  
 
