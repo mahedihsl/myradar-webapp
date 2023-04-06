@@ -109,7 +109,7 @@ Route::any('/concox/test', 'Test\ConcoxController@receive');
  Route::get('/p/{uId}', 'Payment\BkashCheckoutURLController@amount')->name('url-amount');
  Route::post('/bkash/pay','Payment\BkashCheckoutURLController@payment')->name('url-pay');
  Route::post('/bkash/create','Payment\BkashCheckoutURLController@createPayment')->name('url-create')->middleware(['checkout_url_jwt']);
- Route::get('/bkash/callback','Payment\BkashCheckoutURLController@callback')->name('url-callback')->middleware(['checkout_url_jwt']);
+ Route::get('/bkash/callback/{uId}','Payment\BkashCheckoutURLController@callback')->name('url-callback')->middleware(['checkout_url_jwt']);
 
 
 // Private Customer

@@ -7,6 +7,14 @@
     <span class="text-5xl text-red-500 font-bold">
       Payment Failed
     </span>
+    <span class="text-5xl text-red-400 font-bold">
+    @if(isset($message))
+    {{ $message }}
+    @endif
+   </span>
+    <div class="text-center">
+      <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white rounded shadow-md"><a href="{{ route('url-amount', ['uid'=>$uid]) }}">Try Again</a></button>  
+  </div>
   </div>
 </div>
 @endsection

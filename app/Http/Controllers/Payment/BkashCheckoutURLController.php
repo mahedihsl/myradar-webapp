@@ -90,7 +90,7 @@ class BkashCheckoutURLController extends Controller
         return $this->bkashCheckoutURLService->createPayment($user, $amount, json_decode($car_wise_bill,true), $this->credential);
     }
 
-    public function callback(Request $request)
+    public function callback(Request $request, $uid)
     {
         $allRequest = $request->all();
 
@@ -112,9 +112,9 @@ class BkashCheckoutURLController extends Controller
                 ]);
             }  
 
-        }else{
+        } else{
             return view('bkash.chcekout-url.fail')->with([
-                'message' => $allRequest['status'],
+                'uid' => $uid,
             ]);       
         }
 
