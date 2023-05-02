@@ -47,36 +47,44 @@ class BkashCheckoutURLController extends Controller
     
     public function payment(Request $request)
     {
-        $cars = $request->input('cars');
-        $selectedCarIndexs = $request->input('car_index');
+        //$cars = $request->input('cars');
+        //$selectedCarIndexs = $request->input('car_index');
 
         $user = $request->user;
 
-        if(!$selectedCarIndexs){
-            return redirect()->back()->withErrors(['error' => 'Please select a car']);
+        // if(!$selectedCarIndexs){
+        //     return redirect()->back()->withErrors(['error' => 'Please select a car']);
+        // }
+
+        //$total_pay_bill = 0;
+        //$car_wise_bill = [];
+        //$selectedCars = [];
+        
+        // foreach ($selectedCarIndexs as $selectedCarIndex) {
+
+        //     if($request->input($selectedCarIndex) < 1){
+        //         return redirect()->back()->withErrors(['error' => 'Minimum amount 1 TK']);
+        //     } 
+            
+        //     array_push($selectedCars, $cars[$selectedCarIndex]);
+        //     array_push($car_wise_bill, ['car_no' => $cars[$selectedCarIndex], 'bill' => $request->input($selectedCarIndex)]);
+
+        //     $total_pay_bill +=  $request->input($selectedCarIndex);
+
+        //   } 
+        
+        $total_bill = $request->total_bill;
+
+
+        if($total_bill < 1){
+            return redirect()->back()->withErrors(['error' => 'Minimum amount 1 TK']);
         }
 
-        $total_pay_bill = 0;
-        $car_wise_bill = [];
-        $selectedCars = [];
-        
-        foreach ($selectedCarIndexs as $selectedCarIndex) {
-
-            if($request->input($selectedCarIndex) < 1){
-                return redirect()->back()->withErrors(['error' => 'Minimum amount 1 TK']);
-            } 
-            
-            array_push($selectedCars, $cars[$selectedCarIndex]);
-            array_push($car_wise_bill, ['car_no' => $cars[$selectedCarIndex], 'bill' => $request->input($selectedCarIndex)]);
-
-            $total_pay_bill +=  $request->input($selectedCarIndex);
-
-          } 
           
         return view('bkash.chcekout-url.pay')->with([
-            'car_wise_bill' => json_encode($car_wise_bill),
-            'selected_cars' => $selectedCars,
-            'amount' => $total_pay_bill,
+            //'car_wise_bill' => json_encode($car_wise_bill),
+            //'selected_cars' => $selectedCars,
+            'amount' => $total_bill,
             'user' => $user
         ]);
     }

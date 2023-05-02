@@ -64,6 +64,16 @@ class MainsController extends Controller
         return response()->json(['error' => $e->getMessage()], 400);
       }
     }
+    
+    public function LastEvent(Request $request)
+    {
+      try {
+        $response = $this->rmsMainsService->lastevent($request->all());
+        return response()->json($response);
+      } catch (Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 400);
+      }
+    }
 
     public function availability(Request $request)
     {

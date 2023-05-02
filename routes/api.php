@@ -136,6 +136,7 @@ Route::get('/rms/mains/offhours', 'RMS\MainsController@offhours');
 Route::get('/rms/mains/export-data', 'RMS\MainsController@exportData');
 Route::get('/rms/mains/critical-sites', 'RMS\MainsController@criticalSites');
 Route::get('/rms/mains/availability', 'RMS\MainsController@availability');
+Route::post('/rms/mains/last-event', 'RMS\MainsController@LastEvent');
 
 Route::get('/rms/door/openhours', 'RMS\DoorController@openhours');
 Route::get('/rms/door/events', 'RMS\DoorController@events');

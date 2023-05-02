@@ -57,12 +57,12 @@
         {!! csrf_field() !!}
         <input type="hidden" id="amount" name="amount" value='{{ $amount }}'>
         <input type="hidden" id="user" name="user" value='{{ $user }}'>
-        <input type="hidden" id="car_wise_bill" name="car_wise_bill" value='{{ $car_wise_bill }}'>
+        {{-- <input type="hidden" id="car_wise_bill" name="car_wise_bill" value='{{ $car_wise_bill }}'> --}}
         <button id="bKash_button" class="hidden cursor-pointer"></button>
     </form>
 
-    <div class="flex flex-col items-center w-10/12 md:w-1/2 lg:w-1/3 mt-6">
-        <div class="gap-2 w-full py-3 border-b border-gray-300 grid grid-cols-12">
+    <div class="flex flex-col divide-y-2 justify-center items-center w-10/12 md:w-1/2 lg:w-1/3">
+         {{--<div class="gap-2 w-full py-3 border-b border-gray-300 grid grid-cols-12">
             <div class='flex items-center col-span-6 md:col-span-8'> <span class="text-xl text-gray-700 font-medium">Selected Car :</span>
             </div>
             <div class='flex flex-col items-start justify-center col-span-6 md:col-span-4'>
@@ -70,13 +70,15 @@
                 <span class="text-xl text-gray-700 font-medium ">{{ $car }}</span>
                 @endforeach
             </div>
+        </div> --}}
+        
+        <div class=" w-full py-3 flex justify-center items-center gap-2">
+            <span class="text-xl text-gray-700 font-medium ">Total Amount : </span>
+            <span class="text-xl text-gray-700 font-medium float-right">&#2547; {{ number_format($amount) }} </span>
         </div>
-        <div class="gap-2 w-full py-3 grid grid-cols-12">
-            <span class="text-xl text-gray-700 font-medium col-span-6 md:col-span-8">Total Amount : </span>
-            <span class="text-xl text-gray-700 font-medium float-right col-span-6 md:col-span-4">{{ number_format($amount) }}
-                TK</span>
+        <div class="flex justify-center py-2">
+            <img src="/images/bkash.jpg" alt="" class="cursor-pointer w-2/3" id="bkash_logo">
         </div>
-        <img src="/images/bkash.jpg" alt="" class="cursor-pointer w-2/3 mt-6" id="bkash_logo">
     </div>
 
     {{-- <div class="loader">Loading...</div> --}}

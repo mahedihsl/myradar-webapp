@@ -35,6 +35,11 @@ class RMSMainsMicroservice extends BaseService
     return $this->get('/analytics/critical-sites', $query);
   }
 
+  public function lastevent($data)
+  {
+    return $this->post('/event/last-event', $data);
+  }
+
   public function availability($query)
   {
     return $this->get('/analytics/availability', $query);
