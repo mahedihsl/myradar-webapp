@@ -78,11 +78,10 @@ class BkashCheckoutURLService extends BkashService
     }
   }
 
-  public function createPayment($user, $amount, $car_wise_bill, BkashCredential $credential)
+  public function createPayment($user, $amount, BkashCredential $credential)
   {
     try {
       $user_arr = json_decode($user, true);
-      //dd($user_arr['uid']);
       $url = $credential->getURL('/tokenized/checkout/create');
       $headers = $credential->getAccessHeaders($this->getAccessToken());
       $body = [
@@ -111,7 +110,7 @@ class BkashCheckoutURLService extends BkashService
         'user_name' => $user_arr['name'],
         'phone_no' => $user_arr['phone'],
         'wallet_no' => null,
-        'car_wise_bill' =>  $car_wise_bill,
+        //'car_wise_bill' =>  $car_wise_bill,
         'payment_id' => $response['paymentID'],
         'amount' => $response['amount'],
         'invoice_no' => $response['merchantInvoiceNumber'],
@@ -238,6 +237,18 @@ class BkashCheckoutURLService extends BkashService
     }
   }
 
+  public function isPaymentIDExist($paymentID){
+    
+    $check_transaction = BkashPGWTransaction::where('payment_id', $paymentID)->whereNotNull('trx_id')->first();  
+
+    if($check_transaction){
+      return true;
+    }
+
+    return false;
+
+  }
+
   public function allBkashBill(array $params)
   {
     try {
@@ -255,8 +266,8 @@ class BkashCheckoutURLService extends BkashService
         if(array_key_exists('wallet', $params) && strlen($params['wallet'])) {
           $query->where('wallet_no', $params['wallet']);
         }
-        if(array_key_exists('car', $params) && strlen($params['car'])){
-          $query->where('car_wise_bill.car_no', $params['car']);
+        if(array_key_exists('trx_id', $params) && strlen($params['trx_id'])){
+           $query->where('trx_id', $params['trx_id']);
         }
 
       return $query->orderBy('updated_at', 'DESC')->paginate(30);
@@ -284,7 +295,7 @@ class BkashCheckoutURLService extends BkashService
       $response = json_decode($res->getBody()->getContents(), true);
        // database insert to bkash_refund table;
 
-       $this->storeLog('refund_transaction', $url, $headers, $body, $response);
+      // $this->storeLog('refund_transaction', $url, $headers, $body, $response);
 
       return $response;
     } catch (Exception $e) {

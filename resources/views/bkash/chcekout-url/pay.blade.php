@@ -73,8 +73,14 @@
         </div> --}}
         
         <div class=" w-full py-3 flex justify-center items-center gap-2">
-            <span class="text-xl text-gray-700 font-medium ">Total Amount : </span>
+            {{-- <span class="text-xl text-gray-700 font-medium ">{{$language}}</span> --}}
+            @if($language == 'en')
+            <span class="text-xl text-gray-700 font-medium ">Total</span>
             <span class="text-xl text-gray-700 font-medium float-right">&#2547; {{ number_format($amount) }} </span>
+            @else
+            <span class="text-xl text-gray-700 font-medium ">সর্বমোট</span>
+            <span class="text-xl text-gray-700 font-medium float-right">&#2547; {{ number_format($amount) }} </span>
+            @endif
         </div>
         <div class="flex justify-center py-2">
             <img src="/images/bkash.jpg" alt="" class="cursor-pointer w-2/3" id="bkash_logo">

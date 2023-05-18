@@ -21,8 +21,8 @@
                     <th class="col-xs-1 text-center">Customer Name</th>
                     <th class="col-xs-1 text-center">Customer Phone No</th>
                     <th class="col-xs-1 text-center">bKash Wallet No</th>
-                    <th class="col-xs-1 text-center">Car No</th>
                     <th class="col-xs-1 text-center">Amount (BDT)</th>
+                    <th class="col-xs-1 text-center">bKash trxID</th> 
                     <th class="col-xs-1 text-center">Pay Date</th>
                 </tr>
             </thead>
@@ -33,18 +33,16 @@
                 @endphp
 
                 @foreach ($transactions as $key => $item)
-                @foreach ($item->car_wise_bill as $payable)
                 <tr>
                     <td class="text-center">{{$start + $key}}</td>
                     <td class="text-center">{{ $item->user_name }}</td>
                     <td class="text-center">{{ $item->phone_no }}</td>
                     <td class="text-center">{{ $item->wallet_no }}</td>
-                    <td class="text-center">{{ $payable['car_no'] }}</td>
-                    <td class="text-center">{{ $payable['bill'] }}</td>
+                    <td class="text-center">{{ $item->amount }}</td>
+                    <td class="text-center">{{ $item->trx_id }}</td> 
                     <td class="text-center">{{ $item->updated_at->format('j M Y g:i A') }}</td>
                 </tr>
 
-                @endforeach
                 @endforeach
                 @endif
             </tbody>

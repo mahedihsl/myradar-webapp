@@ -20,7 +20,7 @@
         </div>
         <div class="col-sm-2">
             <div class="form-group">
-                <input type="text" name="car" class="form-control" placeholder="Car no" value="{{$data['car'] or ''}}">
+                <input type="text" name="trx_id" class="form-control" placeholder="bKash trxID" value="{{$data['trx_id'] or ''}}">
                 <p class="help-block"></p>
             </div>
         </div>

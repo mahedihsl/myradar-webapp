@@ -5,26 +5,37 @@
         <br>
         <div style="display: flex; justify-content: center; align-items: center;">
             <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3" alt="myradar-logo-blue" style="max-width: 50px;">
-        </div>
 
+            <select name="language" id="languageSelect">
+                @foreach (['en' => 'English', 'bn' => 'বাংলা'] as $value => $label)
+                    <option value="{{ $value }}">{{ $label }}</option>
+                @endforeach
+            </select>
+        </div>
 
         <div class="flex justify-center items-stretch w-full">
             <div class="flex flex-col justify-center items-center gap-2">
-                <h4>myRADAR Bill Pay</h4>
+                <h4>myRADAR</h4>
                 <form action="/bkash/pay" method="POST" id="bkashForm">
                     {!! csrf_field() !!}
                     <input type="hidden" id="user" name="user" value='{{ $user }}'>
+                    <input type="hidden" id="lang" name="lang" value="en">
+                    <input type="hidden" id="uId" name="uId" value="{{$uId}}">
 
                     <div class='flex flex-col items-center justify-center gap-2'>
 
                         @if ($total_due_bill > 0)
                             <div class="card-body">
-                                <div class="card-text"><span class="text-sm font-normal">Dear Mr. {{ $user->name }} Sir,
-                                        Your total due &#2547; {{ number_format($total_due_bill) }}</span> </div>
+                                <div class="card-text"><span class="text-sm font-normal" id="greetingMsg">Dear Mr.
+                                        {{ $user->name }} Sir,
+                                        Your total due bill &#2547; {{ number_format($total_due_bill) }}</span>
+                                    <input type="hidden" id="totalBill" name="totalBill" value='{{ $total_due_bill }}'>
+                                </div>
                             </div>
                         @else
                             <div class="card-body">
-                                <div class="card-text"> <span class="text-sm font-medium">Dear {{ $user->name }} Sir,
+                                <div class="card-text"> <span class="text-sm font-medium" id="greetingMsg">Dear
+                                        {{ $user->name }} Sir,
                                         thank you
                                         !! You don't have any due bill.</div>
                                 </span>
@@ -35,11 +46,14 @@
                             <div class=" mb-3">
                                 <div class=" border border-slate-200 rounded shadow p-2">
                                     <div class="grid grid-cols-12 items-center pl-2">
-                                        <div class="col-span-5 md:col-span-4"><span class="font-semibold text-base"> Car
+                                        <div class="col-span-5 md:col-span-4"><span class="font-semibold text-base"
+                                                id="carNoLabel"> Car
                                                 No</span></div>
-                                        <div class="col-span-3 md:col-span-4"><span class="font-semibold text-base">Due
+                                        <div class="col-span-3 md:col-span-4"><span class="font-semibold text-base"
+                                                id="billNoLabel">Due
                                                 Bill</span> </div>
-                                        <div class=" col-span-4 pl-2 "><span class="font-semibold text-base">Due
+                                        <div class=" col-span-4 pl-2 "><span class="font-semibold text-base"
+                                                id="monthNameLabel">Due
                                                 Month</span>
                                         </div>
                                     </div>
@@ -88,7 +102,8 @@
                                                         value="{{ $car_bill_details['bill'] }}"
                                                         class="form-control col-span-3 md:col-span-4  border rounded border-slate-400 px-2 py-1 shadow-md"> --}}
                                                     <label class="form-control col-span-3 md:col-span-4 px-2 py-1"><span
-                                                            class="font-normal text-xs">&#2547; {{ number_format($car_bill_details['bill']) }}</span>
+                                                            class="font-normal text-xs">&#2547;
+                                                            {{ number_format($car_bill_details['bill']) }}</span>
                                                     </label>
                                                     <label class="form-check-label col-span-4 pl-2"><span
                                                             class="font-normal text-xs">{{ $formatted_date }}</span>
@@ -107,10 +122,14 @@
                                                 <div class="col-span-5 md:col-span-4 grid-cols-12">
                                                     {{-- <input class="col-span-1 form-check-input" type="checkbox"
                                                         name="car_index[]" value="{{ $i }}" checked> --}}
-                                                    <label class="col-span-11  form-check-label"></label>
+                                                    <label class="col-span-5 font-semibold text-base form-check-label"
+                                                        id="payAmountText">Pay
+                                                        Amount</label>
                                                 </div>
-                                                <input type="text" name="total_bill" value="{{ $total_due_bill }}"
-                                                    class="form-control col-span-3 md:col-span-4  border rounded border-slate-400 px-2 py-1 shadow-md">
+                                                <input type="number" id="total_bill" name="total_bill"
+                                                    value="{{ $total_due_bill }}"
+                                                    class="form-control col-span-3 md:col-span-4 font-semibold border rounded border-slate-400 px-2 py-1 shadow-md"
+                                                    onchange="billCheck(this.value)">
                                                 {{-- <label
                                                     class="form-control col-span-3 md:col-span-4 px-2 py-1"><span
                                                         class="font-normal text-xs">{{ number_format($car_bill_details['bill']) }}</span>
@@ -126,24 +145,156 @@
                             </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit"
-                            class="px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white rounded shadow-md">Pay
+                        <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white rounded shadow-md"
+                            id="payNowBtn">Pay
                             Now</button>
                     </div>
                     @endif
                 </form>
                 <br>
 
+                <p id="errorMessageEn" style="color: red; display: none;">Amount must be greater than or equal to 1.</p>
+                <p id="errorMessageBn" style="color: red; display: none;">সর্বনিম্ন ১ টাকা দিন।</p>
+
                 @if ($errors->any())
                     <div class="text-base font-normal text-red-500">
                         <ul>
                             @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                                <li id="error">{{ $error }}</li>
                             @endforeach
                         </ul>
                     </div>
                 @endif
             </div>
         </div>
+
+        <script>
+            var form = document.getElementById('bkashForm');
+            form.addEventListener('submit', function(event) {
+                var languageSelect = document.getElementById('languageSelect').value;
+                var lang = document.getElementById('lang');
+                lang.value = languageSelect;
+            });
+
+            function billCheck(inputValue) {
+                var languageSelect = document.getElementById('languageSelect').value;
+                var lang = document.getElementById('lang');
+                lang.value = languageSelect;
+                if (+inputValue < 1 && languageSelect === 'en') {
+                    document.getElementById('errorMessageBn').style.display = 'none';
+                    document.getElementById('errorMessageEn').style.display = 'block';
+                } else if (+inputValue < 1 && languageSelect === 'bn') {
+                    document.getElementById('errorMessageEn').style.display = 'none';
+                    document.getElementById('errorMessageBn').style.display = 'block';
+                } else {
+                    document.getElementById('errorMessageEn').style.display = 'none';
+                    document.getElementById('errorMessageBn').style.display = 'none';
+                }
+            }
+
+            var languageSelect = document.getElementById('languageSelect');
+
+            languageSelect.addEventListener('change', function() {
+
+                function formatNumberWithComma(number) {
+                    const numberString = number.toString();
+                    const digits = numberString.split('.');
+                    const integerPart = digits[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    let formattedNumber = integerPart;
+
+                    if (digits.length === 2) {
+                        formattedNumber += '.' + digits[1];
+                    }
+
+                    return formattedNumber;
+                }
+
+                function getDigitBanglaFromEnglish(number) {
+                    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+                    const numberString = number.toString();
+                    let banglaNumber = '';
+
+                    for (let i = 0; i < numberString.length; i++) {
+                        const digit = parseInt(numberString[i]);
+
+                        if (isNaN(digit)) {
+                            banglaNumber += numberString[i];
+                        } else {
+                            banglaNumber += bengaliDigits[digit];
+                        }
+                    }
+
+                    return banglaNumber;
+                }
+
+                function convertEnglishToBengali(text) {
+                    const englishChars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+                        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+                    ];
+                    const bengaliChars = ['অ', 'ব', 'ক', 'ড', 'ই', 'ফ', 'গ', 'হ', 'ই', 'জ', 'ক', 'ল', 'ম',
+                        'ন', 'ও', 'প', 'কু', 'র', 'স', 'ট', 'উ', 'ভ', 'খ', 'ও', 'ই', 'জ'
+                    ];
+
+                    let convertedText = '';
+
+                    for (let i = 0; i < text.length; i++) {
+                        const char = text.charAt(i).toLowerCase();
+                        const index = englishChars.indexOf(char);
+                        if (index !== -1) {
+                            convertedText += bengaliChars[index];
+                        } else {
+                            convertedText += text.charAt(i);
+                        }
+                    }
+
+                    return convertedText;
+                }
+
+                var selectedValue = languageSelect.value;
+                var carNoLabel = document.getElementById('carNoLabel');
+                var billNoLabel = document.getElementById('billNoLabel');
+                var monthNameLabel = document.getElementById('monthNameLabel');
+                var payNowBtn = document.getElementById('payNowBtn');
+                var payAmountText = document.getElementById('payAmountText');
+                var greetingMsg = document.getElementById('greetingMsg');
+                var totalBill = document.getElementById('totalBill').value;
+                var user = JSON.parse(document.getElementById('user').value);
+
+                // const formattedTotalBill = formatNumberWithComma(totalBill);
+                // const banglaTotalBill = getDigitBanglaFromEnglish(formattedTotalBill);
+                // console.log(banglaTotalBill);
+
+                if (selectedValue === 'bn') {
+                    carNoLabel.textContent = 'গাড়ি নম্বর';
+                    billNoLabel.textContent = 'বকেয়া বিল';
+                    monthNameLabel.textContent = 'বকেয়া মাস';
+                    payNowBtn.textContent = 'পে করুন';
+                    payAmountText.textContent = 'পেমেন্টের পরিমাণ';
+                    if (+totalBill > 0) {
+                        greetingMsg.textContent =
+                            `প্রিয় ${user.name} স্যার, আপনার বকেয়া বিল ${getDigitBanglaFromEnglish(formatNumberWithComma(totalBill))} টাকা।`
+                    } else {
+                        greetingMsg.textContent = `প্রিয় ${user.name} স্যার, ধন্যবাদ !! আপনার কোন বকেয়া বিল নেই।`
+                    }
+
+                    //console.log('bangla')
+                } else {
+                    carNoLabel.textContent = 'Car No';
+                    billNoLabel.textContent = 'Due Bill';
+                    monthNameLabel.textContent = 'Due Month';
+                    payNowBtn.textContent = 'Pay Now';
+                    payAmountText.textContent = 'Pay Amount';
+
+                    if (+totalBill > 0) {
+                        console.log(formatNumberWithComma(totalBill));
+                        greetingMsg.textContent =
+                            `Dear Mr. ${user.name} Sir, Your total due bill ৳ ${formatNumberWithComma(totalBill)}`;
+                    } else {
+                        greetingMsg.textContent = `Dear ${user.name} Sir, thanks !! You don't have any due bill.`;
+                    }
+                    //console.log('english')
+                }
+            });
+        </script>
     </div>
 @endsection

@@ -99,23 +99,95 @@ class BillingController extends Controller
 
     public function export(Request $request)
     {
+        // $data = $this->repository
+        //             ->pushCriteria(new LastCreatedCriteria())
+        //             ->with(['car.payments'])
+        //             ->all()
+        //             ->filter(function($record) {
+        //                 return ! is_null($record->car);
+        //             });
+
+        // Excel::create('FullBillingReport', function ($excel) use ($data) {
+        //     $excel->sheet('data', function ($sheet) use ($data) {
+        //         $data->transform(function ($activation) {
+        //             $transformer = new BillExportTransformer();
+        //             return $transformer->transform($activation);
+        //         });
+
+        //         $sheet->fromArray($data->toArray(), null, 'A1', false, true);
+        //     });
+        // })->download('xlsx');
+
+        // $data = $this->repository
+        // ->with(['car.payments', 'car.user'])
+        // ->pushCriteria(new LastCreatedCriteria())
+        // ->has('car')
+        // ->get();
+        
+        // Excel::create('FullBillingReport', function ($excel) use ($data) {
+        //     $excel->sheet('data', function ($sheet) use ($data) {
+        //         $data->transform(function ($activation) {
+        //             $transformer = new BillExportTransformer();
+        //             return $transformer->transform($activation);
+        //         });
+
+        //         $sheet->fromArray($data->toArray(), null, 'A1', false, true);
+        //     });
+        // })->download('xlsx');
+
+        // $array_data = array();
+
+        // foreach ($data as $datum) {
+        //   $array_data[] = $datum;
+        // }
+
+        $start = microtime(true);
         $data = $this->repository
-                    ->pushCriteria(new LastCreatedCriteria())
-                    ->with(['car.payments'])
-                    ->all()
-                    ->filter(function($record) {
-                        return ! is_null($record->car);
-                    });
+        ->with(['car.payments', 'car.user'])
+        ->pushCriteria(new LastCreatedCriteria())
+        ->has('car')
+        ->get();
 
-        Excel::create('FullBillingReport', function ($excel) use ($data) {
-            $excel->sheet('data', function ($sheet) use ($data) {
-                $data->transform(function ($activation) {
-                    $transformer = new BillExportTransformer();
-                    return $transformer->transform($activation);
-                });
+        $end = microtime(true);
+        $executionTime = ($end - $start)*1000; // Convert to milliseconds
 
-                $sheet->fromArray($data->toArray(), null, 'A1', false, true);
-            });
-        })->download('xlsx');
+        //dd($executionTime);
+        
+        $filename = 'export.txt';
+        
+        $file = fopen($filename, 'w');
+        
+        $header = implode(',', ['Customer','Car_No','Date_of_Activation','Total','Paid','Due','Waive','Complain']);
+        fwrite($file, $header . "\n");
+        $start = microtime(true);
+        foreach ($data as $model) {
+            $line = implode(',', [
+                $model->car->user->name,
+                $model->car->reg_no,
+                $model->created_at->toDayDateTimeString(),
+                $model->car->totalBill(),
+                $model->car->totalPaid(),
+                max(0, $model->car->totalBill() - $model->car->totalPaid()),
+                $model->car->totalWaive(),
+                $model->car->getLatestComplain() ? $model->car->getLatestComplain()->status : 'none'
+            ]);
+            fwrite($file, $line . "\n");
+        }
+        $end = microtime(true);
+        $executionTime = ($end - $start)*1000; // Convert to milliseconds
+
+dd($executionTime);
+        
+        fclose($file);
+        header('Content-Description: File Transfer');
+        header('Content-Disposition: attachment; filename=' . basename($filename));
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filename));
+        header('Content-Type: text/plain');
+        
+        readfile($filename);
+        
     }
 }
