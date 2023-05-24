@@ -221,7 +221,7 @@ class PaymentController extends Controller
       $user = User::find($userId);
       $refNo = $user->ref_no;
       if ($refNo == "") return response()->ok("add ref no!");
-      $content = $this->smsService->buildContent('payment_1', ['ref_no' => $refNo]);
+      $content = $this->smsService->buildContent('payment_1', ['ref_no' => $refNo, 'user_uid' => $user->uid]);
       // $content = $this->methodContent($refNo);
       return response()->ok($content);
     } catch (\Throwable $th) {

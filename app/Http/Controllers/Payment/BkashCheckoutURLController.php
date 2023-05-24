@@ -33,12 +33,17 @@ class BkashCheckoutURLController extends Controller
     }
 
     public function amount(Request $request, $uId)
-    {   
+    { 
         $user = User::where('uid', intval($uId))->first();
+
+        if(!$user){
+            return redirect()->back()->withErrors(['error' => 'You are not a myRADAR user.']);
+        }
+
         $total_due_bill = $this->bkashPaymentService->totalDue($user->id, $this->paymentRepository);
         $cars_bill_details = $this->bkashPaymentService->carDueBillCheck($user->id, $this->paymentRepository)['cars_bill_details'];
-        //dd($cars_bill_details);
-        return view('bkash.chcekout-url.amount')->with([
+    
+        return view('bkash.checkout-url.amount')->with([
             'cars_bill_details' => $cars_bill_details,
             'total_due_bill' => $total_due_bill['total'],
             'user' => $user,
@@ -83,7 +88,7 @@ class BkashCheckoutURLController extends Controller
 
         // if($language == 'en'){
         //     if($total_bill < 1){
-        //         return redirect()->back()->withErrors(['error' => 'Amount must be greater than or equal to 1']);
+        //         return redirect()->back()->withErrors(['error' => 'Amount must be minimum ৳ 1.']);
         //     }
         // }else{
         //     if($total_bill < 1){
@@ -95,7 +100,7 @@ class BkashCheckoutURLController extends Controller
            return redirect('/p/'.$uId);
         }
        
-        return view('bkash.chcekout-url.pay')->with([
+        return view('bkash.checkout-url.pay')->with([
             //'car_wise_bill' => json_encode($car_wise_bill),
             //'selected_cars' => $selectedCars,
             'language' => $language,
@@ -122,7 +127,7 @@ class BkashCheckoutURLController extends Controller
         $data = $this->bkashCheckoutURLService->isPaymentIDExist($paymentID);
 
         if($data){
-            return view('bkash.chcekout-url.success');
+            return view('bkash.checkout-url.success');
         }
 
         if(isset($allRequest['status']) && $allRequest['status'] == 'success'){
@@ -136,16 +141,16 @@ class BkashCheckoutURLController extends Controller
             }
 
             if(array_key_exists("statusCode",$response) && $response['statusCode'] == '0000'){
-                return view('bkash.chcekout-url.success');
+                return view('bkash.checkout-url.success');
             }else{
-                return view('bkash.chcekout-url.fail')->with([
+                return view('bkash.checkout-url.fail')->with([
                     'message' => $response['statusMessage'],
                     'uid' => $uid,
                 ]);
             }  
 
         } else{
-            return view('bkash.chcekout-url.fail')->with([
+            return view('bkash.checkout-url.fail')->with([
                 'uid' => $uid,
             ]);       
         }
@@ -154,7 +159,7 @@ class BkashCheckoutURLController extends Controller
 
     public function getRefund(Request $request)
     {
-        return view('bkash.chcekout-url.refund');
+        return view('bkash.checkout-url.refund');
     }
 
     public function refundPayment(Request $request)
@@ -166,12 +171,12 @@ class BkashCheckoutURLController extends Controller
         $response = $this->bkashCheckoutURLService->refundTransaction($paymentID, $trxID, $amount, $this->credential);
 
         if(isset($response['statusCode'])){
-            return view('bkash.chcekout-url.refund')->with([
+            return view('bkash.checkout-url.refund')->with([
                 'response' => $response['statusMessage'],
             ]);
         }
 
-        return view('bkash.chcekout-url.refund')->with([
+        return view('bkash.checkout-url.refund')->with([
             'response' => "Refund Successfully Completed !!",
         ]);
     }        
@@ -181,7 +186,7 @@ class BkashCheckoutURLController extends Controller
         $params = $request->all();
         $transactions = $this->bkashCheckoutURLService->allBkashBill($params);
 
-        return view('bkash.chcekout-url.allBill')
+        return view('bkash.checkout-url.allBill')
             ->with(compact('transactions', 'params'));
     }
 

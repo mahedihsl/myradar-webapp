@@ -3,14 +3,39 @@
 @section('content')
     <div class=" md:h-[70vh] md:flex flex-col items-center justify-center ">
         <br>
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3" alt="myradar-logo-blue" style="max-width: 50px;">
+        <div class="grid grid-cols-12 place-items-end w-full  md:w-1/2">
+            <div class="col-span-7 pr-1 md:pr-[50px]">
+                <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3 rounded" alt="myradar-logo-blue"
+                    style="max-width: 50px;">
+            </div>
 
-            <select name="language" id="languageSelect">
-                @foreach (['en' => 'English', 'bn' => 'বাংলা'] as $value => $label)
-                    <option value="{{ $value }}">{{ $label }}</option>
-                @endforeach
-            </select>
+            {{-- <select name="language" id="languageSelect">
+                    @foreach (['en' => 'English', 'bn' => 'বাংলা'] as $value => $label)
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </select> --}}
+
+
+            <div class="col-span-5 pr-4 pb-4">
+                {{-- <select name="language" id="languageSelect">
+                    @foreach (['en' => 'English', 'bn' => 'বাংলা'] as $value => $label)
+                        <option value="{{ $value }}">{{ $label }}</option>
+                    @endforeach
+                </select> --}}
+
+
+                <div class="toggle-switch border-2 border-gray-100">
+                    <input type="checkbox" id="languageToggle" class="hidden">
+                    <label for="languageToggle" class="toggle-label flex">
+                        <span class="toggle-text option-english bg-gray-200 rounded-l p-2 cursor-pointer hidden"
+                            id="english">English</span>
+                        <span class="toggle-text option-bengali bg-gray-200 rounded-r p-2 cursor-pointer"
+                            id="bangla">বাংলা</span>
+                    </label>
+                </div>
+
+            </div>
+
         </div>
 
         <div class="flex justify-center items-stretch w-full">
@@ -20,7 +45,7 @@
                     {!! csrf_field() !!}
                     <input type="hidden" id="user" name="user" value='{{ $user }}'>
                     <input type="hidden" id="lang" name="lang" value="en">
-                    <input type="hidden" id="uId" name="uId" value="{{$uId}}">
+                    <input type="hidden" id="uId" name="uId" value="{{ $uId }}">
 
                     <div class='flex flex-col items-center justify-center gap-2'>
 
@@ -153,7 +178,7 @@
                 </form>
                 <br>
 
-                <p id="errorMessageEn" style="color: red; display: none;">Amount must be greater than or equal to 1.</p>
+                <p id="errorMessageEn" style="color: red; display: none;">Amount must be minimum 1 taka.</p>
                 <p id="errorMessageBn" style="color: red; display: none;">সর্বনিম্ন ১ টাকা দিন।</p>
 
                 @if ($errors->any())
@@ -168,22 +193,98 @@
             </div>
         </div>
 
+        {{-- 
         <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var englishOption = document.querySelector('.option-english');
+              var bengaliOption = document.querySelector('.option-bengali');
+              var languageToggle = document.getElementById('languageToggle');
+            
+              englishOption.classList.add('bg-blue-500'); // Apply initial background color to "English" option
+            
+              languageToggle.addEventListener('change', function() {
+                if (languageToggle.checked) {
+                  englishOption.classList.remove('bg-blue-500');
+                  bengaliOption.classList.add('bg-blue-500');
+
+                } else {
+                  bengaliOption.classList.remove('bg-blue-500');
+                  englishOption.classList.add('bg-blue-500');
+                }
+              });
+            });
+            </script> --}}
+
+
+        <script>
+
+            var selectedLang = 'bn';
+            var languageToggle = document.getElementById('languageToggle');
+
+            function languageChecker() {
+                if (languageToggle.checked) {
+                    selectedLang = 'bn';
+
+                } else {
+                    selectedLang = 'en';
+                }
+
+                return selectedLang;
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var englishOption = document.querySelector('.option-english');
+                var bengaliOption = document.querySelector('.option-bengali');
+
+
+                languageToggle.addEventListener('change', function() {
+                    if (languageToggle.checked) {
+                        bengaliOption.classList.add('hidden');
+                        englishOption.classList.remove('hidden');
+                        selectedLang = 'en';
+
+                    } else {
+                        englishOption.classList.add('hidden');
+                        bengaliOption.classList.remove('hidden');
+                        selectedLang = 'bn';
+                    }
+                });
+            });
+
             var form = document.getElementById('bkashForm');
             form.addEventListener('submit', function(event) {
-                var languageSelect = document.getElementById('languageSelect').value;
+                // var languageSelect = document.getElementById('languageSelect').value;
+                // if (languageToggle.checked) {
+                //     selectedLang = 'bn';
+
+                // } else {
+                //     selectedLang = 'en';
+                // }
+                let selectedLang = languageChecker();
+                
                 var lang = document.getElementById('lang');
-                lang.value = languageSelect;
+                lang.value = selectedLang;
+                console.log(lang.value);
             });
 
             function billCheck(inputValue) {
-                var languageSelect = document.getElementById('languageSelect').value;
-                var lang = document.getElementById('lang');
-                lang.value = languageSelect;
-                if (+inputValue < 1 && languageSelect === 'en') {
+                //var languageSelect = document.getElementById('languageSelect').value;
+                //var lang = document.getElementById('lang');
+
+                // if (languageToggle.checked) {
+                //     selectedLang = 'bn';
+
+                // } else {
+                //     selectedLang = 'en';
+                // }
+
+                let selectedLang = languageChecker();
+
+                // lang.value = selectedLang;
+                if (+inputValue < 1 && selectedLang === 'en') {
                     document.getElementById('errorMessageBn').style.display = 'none';
                     document.getElementById('errorMessageEn').style.display = 'block';
-                } else if (+inputValue < 1 && languageSelect === 'bn') {
+                } else if (+inputValue < 1 && selectedLang === 'bn') {
                     document.getElementById('errorMessageEn').style.display = 'none';
                     document.getElementById('errorMessageBn').style.display = 'block';
                 } else {
@@ -192,10 +293,11 @@
                 }
             }
 
-            var languageSelect = document.getElementById('languageSelect');
-
-            languageSelect.addEventListener('change', function() {
-
+            // var languageSelect = document.getElementById('languageSelect');
+            // languageSelect.addEventListener('change', function() {
+            languageToggle.addEventListener('change', function() {
+                //selectedLang = 'bn';
+                //console.log(selectedLang);
                 function formatNumberWithComma(number) {
                     const numberString = number.toString();
                     const digits = numberString.split('.');
@@ -227,30 +329,15 @@
                     return banglaNumber;
                 }
 
-                function convertEnglishToBengali(text) {
-                    const englishChars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-                        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-                    ];
-                    const bengaliChars = ['অ', 'ব', 'ক', 'ড', 'ই', 'ফ', 'গ', 'হ', 'ই', 'জ', 'ক', 'ল', 'ম',
-                        'ন', 'ও', 'প', 'কু', 'র', 'স', 'ট', 'উ', 'ভ', 'খ', 'ও', 'ই', 'জ'
-                    ];
+                if (languageToggle.checked) {
+                    selectedLang = 'bn';
 
-                    let convertedText = '';
-
-                    for (let i = 0; i < text.length; i++) {
-                        const char = text.charAt(i).toLowerCase();
-                        const index = englishChars.indexOf(char);
-                        if (index !== -1) {
-                            convertedText += bengaliChars[index];
-                        } else {
-                            convertedText += text.charAt(i);
-                        }
-                    }
-
-                    return convertedText;
+                } else {
+                    selectedLang = 'en';
                 }
 
-                var selectedValue = languageSelect.value;
+
+                var selectedValue = selectedLang;
                 var carNoLabel = document.getElementById('carNoLabel');
                 var billNoLabel = document.getElementById('billNoLabel');
                 var monthNameLabel = document.getElementById('monthNameLabel');
@@ -260,15 +347,11 @@
                 var totalBill = document.getElementById('totalBill').value;
                 var user = JSON.parse(document.getElementById('user').value);
 
-                // const formattedTotalBill = formatNumberWithComma(totalBill);
-                // const banglaTotalBill = getDigitBanglaFromEnglish(formattedTotalBill);
-                // console.log(banglaTotalBill);
-
                 if (selectedValue === 'bn') {
                     carNoLabel.textContent = 'গাড়ি নম্বর';
                     billNoLabel.textContent = 'বকেয়া বিল';
                     monthNameLabel.textContent = 'বকেয়া মাস';
-                    payNowBtn.textContent = 'পে করুন';
+                    payNowBtn.textContent = 'বিল দিন';
                     payAmountText.textContent = 'পেমেন্টের পরিমাণ';
                     if (+totalBill > 0) {
                         greetingMsg.textContent =
@@ -276,8 +359,6 @@
                     } else {
                         greetingMsg.textContent = `প্রিয় ${user.name} স্যার, ধন্যবাদ !! আপনার কোন বকেয়া বিল নেই।`
                     }
-
-                    //console.log('bangla')
                 } else {
                     carNoLabel.textContent = 'Car No';
                     billNoLabel.textContent = 'Due Bill';
@@ -292,8 +373,8 @@
                     } else {
                         greetingMsg.textContent = `Dear ${user.name} Sir, thanks !! You don't have any due bill.`;
                     }
-                    //console.log('english')
                 }
+                // });
             });
         </script>
     </div>

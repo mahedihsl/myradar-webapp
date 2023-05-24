@@ -96,6 +96,7 @@ export default {
         this.$options.store.commit('changeView',k);
       },
       getMsgContent(){
+        console.log(EventBus)
         let api= new PaymentApi(EventBus);
         api.getMsgContent(this.customer.id);
       },
@@ -112,6 +113,7 @@ export default {
         this.totalDue = total;
       },
       onMessageContentReceived(data, type){
+        console.log('On message recieved', data)
         this.paymentSMS = data.message;
         this.smsType = type;
         this.$modal.show('info');
