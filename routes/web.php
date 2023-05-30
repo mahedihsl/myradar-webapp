@@ -27,6 +27,7 @@ Route::get('/archive', function() {
     return view('landing.welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/enroll', 'Promotion\CampaignController@bikroy');
@@ -504,3 +505,10 @@ Route::get('/report/positions/fetch', 'Report\PositionController@latest');
 
 Route::get('/tracking/history/{id}', 'Customer\PositionHistoryController@show');
 Route::get('/tracking/records/fetch', 'Customer\PositionHistoryController@history');
+
+// web hook routes
+
+Route::post('/bkash/webhook', 'Admin\BkashWebhookController@PayloadReceiver');
+Route::get('/bkash/ipndata', 'Admin\BkashWebhookController@BkashWebhookView')->name('bkash-webhook-view');
+
+

@@ -3,26 +3,16 @@
 @section('content')
     <div class=" md:h-[70vh] md:flex flex-col items-center justify-center ">
         <br>
-        <div class="grid grid-cols-12 place-items-end w-full  md:w-1/2">
+        {{-- <div class="flex justify-center items-stretch w-full">
             <div class="col-span-7 pr-1 md:pr-[50px]">
                 <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3 rounded" alt="myradar-logo-blue"
                     style="max-width: 50px;">
+                <h4>myRADAR</h4>
             </div>
-
-            {{-- <select name="language" id="languageSelect">
-                    @foreach (['en' => 'English', 'bn' => 'বাংলা'] as $value => $label)
-                        <option value="{{ $value }}">{{ $label }}</option>
-                    @endforeach
-                </select> --}}
 
 
             <div class="col-span-5 pr-4 pb-4">
-                {{-- <select name="language" id="languageSelect">
-                    @foreach (['en' => 'English', 'bn' => 'বাংলা'] as $value => $label)
-                        <option value="{{ $value }}">{{ $label }}</option>
-                    @endforeach
-                </select> --}}
-
+        
 
                 <div class="toggle-switch border-2 border-gray-100">
                     <input type="checkbox" id="languageToggle" class="hidden">
@@ -33,14 +23,47 @@
                             id="bangla">বাংলা</span>
                     </label>
                 </div>
-
             </div>
 
+
+        </div> --}}
+        <div class="grid grid-cols-12 w-full ">
+            <div class="col-span-4"></div>
+            <div class="col-span-4">
+                <div class="flex flex-col items-center">
+                    <img src="/images/myradar-logo-blue.png" class="img-fluid mb-3 rounded" alt="myradar-logo-blue"
+                        style="max-width: 50px;">
+                </div>
+            </div>
+            <div class="col-span-4">
+                <div class="toggle-switch flex items-center justify-center">
+                    <input type="checkbox" id="languageToggle" class="hidden">
+                    <label for="languageToggle" class="toggle-label flex">
+                        <span class="toggle-text option-english bg-gray-200 rounded px-4 py-2  cursor-pointer hidden"
+                            id="english">English</span>
+                        <span class="toggle-text option-bengali bg-gray-200 rounded px-4 py-2  cursor-pointer"
+                            id="bangla">বাংলা</span>
+                    </label>
+                </div>
+            </div>
         </div>
 
-        <div class="flex justify-center items-stretch w-full">
+        <div class="grid grid-cols-12  w-full">
+            <div class="col-span-4"></div>
+            <div class="col-span-4">
+                <div class="flex flex-col items-center">
+                   <h4>myRADAR</h4>
+                </div>
+            </div>
+            <div class="col-span-4">
+            </div>
+        </div>
+
+
+
+        <div class="flex justify-center items-stretch w-full px-2">
             <div class="flex flex-col justify-center items-center gap-2">
-                <h4>myRADAR</h4>
+                {{-- <h4>myRADAR</h4> --}}
                 <form action="/bkash/pay" method="POST" id="bkashForm">
                     {!! csrf_field() !!}
                     <input type="hidden" id="user" name="user" value='{{ $user }}'>
@@ -217,7 +240,6 @@
 
 
         <script>
-
             var selectedLang = 'bn';
             var languageToggle = document.getElementById('languageToggle');
 
@@ -261,7 +283,7 @@
                 //     selectedLang = 'en';
                 // }
                 let selectedLang = languageChecker();
-                
+
                 var lang = document.getElementById('lang');
                 lang.value = selectedLang;
                 console.log(lang.value);

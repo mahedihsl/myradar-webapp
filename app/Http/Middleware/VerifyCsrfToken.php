@@ -37,5 +37,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/test/fuel-avarage',
         '/online-payment/*',
         '/enroll/save',
+        '/bkash/webhook',
     ];
 }
